@@ -25,6 +25,7 @@ import {
 } from 'lucide-react'
 import './App.css'
 import { translations } from './translations'
+import { privacyContent } from './privacy-content'
 
 // Language Context
 const LanguageContext = createContext()
@@ -161,6 +162,9 @@ function Footer() {
               <li><Link to="/projects" className="hover:text-white transition-colors">{t.nav.projects}</Link></li>
               <li><Link to="/insights" className="hover:text-white transition-colors">{t.nav.insights}</Link></li>
               <li><Link to="/contact" className="hover:text-white transition-colors">{t.nav.contact}</Link></li>
+              <li><Link to="/privacy" className="hover:text-white transition-colors">{language === 'it' ? 'Privacy' : 'Privacy'}</Link></li>
+              <li><Link to="/cookies" className="hover:text-white transition-colors">{language === 'it' ? 'Cookie' : 'Cookies'}</Link></li>
+              <li><Link to="/terms" className="hover:text-white transition-colors">{language === 'it' ? 'Termini' : 'Terms'}</Link></li>
             </ul>
           </div>
           
@@ -1036,6 +1040,118 @@ function ContactPage() {
   )
 }
 
+// Privacy Pages Component
+function PrivacyPage() {
+  const { language } = useLanguage()
+  const content = privacyContent[language].privacy
+  
+  return (
+    <div className="py-20">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h1 className="text-5xl font-bold text-gray-900 mb-4">{content.title}</h1>
+        <p className="text-sm text-gray-500 mb-8">{content.lastUpdated}</p>
+        
+        <div className="prose prose-lg max-w-none">
+          <p className="text-lg text-gray-700 leading-relaxed mb-8">
+            {content.intro}
+          </p>
+          
+          {content.sections.map((section, index) => (
+            <div key={index} className="mb-8">
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">{section.title}</h2>
+              <p className="text-gray-700 leading-relaxed mb-4">{section.content}</p>
+              {section.items && (
+                <ul className="space-y-2 mb-4">
+                  {section.items.map((item, idx) => (
+                    <li key={idx} className="text-gray-700 ml-6">
+                      <span dangerouslySetInnerHTML={{ __html: item }} />
+                    </li>
+                  ))}
+                </ul>
+              )}
+              {section.note && (
+                <p className="text-gray-600 italic mt-4">{section.note}</p>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function CookiesPage() {
+  const { language } = useLanguage()
+  const content = privacyContent[language].cookies
+  
+  return (
+    <div className="py-20">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h1 className="text-5xl font-bold text-gray-900 mb-4">{content.title}</h1>
+        <p className="text-sm text-gray-500 mb-8">{content.lastUpdated}</p>
+        
+        <div className="prose prose-lg max-w-none">
+          <p className="text-lg text-gray-700 leading-relaxed mb-8">
+            {content.intro}
+          </p>
+          
+          {content.sections.map((section, index) => (
+            <div key={index} className="mb-8">
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">{section.title}</h2>
+              <p className="text-gray-700 leading-relaxed mb-4">{section.content}</p>
+              {section.items && (
+                <ul className="space-y-2 mb-4">
+                  {section.items.map((item, idx) => (
+                    <li key={idx} className="text-gray-700 ml-6">
+                      <span dangerouslySetInnerHTML={{ __html: item }} />
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function TermsPage() {
+  const { language } = useLanguage()
+  const content = privacyContent[language].terms
+  
+  return (
+    <div className="py-20">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h1 className="text-5xl font-bold text-gray-900 mb-4">{content.title}</h1>
+        <p className="text-sm text-gray-500 mb-8">{content.lastUpdated}</p>
+        
+        <div className="prose prose-lg max-w-none">
+          <p className="text-lg text-gray-700 leading-relaxed mb-8">
+            {content.intro}
+          </p>
+          
+          {content.sections.map((section, index) => (
+            <div key={index} className="mb-8">
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">{section.title}</h2>
+              <p className="text-gray-700 leading-relaxed mb-4">{section.content}</p>
+              {section.items && (
+                <ul className="space-y-2 mb-4">
+                  {section.items.map((item, idx) => (
+                    <li key={idx} className="text-gray-700 ml-6">
+                      <span dangerouslySetInnerHTML={{ __html: item }} />
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
+
 // Main App Component
 function App() {
   return (
@@ -1051,6 +1167,9 @@ function App() {
               <Route path="/projects" element={<ProjectsPage />} />
               <Route path="/insights" element={<InsightsPage />} />
               <Route path="/contact" element={<ContactPage />} />
+              <Route path="/privacy" element={<PrivacyPage />} />
+              <Route path="/cookies" element={<CookiesPage />} />
+              <Route path="/terms" element={<TermsPage />} />
             </Routes>
           </main>
           <Footer />
