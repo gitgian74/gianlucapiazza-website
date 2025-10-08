@@ -25,6 +25,9 @@ import { Input } from '@/components/ui/input.jsx'
 import { Textarea } from '@/components/ui/textarea.jsx'
 import { Label } from '@/components/ui/label.jsx'
 import Hero3D from './components/Hero3D'
+import PrivacyPage from './components/PrivacyPage'
+import CookiePage from './components/CookiePage'
+import CookieConsent from './components/CookieConsent'
 import { translations } from './translations'
 import './App.css'
 
@@ -683,7 +686,7 @@ function ContactPage() {
 
 // Footer Component
 function Footer() {
-  const { t } = useLanguage()
+  const { language, t } = useLanguage()
   
   return (
     <footer className="bg-gray-900 text-gray-300 py-12">
@@ -735,6 +738,14 @@ function Footer() {
               <li><Link to="/contact" className="hover:text-white transition-colors">{t.nav.contact}</Link></li>
             </ul>
           </div>
+          
+          <div>
+            <h3 className="text-white text-lg font-semibold mb-4">{t.footer.legal || (language === 'it' ? 'Legale' : 'Legal')}</h3>
+            <ul className="space-y-2 text-sm">
+              <li><Link to="/privacy" className="hover:text-white transition-colors">{language === 'it' ? 'Privacy Policy' : 'Privacy Policy'}</Link></li>
+              <li><Link to="/cookies" className="hover:text-white transition-colors">{language === 'it' ? 'Cookie Policy' : 'Cookie Policy'}</Link></li>
+            </ul>
+          </div>
         </div>
         
         <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
@@ -743,6 +754,18 @@ function Footer() {
       </div>
     </footer>
   )
+}
+
+// Privacy Page Wrapper
+function PrivacyPageWrapper() {
+  const { language } = useLanguage()
+  return <PrivacyPage language={language} />
+}
+
+// Cookie Page Wrapper
+function CookiePageWrapper() {
+  const { language } = useLanguage()
+  return <CookiePage language={language} />
 }
 
 // Main App Component
@@ -758,12 +781,21 @@ function App() {
             <Route path="/services" element={<ServicesPage />} />
             <Route path="/projects" element={<ProjectsPage />} />
             <Route path="/contact" element={<ContactPage />} />
+            <Route path="/privacy" element={<PrivacyPageWrapper />} />
+            <Route path="/cookies" element={<CookiePageWrapper />} />
           </Routes>
           <Footer />
+          <CookieConsentWrapper />
         </div>
       </Router>
     </LanguageProvider>
   )
+}
+
+// Cookie Consent Wrapper
+function CookieConsentWrapper() {
+  const { language } = useLanguage()
+  return <CookieConsent language={language} />
 }
 
 export default App
