@@ -6,6 +6,7 @@ import {
   TrendingUp, 
   Users, 
   Mail, 
+  Phone,
   Linkedin, 
   ExternalLink,
   Menu,
