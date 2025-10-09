@@ -31,29 +31,55 @@ function AnimatedText3D() {
         rotationIntensity={0.5}
         floatIntensity={0.5}
       >
-        <Text3D
-          ref={textRef}
-          font="/fonts/helvetiker_bold.typeface.json"
-          size={1.8}
-          height={0.5}
-          curveSegments={16}
-          bevelEnabled
-          bevelThickness={0.05}
-          bevelSize={0.05}
-          bevelOffset={0}
-          bevelSegments={10}
-          onPointerOver={() => setHovered(true)}
-          onPointerOut={() => setHovered(false)}
-        >
-          NexT
-          <meshStandardMaterial
-            color={hovered ? "#60a5fa" : "#0070f3"}
-            metalness={0.8}
-            roughness={0.2}
-            emissive={hovered ? "#0070f3" : "#0052cc"}
-            emissiveIntensity={hovered ? 0.8 : 0.5}
-          />
-        </Text3D>
+        <group>
+          {/* White outline layer */}
+          <Text3D
+            font="/fonts/helvetiker_bold.typeface.json"
+            size={1.82}
+            height={0.48}
+            curveSegments={16}
+            bevelEnabled
+            bevelThickness={0.06}
+            bevelSize={0.06}
+            bevelOffset={0}
+            bevelSegments={10}
+            position={[-0.01, -0.01, -0.02]}
+          >
+            NexT
+            <meshStandardMaterial
+              color="#ffffff"
+              metalness={0.3}
+              roughness={0.7}
+              transparent
+              opacity={0.4}
+            />
+          </Text3D>
+          
+          {/* Main blue text */}
+          <Text3D
+            ref={textRef}
+            font="/fonts/helvetiker_bold.typeface.json"
+            size={1.8}
+            height={0.5}
+            curveSegments={16}
+            bevelEnabled
+            bevelThickness={0.05}
+            bevelSize={0.05}
+            bevelOffset={0}
+            bevelSegments={10}
+            onPointerOver={() => setHovered(true)}
+            onPointerOut={() => setHovered(false)}
+          >
+            NexT
+            <meshStandardMaterial
+              color={hovered ? "#60a5fa" : "#0070f3"}
+              metalness={0.8}
+              roughness={0.2}
+              emissive={hovered ? "#0070f3" : "#0052cc"}
+              emissiveIntensity={hovered ? 0.8 : 0.5}
+            />
+          </Text3D>
+        </group>
       </Float>
     </Center>
   )
