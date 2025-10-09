@@ -623,10 +623,57 @@ function ContactPage() {
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="flex items-start gap-3">
+                    <Mail className="text-blue-600 mt-1" size={24} />
+                    <div>
+                      <p className="font-semibold">Email</p>
+                      <a 
+                        href="mailto:mail@gianlucapiazza.com"
+                        className="text-blue-600 hover:underline"
+                      >
+                        {t.contact.info.email}
+                      </a>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3">
+                    <Phone className="text-blue-600 mt-1" size={24} />
+                    <div>
+                      <p className="font-semibold">Italia</p>
+                      <a 
+                        href="tel:+393373303431"
+                        className="text-blue-600 hover:underline"
+                      >
+                        {t.contact.info.phoneIT}
+                      </a>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3">
+                    <Phone className="text-blue-600 mt-1" size={24} />
+                    <div>
+                      <p className="font-semibold">USA</p>
+                      <a 
+                        href="tel:+13055480002"
+                        className="text-blue-600 hover:underline"
+                      >
+                        {t.contact.info.phoneUS}
+                      </a>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3">
                     <MapPin className="text-blue-600 mt-1" size={24} />
                     <div>
-                      <p className="font-semibold">Location</p>
-                      <p className="text-gray-600">{t.contact.info.location}</p>
+                      <p className="font-semibold">Italia</p>
+                      <p className="text-gray-600">{t.contact.info.addressIT}</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3">
+                    <MapPin className="text-blue-600 mt-1" size={24} />
+                    <div>
+                      <p className="font-semibold">USA</p>
+                      <p className="text-gray-600">{t.contact.info.addressUS}</p>
                     </div>
                   </div>
                   
@@ -697,9 +744,36 @@ function Footer() {
           <div>
             <h3 className="text-white text-lg font-semibold mb-4">{t.footer.contactTitle}</h3>
             <ul className="space-y-2 text-sm">
+              <li>
+                <a 
+                  href="mailto:mail@gianlucapiazza.com"
+                  className="flex items-center gap-2 hover:text-white transition-colors"
+                >
+                  <Mail size={16} />
+                  mail@gianlucapiazza.com
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="tel:+393373303431"
+                  className="flex items-center gap-2 hover:text-white transition-colors"
+                >
+                  <Phone size={16} />
+                  +39 337 303431 (IT)
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="tel:+13055480002"
+                  className="flex items-center gap-2 hover:text-white transition-colors"
+                >
+                  <Phone size={16} />
+                  +1 (305) 548-0002 (US)
+                </a>
+              </li>
               <li className="flex items-center gap-2">
                 <MapPin size={16} />
-                Monteviale, Veneto, Italy
+                Villaverla - VI, Italy
               </li>
               <li>
                 <a 

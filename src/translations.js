@@ -218,6 +218,26 @@ export const translations = {
         skills: 'Competenze Applicate:',
         skillsList: ['Innovation management', 'VR/AR technology', 'Strategic partnerships']
       },
+      project7: {
+        title: 'Servizio di Video Sorveglianza AI per RFI',
+        client: 'Cliente:',
+        clientName: 'RFI (Rete Ferroviaria Italiana) e Consorziate',
+        market: 'Mercato:',
+        marketName: 'Italia - Progetto Alta Velocità PNRR',
+        objective: 'Obiettivo:',
+        objectiveText: 'Implementazione sistema avanzato di video sorveglianza con intelligenza artificiale per infrastrutture ferroviarie ad alta velocità',
+        technology: 'Tecnologia:',
+        technologyName: 'AI-powered video surveillance, Computer Vision, Real-time analytics',
+        results: 'Risultati:',
+        resultsList: [
+          'Sistema di sorveglianza intelligente implementato',
+          'Monitoraggio real-time infrastrutture critiche',
+          'Integrazione con progetto PNRR Alta Velocità',
+          'Sicurezza e efficienza operativa migliorate'
+        ],
+        skills: 'Competenze Applicate:',
+        skillsList: ['AI & Computer Vision', 'Infrastructure security', 'PNRR project management']
+      },
       ctaText: 'Vuoi discutere un progetto simile per la tua azienda?',
       ctaButton: 'Contattami'
     },
@@ -233,9 +253,14 @@ export const translations = {
       },
       info: {
         title: 'Informazioni di Contatto',
-        location: 'Monteviale, Veneto, Italy',
+        email: 'mail@gianlucapiazza.com',
+        phoneIT: '+39 337 303431',
+        phoneUS: '+1 (305) 548-0002',
+        addressIT: 'c/o Lab101 Srl, via Conca 8, 36030 Villaverla - VI',
+        addressUS: 'c/o 8Hz LLC, 4660 Arboretum Cir Unit 201, Naples FL 34112',
         linkedin: 'LinkedIn',
-        website: 'Lab101 Srl'
+        companyIT: 'Lab101 Srl',
+        companyUS: '8Hz LLC'
       }
     },
     footer: {
@@ -464,6 +489,26 @@ export const translations = {
         skills: 'Applied Skills:',
         skillsList: ['Innovation management', 'VR/AR technology', 'Strategic partnerships']
       },
+      project7: {
+        title: 'AI Video Surveillance Service for RFI',
+        client: 'Client:',
+        clientName: 'RFI (Italian Railway Network) and Consortium Partners',
+        market: 'Market:',
+        marketName: 'Italy - High-Speed Rail PNRR Project',
+        objective: 'Objective:',
+        objectiveText: 'Implementation of advanced AI-powered video surveillance system for high-speed railway infrastructure',
+        technology: 'Technology:',
+        technologyName: 'AI-powered video surveillance, Computer Vision, Real-time analytics',
+        results: 'Results:',
+        resultsList: [
+          'Intelligent surveillance system implemented',
+          'Real-time monitoring of critical infrastructure',
+          'Integration with PNRR High-Speed Rail project',
+          'Enhanced security and operational efficiency'
+        ],
+        skills: 'Applied Skills:',
+        skillsList: ['AI & Computer Vision', 'Infrastructure security', 'PNRR project management']
+      },
       ctaText: 'Want to discuss a similar project for your company?',
       ctaButton: 'Contact Me'
     },
@@ -479,9 +524,14 @@ export const translations = {
       },
       info: {
         title: 'Contact Information',
-        location: 'Monteviale, Veneto, Italy',
+        email: 'mail@gianlucapiazza.com',
+        phoneIT: '+39 337 303431',
+        phoneUS: '+1 (305) 548-0002',
+        addressIT: 'c/o Lab101 Srl, via Conca 8, 36030 Villaverla - VI',
+        addressUS: 'c/o 8Hz LLC, 4660 Arboretum Cir Unit 201, Naples FL 34112',
         linkedin: 'LinkedIn',
-        website: 'Lab101 Srl'
+        companyIT: 'Lab101 Srl',
+        companyUS: '8Hz LLC'
       }
     },
     footer: {
