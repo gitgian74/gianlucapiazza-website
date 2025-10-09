@@ -420,12 +420,13 @@ function ProjectsPage() {
   const { t } = useLanguage()
   
   const projectColors = [
-    'from-amber-500 to-orange-500',
-    'from-blue-500 to-cyan-500',
-    'from-red-500 to-pink-500',
-    'from-green-500 to-emerald-500',
-    'from-purple-500 to-indigo-500',
-    'from-yellow-500 to-amber-500'
+    'from-blue-600 to-blue-700',
+    'from-blue-500 to-blue-600',
+    'from-blue-700 to-blue-800',
+    'from-blue-500 to-cyan-600',
+    'from-indigo-600 to-blue-600',
+    'from-cyan-600 to-blue-600',
+    'from-blue-800 to-indigo-700'
   ]
   
   const projects = [
@@ -434,7 +435,8 @@ function ProjectsPage() {
     t.projects.project3,
     t.projects.project4,
     t.projects.project5,
-    t.projects.project6
+    t.projects.project6,
+    t.projects.project7
   ]
   
   return (

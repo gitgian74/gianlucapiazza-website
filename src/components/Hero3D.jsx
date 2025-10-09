@@ -38,20 +38,20 @@ function AnimatedText3D() {
           height={0.5}
           curveSegments={16}
           bevelEnabled
-          bevelThickness={0.03}
-          bevelSize={0.03}
+          bevelThickness={0.05}
+          bevelSize={0.05}
           bevelOffset={0}
-          bevelSegments={8}
+          bevelSegments={10}
           onPointerOver={() => setHovered(true)}
           onPointerOut={() => setHovered(false)}
         >
           NexT
           <meshStandardMaterial
-            color={hovered ? "#ffffff" : "#f0f0f0"}
-            metalness={0.9}
-            roughness={0.1}
-            emissive={hovered ? "#e0e0e0" : "#d0d0d0"}
-            emissiveIntensity={0.3}
+            color={hovered ? "#60a5fa" : "#0070f3"}
+            metalness={0.8}
+            roughness={0.2}
+            emissive={hovered ? "#0070f3" : "#0052cc"}
+            emissiveIntensity={hovered ? 0.8 : 0.5}
           />
         </Text3D>
       </Float>
@@ -167,7 +167,7 @@ export default function Hero3D({ language, translations }) {
   const t = translations[language]
   
   return (
-    <div className="relative w-full h-screen bg-gradient-to-b from-gray-900 via-blue-900 to-gray-900 overflow-hidden">
+    <div className="relative w-full h-screen bg-gradient-to-b from-gray-50 via-blue-50 to-white overflow-hidden">
       {/* Canvas 3D con effetti migliorati */}
       <div className="absolute inset-0">
         <Canvas
@@ -190,7 +190,7 @@ export default function Hero3D({ language, translations }) {
       </div>
       
       {/* Contenuto sovrapposto */}
-      <div className="relative z-10 flex flex-col items-center justify-center h-full text-white px-4">
+      <div className="relative z-10 flex flex-col items-center justify-center h-full text-gray-900 px-4">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -198,7 +198,7 @@ export default function Hero3D({ language, translations }) {
           className="text-center max-w-4xl"
         >
           <motion.h1 
-            className="text-6xl md:text-8xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-blue-300 to-blue-500"
+            className="text-6xl md:text-8xl font-bold mb-6 text-gray-900"
             animate={{
               backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
             }}
@@ -215,7 +215,7 @@ export default function Hero3D({ language, translations }) {
           </motion.h1>
           
           <motion.p 
-            className="text-2xl md:text-3xl mb-4 text-blue-200"
+            className="text-2xl md:text-3xl mb-4 text-gray-700"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.6 }}
@@ -230,24 +230,15 @@ export default function Hero3D({ language, translations }) {
             className="mt-12"
           >
             <motion.p 
-              className="text-4xl md:text-6xl font-bold text-white mb-4"
-              animate={{
-                textShadow: [
-                  '0 0 20px rgba(59, 130, 246, 0.5)',
-                  '0 0 40px rgba(59, 130, 246, 0.8)',
-                  '0 0 20px rgba(59, 130, 246, 0.5)',
-                ]
-              }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-                ease: "easeInOut"
+              className="text-4xl md:text-6xl font-bold text-gray-900 mb-4"
+              style={{
+                textShadow: '0 0 30px rgba(0, 112, 243, 0.3)'
               }}
             >
               {t.home.futureTrading}
             </motion.p>
             <motion.p 
-              className="text-xl md:text-2xl text-blue-300 italic"
+              className="text-xl md:text-2xl text-gray-600 italic"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 1.2 }}
@@ -264,16 +255,16 @@ export default function Hero3D({ language, translations }) {
           >
             <motion.a
               href="#services"
-              className="px-8 py-4 bg-blue-600 hover:bg-blue-700 rounded-lg text-lg font-semibold transition-all"
-              whileHover={{ scale: 1.05, boxShadow: '0 0 30px rgba(59, 130, 246, 0.6)' }}
+              className="px-8 py-4 bg-gray-900 hover:bg-gray-800 text-white rounded-lg text-lg font-semibold transition-all shadow-lg"
+              whileHover={{ scale: 1.05, boxShadow: '0 10px 40px rgba(0, 0, 0, 0.2)' }}
               whileTap={{ scale: 0.95 }}
             >
               {t.home.discoverServices}
             </motion.a>
             <motion.a
               href="#contact"
-              className="px-8 py-4 bg-transparent border-2 border-blue-400 hover:bg-blue-400/10 rounded-lg text-lg font-semibold transition-all"
-              whileHover={{ scale: 1.05, borderColor: '#60a5fa' }}
+              className="px-8 py-4 bg-white border-2 border-gray-900 text-gray-900 hover:bg-gray-50 rounded-lg text-lg font-semibold transition-all shadow-lg"
+              whileHover={{ scale: 1.05, boxShadow: '0 10px 40px rgba(0, 0, 0, 0.15)' }}
               whileTap={{ scale: 0.95 }}
             >
               {t.home.contactMe}
@@ -287,7 +278,7 @@ export default function Hero3D({ language, translations }) {
         {[...Array(80)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute w-1 h-1 bg-blue-400 rounded-full"
+            className="absolute w-1 h-1 bg-blue-600 rounded-full"
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
@@ -309,7 +300,7 @@ export default function Hero3D({ language, translations }) {
       </div>
       
       {/* Gradient overlay per profondità */}
-      <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-transparent to-transparent pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-t from-white/50 via-transparent to-transparent pointer-events-none" />
     </div>
   )
 }
