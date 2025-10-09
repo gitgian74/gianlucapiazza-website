@@ -44,7 +44,7 @@ export const translations = {
       philosophyQuote: 'Gettare il cuore oltre l\'ostacolo',
       philosophy: 'La mia filosofia fonde organizzazione, leadership e problem solving in contesti dinamici e multiculturali, riflettendo il mio spirito imprenditoriale e l\'impegno incrollabile verso l\'innovazione e l\'eccellenza. Guidato da determinazione e visione, cerco continuamente nuove opportunità per crescere e innovare nel mercato globale, forgiando sinergie che uniscono tradizione e modernità, trasformando le sfide in successi duraturi.',
       skillsTitle: 'Competenze Chiave',
-      skills: ['Leadership', 'Entrepreneurship', 'Project Management', 'Business Strategy', 'Negotiation']
+      skills: ['Leadership', 'Entrepreneurship', 'Project Management', 'Business Strategy', 'Negotiation', 'Litigation']
     },
     services: {
       title: 'Servizi di Consulenza',
@@ -315,7 +315,7 @@ export const translations = {
       philosophyQuote: 'Throw your heart over the obstacle',
       philosophy: 'My philosophy blends organization, leadership and problem solving in dynamic and multicultural contexts, reflecting my entrepreneurial spirit and unwavering commitment to innovation and excellence. Driven by determination and vision, I continuously seek new opportunities to grow and innovate in the global market, forging synergies that unite tradition and modernity, transforming challenges into lasting successes.',
       skillsTitle: 'Key Skills',
-      skills: ['Leadership', 'Entrepreneurship', 'Project Management', 'Business Strategy', 'Negotiation']
+      skills: ['Leadership', 'Entrepreneurship', 'Project Management', 'Business Strategy', 'Negotiation', 'Litigation']
     },
     services: {
       title: 'Consulting Services',

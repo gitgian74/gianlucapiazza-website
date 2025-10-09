@@ -193,7 +193,7 @@ export default function Hero3D({ language, translations }) {
   const t = translations[language]
   
   return (
-    <div className="relative w-full h-screen bg-gradient-to-b from-gray-50 via-blue-50 to-white overflow-hidden">
+    <div className="relative w-full h-screen bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 overflow-hidden">
       {/* Canvas 3D con effetti migliorati */}
       <div className="absolute inset-0">
         <Canvas
@@ -216,7 +216,7 @@ export default function Hero3D({ language, translations }) {
       </div>
       
       {/* Contenuto sovrapposto */}
-      <div className="relative z-10 flex flex-col items-center justify-center h-full text-gray-900 px-4">
+      <div className="relative z-10 flex flex-col items-center justify-center h-full text-white px-4">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -224,7 +224,7 @@ export default function Hero3D({ language, translations }) {
           className="text-center max-w-4xl"
         >
           <motion.h1 
-            className="text-6xl md:text-8xl font-bold mb-6 text-gray-900"
+            className="text-6xl md:text-8xl font-bold mb-6 text-white"
             animate={{
               backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
             }}
@@ -241,7 +241,7 @@ export default function Hero3D({ language, translations }) {
           </motion.h1>
           
           <motion.p 
-            className="text-2xl md:text-3xl mb-4 text-gray-700"
+            className="text-2xl md:text-3xl mb-4 text-gray-300"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.6 }}
@@ -256,15 +256,15 @@ export default function Hero3D({ language, translations }) {
             className="mt-12"
           >
             <motion.p 
-              className="text-4xl md:text-6xl font-bold text-gray-900 mb-4"
+              className="text-4xl md:text-6xl font-bold text-white mb-4"
               style={{
-                textShadow: '0 0 30px rgba(0, 112, 243, 0.3)'
+                textShadow: '0 0 40px rgba(0, 112, 243, 0.6), 0 0 80px rgba(0, 112, 243, 0.3)'
               }}
             >
               {t.home.futureTrading}
             </motion.p>
             <motion.p 
-              className="text-xl md:text-2xl text-gray-600 italic"
+              className="text-xl md:text-2xl text-gray-400 italic"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 1.2 }}
