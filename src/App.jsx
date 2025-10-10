@@ -246,12 +246,28 @@ function AboutPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h1 className="text-5xl font-bold text-gray-900 mb-8">{t.about.title}</h1>
+          <div className="flex flex-col md:flex-row items-center gap-12 mb-12">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="flex-shrink-0"
+            >
+              <img 
+                src="/gianluca-profile.webp" 
+                alt="Gianluca Piazza" 
+                className="w-64 h-64 rounded-full object-cover shadow-2xl ring-4 ring-blue-600"
+              />
+            </motion.div>
+            <div className="flex-1">
+              <h1 className="text-5xl font-bold text-gray-900 mb-4">{t.about.title}</h1>
+              <p className="text-xl text-gray-700 leading-relaxed">
+                {t.about.intro}
+              </p>
+            </div>
+          </div>
           
           <div className="prose prose-lg max-w-none">
-            <p className="text-xl text-gray-700 leading-relaxed mb-8">
-              {t.about.intro}
-            </p>
             
             <h2 className="text-3xl font-bold text-gray-900 mt-12 mb-6">{t.about.experienceTitle}</h2>
             <p className="text-gray-700 leading-relaxed mb-4">{t.about.experience1}</p>
@@ -303,6 +319,13 @@ function ServicesPage() {
           <div className="space-y-12">
             {/* Service 1 */}
             <Card className="overflow-hidden">
+              <div className="relative h-64 overflow-hidden">
+                <img 
+                  src="/images/service-international.jpg" 
+                  alt="International Business Consulting" 
+                  className="w-full h-full object-cover"
+                />
+              </div>
               <CardHeader className="bg-blue-50">
                 <div className="flex items-center gap-4">
                   <Globe className="w-12 h-12 text-blue-600" />
@@ -331,6 +354,13 @@ function ServicesPage() {
             
             {/* Service 2 */}
             <Card className="overflow-hidden">
+              <div className="relative h-64 overflow-hidden">
+                <img 
+                  src="/images/service-strategy.jpg" 
+                  alt="Business Strategy Consulting" 
+                  className="w-full h-full object-cover"
+                />
+              </div>
               <CardHeader className="bg-green-50">
                 <div className="flex items-center gap-4">
                   <TrendingUp className="w-12 h-12 text-green-600" />
@@ -354,6 +384,13 @@ function ServicesPage() {
             
             {/* Service 3 */}
             <Card className="overflow-hidden">
+              <div className="relative h-64 overflow-hidden">
+                <img 
+                  src="/images/service-trading.jpg" 
+                  alt="Trading & Finance Consulting" 
+                  className="w-full h-full object-cover"
+                />
+              </div>
               <CardHeader className="bg-purple-50">
                 <div className="flex items-center gap-4">
                   <Users className="w-12 h-12 text-purple-600" />
@@ -377,6 +414,13 @@ function ServicesPage() {
             
             {/* Service 4 */}
             <Card className="overflow-hidden">
+              <div className="relative h-64 overflow-hidden">
+                <img 
+                  src="/images/service-innovation.jpg" 
+                  alt="Innovation & Technology Consulting" 
+                  className="w-full h-full object-cover"
+                />
+              </div>
               <CardHeader className="bg-amber-50">
                 <div className="flex items-center gap-4">
                   <Briefcase className="w-12 h-12 text-amber-600" />
@@ -429,6 +473,16 @@ function ProjectsPage() {
     'from-blue-800 to-indigo-700'
   ]
   
+  const projectImages = [
+    '/images/project-trading.jpg',
+    '/images/project-market-entry.jpg',
+    '/images/project-business-intelligence.jpg',
+    '/images/project-digital-transformation.jpg',
+    '/images/project-partnerships.jpg',
+    '/images/project-training.jpg',
+    '/images/project-rfi-surveillance.jpg'
+  ]
+  
   const projects = [
     t.projects.project1,
     t.projects.project2,
@@ -453,6 +507,13 @@ function ProjectsPage() {
           <div className="grid md:grid-cols-2 gap-8">
             {projects.map((project, idx) => (
               <Card key={idx} className="overflow-hidden hover:shadow-xl transition-shadow">
+                <div className="relative h-56 overflow-hidden">
+                  <img 
+                    src={projectImages[idx]} 
+                    alt={project.title} 
+                    className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
+                  />
+                </div>
                 <CardHeader className={`bg-gradient-to-r ${projectColors[idx]} text-white`}>
                   <CardTitle className="text-2xl">{project.title}</CardTitle>
                 </CardHeader>
@@ -551,8 +612,19 @@ function ContactPage() {
   }
   
   return (
-    <div className="pt-20 min-h-screen bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+    <div className="pt-20 min-h-screen relative">
+      {/* Background Image */}
+      <div className="absolute inset-0 z-0">
+        <img 
+          src="/images/contact-cityscape.jpg" 
+          alt="Modern City" 
+          className="w-full h-full object-cover opacity-20"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-white/90 via-white/85 to-white/90"></div>
+      </div>
+      
+      {/* Content */}
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
