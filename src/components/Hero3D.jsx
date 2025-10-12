@@ -72,11 +72,11 @@ function AnimatedText3D() {
           >
             NexT
             <meshStandardMaterial
-              color={hovered ? "#60a5fa" : "#0070f3"}
-              metalness={0.8}
-              roughness={0.2}
-              emissive={hovered ? "#0070f3" : "#0052cc"}
-              emissiveIntensity={hovered ? 0.8 : 0.5}
+              color={hovered ? "#33E0FF" : "#00D9FF"}
+              metalness={0.9}
+              roughness={0.1}
+              emissive={hovered ? "#00D9FF" : "#00B8D9"}
+              emissiveIntensity={hovered ? 1.5 : 1.2}
             />
           </Text3D>
         </group>
@@ -193,7 +193,7 @@ export default function Hero3D({ language, translations }) {
   const t = translations[language]
   
   return (
-    <div className="relative w-full h-screen bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 overflow-hidden">
+     <div className="relative min-h-screen overflow-hidden bg-gradient-to-br from-gray-50 via-blue-50/30 to-gray-100">>
       {/* Canvas 3D con effetti migliorati */}
       <div className="absolute inset-0">
         <Canvas
@@ -216,7 +216,7 @@ export default function Hero3D({ language, translations }) {
       </div>
       
       {/* Contenuto sovrapposto */}
-      <div className="relative z-10 flex flex-col items-center justify-center h-full text-white px-4">
+      <div className="relative z-10 flex flex-col items-center justify-center h-full text-gray-900 px-4">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -224,7 +224,7 @@ export default function Hero3D({ language, translations }) {
           className="text-center max-w-4xl"
         >
           <motion.h1 
-            className="text-6xl md:text-8xl font-bold mb-6 text-white"
+            className="text-6xl md:text-8xl font-bold mb-6 text-gray-900"
             animate={{
               backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
             }}
@@ -241,7 +241,7 @@ export default function Hero3D({ language, translations }) {
           </motion.h1>
           
           <motion.p 
-            className="text-2xl md:text-3xl mb-4 text-gray-300"
+            className="text-2xl md:text-3xl mb-4 text-gray-700"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.6 }}
@@ -253,18 +253,25 @@ export default function Hero3D({ language, translations }) {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: 0.9 }}
-            className="mt-12"
+            className="mt-12 bg-white/60 backdrop-blur-xl rounded-3xl p-8 shadow-2xl border border-white/50"
           >
             <motion.p 
-              className="text-4xl md:text-6xl font-bold text-white mb-4"
+              className="text-4xl md:text-6xl font-bold mb-4"
               style={{
-                textShadow: '0 0 40px rgba(0, 112, 243, 0.6), 0 0 80px rgba(0, 112, 243, 0.3)'
+                color: '#00D9FF',
+                textShadow: `
+                  0 0 10px rgba(0, 217, 255, 0.8),
+                  0 0 20px rgba(0, 217, 255, 0.8),
+                  0 0 40px rgba(0, 217, 255, 0.6),
+                  0 0 80px rgba(0, 217, 255, 0.4),
+                  0 0 120px rgba(0, 217, 255, 0.2)
+                `
               }}
             >
               {t.home.futureTrading}
             </motion.p>
             <motion.p 
-              className="text-xl md:text-2xl text-gray-400 italic"
+              className="text-xl md:text-2xl text-gray-700 italic"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 1.2 }}
@@ -281,16 +288,16 @@ export default function Hero3D({ language, translations }) {
           >
             <motion.a
               href="#services"
-              className="px-8 py-4 bg-gray-900 hover:bg-gray-800 text-white rounded-lg text-lg font-semibold transition-all shadow-lg"
-              whileHover={{ scale: 1.05, boxShadow: '0 10px 40px rgba(0, 0, 0, 0.2)' }}
+              className="px-8 py-4 bg-gradient-to-r from-[#FC4C02] to-[#FF6B35] text-white rounded-full text-lg font-semibold transition-all shadow-lg"
+              whileHover={{ scale: 1.05, boxShadow: '0 10px 40px rgba(252, 76, 2, 0.4)' }}
               whileTap={{ scale: 0.95 }}
             >
               {t.home.discoverServices}
             </motion.a>
             <motion.a
               href="#contact"
-              className="px-8 py-4 bg-white border-2 border-gray-900 text-gray-900 hover:bg-gray-50 rounded-lg text-lg font-semibold transition-all shadow-lg"
-              whileHover={{ scale: 1.05, boxShadow: '0 10px 40px rgba(0, 0, 0, 0.15)' }}
+              className="px-8 py-4 bg-white/80 backdrop-blur-sm border-2 border-gray-200 text-gray-900 hover:bg-white rounded-full text-lg font-semibold transition-all shadow-lg"
+              whileHover={{ scale: 1.05, boxShadow: '0 10px 40px rgba(0, 0, 0, 0.1)' }}
               whileTap={{ scale: 0.95 }}
             >
               {t.home.contactMe}
