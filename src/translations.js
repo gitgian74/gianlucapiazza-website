@@ -22,7 +22,7 @@ export const translations = {
         markets: 'Mercati USA Principali',
         marketsValue: '6',
         partnerships: 'Partnership Strategiche',
-        ceo: 'Lab101 Srl'
+        ceo: 'Global Consultant'
       },
       servicesTitle: 'Aree di Competenza',
       servicesSubtitle: 'Servizi specializzati per la crescita internazionale',
@@ -32,9 +32,9 @@ export const translations = {
     },
     about: {
       title: 'Chi Sono',
-      intro: 'Mi chiamo Gianluca Piazza e sono un imprenditore, leader esecutivo e business developer con una carriera che abbraccia continenti e industrie. La mia missione è accompagnare le aziende nel loro percorso di internazionalizzazione, trasformando visioni ambiziose in realtà concrete sui mercati globali.',
+      intro: 'Mi chiamo Gianluca Piazza e sono un manager per l\'internazionalizzazione e business developer con una carriera che abbraccia continenti e industrie. La mia missione è accompagnare le aziende nel loro percorso di espansione, trasformando visioni ambiziose in realtà concrete sui mercati globali.',
       experienceTitle: 'Esperienza Internazionale',
-      experience1: 'Attualmente ricopro il ruolo di CEO di Lab101 Srl, un\'innovativa azienda italiana specializzata in soluzioni smart, dove da oltre due anni guido la crescita strategica e operativa, posizionando l\'azienda come leader di mercato. Sono inoltre co-fondatore di WeDeal Srl, un\'impresa con sede a Milano dove, da oltre quattro anni, gestisco e sviluppo multiple iniziative imprenditoriali.',
+      experience1: 'Opero come consulente strategico indipendente, guidando aziende italiane ed europee nel complesso percorso di espansione verso i mercati esteri. La mia attività si concentra sulla creazione di ponti commerciali solidi e duraturi, sfruttando un network consolidato e una profonda conoscenza delle dinamiche di business internazionali.',
       experience2: 'La mia esperienza internazionale si è consolidata in 18 anni come Senior Business Developer presso GP Business and Market Strategy, dove ho coordinato iniziative e progetti di investimento nei principali mercati statunitensi: Florida, TriState (New York, New Jersey, Connecticut), Texas, Washington State, California e Las Vegas. Durante il mio periodo negli Stati Uniti, ho mantenuto un\'attenzione costante ai progressi tecnologici, integrando le ultime innovazioni nelle strategie aziendali e anticipando i trend di settore.',
       projectsTitle: 'Progetti di Rilievo',
       projects: 'Ho co-fondato e ricoperto il ruolo di Executive Director di Vine N Ale Distributors a Miami, svolgendo un ruolo chiave nell\'espansione della presenza sul mercato. Ho negoziato partnership con le principali catene retail, introducendo prodotti iconici come quelli del Birrificio Angelo Poretti in Starbucks Reserve, e collaborato con Acque Minerali d\'Italia in un progetto con Niagara Waters che ha portato l\'eccellenza italiana in network come Walmart, Publix, Target, Sedano\'s e Fresh Market.',
@@ -44,7 +44,7 @@ export const translations = {
       philosophyQuote: 'Gettare il cuore oltre l\'ostacolo',
       philosophy: 'La mia filosofia fonde organizzazione, leadership e problem solving in contesti dinamici e multiculturali, riflettendo il mio spirito imprenditoriale e l\'impegno incrollabile verso l\'innovazione e l\'eccellenza. Guidato da determinazione e visione, cerco continuamente nuove opportunità per crescere e innovare nel mercato globale, forgiando sinergie che uniscono tradizione e modernità, trasformando le sfide in successi duraturi.',
       skillsTitle: 'Competenze Chiave',
-      skills: ['Leadership', 'Entrepreneurship', 'Project Management', 'Business Strategy', 'Negotiation', 'Litigation']
+      skills: ['International Management', 'Business Strategy', 'Market Expansion', 'Negotiation', 'Strategic Partnerships', 'Litigation']
     },
     services: {
       title: 'Servizi di Consulenza',
@@ -256,12 +256,18 @@ export const translations = {
         email: 'mail@gianlucapiazza.com',
         phoneIT: '+39 337 303431',
         phoneUS: '+1 (305) 548-0002',
-        addressIT: 'c/o Lab101 Srl, via Conca 8, 36030 Villaverla - VI',
+        addressIT: 'via Conca 8, 36030 Villaverla - VI',
         addressUS: 'c/o 8Hz LLC, 4660 Arboretum Cir Unit 201, Naples FL 34112',
         linkedin: 'LinkedIn',
-        companyIT: 'Lab101 Srl',
+        companyIT: '',
         companyUS: '8Hz LLC'
       }
+    },
+    marketResearch: {
+      title: "AI Market Research",
+      subtitle: "Chiedimi qualsiasi cosa sui mercati globali, strategie di espansione o trend di settore.",
+      placeholder: "Chiedi informazioni su un mercato (es. 'Quali sono i trend del caffè in Italia?')",
+      disclaimer: "L'IA può commettere errori. Verifica le informazioni importanti."
     },
     footer: {
       about: 'Consulente Internazionalizzazione | Business Developer | Entrepreneur',
@@ -293,7 +299,7 @@ export const translations = {
         markets: 'Main US Markets',
         marketsValue: '6',
         partnerships: 'Strategic Partnerships',
-        ceo: 'Lab101 Srl'
+        ceo: 'Global Consultant'
       },
       servicesTitle: 'Areas of Expertise',
       servicesSubtitle: 'Specialized services for international growth',
@@ -303,9 +309,9 @@ export const translations = {
     },
     about: {
       title: 'About Me',
-      intro: 'My name is Gianluca Piazza and I am an entrepreneur, executive leader and business developer with a career spanning continents and industries. My mission is to accompany companies on their internationalization journey, transforming ambitious visions into concrete realities in global markets.',
+      intro: 'My name is Gianluca Piazza and I am an internationalization manager and business developer with a career spanning continents and industries. My mission is to accompany companies on their expansion journey, transforming ambitious visions into concrete realities in global markets.',
       experienceTitle: 'International Experience',
-      experience1: 'I currently serve as CEO of Lab101 Srl, an innovative Italian company specialized in smart solutions, where for over two years I have been guiding strategic and operational growth, positioning the company as a market leader. I am also co-founder of WeDeal Srl, a Milan-based company where, for over four years, I manage and develop multiple entrepreneurial initiatives.',
+      experience1: 'I operate as an independent strategic consultant, guiding Italian and European companies through the complex journey of expansion into foreign markets. My activity focuses on creating solid and lasting commercial bridges, leveraging a consolidated network and deep knowledge of international business dynamics.',
       experience2: 'My international experience was consolidated over 18 years as Senior Business Developer at GP Business and Market Strategy, where I coordinated initiatives and investment projects in the main US markets: Florida, TriState (New York, New Jersey, Connecticut), Texas, Washington State, California, and Las Vegas. During my time in the United States, I maintained constant attention to technological progress, integrating the latest innovations into business strategies and anticipating industry trends.',
       projectsTitle: 'Notable Projects',
       projects: 'I co-founded and served as Executive Director of Vine N Ale Distributors in Miami, playing a key role in expanding market presence. I negotiated partnerships with major retail chains, introducing iconic products such as those from Birrificio Angelo Poretti at Starbucks Reserve, and collaborated with Acque Minerali d\'Italia on a project with Niagara Waters that brought Italian excellence to networks such as Walmart, Publix, Target, Sedano\'s and Fresh Market.',
@@ -315,7 +321,7 @@ export const translations = {
       philosophyQuote: 'Throw your heart over the obstacle',
       philosophy: 'My philosophy blends organization, leadership and problem solving in dynamic and multicultural contexts, reflecting my entrepreneurial spirit and unwavering commitment to innovation and excellence. Driven by determination and vision, I continuously seek new opportunities to grow and innovate in the global market, forging synergies that unite tradition and modernity, transforming challenges into lasting successes.',
       skillsTitle: 'Key Skills',
-      skills: ['Leadership', 'Entrepreneurship', 'Project Management', 'Business Strategy', 'Negotiation', 'Litigation']
+      skills: ['International Management', 'Business Strategy', 'Market Expansion', 'Negotiation', 'Strategic Partnerships', 'Litigation']
     },
     services: {
       title: 'Consulting Services',
@@ -473,7 +479,7 @@ export const translations = {
       },
       project6: {
         title: 'Meta & Teslasuit - VR Training Solutions',
-        client: 'Partners:',
+        client: 'Partner:',
         clientName: 'Meta, Teslasuit',
         market: 'Market:',
         marketName: 'International',
@@ -527,12 +533,18 @@ export const translations = {
         email: 'mail@gianlucapiazza.com',
         phoneIT: '+39 337 303431',
         phoneUS: '+1 (305) 548-0002',
-        addressIT: 'c/o Lab101 Srl, via Conca 8, 36030 Villaverla - VI',
+        addressIT: 'via Conca 8, 36030 Villaverla - VI',
         addressUS: 'c/o 8Hz LLC, 4660 Arboretum Cir Unit 201, Naples FL 34112',
         linkedin: 'LinkedIn',
-        companyIT: 'Lab101 Srl',
+        companyIT: '',
         companyUS: '8Hz LLC'
       }
+    },
+    marketResearch: {
+      title: "AI Market Research",
+      subtitle: "Chiedimi qualsiasi cosa sui mercati globali, strategie di espansione o trend di settore.",
+      placeholder: "Chiedi informazioni su un mercato (es. 'Quali sono i trend del caffè in Italia?')",
+      disclaimer: "L'IA può commettere errori. Verifica le informazioni importanti."
     },
     footer: {
       about: 'Internationalization Consultant | Business Developer | Entrepreneur',
