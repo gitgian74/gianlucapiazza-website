@@ -284,28 +284,52 @@ export const translations = {
       learnMore: 'Cookie Policy'
     },
     privacy: {
-      title: 'Privacy Policy',
+      title: 'Privacy & Cookie Policy',
       lastUpdated: 'Ultimo aggiornamento:',
-      intro: 'La tua privacy è importante per noi. Questa politica descrive come raccogliamo, utilizziamo e proteggiamo le tue informazioni personali.',
-      collection: {
-        title: 'Raccolta Dati',
-        text: 'Raccogliamo informazioni che ci fornisci direttamente quando utilizzi il nostro modulo di contatto, inclusi nome, email, azienda e numero di telefono.'
+      intro: 'Questa Informativa sulla Privacy descrive le modalità di gestione del sito web in riferimento al trattamento dei dati personali degli utenti che lo consultano. Si tratta di un\'informativa resa anche ai sensi dell\'art. 13 del Regolamento UE 2016/679 (GDPR).',
+      controller: {
+        title: 'Titolare del Trattamento',
+        text: 'Il Titolare del trattamento dei dati è:',
+        name: 'Lab101 Srl',
+        address: 'Via delle Primule 62, Monteviale (VI)',
+        vat: 'P.IVA 04309800243',
+        email: 'mail@gianlucapiazza.com'
       },
-      usage: {
-        title: 'Utilizzo dei Dati',
-        text: 'Utilizziamo le informazioni raccolte per rispondere alle tue richieste, fornire i servizi richiesti e migliorare la tua esperienza sul nostro sito.'
+      collection: {
+        title: 'Tipologia di Dati Raccolti',
+        text: 'Durante la navigazione e l\'utilizzo del sito, possono essere raccolti i seguenti dati:',
+        list: [
+          'Dati di navigazione (indirizzi IP, orari di richiesta, ecc.)',
+          'Dati forniti volontariamente dall\'utente (nome, email, azienda, telefono nel form di contatto)',
+          'Cookie e dati di utilizzo'
+        ]
+      },
+      purpose: {
+        title: 'Finalità del Trattamento',
+        text: 'I dati raccolti sono utilizzati per:',
+        list: [
+          'Rispondere alle richieste di contatto e informazioni',
+          'Fornire i servizi di consulenza richiesti',
+          'Migliorare l\'esperienza utente sul sito',
+          'Analisi statistiche anonime sull\'utilizzo del sito'
+        ]
       },
       cookies: {
-        title: 'Cookie',
-        text: 'Utilizziamo cookie tecnici essenziali per il funzionamento del sito e cookie analitici anonimizzati per comprendere come gli utenti interagiscono con il sito.'
+        title: 'Cookie Policy',
+        text: 'Questo sito utilizza cookie per migliorare l\'esperienza di navigazione. Nello specifico:',
+        types: [
+          'Cookie Tecnici: Necessari per il funzionamento del sito.',
+          'Cookie Analitici: Utilizzati per raccogliere informazioni statistiche in forma anonima.'
+        ],
+        management: 'L\'utente può gestire le preferenze sui cookie direttamente dalle impostazioni del proprio browser.'
       },
       rights: {
-        title: 'I Tuoi Diritti',
-        text: 'Hai il diritto di accedere, correggere o cancellare i tuoi dati personali in qualsiasi momento. Contattaci per esercitare questi diritti.'
+        title: 'Diritti degli Interessati',
+        text: 'Ai sensi del GDPR, gli utenti hanno il diritto di chiedere al Titolare l\'accesso ai dati, la rettifica, la cancellazione degli stessi o la limitazione del trattamento, oltre al diritto alla portabilità dei dati.'
       },
       contact: {
-        title: 'Contattaci',
-        text: 'Per domande sulla nostra privacy policy, contattaci a:'
+        title: 'Contatti Privacy',
+        text: 'Per esercitare i propri diritti o per qualsiasi informazione relativa alla privacy, è possibile contattare il Titolare all\'indirizzo email:'
       }
     }
   },
@@ -594,28 +618,52 @@ export const translations = {
       learnMore: 'Cookie Policy'
     },
     privacy: {
-      title: 'Privacy Policy',
+      title: 'Privacy & Cookie Policy',
       lastUpdated: 'Last Updated:',
-      intro: 'Your privacy is important to us. This policy describes how we collect, use, and protect your personal information.',
-      collection: {
-        title: 'Data Collection',
-        text: 'We collect information you provide directly to us when you use our contact form, including name, email, company, and phone number.'
+      intro: 'This Privacy Policy describes how the website is managed with regard to the processing of personal data of users who consult it. This notice is also provided pursuant to Art. 13 of EU Regulation 2016/679 (GDPR).',
+      controller: {
+        title: 'Data Controller',
+        text: 'The Data Controller is:',
+        name: 'Lab101 Srl',
+        address: 'Via delle Primule 62, Monteviale (VI) - Italy',
+        vat: 'VAT ID 04309800243',
+        email: 'mail@gianlucapiazza.com'
       },
-      usage: {
-        title: 'Data Usage',
-        text: 'We use the collected information to respond to your inquiries, provide requested services, and improve your experience on our website.'
+      collection: {
+        title: 'Types of Data Collected',
+        text: 'During navigation and use of the site, the following data may be collected:',
+        list: [
+          'Navigation data (IP addresses, request times, etc.)',
+          'Data voluntarily provided by the user (name, email, company, phone in the contact form)',
+          'Cookies and usage data'
+        ]
+      },
+      purpose: {
+        title: 'Purpose of Processing',
+        text: 'The collected data is used to:',
+        list: [
+          'Respond to contact and information requests',
+          'Provide requested consulting services',
+          'Improve user experience on the site',
+          'Anonymous statistical analysis of site usage'
+        ]
       },
       cookies: {
-        title: 'Cookies',
-        text: 'We use essential technical cookies for website operation and anonymized analytical cookies to understand how users interact with the site.'
+        title: 'Cookie Policy',
+        text: 'This site uses cookies to improve the browsing experience. Specifically:',
+        types: [
+          'Technical Cookies: Necessary for the site to function.',
+          'Analytical Cookies: Used to collect statistical information in anonymous form.'
+        ],
+        management: 'Users can manage cookie preferences directly from their browser settings.'
       },
       rights: {
-        title: 'Your Rights',
-        text: 'You have the right to access, correct, or delete your personal data at any time. Contact us to exercise these rights.'
+        title: 'Rights of Data Subjects',
+        text: 'Under GDPR, users have the right to request from the Controller access to data, rectification, cancellation of the same or limitation of processing, as well as the right to data portability.'
       },
       contact: {
-        title: 'Contact Us',
-        text: 'For questions about our privacy policy, contact us at:'
+        title: 'Privacy Contact',
+        text: 'To exercise your rights or for any information regarding privacy, you can contact the Controller at the email address:'
       }
     }
   }

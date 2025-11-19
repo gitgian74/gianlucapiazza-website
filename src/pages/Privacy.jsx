@@ -22,28 +22,62 @@ export function Privacy() {
                             {t.privacy.intro}
                         </p>
 
-                        <div className="mt-8 space-y-6">
+                        <div className="mt-8 space-y-8">
+                            {/* Data Controller */}
+                            <section className="bg-slate-900/50 p-6 rounded-2xl border border-slate-800">
+                                <h2 className="text-xl font-bold text-white mb-4">{t.privacy.controller.title}</h2>
+                                <p className="text-slate-300 mb-2">{t.privacy.controller.text}</p>
+                                <div className="text-slate-400">
+                                    <p className="font-semibold text-white">{t.privacy.controller.name}</p>
+                                    <p>{t.privacy.controller.address}</p>
+                                    <p>{t.privacy.controller.vat}</p>
+                                    <p className="mt-2">Email: <a href={`mailto:${t.privacy.controller.email}`} className="text-blue-400 hover:text-blue-300">{t.privacy.controller.email}</a></p>
+                                </div>
+                            </section>
+
+                            {/* Data Collection */}
                             <section>
                                 <h2 className="text-2xl font-bold text-white mb-4">{t.privacy.collection.title}</h2>
-                                <p className="text-slate-400 leading-relaxed">
+                                <p className="text-slate-400 leading-relaxed mb-4">
                                     {t.privacy.collection.text}
                                 </p>
+                                <ul className="list-disc list-inside text-slate-400 space-y-2 ml-4">
+                                    {t.privacy.collection.list.map((item, index) => (
+                                        <li key={index}>{item}</li>
+                                    ))}
+                                </ul>
                             </section>
 
+                            {/* Purpose */}
                             <section>
-                                <h2 className="text-2xl font-bold text-white mb-4">{t.privacy.usage.title}</h2>
-                                <p className="text-slate-400 leading-relaxed">
-                                    {t.privacy.usage.text}
+                                <h2 className="text-2xl font-bold text-white mb-4">{t.privacy.purpose.title}</h2>
+                                <p className="text-slate-400 leading-relaxed mb-4">
+                                    {t.privacy.purpose.text}
                                 </p>
+                                <ul className="list-disc list-inside text-slate-400 space-y-2 ml-4">
+                                    {t.privacy.purpose.list.map((item, index) => (
+                                        <li key={index}>{item}</li>
+                                    ))}
+                                </ul>
                             </section>
 
+                            {/* Cookies */}
                             <section>
                                 <h2 className="text-2xl font-bold text-white mb-4">{t.privacy.cookies.title}</h2>
-                                <p className="text-slate-400 leading-relaxed">
+                                <p className="text-slate-400 leading-relaxed mb-4">
                                     {t.privacy.cookies.text}
+                                </p>
+                                <ul className="list-disc list-inside text-slate-400 space-y-2 ml-4 mb-4">
+                                    {t.privacy.cookies.types.map((item, index) => (
+                                        <li key={index}>{item}</li>
+                                    ))}
+                                </ul>
+                                <p className="text-slate-400 italic">
+                                    {t.privacy.cookies.management}
                                 </p>
                             </section>
 
+                            {/* Rights */}
                             <section>
                                 <h2 className="text-2xl font-bold text-white mb-4">{t.privacy.rights.title}</h2>
                                 <p className="text-slate-400 leading-relaxed">
@@ -51,10 +85,11 @@ export function Privacy() {
                                 </p>
                             </section>
 
+                            {/* Contact */}
                             <section className="pt-8 border-t border-slate-800">
                                 <h2 className="text-xl font-bold text-white mb-4">{t.privacy.contact.title}</h2>
                                 <p className="text-slate-400">
-                                    {t.privacy.contact.text} <a href="mailto:mail@gianlucapiazza.com" className="text-blue-400 hover:text-blue-300 transition-colors">mail@gianlucapiazza.com</a>
+                                    {t.privacy.contact.text} <a href={`mailto:${t.privacy.controller.email}`} className="text-blue-400 hover:text-blue-300 transition-colors">{t.privacy.controller.email}</a>
                                 </p>
                             </section>
                         </div>
