@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Globe, ChevronRight, Sparkles } from 'lucide-react';
 import { useLanguage } from '../hooks/use-language';
+import { CookieConsent } from './shared/CookieConsent';
 
 export function Layout({ children }) {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -162,15 +163,19 @@ export function Layout({ children }) {
                         </div>
                     </div>
 
-                    <div className="pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-slate-500">
-                        <p>© {new Date().getFullYear()} Gianluca Piazza. {t.footer.rights}</p>
-                        <div className="flex gap-6">
+                    <div className="border-t border-slate-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center text-slate-500 text-sm">
+                        <p>&copy; {new Date().getFullYear()} Gianluca Piazza. {t.footer.rights}</p>
+                        <div className="flex gap-6 mt-4 md:mt-0">
+                            <Link to="/privacy" className="hover:text-blue-400 transition-colors">{t.footer.privacy}</Link>
+                            <Link to="/privacy" className="hover:text-blue-400 transition-colors">{t.footer.cookie}</Link>
                             <a href="https://www.linkedin.com/in/gianlucapiazza/" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">LinkedIn</a>
                             <a href="#" className="hover:text-primary transition-colors">Twitter</a>
                         </div>
                     </div>
                 </div>
             </footer>
+            {/* Cookie Consent */}
+            <CookieConsent />
         </div>
     );
 }

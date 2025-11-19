@@ -273,7 +273,40 @@ export const translations = {
       about: 'Consulente Internazionalizzazione | Business Developer | Entrepreneur',
       contactTitle: 'Contatti',
       quickLinks: 'Link Rapidi',
-      rights: 'Tutti i diritti riservati.'
+      rights: 'Tutti i diritti riservati.',
+      privacy: 'Privacy Policy',
+      cookie: 'Cookie Policy'
+    },
+    cookieConsent: {
+      text: 'Questo sito utilizza i cookie per migliorare la tua esperienza. Continuando a navigare accetti la nostra',
+      accept: 'Accetta',
+      decline: 'Rifiuta',
+      learnMore: 'Cookie Policy'
+    },
+    privacy: {
+      title: 'Privacy Policy',
+      lastUpdated: 'Ultimo aggiornamento:',
+      intro: 'La tua privacy è importante per noi. Questa politica descrive come raccogliamo, utilizziamo e proteggiamo le tue informazioni personali.',
+      collection: {
+        title: 'Raccolta Dati',
+        text: 'Raccogliamo informazioni che ci fornisci direttamente quando utilizzi il nostro modulo di contatto, inclusi nome, email, azienda e numero di telefono.'
+      },
+      usage: {
+        title: 'Utilizzo dei Dati',
+        text: 'Utilizziamo le informazioni raccolte per rispondere alle tue richieste, fornire i servizi richiesti e migliorare la tua esperienza sul nostro sito.'
+      },
+      cookies: {
+        title: 'Cookie',
+        text: 'Utilizziamo cookie tecnici essenziali per il funzionamento del sito e cookie analitici anonimizzati per comprendere come gli utenti interagiscono con il sito.'
+      },
+      rights: {
+        title: 'I Tuoi Diritti',
+        text: 'Hai il diritto di accedere, correggere o cancellare i tuoi dati personali in qualsiasi momento. Contattaci per esercitare questi diritti.'
+      },
+      contact: {
+        title: 'Contattaci',
+        text: 'Per domande sulla nostra privacy policy, contattaci a:'
+      }
     }
   },
   en: {
@@ -550,7 +583,40 @@ export const translations = {
       about: 'Internationalization Consultant | Business Developer | Entrepreneur',
       contactTitle: 'Contact',
       quickLinks: 'Quick Links',
-      rights: 'All rights reserved.'
+      rights: 'All rights reserved.',
+      privacy: 'Privacy Policy',
+      cookie: 'Cookie Policy'
+    },
+    cookieConsent: {
+      text: 'This website uses cookies to enhance your experience. By continuing to browse, you agree to our',
+      accept: 'Accept',
+      decline: 'Decline',
+      learnMore: 'Cookie Policy'
+    },
+    privacy: {
+      title: 'Privacy Policy',
+      lastUpdated: 'Last Updated:',
+      intro: 'Your privacy is important to us. This policy describes how we collect, use, and protect your personal information.',
+      collection: {
+        title: 'Data Collection',
+        text: 'We collect information you provide directly to us when you use our contact form, including name, email, company, and phone number.'
+      },
+      usage: {
+        title: 'Data Usage',
+        text: 'We use the collected information to respond to your inquiries, provide requested services, and improve your experience on our website.'
+      },
+      cookies: {
+        title: 'Cookies',
+        text: 'We use essential technical cookies for website operation and anonymized analytical cookies to understand how users interact with the site.'
+      },
+      rights: {
+        title: 'Your Rights',
+        text: 'You have the right to access, correct, or delete your personal data at any time. Contact us to exercise these rights.'
+      },
+      contact: {
+        title: 'Contact Us',
+        text: 'For questions about our privacy policy, contact us at:'
+      }
     }
   }
 }
