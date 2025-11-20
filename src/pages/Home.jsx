@@ -29,8 +29,8 @@ export function Home() {
                 {/* Background Image */}
                 <div className="absolute inset-0 z-0">
                     <img
-                        src="https://images.unsplash.com/photo-1533106497176-45ae19e68ba2?auto=format&fit=crop&q=80&w=1920"
-                        alt="Brickell Miami Skyline Sunny Day"
+                        src="https://images.unsplash.com/photo-1514214246283-d427a95c5d2f?auto=format&fit=crop&q=80&w=1920"
+                        alt="Miami Skyline Daytime Waterfront"
                         className="w-full h-full object-cover opacity-90"
                     />
                     <div className="absolute inset-0 bg-gradient-to-b from-white/30 via-transparent to-background"></div>
