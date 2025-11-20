@@ -29,9 +29,9 @@ export function Home() {
                 {/* Background Image */}
                 <div className="absolute inset-0 z-0">
                     <img
-                        src="https://images.unsplash.com/photo-1541696392-6dfb83c9e3fb?auto=format&fit=crop&q=80&w=1920"
-                        alt="Financial District Street View"
-                        className="w-full h-full object-cover opacity-88"
+                        src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=1920"
+                        alt="Financial District"
+                        className="w-full h-full object-cover opacity-85"
                     />
                     <div className="absolute inset-0 bg-gradient-to-b from-white/30 via-transparent to-background"></div>
                 </div>
@@ -45,8 +45,8 @@ export function Home() {
                         <span className="inline-block px-4 py-1.5 rounded-full bg-card/80 backdrop-blur-sm text-blue-400 font-medium text-sm mb-6 border border-blue-900/30 shadow-sm">
                             International Business Consultant
                         </span>
-                        <h1 className="text-5xl md:text-7xl font-bold text-white mb-8 tracking-tight leading-tight">
-                            {t.home.title}
+                        <h1 className="text-5xl md:text-7xl font-bold text-foreground mb-8 tracking-tight leading-tight">
+                            International Business<br />Growth & Expansion
                         </h1>
                         <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto mb-10 leading-relaxed font-medium">
                             {t.home.tagline}
