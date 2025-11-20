@@ -4,9 +4,9 @@ import { cn } from '../../lib/utils';
 export function Button({ children, className, variant = 'primary', size = 'default', ...props }) {
     const variants = {
         primary: "bg-primary text-white hover:bg-primary/90 shadow-lg shadow-blue-500/20",
-        secondary: "bg-slate-900 text-white hover:bg-slate-800 shadow-lg",
-        outline: "bg-transparent border border-slate-700 text-slate-300 hover:bg-slate-800 hover:text-white",
-        ghost: "bg-transparent text-slate-400 hover:text-white hover:bg-slate-800/50"
+        secondary: "bg-white text-slate-700 border border-slate-200 hover:bg-slate-50 shadow-sm",
+        outline: "bg-transparent border border-slate-300 text-slate-700 hover:bg-slate-50 hover:text-slate-900",
+        ghost: "bg-transparent text-slate-600 hover:text-slate-900 hover:bg-slate-100"
     };
 
     const sizes = {

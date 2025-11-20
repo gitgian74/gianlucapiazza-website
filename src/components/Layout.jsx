@@ -54,7 +54,7 @@ export function Layout({ children }) {
 
                         <button
                             onClick={toggleLanguage}
-                            className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 transition-colors text-sm font-medium"
+                            className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/50 hover:bg-white text-slate-600 transition-colors text-sm font-medium border border-sky-100"
                         >
                             <Globe size={16} />
                             <span>{language.toUpperCase()}</span>
@@ -62,7 +62,7 @@ export function Layout({ children }) {
 
                         <Link
                             to="/contact"
-                            className="px-5 py-2.5 bg-primary text-primary-foreground rounded-full font-medium hover:bg-primary/90 transition-all shadow-md hover:shadow-lg text-sm"
+                            className="px-5 py-2.5 bg-primary text-white rounded-full font-medium hover:bg-primary/90 transition-all shadow-md hover:shadow-lg text-sm"
                         >
                             {t.nav.contact}
                         </Link>
@@ -72,13 +72,13 @@ export function Layout({ children }) {
                     <div className="md:hidden flex items-center gap-4">
                         <button
                             onClick={toggleLanguage}
-                            className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-100 text-slate-600 text-sm font-medium"
+                            className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/50 text-slate-600 text-sm font-medium border border-sky-100"
                         >
                             <Globe size={16} />
                             <span>{language.toUpperCase()}</span>
                         </button>
                         <button
-                            className="p-2 text-slate-600 hover:bg-slate-100 rounded-full transition-colors"
+                            className="p-2 text-slate-700 hover:bg-sky-50 rounded-full transition-colors"
                             onClick={() => setIsMenuOpen(!isMenuOpen)}
                         >
                             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -94,7 +94,7 @@ export function Layout({ children }) {
                         initial={{ opacity: 0, y: -20 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
-                        className="fixed inset-0 z-40 bg-background pt-24 px-6 md:hidden"
+                        className="fixed inset-0 z-40 bg-background/95 backdrop-blur-xl pt-24 px-6 md:hidden"
                     >
                         <div className="flex flex-col gap-4">
                             {[
@@ -109,10 +109,10 @@ export function Layout({ children }) {
                                     key={link.path}
                                     to={link.path}
                                     onClick={() => setIsMenuOpen(false)}
-                                    className="flex items-center justify-between p-4 rounded-xl bg-slate-500 hover:bg-muted text-lg font-medium text-white transition-colors"
+                                    className="flex items-center justify-between p-4 rounded-xl bg-card hover:bg-sky-100 text-lg font-medium text-foreground transition-colors border border-sky-50"
                                 >
                                     {link.label}
-                                    <ChevronRight size={20} className="text-white/80" />
+                                    <ChevronRight size={20} className="text-muted-foreground" />
                                 </Link>
                             ))}
                         </div>

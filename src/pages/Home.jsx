@@ -29,11 +29,11 @@ export function Home() {
                 {/* Background Image */}
                 <div className="absolute inset-0 z-0">
                     <img
-                        src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=1200"
-                        alt="Miami Financial District Glass Architecture"
-                        className="w-full h-full object-cover opacity-60"
+                        src="https://images.unsplash.com/photo-1571051592328-a209e9594330?auto=format&fit=crop&q=80&w=1600"
+                        alt="Miami Brickell High Impact Skyline"
+                        className="w-full h-full object-cover opacity-90"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/20 to-background"></div>
+                    <div className="absolute inset-0 bg-gradient-to-b from-white/40 via-transparent to-background"></div>
                 </div>
 
                 <div className="container mx-auto max-w-5xl text-center relative z-10">
@@ -61,7 +61,7 @@ export function Home() {
                             </Link>
                             <Link
                                 to="/services"
-                                className="px-8 py-4 bg-card/80 backdrop-blur-sm text-foreground rounded-full font-semibold text-lg hover:bg-slate-800 transition-all border border-border shadow-sm hover:shadow-md"
+                                className="px-8 py-4 bg-card/80 backdrop-blur-sm text-foreground rounded-full font-semibold text-lg hover:bg-white transition-all border border-border shadow-sm hover:shadow-md"
                             >
                                 {t.home.discoverServices}
                             </Link>

@@ -115,7 +115,7 @@ export function Projects() {
                                     {project.skillsList.map((skill, idx) => (
                                         <span
                                             key={idx}
-                                            className="px-3 py-1 bg-slate-900 text-muted-foreground rounded-full text-xs font-medium border border-border"
+                                            className="px-3 py-1 bg-white text-slate-600 rounded-full text-xs font-medium border border-sky-100"
                                         >
                                             {skill}
                                         </span>

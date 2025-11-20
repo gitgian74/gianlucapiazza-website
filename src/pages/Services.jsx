@@ -92,7 +92,7 @@ export function Services() {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="mt-20 bg-slate-900 rounded-3xl p-12 text-center relative overflow-hidden"
+                    className="mt-20 bg-card rounded-3xl p-12 text-center relative overflow-hidden border border-sky-100"
                 >
                     <div className="relative z-10">
                         <h2 className="text-3xl font-bold text-white mb-6">

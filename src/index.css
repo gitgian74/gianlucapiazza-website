@@ -107,35 +107,37 @@
 }
 
 .light {
-  /* Miami Day Theme (Light & Elegant) - Unified Blue */
+  /* Miami Professional Bright (Trust & Energy) */
   --background: #FFFFFF;
-  --foreground: #334155;
-  /* Slate 700 */
+  /* Pure White */
+  --foreground: #0F172A;
+  /* Slate 900 - Navy Blue */
 
   --card: #F0F9FF;
-  /* Sky 50 (Unified Blue Base) */
+  /* Sky 50 - Ice Blue */
   --card-foreground: #334155;
+  /* Slate 700 */
 
-  --popover: #F0F9FF;
-  --popover-foreground: #334155;
+  --popover: #FFFFFF;
+  --popover-foreground: #0F172A;
 
   --primary: #FF7A21;
-  /* Orange */
-  --primary-foreground: #1E3A5F;
-  /* Dark Blue Text on Orange */
+  /* Vibrant Orange */
+  --primary-foreground: #FFFFFF;
+  /* White Text */
 
   --secondary: #F0F9FF;
   /* Sky 50 */
-  --secondary-foreground: #1E3A5F;
-  /* Dark Blue Text */
+  --secondary-foreground: #0F172A;
 
-  --muted: #F1F5F9;
-  /* Slate 100 */
+  --muted: #F8FAFC;
+  /* Slate 50 */
   --muted-foreground: #64748B;
-  /* Slate 500 */
+  /* Slate 500 - Cool Gray */
 
-  --accent: #F0F9FF;
-  --accent-foreground: #1E3A5F;
+  --accent: #E0F2FE;
+  /* Sky 100 */
+  --accent-foreground: #0F172A;
 
   --destructive: #EF4444;
   --destructive-foreground: #FFFFFF;
@@ -143,8 +145,8 @@
   --border: #E0F2FE;
   /* Sky 100 */
   --input: #E0F2FE;
-  --ring: #7DD3FC;
-  /* Sky 300 */
+  --ring: #0EA5E9;
+  /* Sky 500 - Teal/Aqua */
 
   --radius: 0.75rem;
 }
@@ -162,10 +164,10 @@
 
 @layer utilities {
   .card-hover {
-    @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:shadow-blue-500/10;
+    @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:shadow-blue-900/5;
   }
 
   .glass-nav {
-    @apply bg-sky-50/90 backdrop-blur-md border-b border-sky-100/50;
+    @apply bg-white/80 backdrop-blur-md border-b border-gray-200/50;
   }
 }

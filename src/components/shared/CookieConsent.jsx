@@ -36,19 +36,21 @@ export function CookieConsent() {
                     exit={{ y: 100, opacity: 0 }}
                     className="fixed bottom-0 left-0 right-0 z-50 p-4 md:p-6"
                 >
-                    <div className="max-w-6xl mx-auto bg-slate-900/95 backdrop-blur-lg border border-slate-800 rounded-2xl shadow-2xl p-6 flex flex-col md:flex-row items-center justify-between gap-6">
-                        <div className="text-slate-300 text-sm md:text-base text-center md:text-left">
-                            {t.cookieConsent.text}{' '}
-                            <Link to="/privacy" className="text-blue-400 hover:text-blue-300 underline">
-                                {t.cookieConsent.learnMore}
-                            </Link>.
+                    <div className="max-w-6xl mx-auto bg-white/95 backdrop-blur-lg border border-slate-200 rounded-2xl shadow-2xl p-6 flex flex-col md:flex-row items-center justify-between gap-6">
+                        <div className="flex-1">
+                            <h3 className="text-lg font-semibold text-slate-900 mb-2 flex items-center gap-2">
+                                <Cookie className="text-primary" size={20} />
+                                {t.cookie.title}
+                            </h3>
+                            <p className="text-slate-600 text-sm leading-relaxed">
+                                {t.cookie.description}
+                            </p>
                         </div>
-                        <div className="flex items-center gap-4 shrink-0">
+                        <div className="flex items-center gap-4">
                             <Button
                                 variant="outline"
-                                size="sm"
                                 onClick={handleDecline}
-                                className="border-slate-700 hover:bg-slate-800 text-slate-300"
+                                className="border-slate-300 hover:bg-slate-50 text-slate-700"
                             >
                                 {t.cookieConsent.decline}
                             </Button>
