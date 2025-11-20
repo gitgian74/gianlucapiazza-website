@@ -13,8 +13,8 @@ export function About() {
         <div className="min-h-screen bg-background pb-20">
             {/* Header */}
             <div className="relative">
-                <div className="absolute inset-0 bg-slate-950">
-                    <div className="absolute inset-0 bg-gradient-to-b from-blue-900/20 via-slate-950/50 to-slate-950"></div>
+                <div className="absolute inset-0 bg-background">
+                    <div className="absolute inset-0 bg-gradient-to-b from-blue-900/20 via-background/50 to-background"></div>
                 </div>
 
                 <div className="relative pt-32 pb-20 px-6 container mx-auto max-w-5xl z-10">
@@ -47,7 +47,7 @@ export function About() {
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.1 }}
-                                className="text-xl text-slate-400 leading-relaxed"
+                                className="text-xl text-muted-foreground leading-relaxed"
                             >
                                 {t.about.intro}
                             </motion.p>
@@ -75,7 +75,7 @@ export function About() {
                                 </div>
                                 <h2 className="text-2xl font-bold text-white">{t.about.experienceTitle}</h2>
                             </div>
-                            <div className="prose prose-invert prose-lg text-slate-400 space-y-6">
+                            <div className="prose prose-invert prose-lg text-muted-foreground space-y-6">
                                 <p>{t.about.experience1}</p>
                                 <p>{t.about.experience2}</p>
                             </div>
@@ -95,7 +95,7 @@ export function About() {
                                 </div>
                                 <h2 className="text-2xl font-bold text-white">{t.about.projectsTitle}</h2>
                             </div>
-                            <p className="text-lg text-slate-400 leading-relaxed">
+                            <p className="text-lg text-muted-foreground leading-relaxed">
                                 {t.about.projects}
                             </p>
                         </Card>
@@ -114,7 +114,7 @@ export function About() {
                                 </div>
                                 <h2 className="text-2xl font-bold text-white">{t.about.backgroundTitle}</h2>
                             </div>
-                            <p className="text-lg text-slate-400 leading-relaxed">
+                            <p className="text-lg text-muted-foreground leading-relaxed">
                                 {t.about.background}
                             </p>
                         </Card>
@@ -157,7 +157,7 @@ export function About() {
                                 {t.about.skills.map((skill, index) => (
                                     <span
                                         key={index}
-                                        className="px-4 py-2 bg-slate-900 text-slate-300 rounded-lg border border-slate-700 font-medium text-sm hover:bg-blue-900 hover:text-blue-300 hover:border-blue-700 transition-colors cursor-default"
+                                        className="px-4 py-2 bg-card text-muted-foreground rounded-lg border border-border font-medium text-sm hover:bg-blue-900 hover:text-blue-300 hover:border-blue-700 transition-colors cursor-default"
                                     >
                                         {skill}
                                     </span>

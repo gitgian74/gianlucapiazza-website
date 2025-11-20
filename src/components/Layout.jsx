@@ -31,7 +31,7 @@ export function Layout({ children }) {
 
                     {/* Desktop Menu */}
                     <div className="hidden md:flex items-center gap-8">
-                        <div className="flex items-center gap-1 bg-slate-900/50 p-1 rounded-full border border-slate-800">
+                        <div className="flex items-center gap-1 bg-card/50 p-1 rounded-full border border-border">
                             {[
                                 { path: '/', label: t.nav.home },
                                 { path: '/about', label: t.nav.about },
@@ -43,8 +43,8 @@ export function Layout({ children }) {
                                     key={link.path}
                                     to={link.path}
                                     className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${isActive(link.path)
-                                        ? 'bg-slate-800 text-primary shadow-sm'
-                                        : 'text-slate-400 hover:text-primary hover:bg-slate-800/50'
+                                        ? 'bg-muted text-primary shadow-sm'
+                                        : 'text-muted-foreground hover:text-primary hover:bg-muted/50'
                                         }`}
                                 >
                                     {link.label}
@@ -54,7 +54,7 @@ export function Layout({ children }) {
 
                         <button
                             onClick={toggleLanguage}
-                            className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-900 hover:bg-slate-800 text-slate-300 transition-colors text-sm font-medium"
+                            className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-900 hover:bg-muted text-muted-foreground transition-colors text-sm font-medium"
                         >
                             <Globe size={16} />
                             <span>{language.toUpperCase()}</span>
@@ -72,13 +72,13 @@ export function Layout({ children }) {
                     <div className="md:hidden flex items-center gap-4">
                         <button
                             onClick={toggleLanguage}
-                            className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-900 text-slate-300 text-sm font-medium"
+                            className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-900 text-muted-foreground text-sm font-medium"
                         >
                             <Globe size={16} />
                             <span>{language.toUpperCase()}</span>
                         </button>
                         <button
-                            className="p-2 text-slate-300 hover:bg-slate-800 rounded-full transition-colors"
+                            className="p-2 text-muted-foreground hover:bg-muted rounded-full transition-colors"
                             onClick={() => setIsMenuOpen(!isMenuOpen)}
                         >
                             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -94,7 +94,7 @@ export function Layout({ children }) {
                         initial={{ opacity: 0, y: -20 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
-                        className="fixed inset-0 z-40 bg-slate-950 pt-24 px-6 md:hidden"
+                        className="fixed inset-0 z-40 bg-background pt-24 px-6 md:hidden"
                     >
                         <div className="flex flex-col gap-4">
                             {[
@@ -109,10 +109,10 @@ export function Layout({ children }) {
                                     key={link.path}
                                     to={link.path}
                                     onClick={() => setIsMenuOpen(false)}
-                                    className="flex items-center justify-between p-4 rounded-xl bg-slate-900 hover:bg-slate-800 text-lg font-medium text-slate-200 transition-colors"
+                                    className="flex items-center justify-between p-4 rounded-xl bg-slate-900 hover:bg-muted text-lg font-medium text-foreground transition-colors"
                                 >
                                     {link.label}
-                                    <ChevronRight size={20} className="text-slate-400" />
+                                    <ChevronRight size={20} className="text-muted-foreground" />
                                 </Link>
                             ))}
                         </div>
@@ -126,23 +126,23 @@ export function Layout({ children }) {
             </main>
 
             {/* Footer */}
-            <footer className="bg-slate-950 border-t border-slate-800 py-12 mt-auto">
+            <footer className="bg-background border-t border-border py-12 mt-auto">
                 <div className="container mx-auto px-6">
                     <div className="grid md:grid-cols-4 gap-8 mb-8">
                         <div className="col-span-1 md:col-span-2">
                             <Link to="/" className="text-xl font-bold text-primary mb-4 block">
                                 Gianluca Piazza
                             </Link>
-                            <p className="text-slate-400 max-w-md leading-relaxed">
+                            <p className="text-muted-foreground max-w-md leading-relaxed">
                                 {t.footer.about}
                             </p>
                         </div>
 
                         <div>
-                            <h4 className="font-semibold text-slate-200 mb-4">{t.footer.quickLinks}</h4>
+                            <h4 className="font-semibold text-foreground mb-4">{t.footer.quickLinks}</h4>
                             <ul className="space-y-2">
-                                <Link to="/services" className="text-sm font-medium text-slate-300 hover:text-white transition-colors">{t.nav.services}</Link>
-                                <Link to="/projects" className="text-sm font-medium text-slate-300 hover:text-white transition-colors">{t.nav.projects}</Link>
+                                <Link to="/services" className="text-sm font-medium text-muted-foreground hover:text-white transition-colors">{t.nav.services}</Link>
+                                <Link to="/projects" className="text-sm font-medium text-muted-foreground hover:text-white transition-colors">{t.nav.projects}</Link>
                                 <Link to="/market-research" className="text-sm font-medium text-blue-400 hover:text-blue-300 transition-colors flex items-center gap-1">
                                     <Sparkles size={14} />
                                     AI Research
@@ -154,8 +154,8 @@ export function Layout({ children }) {
                         </div>
 
                         <div>
-                            <h4 className="font-semibold text-slate-200 mb-4">{t.footer.contactTitle}</h4>
-                            <ul className="space-y-2 text-slate-400">
+                            <h4 className="font-semibold text-foreground mb-4">{t.footer.contactTitle}</h4>
+                            <ul className="space-y-2 text-muted-foreground">
                                 <li>mail@gianlucapiazza.com</li>
                                 <li>+39 337 303431</li>
                                 <li>+1 (305) 548-0002</li>
@@ -163,7 +163,7 @@ export function Layout({ children }) {
                         </div>
                     </div>
 
-                    <div className="border-t border-slate-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center text-slate-500 text-sm">
+                    <div className="border-t border-border mt-12 pt-8 flex flex-col md:flex-row justify-between items-center text-muted-foreground text-sm">
                         <p>&copy; {new Date().getFullYear()} Gianluca Piazza. {t.footer.rights}</p>
                         <div className="flex gap-6 mt-4 md:mt-0">
                             <Link to="/privacy" className="hover:text-blue-400 transition-colors">{t.footer.privacy}</Link>

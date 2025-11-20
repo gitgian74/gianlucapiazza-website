@@ -81,7 +81,7 @@ export function Contact() {
                                         <Mail size={24} />
                                     </div>
                                     <div>
-                                        <h3 className="text-sm font-medium text-slate-400 mb-1">Email</h3>
+                                        <h3 className="text-sm font-medium text-muted-foreground mb-1">Email</h3>
                                         <a href={`mailto:${t.contact.info.email}`} className="text-lg font-medium text-white hover:text-blue-400 transition-colors">
                                             {t.contact.info.email}
                                         </a>
@@ -94,7 +94,7 @@ export function Contact() {
                                         <Phone size={24} />
                                     </div>
                                     <div>
-                                        <h3 className="text-sm font-medium text-slate-400 mb-1">Phone (Italy)</h3>
+                                        <h3 className="text-sm font-medium text-muted-foreground mb-1">Phone (Italy)</h3>
                                         <a href={`tel:${t.contact.info.phoneIT}`} className="text-lg font-medium text-white hover:text-green-400 transition-colors">
                                             {t.contact.info.phoneIT}
                                         </a>
@@ -107,7 +107,7 @@ export function Contact() {
                                         <Phone size={24} />
                                     </div>
                                     <div>
-                                        <h3 className="text-sm font-medium text-slate-400 mb-1">Phone (USA)</h3>
+                                        <h3 className="text-sm font-medium text-muted-foreground mb-1">Phone (USA)</h3>
                                         <a href={`tel:${t.contact.info.phoneUS}`} className="text-lg font-medium text-white hover:text-purple-400 transition-colors">
                                             {t.contact.info.phoneUS}
                                         </a>
@@ -120,7 +120,7 @@ export function Contact() {
                                         <MapPin size={24} />
                                     </div>
                                     <div>
-                                        <h3 className="text-sm font-medium text-slate-400 mb-1">Office (Italy)</h3>
+                                        <h3 className="text-sm font-medium text-muted-foreground mb-1">Office (Italy)</h3>
                                         <p className="text-lg font-medium text-white">
                                             {t.contact.info.addressIT}
                                         </p>
@@ -133,11 +133,11 @@ export function Contact() {
                                         <Building2 size={24} />
                                     </div>
                                     <div>
-                                        <h3 className="text-sm font-medium text-slate-400 mb-1">Office (USA)</h3>
+                                        <h3 className="text-sm font-medium text-muted-foreground mb-1">Office (USA)</h3>
                                         <p className="text-lg font-medium text-white">
                                             {t.contact.info.companyUS}
                                         </p>
-                                        <p className="text-slate-400">
+                                        <p className="text-muted-foreground">
                                             {t.contact.info.addressUS}
                                         </p>
                                     </div>
@@ -150,7 +150,7 @@ export function Contact() {
                                     <Linkedin size={24} />
                                 </div>
                                 <div>
-                                    <h3 className="text-sm font-medium text-slate-400 mb-1">LinkedIn</h3>
+                                    <h3 className="text-sm font-medium text-muted-foreground mb-1">LinkedIn</h3>
                                     <a
                                         href="https://www.linkedin.com/in/gianlucapiazza/"
                                         target="_blank"
@@ -176,52 +176,52 @@ export function Contact() {
                             <form onSubmit={handleSubmit} className="space-y-6">
                                 <div className="grid md:grid-cols-2 gap-6">
                                     <div className="space-y-2">
-                                        <label className="text-sm font-semibold text-slate-300 ml-1">{t.contact.form.name}</label>
+                                        <label className="text-sm font-semibold text-muted-foreground ml-1">{t.contact.form.name}</label>
                                         <input
                                             type="text"
                                             name="name"
                                             value={formData.name}
                                             onChange={handleChange}
                                             required
-                                            className="w-full px-6 py-4 bg-slate-900 border border-slate-800 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-white placeholder:text-slate-600"
+                                            className="w-full px-6 py-4 bg-input border border-input rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-white placeholder:text-muted-foreground/50"
                                             placeholder="John Doe"
                                         />
                                     </div>
                                     <div className="space-y-2">
-                                        <label className="text-sm font-semibold text-slate-300 ml-1">{t.contact.form.email}</label>
+                                        <label className="text-sm font-semibold text-muted-foreground ml-1">{t.contact.form.email}</label>
                                         <input
                                             type="email"
                                             name="email"
                                             value={formData.email}
                                             onChange={handleChange}
                                             required
-                                            className="w-full px-6 py-4 bg-slate-900 border border-slate-800 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-white placeholder:text-slate-600"
+                                            className="w-full px-6 py-4 bg-input border border-input rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-white placeholder:text-muted-foreground/50"
                                             placeholder="john@example.com"
                                         />
                                     </div>
                                 </div>
 
                                 <div className="space-y-2">
-                                    <label className="text-sm font-semibold text-slate-300 ml-1">{t.contact.form.company}</label>
+                                    <label className="text-sm font-semibold text-muted-foreground ml-1">{t.contact.form.company}</label>
                                     <input
                                         type="text"
                                         name="company"
                                         value={formData.company}
                                         onChange={handleChange}
-                                        className="w-full px-6 py-4 bg-slate-900 border border-slate-800 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-white placeholder:text-slate-600"
+                                        className="w-full px-6 py-4 bg-input border border-input rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-white placeholder:text-muted-foreground/50"
                                         placeholder="Company Ltd."
                                     />
                                 </div>
 
                                 <div className="space-y-2">
-                                    <label className="text-sm font-semibold text-slate-300 ml-1">{t.contact.form.message}</label>
+                                    <label className="text-sm font-semibold text-muted-foreground ml-1">{t.contact.form.message}</label>
                                     <textarea
                                         rows={6}
                                         name="message"
                                         value={formData.message}
                                         onChange={handleChange}
                                         required
-                                        className="w-full px-6 py-4 bg-slate-900 border border-slate-800 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all resize-none text-white placeholder:text-slate-600"
+                                        className="w-full px-6 py-4 bg-input border border-input rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all resize-none text-white placeholder:text-muted-foreground/50"
                                         placeholder="How can I help you?"
                                     ></textarea>
                                 </div>

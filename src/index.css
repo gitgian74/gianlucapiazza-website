@@ -54,73 +54,92 @@
 :root {
   --radius: 0.75rem;
 
-  /* Dark Elegant Theme */
-  --background: oklch(0.10 0.02 260);
-  /* Deep rich slate/navy */
-  --foreground: oklch(0.98 0 0);
-  /* White */
+  /* User Defined Palette */
+  --gray-dark: #2A2A2A;
+  --blue-dark: #1E3A5F;
+  --white: #FFFFFF;
+  --gray-light: #E6E6E6;
+  --orange: #FF7A21;
 
-  --card: oklch(0.14 0.02 260);
-  /* Slightly lighter than background */
-  --card-foreground: oklch(0.98 0 0);
+  /* Semantic Mapping (Dark Theme Default) */
+  --background: var(--gray-dark);
+  --foreground: var(--white);
 
-  --popover: oklch(0.14 0.02 260);
-  --popover-foreground: oklch(0.98 0 0);
+  --card: var(--blue-dark);
+  --card-foreground: var(--white);
 
-  --primary: oklch(0.65 0.2 260);
-  /* Bright Blue */
-  --primary-foreground: oklch(1 0 0);
+  --popover: var(--blue-dark);
+  --popover-foreground: var(--white);
 
-  --secondary: oklch(0.20 0.02 260);
-  --secondary-foreground: oklch(0.98 0 0);
+  --primary: var(--orange);
+  --primary-foreground: var(--white);
 
-  --muted: oklch(0.20 0.02 260);
-  --muted-foreground: oklch(0.70 0 0);
+  --secondary: var(--blue-dark);
+  --secondary-foreground: var(--gray-light);
 
-  --accent: oklch(0.20 0.02 260);
-  --accent-foreground: oklch(0.98 0 0);
+  --muted: var(--blue-dark);
+  --muted-foreground: var(--gray-light);
+
+  --accent: var(--blue-dark);
+  --accent-foreground: var(--orange);
 
   --destructive: oklch(0.6 0.2 20);
-  --border: oklch(0.20 0.02 260);
-  --input: oklch(0.20 0.02 260);
-  --ring: oklch(0.65 0.2 260);
+  /* Keep destructive as is for now */
 
-  --chart-1: oklch(0.55 0.2 260);
-  --chart-2: oklch(0.6 0.15 150);
-  --chart-3: oklch(0.8 0.15 80);
-  --chart-4: oklch(0.7 0.15 300);
-  --chart-5: oklch(0.6 0.15 30);
+  --border: var(--blue-dark);
+  --input: var(--blue-dark);
+  --ring: var(--orange);
 
-  --sidebar: oklch(0.14 0.02 260);
-  --sidebar-foreground: oklch(0.98 0 0);
-  --sidebar-primary: oklch(0.65 0.2 260);
-  --sidebar-primary-foreground: oklch(1 0 0);
-  --sidebar-accent: oklch(0.20 0.02 260);
-  --sidebar-accent-foreground: oklch(0.98 0 0);
-  --sidebar-border: oklch(0.20 0.02 260);
-  --sidebar-ring: oklch(0.65 0.2 260);
+  --chart-1: var(--orange);
+  --chart-2: var(--blue-dark);
+  --chart-3: var(--gray-light);
+  --chart-4: var(--gray-dark);
+  --chart-5: var(--orange);
+
+  --sidebar: var(--blue-dark);
+  --sidebar-foreground: var(--white);
+  --sidebar-primary: var(--orange);
+  --sidebar-primary-foreground: var(--white);
+  --sidebar-accent: var(--gray-dark);
+  --sidebar-accent-foreground: var(--white);
+  --sidebar-border: var(--gray-dark);
+  --sidebar-ring: var(--orange);
 }
 
 .light {
-  /* Light theme option */
-  --background: oklch(0.98 0 0);
-  --foreground: oklch(0.20 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.20 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.20 0 0);
-  --primary: oklch(0.55 0.2 260);
-  --primary-foreground: oklch(1 0 0);
-  --secondary: oklch(0.96 0 0);
-  --secondary-foreground: oklch(0.20 0 0);
-  --muted: oklch(0.96 0 0);
-  --muted-foreground: oklch(0.50 0 0);
-  --accent: oklch(0.94 0 0);
-  --accent-foreground: oklch(0.20 0 0);
+  /* Light theme mapping - Inverting for light mode if needed, or keeping consistent */
+  /* For now, mapping to a reasonable light version using the same palette where possible, 
+     but typically a light theme needs light backgrounds. 
+     Since the user provided a specific palette, I will assume they want this specific look.
+     However, for a true light mode, we usually need a light background. 
+     The user gave --white and --gray-light. */
+
+  --background: var(--white);
+  --foreground: var(--gray-dark);
+
+  --card: var(--gray-light);
+  --card-foreground: var(--gray-dark);
+
+  --popover: var(--white);
+  --popover-foreground: var(--gray-dark);
+
+  --primary: var(--orange);
+  --primary-foreground: var(--white);
+
+  --secondary: var(--gray-light);
+  --secondary-foreground: var(--blue-dark);
+
+  --muted: var(--gray-light);
+  --muted-foreground: var(--blue-dark);
+
+  --accent: var(--gray-light);
+  --accent-foreground: var(--orange);
+
   --destructive: oklch(0.6 0.2 20);
-  --border: oklch(0.92 0 0);
-  --input: oklch(0.92 0 0);
-  --ring: oklch(0.55 0.2 260);
+
+  --border: var(--gray-light);
+  --input: var(--gray-light);
+  --ring: var(--orange);
 }
 
 @layer base {

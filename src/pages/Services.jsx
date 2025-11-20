@@ -64,14 +64,14 @@ export function Services() {
                         >
                             {/* Image Section */}
                             <div className="h-48 overflow-hidden relative">
-                                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 to-transparent z-10"></div>
+                                <div className="absolute inset-0 bg-gradient-to-t from-background/90 to-transparent z-10"></div>
                                 <img
                                     src={service.image}
                                     alt={service.data.title}
                                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                                 />
                                 <div className="absolute bottom-4 left-6 z-20 flex items-center gap-3">
-                                    <div className={`p-3 rounded-xl bg-slate-900/50 backdrop-blur-md text-${service.color.split('-')[1]}-400 border border-slate-700`}>
+                                    <div className={`p-3 rounded-xl bg-card/50 backdrop-blur-md text-${service.color.split('-')[1]}-400 border border-border`}>
                                         {service.icon}
                                     </div>
                                     <h3 className="text-xl font-bold text-white">{service.data.title}</h3>
@@ -79,7 +79,7 @@ export function Services() {
                             </div>
 
                             <div className="p-8">
-                                <p className="text-slate-400 leading-relaxed mb-8">
+                                <p className="text-muted-foreground leading-relaxed mb-8">
                                     {service.data.description}
                                 </p>
                             </div>
@@ -98,11 +98,11 @@ export function Services() {
                         <h2 className="text-3xl font-bold text-white mb-6">
                             {t.services.ctaTitle}
                         </h2>
-                        <p className="text-xl text-slate-300 mb-8 max-w-2xl mx-auto">
+                        <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
                             {t.services.ctaText}
                         </p>
                         <Link to="/contact">
-                            <Button variant="primary" size="lg" className="bg-white text-slate-900 hover:bg-blue-50">
+                            <Button variant="primary" size="lg" className="bg-foreground text-background hover:bg-blue-50">
                                 {t.services.ctaButton}
                                 <ArrowRight size={20} />
                             </Button>

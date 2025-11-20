@@ -33,7 +33,7 @@ export function Home() {
                         alt="International Business"
                         className="w-full h-full object-cover opacity-40"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-b from-slate-950/80 via-slate-950/50 to-slate-950"></div>
+                    <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/50 to-background"></div>
                 </div>
 
                 <div className="container mx-auto max-w-5xl text-center relative z-10">
@@ -42,13 +42,13 @@ export function Home() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6 }}
                     >
-                        <span className="inline-block px-4 py-1.5 rounded-full bg-slate-900/80 backdrop-blur-sm text-blue-400 font-medium text-sm mb-6 border border-blue-900/30 shadow-sm">
+                        <span className="inline-block px-4 py-1.5 rounded-full bg-card/80 backdrop-blur-sm text-blue-400 font-medium text-sm mb-6 border border-blue-900/30 shadow-sm">
                             International Business Consultant
                         </span>
                         <h1 className="text-5xl md:text-7xl font-bold text-white mb-8 tracking-tight leading-tight">
                             {t.home.title}
                         </h1>
-                        <p className="text-xl md:text-2xl text-slate-300 max-w-3xl mx-auto mb-10 leading-relaxed font-medium">
+                        <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto mb-10 leading-relaxed font-medium">
                             {t.home.tagline}
                         </p>
 
@@ -61,7 +61,7 @@ export function Home() {
                             </Link>
                             <Link
                                 to="/services"
-                                className="px-8 py-4 bg-slate-900/80 backdrop-blur-sm text-slate-200 rounded-full font-semibold text-lg hover:bg-slate-800 transition-all border border-slate-700 shadow-sm hover:shadow-md"
+                                className="px-8 py-4 bg-card/80 backdrop-blur-sm text-foreground rounded-full font-semibold text-lg hover:bg-slate-800 transition-all border border-border shadow-sm hover:shadow-md"
                             >
                                 {t.home.discoverServices}
                             </Link>
@@ -80,28 +80,28 @@ export function Home() {
                         viewport={{ once: true }}
                         className="grid grid-cols-1 md:grid-cols-3 gap-6"
                     >
-                        <motion.div variants={item} className="bg-card p-8 rounded-3xl shadow-xl shadow-black/20 border border-slate-800 card-hover">
+                        <motion.div variants={item} className="bg-card p-8 rounded-3xl shadow-xl shadow-black/20 border border-border card-hover">
                             <div className="w-12 h-12 bg-blue-900/20 rounded-2xl flex items-center justify-center text-blue-400 mb-4">
                                 <Globe size={24} />
                             </div>
                             <h3 className="text-4xl font-bold text-white mb-2">{t.home.stats.experienceValue}</h3>
-                            <p className="text-slate-400 font-medium">{t.home.stats.experience}</p>
+                            <p className="text-muted-foreground font-medium">{t.home.stats.experience}</p>
                         </motion.div>
 
-                        <motion.div variants={item} className="bg-card p-8 rounded-3xl shadow-xl shadow-black/20 border border-slate-800 card-hover">
+                        <motion.div variants={item} className="bg-card p-8 rounded-3xl shadow-xl shadow-black/20 border border-border card-hover">
                             <div className="w-12 h-12 bg-green-900/20 rounded-2xl flex items-center justify-center text-green-400 mb-4">
                                 <TrendingUp size={24} />
                             </div>
                             <h3 className="text-4xl font-bold text-white mb-2">{t.home.stats.marketsValue}</h3>
-                            <p className="text-slate-400 font-medium">{t.home.stats.markets}</p>
+                            <p className="text-muted-foreground font-medium">{t.home.stats.markets}</p>
                         </motion.div>
 
-                        <motion.div variants={item} className="bg-card p-8 rounded-3xl shadow-xl shadow-black/20 border border-slate-800 card-hover">
+                        <motion.div variants={item} className="bg-card p-8 rounded-3xl shadow-xl shadow-black/20 border border-border card-hover">
                             <div className="w-12 h-12 bg-purple-900/20 rounded-2xl flex items-center justify-center text-purple-400 mb-4">
                                 <Building2 size={24} />
                             </div>
                             <h3 className="text-4xl font-bold text-white mb-2">Global</h3>
-                            <p className="text-slate-400 font-medium">{t.home.stats.partnerships}</p>
+                            <p className="text-muted-foreground font-medium">{t.home.stats.partnerships}</p>
                         </motion.div>
                     </motion.div>
                 </div>
@@ -119,7 +119,7 @@ export function Home() {
                         <h2 className="text-3xl md:text-4xl font-bold text-white mb-8">
                             {t.home.subtitle}
                         </h2>
-                        <p className="text-xl text-slate-400 leading-relaxed">
+                        <p className="text-xl text-muted-foreground leading-relaxed">
                             {t.home.intro}
                         </p>
                     </motion.div>
@@ -127,23 +127,23 @@ export function Home() {
             </section>
 
             {/* Services Preview */}
-            <section className="py-24 px-6 bg-slate-950">
+            <section className="py-24 px-6 bg-background">
                 <div className="container mx-auto max-w-6xl">
                     <div className="text-center mb-16">
                         <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">{t.home.servicesTitle}</h2>
-                        <p className="text-xl text-slate-400">{t.home.servicesSubtitle}</p>
+                        <p className="text-xl text-muted-foreground">{t.home.servicesSubtitle}</p>
                     </div>
 
                     <div className="grid md:grid-cols-2 gap-8">
                         <Link to="/services" className="group">
-                            <div className="bg-card p-8 rounded-3xl shadow-sm border border-slate-800 hover:shadow-xl hover:border-blue-500/30 transition-all duration-300 h-full">
+                            <div className="bg-card p-8 rounded-3xl shadow-sm border border-border hover:shadow-xl hover:border-blue-500/30 transition-all duration-300 h-full">
                                 <div className="mb-6 p-4 bg-blue-900/20 rounded-2xl inline-block text-blue-400 group-hover:bg-blue-600 group-hover:text-white transition-colors">
                                     <Globe size={32} />
                                 </div>
                                 <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-blue-400 transition-colors">
                                     {t.services.service1.title}
                                 </h3>
-                                <p className="text-slate-400 leading-relaxed mb-6">
+                                <p className="text-muted-foreground leading-relaxed mb-6">
                                     {t.services.service1.description}
                                 </p>
                                 <div className="flex items-center text-blue-400 font-medium">
@@ -153,14 +153,14 @@ export function Home() {
                         </Link>
 
                         <Link to="/services" className="group">
-                            <div className="bg-card p-8 rounded-3xl shadow-sm border border-slate-800 hover:shadow-xl hover:border-purple-500/30 transition-all duration-300 h-full">
+                            <div className="bg-card p-8 rounded-3xl shadow-sm border border-border hover:shadow-xl hover:border-purple-500/30 transition-all duration-300 h-full">
                                 <div className="mb-6 p-4 bg-purple-900/20 rounded-2xl inline-block text-purple-400 group-hover:bg-purple-600 group-hover:text-white transition-colors">
                                     <TrendingUp size={32} />
                                 </div>
                                 <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-purple-400 transition-colors">
                                     {t.services.service2.title}
                                 </h3>
-                                <p className="text-slate-400 leading-relaxed mb-6">
+                                <p className="text-muted-foreground leading-relaxed mb-6">
                                     {t.services.service2.description}
                                 </p>
                                 <div className="flex items-center text-purple-400 font-medium">

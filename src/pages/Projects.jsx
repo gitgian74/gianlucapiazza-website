@@ -52,7 +52,7 @@ export function Projects() {
                         >
                             {/* Image Section */}
                             <div className="md:w-1/3 h-64 md:h-auto overflow-hidden relative">
-                                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/50 to-transparent z-10"></div>
+                                <div className="absolute inset-0 bg-gradient-to-t from-background/50 to-transparent z-10"></div>
                                 <img
                                     src={projectImages[index]}
                                     alt={project.title}
@@ -61,11 +61,11 @@ export function Projects() {
 
                                 {project.marketName && (
                                     <div className="absolute bottom-4 left-4 z-20 flex items-start gap-3">
-                                        <div className="p-2 bg-slate-900/80 backdrop-blur-sm rounded-lg text-slate-300">
+                                        <div className="p-2 bg-card/80 backdrop-blur-sm rounded-lg text-muted-foreground">
                                             <MapPin size={16} />
                                         </div>
                                         <div>
-                                            <p className="text-xs font-semibold text-slate-300 uppercase tracking-wider">{project.market}</p>
+                                            <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">{project.market}</p>
                                             <p className="text-white font-medium text-sm">{project.marketName}</p>
                                         </div>
                                     </div>
@@ -88,7 +88,7 @@ export function Projects() {
                                             <Target size={18} className="text-blue-400" />
                                             <h3 className="font-bold text-blue-100 text-sm uppercase tracking-wide">{project.objective}</h3>
                                         </div>
-                                        <p className="text-slate-400 text-sm leading-relaxed">
+                                        <p className="text-muted-foreground text-sm leading-relaxed">
                                             {project.objectiveText}
                                         </p>
                                     </div>
@@ -103,7 +103,7 @@ export function Projects() {
                                             {project.resultsList.map((result, idx) => (
                                                 <div key={idx} className="flex items-start gap-2">
                                                     <div className="mt-1.5 w-1.5 h-1.5 bg-orange-400 rounded-full flex-shrink-0"></div>
-                                                    <p className="text-slate-400 text-sm leading-relaxed">{result}</p>
+                                                    <p className="text-muted-foreground text-sm leading-relaxed">{result}</p>
                                                 </div>
                                             ))}
                                         </div>
@@ -111,11 +111,11 @@ export function Projects() {
                                 </div>
 
                                 {/* Tags */}
-                                <div className="flex flex-wrap gap-2 mt-8 pt-6 border-t border-slate-800">
+                                <div className="flex flex-wrap gap-2 mt-8 pt-6 border-t border-border">
                                     {project.skillsList.map((skill, idx) => (
                                         <span
                                             key={idx}
-                                            className="px-3 py-1 bg-slate-900 text-slate-400 rounded-full text-xs font-medium border border-slate-800"
+                                            className="px-3 py-1 bg-slate-900 text-muted-foreground rounded-full text-xs font-medium border border-border"
                                         >
                                             {skill}
                                         </span>
@@ -128,7 +128,7 @@ export function Projects() {
 
                 {/* CTA */}
                 <div className="mt-20 text-center">
-                    <p className="text-xl text-slate-500 mb-6">{t.projects.ctaText}</p>
+                    <p className="text-xl text-muted-foreground mb-6">{t.projects.ctaText}</p>
                     <a href="mailto:mail@gianlucapiazza.com">
                         <Button variant="secondary" size="lg" className="shadow-lg">
                             {t.projects.ctaButton}
