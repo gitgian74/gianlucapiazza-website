@@ -19,9 +19,11 @@ export default async function handler(req, res) {
     try {
         const resend = new Resend(process.env.RESEND_API_KEY);
 
-        const data = await resend.emails.send({
+        // Send notification to owner
+        await resend.emails.send({
             from: 'Gianluca Piazza Website <noreply@gianlucapiazza.com>',
             to: ['mail@gianlucapiazza.com'],
+            replyTo: email,
             subject: `New Contact Form Submission from ${name}`,
             html: `
         <h1>New Contact Request</h1>
@@ -30,6 +32,22 @@ export default async function handler(req, res) {
         <p><strong>Company:</strong> ${company || 'N/A'}</p>
         <p><strong>Message:</strong></p>
         <p>${message}</p>
+      `,
+        });
+
+        // Send confirmation to user
+        await resend.emails.send({
+            from: 'Gianluca Piazza <noreply@gianlucapiazza.com>',
+            to: [email],
+            subject: 'Thank you for contacting me',
+            html: `
+        <h1>Hello ${name},</h1>
+        <p>Thank you for reaching out. I have received your message and will get back to you as soon as possible.</p>
+        <p>Best regards,</p>
+        <p><strong>Gianluca Piazza</strong><br>Internationalization Consultant</p>
+        <hr>
+        <p style="color: #666; font-size: 12px;">Your message:</p>
+        <p style="color: #666; font-style: italic;">${message}</p>
       `,
         });
 
