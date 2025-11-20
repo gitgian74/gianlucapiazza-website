@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '../../hooks/use-language';
 import { Button } from './Button';
 import { Link } from 'react-router-dom';
+import { Cookie } from 'lucide-react';
 
 export function CookieConsent() {
     const { t } = useLanguage();
