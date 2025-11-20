@@ -62,7 +62,7 @@ export function Layout({ children }) {
 
                         <Link
                             to="/contact"
-                            className="px-5 py-2.5 bg-primary text-white rounded-full font-medium hover:bg-primary/90 transition-all shadow-md hover:shadow-lg text-sm"
+                            className="px-5 py-2.5 bg-primary text-primary-foreground rounded-full font-medium hover:bg-primary/90 transition-all shadow-md hover:shadow-lg text-sm"
                         >
                             {t.nav.contact}
                         </Link>
@@ -109,10 +109,10 @@ export function Layout({ children }) {
                                     key={link.path}
                                     to={link.path}
                                     onClick={() => setIsMenuOpen(false)}
-                                    className="flex items-center justify-between p-4 rounded-xl bg-slate-900 hover:bg-muted text-lg font-medium text-foreground transition-colors"
+                                    className="flex items-center justify-between p-4 rounded-xl bg-slate-500 hover:bg-muted text-lg font-medium text-white transition-colors"
                                 >
                                     {link.label}
-                                    <ChevronRight size={20} className="text-muted-foreground" />
+                                    <ChevronRight size={20} className="text-white/80" />
                                 </Link>
                             ))}
                         </div>

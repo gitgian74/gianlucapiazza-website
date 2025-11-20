@@ -107,41 +107,42 @@
 }
 
 .light {
-  /* Miami Day Theme (Light & Elegant) - Extra Bright */
+  /* Miami Day Theme (Light & Elegant) - Unified Blue */
   --background: #FFFFFF;
   --foreground: #334155;
-  /* Slate 700 (Lighter than 800) */
+  /* Slate 700 */
 
-  --card: #F8FAFC;
-  /* Slate 50 */
+  --card: #F0F9FF;
+  /* Sky 50 (Unified Blue Base) */
   --card-foreground: #334155;
 
-  --popover: #FFFFFF;
+  --popover: #F0F9FF;
   --popover-foreground: #334155;
 
   --primary: #FF7A21;
   /* Orange */
-  --primary-foreground: #FFFFFF;
+  --primary-foreground: #1E3A5F;
+  /* Dark Blue Text on Orange */
 
-  --secondary: #7DD3FC;
-  /* Sky 300 (Lighter/Brighter Blue) */
-  --secondary-foreground: #0F172A;
-  /* Dark text for contrast on light blue */
+  --secondary: #F0F9FF;
+  /* Sky 50 */
+  --secondary-foreground: #1E3A5F;
+  /* Dark Blue Text */
 
   --muted: #F1F5F9;
   /* Slate 100 */
   --muted-foreground: #64748B;
   /* Slate 500 */
 
-  --accent: #F1F5F9;
-  --accent-foreground: #334155;
+  --accent: #F0F9FF;
+  --accent-foreground: #1E3A5F;
 
   --destructive: #EF4444;
   --destructive-foreground: #FFFFFF;
 
-  --border: #E2E8F0;
-  /* Slate 200 */
-  --input: #E2E8F0;
+  --border: #E0F2FE;
+  /* Sky 100 */
+  --input: #E0F2FE;
   --ring: #7DD3FC;
   /* Sky 300 */
 
@@ -165,6 +166,6 @@
   }
 
   .glass-nav {
-    @apply bg-white/80 backdrop-blur-md border-b border-slate-200/50;
+    @apply bg-sky-50/90 backdrop-blur-md border-b border-sky-100/50;
   }
 }
