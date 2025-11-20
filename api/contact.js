@@ -15,7 +15,7 @@ export default async function handler(req, res) {
 
     try {
         const data = await resend.emails.send({
-            from: 'Gianluca Piazza Website <onboarding@resend.dev>', // Default Resend testing domain
+            from: 'Gianluca Piazza Website <noreply@gianlucapiazza.com>',
             to: ['mail@gianlucapiazza.com'],
             subject: `New Contact Form Submission from ${name}`,
             html: `
