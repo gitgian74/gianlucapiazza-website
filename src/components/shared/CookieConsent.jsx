@@ -39,12 +39,11 @@ export function CookieConsent() {
                 >
                     <div className="max-w-6xl mx-auto bg-white/95 backdrop-blur-lg border border-slate-200 rounded-2xl shadow-2xl p-6 flex flex-col md:flex-row items-center justify-between gap-6">
                         <div className="flex-1">
-                            <h3 className="text-lg font-semibold text-slate-900 mb-2 flex items-center gap-2">
-                                <Cookie className="text-primary" size={20} />
-                                {t.cookie.title}
-                            </h3>
                             <p className="text-slate-600 text-sm leading-relaxed">
-                                {t.cookie.description}
+                                {t.cookieConsent.text}{' '}
+                                <Link to="/privacy" className="text-primary hover:text-primary/80 underline">
+                                    {t.cookieConsent.learnMore}
+                                </Link>.
                             </p>
                         </div>
                         <div className="flex items-center gap-4">
