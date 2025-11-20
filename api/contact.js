@@ -1,7 +1,5 @@
 import { Resend } from 'resend';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 export default async function handler(req, res) {
     if (req.method !== 'POST') {
         return res.status(405).json({ error: 'Method not allowed' });
@@ -13,7 +11,14 @@ export default async function handler(req, res) {
         return res.status(400).json({ error: 'Missing required fields' });
     }
 
+    if (!process.env.RESEND_API_KEY) {
+        console.error('RESEND_API_KEY is missing');
+        return res.status(500).json({ error: 'Server configuration error: Missing API Key' });
+    }
+
     try {
+        const resend = new Resend(process.env.RESEND_API_KEY);
+
         const data = await resend.emails.send({
             from: 'Gianluca Piazza Website <noreply@gianlucapiazza.com>',
             to: ['mail@gianlucapiazza.com'],
