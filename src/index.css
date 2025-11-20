@@ -107,25 +107,26 @@
 }
 
 .light {
-  /* Miami Day Theme (Light & Elegant) - Brightened Blues */
+  /* Miami Day Theme (Light & Elegant) - Extra Bright */
   --background: #FFFFFF;
-  --foreground: #1E293B;
-  /* Slate 800 */
+  --foreground: #334155;
+  /* Slate 700 (Lighter than 800) */
 
   --card: #F8FAFC;
   /* Slate 50 */
-  --card-foreground: #1E293B;
+  --card-foreground: #334155;
 
   --popover: #FFFFFF;
-  --popover-foreground: #1E293B;
+  --popover-foreground: #334155;
 
   --primary: #FF7A21;
   /* Orange */
   --primary-foreground: #FFFFFF;
 
-  --secondary: #38BDF8;
-  /* Sky 400 (Bright Blue) */
-  --secondary-foreground: #FFFFFF;
+  --secondary: #7DD3FC;
+  /* Sky 300 (Lighter/Brighter Blue) */
+  --secondary-foreground: #0F172A;
+  /* Dark text for contrast on light blue */
 
   --muted: #F1F5F9;
   /* Slate 100 */
@@ -133,7 +134,7 @@
   /* Slate 500 */
 
   --accent: #F1F5F9;
-  --accent-foreground: #0F172A;
+  --accent-foreground: #334155;
 
   --destructive: #EF4444;
   --destructive-foreground: #FFFFFF;
@@ -141,8 +142,8 @@
   --border: #E2E8F0;
   /* Slate 200 */
   --input: #E2E8F0;
-  --ring: #38BDF8;
-  /* Sky 400 */
+  --ring: #7DD3FC;
+  /* Sky 300 */
 
   --radius: 0.75rem;
 }
