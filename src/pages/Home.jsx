@@ -29,8 +29,8 @@ export function Home() {
                 {/* Background Image */}
                 <div className="absolute inset-0 z-0">
                     <img
-                        src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80"
-                        alt="International Business"
+                        src="https://images.unsplash.com/photo-1535498730771-e735b998cd64?auto=format&fit=crop&q=80&w=1200"
+                        alt="Miami Financial District Night"
                         className="w-full h-full object-cover opacity-40"
                     />
                     <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/50 to-background"></div>
