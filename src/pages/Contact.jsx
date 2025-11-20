@@ -9,6 +9,45 @@ import { Button } from '../components/shared/Button';
 
 export function Contact() {
     const { t } = useLanguage();
+    const [formData, setFormData] = React.useState({
+        name: '',
+        email: '',
+        company: '',
+        message: ''
+    });
+    const [status, setStatus] = React.useState('idle'); // idle, sending, success, error
+
+    const handleChange = (e) => {
+        setFormData(prev => ({
+            ...prev,
+            [e.target.name]: e.target.value
+        }));
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setStatus('sending');
+
+        try {
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            });
+
+            if (response.ok) {
+                setStatus('success');
+                setFormData({ name: '', email: '', company: '', message: '' });
+            } else {
+                setStatus('error');
+            }
+        } catch (error) {
+            console.error('Error sending message:', error);
+            setStatus('error');
+        }
+    };
 
     return (
         <div className="min-h-screen bg-background pb-20">
@@ -130,12 +169,16 @@ export function Contact() {
                             transition={{ delay: 0.3 }}
                             className="p-8 md:p-10 shadow-xl shadow-black/20"
                         >
-                            <form className="space-y-6">
+                            <form onSubmit={handleSubmit} className="space-y-6">
                                 <div className="grid md:grid-cols-2 gap-6">
                                     <div className="space-y-2">
                                         <label className="text-sm font-semibold text-slate-300 ml-1">{t.contact.form.name}</label>
                                         <input
                                             type="text"
+                                            name="name"
+                                            value={formData.name}
+                                            onChange={handleChange}
+                                            required
                                             className="w-full px-6 py-4 bg-slate-900 border border-slate-800 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-white placeholder:text-slate-600"
                                             placeholder="John Doe"
                                         />
@@ -144,6 +187,10 @@ export function Contact() {
                                         <label className="text-sm font-semibold text-slate-300 ml-1">{t.contact.form.email}</label>
                                         <input
                                             type="email"
+                                            name="email"
+                                            value={formData.email}
+                                            onChange={handleChange}
+                                            required
                                             className="w-full px-6 py-4 bg-slate-900 border border-slate-800 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-white placeholder:text-slate-600"
                                             placeholder="john@example.com"
                                         />
@@ -154,6 +201,9 @@ export function Contact() {
                                     <label className="text-sm font-semibold text-slate-300 ml-1">{t.contact.form.company}</label>
                                     <input
                                         type="text"
+                                        name="company"
+                                        value={formData.company}
+                                        onChange={handleChange}
                                         className="w-full px-6 py-4 bg-slate-900 border border-slate-800 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-white placeholder:text-slate-600"
                                         placeholder="Company Ltd."
                                     />
@@ -163,15 +213,30 @@ export function Contact() {
                                     <label className="text-sm font-semibold text-slate-300 ml-1">{t.contact.form.message}</label>
                                     <textarea
                                         rows={6}
+                                        name="message"
+                                        value={formData.message}
+                                        onChange={handleChange}
+                                        required
                                         className="w-full px-6 py-4 bg-slate-900 border border-slate-800 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all resize-none text-white placeholder:text-slate-600"
                                         placeholder="How can I help you?"
                                     ></textarea>
                                 </div>
 
-                                <Button type="submit" className="w-full py-4 text-lg shadow-lg shadow-blue-500/20 hover:shadow-xl hover:-translate-y-0.5">
-                                    {t.contact.form.send}
+                                <Button
+                                    type="submit"
+                                    disabled={status === 'sending'}
+                                    className="w-full py-4 text-lg shadow-lg shadow-blue-500/20 hover:shadow-xl hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed"
+                                >
+                                    {status === 'sending' ? 'Sending...' : t.contact.form.send}
                                     <Send size={20} />
                                 </Button>
+
+                                {status === 'success' && (
+                                    <p className="text-green-400 text-center font-medium">Message sent successfully!</p>
+                                )}
+                                {status === 'error' && (
+                                    <p className="text-red-400 text-center font-medium">Failed to send message. Please try again.</p>
+                                )}
                             </form>
                         </Card>
                     </div>
