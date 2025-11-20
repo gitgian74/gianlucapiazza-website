@@ -41,7 +41,11 @@ export function Contact() {
                 setStatus('success');
                 setFormData({ name: '', email: '', company: '', message: '' });
             } else {
+                const data = await response.json();
+                console.error('Server Error:', data);
                 setStatus('error');
+                // Optional: Set a specific error message state to display to the user
+                // setErrorMessage(data.details || 'Failed to send message');
             }
         } catch (error) {
             console.error('Error sending message:', error);
