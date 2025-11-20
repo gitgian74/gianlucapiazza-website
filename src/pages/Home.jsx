@@ -29,11 +29,11 @@ export function Home() {
                 {/* Background Image */}
                 <div className="absolute inset-0 z-0">
                     <img
-                        src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&q=80&w=1920"
-                        alt="Brickell Avenue Miami Street View"
-                        className="w-full h-full object-cover opacity-90"
+                        src="https://images.unsplash.com/photo-1541696392-6dfb83c9e3fb?auto=format&fit=crop&q=80&w=1920"
+                        alt="Financial District Street View"
+                        className="w-full h-full object-cover opacity-88"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-b from-white/35 via-transparent to-background"></div>
+                    <div className="absolute inset-0 bg-gradient-to-b from-white/30 via-transparent to-background"></div>
                 </div>
 
                 <div className="container mx-auto max-w-5xl text-center relative z-10">
