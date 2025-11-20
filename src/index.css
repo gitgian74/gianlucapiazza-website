@@ -107,39 +107,44 @@
 }
 
 .light {
-  /* Light theme mapping - Inverting for light mode if needed, or keeping consistent */
-  /* For now, mapping to a reasonable light version using the same palette where possible, 
-     but typically a light theme needs light backgrounds. 
-     Since the user provided a specific palette, I will assume they want this specific look.
-     However, for a true light mode, we usually need a light background. 
-     The user gave --white and --gray-light. */
+  /* Miami Day Theme (Light & Elegant) - Brightened Blues */
+  --background: #FFFFFF;
+  --foreground: #1E293B;
+  /* Slate 800 */
 
-  --background: var(--white);
-  --foreground: var(--gray-dark);
+  --card: #F8FAFC;
+  /* Slate 50 */
+  --card-foreground: #1E293B;
 
-  --card: var(--gray-light);
-  --card-foreground: var(--gray-dark);
+  --popover: #FFFFFF;
+  --popover-foreground: #1E293B;
 
-  --popover: var(--white);
-  --popover-foreground: var(--gray-dark);
+  --primary: #FF7A21;
+  /* Orange */
+  --primary-foreground: #FFFFFF;
 
-  --primary: var(--orange);
-  --primary-foreground: var(--white);
+  --secondary: #38BDF8;
+  /* Sky 400 (Bright Blue) */
+  --secondary-foreground: #FFFFFF;
 
-  --secondary: var(--gray-light);
-  --secondary-foreground: var(--blue-dark);
+  --muted: #F1F5F9;
+  /* Slate 100 */
+  --muted-foreground: #64748B;
+  /* Slate 500 */
 
-  --muted: var(--gray-light);
-  --muted-foreground: var(--blue-dark);
+  --accent: #F1F5F9;
+  --accent-foreground: #0F172A;
 
-  --accent: var(--gray-light);
-  --accent-foreground: var(--orange);
+  --destructive: #EF4444;
+  --destructive-foreground: #FFFFFF;
 
-  --destructive: oklch(0.6 0.2 20);
+  --border: #E2E8F0;
+  /* Slate 200 */
+  --input: #E2E8F0;
+  --ring: #38BDF8;
+  /* Sky 400 */
 
-  --border: var(--gray-light);
-  --input: var(--gray-light);
-  --ring: var(--orange);
+  --radius: 0.75rem;
 }
 
 @layer base {

@@ -31,9 +31,9 @@ export function Home() {
                     <img
                         src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=1200"
                         alt="Miami Financial District Glass Architecture"
-                        className="w-full h-full object-cover opacity-30"
+                        className="w-full h-full object-cover opacity-60"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/50 to-background"></div>
+                    <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/20 to-background"></div>
                 </div>
 
                 <div className="container mx-auto max-w-5xl text-center relative z-10">
