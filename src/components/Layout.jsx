@@ -31,7 +31,7 @@ export function Layout({ children }) {
 
                     {/* Desktop Menu */}
                     <div className="hidden md:flex items-center gap-8">
-                        <div className="flex items-center gap-1 bg-card/50 p-1 rounded-full border border-border">
+                        <div className="flex items-center gap-1 bg-slate-100/50 p-1 rounded-full border border-slate-200">
                             {[
                                 { path: '/', label: t.nav.home },
                                 { path: '/about', label: t.nav.about },
@@ -43,8 +43,8 @@ export function Layout({ children }) {
                                     key={link.path}
                                     to={link.path}
                                     className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${isActive(link.path)
-                                        ? 'bg-muted text-primary shadow-sm'
-                                        : 'text-muted-foreground hover:text-primary hover:bg-muted/50'
+                                        ? 'bg-white text-primary shadow-sm'
+                                        : 'text-slate-500 hover:text-primary hover:bg-white/50'
                                         }`}
                                 >
                                     {link.label}
@@ -54,7 +54,7 @@ export function Layout({ children }) {
 
                         <button
                             onClick={toggleLanguage}
-                            className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-900 hover:bg-muted text-muted-foreground transition-colors text-sm font-medium"
+                            className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 transition-colors text-sm font-medium"
                         >
                             <Globe size={16} />
                             <span>{language.toUpperCase()}</span>
@@ -72,13 +72,13 @@ export function Layout({ children }) {
                     <div className="md:hidden flex items-center gap-4">
                         <button
                             onClick={toggleLanguage}
-                            className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-900 text-muted-foreground text-sm font-medium"
+                            className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-100 text-slate-600 text-sm font-medium"
                         >
                             <Globe size={16} />
                             <span>{language.toUpperCase()}</span>
                         </button>
                         <button
-                            className="p-2 text-muted-foreground hover:bg-muted rounded-full transition-colors"
+                            className="p-2 text-slate-600 hover:bg-slate-100 rounded-full transition-colors"
                             onClick={() => setIsMenuOpen(!isMenuOpen)}
                         >
                             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
