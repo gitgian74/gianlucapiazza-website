@@ -167,7 +167,7 @@ export function Layout({ children }) {
                         <p>&copy; {new Date().getFullYear()} Gianluca Piazza. {t.footer.rights}</p>
                         <div className="flex gap-6 mt-4 md:mt-0">
                             <Link to="/privacy" className="hover:text-blue-400 transition-colors">{t.footer.privacy}</Link>
-                            <Link to="/privacy" className="hover:text-blue-400 transition-colors">{t.footer.cookie}</Link>
+                            <a href="#cookie-policy" className="hover:text-blue-400 transition-colors">{t.footer.cookie}</a>
                             <a href="https://www.linkedin.com/in/gianlucapiazza/" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">LinkedIn</a>
                             <a href="#" className="hover:text-primary transition-colors">Twitter</a>
                         </div>

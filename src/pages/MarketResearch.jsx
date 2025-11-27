@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '../hooks/use-language';
 import { Send, Bot, User, Sparkles, Loader2, AlertCircle } from 'lucide-react';

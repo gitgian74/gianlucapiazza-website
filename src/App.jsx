@@ -8,7 +8,7 @@ import { About } from './pages/About';
 import { Services } from './pages/Services';
 import { Contact } from './pages/Contact';
 import { MarketResearch } from './pages/MarketResearch';
-import { Privacy } from './pages/Privacy'; // Added import for MarketResearch
+import { Privacy } from './pages/Privacy';
 import './index.css';
 
 function App() {
@@ -22,7 +22,7 @@ function App() {
             <Route path="/services" element={<Services />} />
             <Route path="/projects" element={<Projects />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="/market-research" element={<MarketResearch />} /> {/* Added Market Research route */}
+            <Route path="/market-research" element={<MarketResearch />} />
             <Route path="/privacy" element={<Privacy />} />
           </Routes>
         </Layout>
