@@ -15,8 +15,8 @@ export function About() {
             <div className="relative">
                 <div className="absolute inset-0 z-0">
                     <img
-                        src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=1920"
-                        alt="Business Professional"
+                        src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&q=80&w=1920"
+                        alt="Miami Skyline"
                         className="w-full h-full object-cover opacity-75"
                     />
                     <div className="absolute inset-0 bg-gradient-to-b from-background/30 via-background/60 to-background"></div>

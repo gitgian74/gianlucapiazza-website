@@ -48,7 +48,7 @@ export function Services() {
             <PageHeader
                 title={t.services.title}
                 subtitle={t.services.subtitle}
-                backgroundImage="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=1920"
+                backgroundImage="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&q=80&w=1920"
             />
 
             <Section className="max-w-7xl">
