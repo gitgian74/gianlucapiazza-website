@@ -13,8 +13,13 @@ export function About() {
         <div className="min-h-screen bg-background pb-20">
             {/* Header */}
             <div className="relative">
-                <div className="absolute inset-0 bg-background">
-                    <div className="absolute inset-0 bg-gradient-to-b from-blue-900/20 via-background/50 to-background"></div>
+                <div className="absolute inset-0 z-0">
+                    <img
+                        src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=1920"
+                        alt="Business Professional"
+                        className="w-full h-full object-cover opacity-75"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-b from-background/30 via-background/60 to-background"></div>
                 </div>
 
                 <div className="relative pt-32 pb-20 px-6 container mx-auto max-w-5xl z-10">

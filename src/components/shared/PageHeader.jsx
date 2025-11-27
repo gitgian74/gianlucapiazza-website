@@ -1,10 +1,20 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-export function PageHeader({ title, subtitle, children, className }) {
+export function PageHeader({ title, subtitle, children, className, backgroundImage }) {
     return (
-        <div className={`bg-card border-b border-slate-800 pt-32 pb-20 px-6 ${className || ''}`}>
-            <div className="container mx-auto max-w-4xl text-center">
+        <div className={`relative border-b border-slate-800 pt-32 pb-20 px-6 ${className || ''}`}>
+            {backgroundImage && (
+                <div className="absolute inset-0 z-0">
+                    <img
+                        src={backgroundImage}
+                        alt="Background"
+                        className="w-full h-full object-cover opacity-70"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/70 to-background"></div>
+                </div>
+            )}
+            <div className="container mx-auto max-w-4xl text-center relative z-10">
                 <motion.h1
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
