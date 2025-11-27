@@ -53,6 +53,7 @@ export function MarketResearch() {
 
             const data = await response.json();
             setMessages(prev => [...prev, { role: 'assistant', content: data.response }]);
+            setIsLoading(false);
         } catch (err) {
             console.error('Chat error:', err);
             // Fallback for local dev without API
@@ -64,11 +65,8 @@ export function MarketResearch() {
                     }]);
                     setIsLoading(false);
                 }, 1000);
-                return;
-            }
-            setError("I'm having trouble connecting right now. Please try again later.");
-        } finally {
-            if (window.location.hostname !== 'localhost') {
+            } else {
+                setError("I'm having trouble connecting right now. Please try again later.");
                 setIsLoading(false);
             }
         }
