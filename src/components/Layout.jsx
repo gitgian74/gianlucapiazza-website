@@ -31,7 +31,7 @@ export function Layout({ children }) {
 
                     {/* Desktop Menu */}
                     <div className="hidden md:flex items-center gap-8">
-                        <div className="flex items-center gap-1 bg-slate-100/50 p-1 rounded-full border border-slate-200">
+                        <div className="flex items-center gap-1 bg-secondary/50 p-1 rounded-full border border-border">
                             {[
                                 { path: '/', label: t.nav.home },
                                 { path: '/about', label: t.nav.about },
@@ -43,8 +43,8 @@ export function Layout({ children }) {
                                     key={link.path}
                                     to={link.path}
                                     className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${isActive(link.path)
-                                        ? 'bg-white text-primary shadow-sm'
-                                        : 'text-slate-500 hover:text-primary hover:bg-white/50'
+                                        ? 'bg-foreground text-background shadow-sm'
+                                        : 'text-muted-foreground hover:text-foreground hover:bg-secondary/80'
                                         }`}
                                 >
                                     {link.label}
@@ -54,7 +54,7 @@ export function Layout({ children }) {
 
                         <button
                             onClick={toggleLanguage}
-                            className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/50 hover:bg-white text-slate-600 transition-colors text-sm font-medium border border-sky-100"
+                            className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-secondary/50 hover:bg-secondary text-foreground transition-colors text-sm font-medium border border-border"
                         >
                             <Globe size={16} />
                             <span>{language.toUpperCase()}</span>
@@ -62,7 +62,7 @@ export function Layout({ children }) {
 
                         <Link
                             to="/contact"
-                            className="px-5 py-2.5 bg-primary text-white rounded-full font-medium hover:bg-primary/90 transition-all shadow-md hover:shadow-lg text-sm"
+                            className="px-5 py-2.5 bg-foreground text-background rounded-full font-medium hover:opacity-90 transition-all shadow-md hover:shadow-lg text-sm"
                         >
                             {t.nav.contact}
                         </Link>
@@ -72,13 +72,13 @@ export function Layout({ children }) {
                     <div className="md:hidden flex items-center gap-4">
                         <button
                             onClick={toggleLanguage}
-                            className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/50 text-slate-600 text-sm font-medium border border-sky-100"
+                            className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-secondary/50 text-foreground text-sm font-medium border border-border"
                         >
                             <Globe size={16} />
                             <span>{language.toUpperCase()}</span>
                         </button>
                         <button
-                            className="p-2 text-slate-700 hover:bg-sky-50 rounded-full transition-colors"
+                            className="p-2 text-foreground hover:bg-secondary rounded-full transition-colors"
                             onClick={() => setIsMenuOpen(!isMenuOpen)}
                         >
                             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -109,7 +109,7 @@ export function Layout({ children }) {
                                     key={link.path}
                                     to={link.path}
                                     onClick={() => setIsMenuOpen(false)}
-                                    className="flex items-center justify-between p-4 rounded-xl bg-card hover:bg-sky-100 text-lg font-medium text-foreground transition-colors border border-sky-50"
+                                    className="flex items-center justify-between p-4 rounded-xl bg-secondary/30 hover:bg-secondary text-lg font-medium text-foreground transition-colors border border-border/50"
                                 >
                                     {link.label}
                                     <ChevronRight size={20} className="text-muted-foreground" />
@@ -147,7 +147,7 @@ export function Layout({ children }) {
                                     <Sparkles size={14} />
                                     AI Research
                                 </Link>
-                                <Link to="/contact" className="px-5 py-2.5 bg-white text-slate-900 rounded-full text-sm font-bold hover:bg-blue-50 transition-colors shadow-lg shadow-blue-500/10">
+                                <Link to="/contact" className="px-5 py-2.5 bg-foreground text-background rounded-full text-sm font-bold hover:opacity-90 transition-opacity shadow-sm mt-4 block text-center">
                                     {t.nav.contact}
                                 </Link>
                             </ul>

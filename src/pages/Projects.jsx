@@ -62,12 +62,12 @@ export function Projects() {
 
                                 {project.marketName && (
                                     <div className="absolute bottom-4 left-4 z-20 flex items-start gap-3">
-                                        <div className="p-2 bg-card/80 backdrop-blur-sm rounded-lg text-muted-foreground">
+                                        <div className="p-2 bento-card/80 backdrop-blur-sm rounded-lg text-muted-foreground">
                                             <MapPin size={16} />
                                         </div>
                                         <div>
                                             <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">{project.market}</p>
-                                            <p className="text-white font-medium text-sm">{project.marketName}</p>
+                                            <p className="text-foreground font-medium text-sm">{project.marketName}</p>
                                         </div>
                                     </div>
                                 )}
@@ -76,7 +76,7 @@ export function Projects() {
                             {/* Content Section */}
                             <div className="p-8 md:p-10 md:w-2/3 flex flex-col">
                                 <div className="mb-6">
-                                    <h2 className="text-2xl font-bold text-white mb-2 group-hover:text-blue-400 transition-colors">
+                                    <h2 className="text-2xl font-bold text-foreground mb-2 group-hover:text-blue-400 transition-colors">
                                         {project.title}
                                     </h2>
                                     <div className="h-1 w-12 bg-blue-500 rounded-full mt-4"></div>
@@ -116,7 +116,7 @@ export function Projects() {
                                     {project.skillsList.map((skill, idx) => (
                                         <span
                                             key={idx}
-                                            className="px-3 py-1 bg-white text-slate-600 rounded-full text-xs font-medium border border-sky-100"
+                                            className="px-3 py-1 bg-background text-muted-foreground rounded-full text-xs font-medium border border-sky-100"
                                         >
                                             {skill}
                                         </span>

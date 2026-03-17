@@ -4,10 +4,10 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 8px);
+  --radius-md: calc(var(--radius) - 4px);
   --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
+  --radius-xl: calc(var(--radius) + 8px);
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -34,121 +34,67 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
-
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
 }
 
 :root {
-  --radius: 0.75rem;
+  /* Apple-style Bento default radius */
+  --radius: 1.5rem;
 
-  /* User Defined Palette */
-  --gray-dark: #2A2A2A;
-  --blue-dark: #1E3A5F;
-  --white: #FFFFFF;
-  --gray-light: #E6E6E6;
-  --orange: #FF7A21;
+  /* Sleek Terminal-style Dark Mode by Default */
+  --background: #000000;
+  --foreground: #F5F5F7;
 
-  /* Semantic Mapping (Dark Theme Default) */
-  --background: var(--gray-dark);
-  --foreground: var(--white);
+  --card: #1C1C1E;
+  --card-foreground: #FFFFFF;
 
-  --card: var(--blue-dark);
-  --card-foreground: var(--white);
+  --popover: #1C1C1E;
+  --popover-foreground: #FFFFFF;
 
-  --popover: var(--blue-dark);
-  --popover-foreground: var(--white);
+  --primary: #FFFFFF; /* Apple often uses high contrast white or blue for primary */
+  --primary-foreground: #000000;
 
-  --primary: var(--orange);
-  --primary-foreground: var(--white);
+  --secondary: #2C2C2E;
+  --secondary-foreground: #E5E5EA;
 
-  --secondary: var(--blue-dark);
-  --secondary-foreground: var(--gray-light);
+  --muted: #2C2C2E;
+  --muted-foreground: #8E8E93;
 
-  --muted: var(--blue-dark);
-  --muted-foreground: var(--gray-light);
+  --accent: #3A3A3C;
+  --accent-foreground: #FFFFFF;
 
-  --accent: var(--blue-dark);
-  --accent-foreground: var(--orange);
-
-  --destructive: oklch(0.6 0.2 20);
-  /* Keep destructive as is for now */
-
-  --border: var(--blue-dark);
-  --input: var(--blue-dark);
-  --ring: var(--orange);
-
-  --chart-1: var(--orange);
-  --chart-2: var(--blue-dark);
-  --chart-3: var(--gray-light);
-  --chart-4: var(--gray-dark);
-  --chart-5: var(--orange);
-
-  --sidebar: var(--blue-dark);
-  --sidebar-foreground: var(--white);
-  --sidebar-primary: var(--orange);
-  --sidebar-primary-foreground: var(--white);
-  --sidebar-accent: var(--gray-dark);
-  --sidebar-accent-foreground: var(--white);
-  --sidebar-border: var(--gray-dark);
-  --sidebar-ring: var(--orange);
+  --destructive: #FF453A;
+  --border: #38383A;
+  --input: #2C2C2E;
+  --ring: #FFFFFF;
 }
 
 .light {
-  /* Miami Professional Bright (Trust & Energy) */
-  --background: #FFFFFF;
-  /* Pure White */
-  --foreground: #0F172A;
-  /* Slate 900 - Navy Blue */
+  /* Clean, White Bento Style for Light Mode */
+  --background: #F5F5F7;
+  --foreground: #1D1D1F;
 
-  --card: #F0F9FF;
-  /* Sky 50 - Ice Blue */
-  --card-foreground: #334155;
-  /* Slate 700 */
+  --card: #FFFFFF;
+  --card-foreground: #1D1D1F;
 
   --popover: #FFFFFF;
-  --popover-foreground: #0F172A;
+  --popover-foreground: #1D1D1F;
 
-  --primary: #FF7A21;
-  /* Vibrant Orange */
+  --primary: #000000; 
   --primary-foreground: #FFFFFF;
-  /* White Text */
 
-  --secondary: #F0F9FF;
-  /* Sky 50 */
-  --secondary-foreground: #0F172A;
+  --secondary: #E5E5EA;
+  --secondary-foreground: #1D1D1F;
 
-  --muted: #F8FAFC;
-  /* Slate 50 */
-  --muted-foreground: #64748B;
-  /* Slate 500 - Cool Gray */
+  --muted: #F2F2F7;
+  --muted-foreground: #86868B;
 
-  --accent: #E0F2FE;
-  /* Sky 100 */
-  --accent-foreground: #0F172A;
+  --accent: #E8E8ED;
+  --accent-foreground: #1D1D1F;
 
-  --destructive: #EF4444;
-  --destructive-foreground: #FFFFFF;
-
-  --border: #E0F2FE;
-  /* Sky 100 */
-  --input: #E0F2FE;
-  --ring: #0EA5E9;
-  /* Sky 500 - Teal/Aqua */
-
-  --radius: 0.75rem;
+  --destructive: #FF3B30;
+  --border: #D2D2D7;
+  --input: #E5E5EA;
+  --ring: #000000;
 }
 
 @layer base {
@@ -164,10 +110,14 @@
 
 @layer utilities {
   .card-hover {
-    @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:shadow-blue-900/5;
+    @apply transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:shadow-black/10;
+  }
+
+  .bento-card {
+    @apply bg-card text-card-foreground rounded-3xl p-8 border border-border shadow-sm;
   }
 
   .glass-nav {
-    @apply bg-white/80 backdrop-blur-md border-b border-gray-200/50;
+    @apply bg-background/80 backdrop-blur-xl border-b border-border/50;
   }
 }

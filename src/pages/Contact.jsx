@@ -72,17 +72,17 @@ export function Contact() {
                             transition={{ delay: 0.2 }}
                             className="p-8 h-full"
                         >
-                            <h2 className="text-2xl font-bold text-white mb-8">{t.contact.info.title}</h2>
+                            <h2 className="text-2xl font-bold text-foreground mb-8">{t.contact.info.title}</h2>
 
                             <div className="space-y-8">
                                 {/* Email */}
                                 <div className="flex items-start gap-4 group">
-                                    <div className="p-3 bg-blue-900/20 text-blue-400 rounded-xl group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                                    <div className="p-3 bg-blue-900/20 text-blue-400 rounded-xl group-hover:bg-blue-600 group-hover:text-foreground transition-colors">
                                         <Mail size={24} />
                                     </div>
                                     <div>
                                         <h3 className="text-sm font-medium text-muted-foreground mb-1">Email</h3>
-                                        <a href={`mailto:${t.contact.info.email}`} className="text-lg font-medium text-white hover:text-blue-400 transition-colors">
+                                        <a href={`mailto:${t.contact.info.email}`} className="text-lg font-medium text-foreground hover:text-blue-400 transition-colors">
                                             {t.contact.info.email}
                                         </a>
                                     </div>
@@ -90,12 +90,12 @@ export function Contact() {
 
                                 {/* Phone IT */}
                                 <div className="flex items-start gap-4 group">
-                                    <div className="p-3 bg-green-900/20 text-green-400 rounded-xl group-hover:bg-green-600 group-hover:text-white transition-colors">
+                                    <div className="p-3 bg-green-900/20 text-green-400 rounded-xl group-hover:bg-green-600 group-hover:text-foreground transition-colors">
                                         <Phone size={24} />
                                     </div>
                                     <div>
                                         <h3 className="text-sm font-medium text-muted-foreground mb-1">Phone (Italy)</h3>
-                                        <a href={`tel:${t.contact.info.phoneIT}`} className="text-lg font-medium text-white hover:text-green-400 transition-colors">
+                                        <a href={`tel:${t.contact.info.phoneIT}`} className="text-lg font-medium text-foreground hover:text-green-400 transition-colors">
                                             {t.contact.info.phoneIT}
                                         </a>
                                     </div>
@@ -103,12 +103,12 @@ export function Contact() {
 
                                 {/* Phone US */}
                                 <div className="flex items-start gap-4 group">
-                                    <div className="p-3 bg-purple-900/20 text-purple-400 rounded-xl group-hover:bg-purple-600 group-hover:text-white transition-colors">
+                                    <div className="p-3 bg-purple-900/20 text-purple-400 rounded-xl group-hover:bg-purple-600 group-hover:text-foreground transition-colors">
                                         <Phone size={24} />
                                     </div>
                                     <div>
                                         <h3 className="text-sm font-medium text-muted-foreground mb-1">Phone (USA)</h3>
-                                        <a href={`tel:${t.contact.info.phoneUS}`} className="text-lg font-medium text-white hover:text-purple-400 transition-colors">
+                                        <a href={`tel:${t.contact.info.phoneUS}`} className="text-lg font-medium text-foreground hover:text-purple-400 transition-colors">
                                             {t.contact.info.phoneUS}
                                         </a>
                                     </div>
@@ -116,12 +116,12 @@ export function Contact() {
 
                                 {/* Address IT */}
                                 <div className="flex items-start gap-4 group">
-                                    <div className="p-3 bg-orange-900/20 text-orange-400 rounded-xl group-hover:bg-orange-600 group-hover:text-white transition-colors">
+                                    <div className="p-3 bg-orange-900/20 text-orange-400 rounded-xl group-hover:bg-orange-600 group-hover:text-foreground transition-colors">
                                         <MapPin size={24} />
                                     </div>
                                     <div>
                                         <h3 className="text-sm font-medium text-muted-foreground mb-1">Office (Italy)</h3>
-                                        <p className="text-lg font-medium text-white">
+                                        <p className="text-lg font-medium text-foreground">
                                             {t.contact.info.addressIT}
                                         </p>
                                     </div>
@@ -129,12 +129,12 @@ export function Contact() {
 
                                 {/* Address US */}
                                 <div className="flex items-start gap-4 group">
-                                    <div className="p-3 bg-indigo-900/20 text-indigo-400 rounded-xl group-hover:bg-indigo-600 group-hover:text-white transition-colors">
+                                    <div className="p-3 bg-indigo-900/20 text-indigo-400 rounded-xl group-hover:bg-indigo-600 group-hover:text-foreground transition-colors">
                                         <Building2 size={24} />
                                     </div>
                                     <div>
                                         <h3 className="text-sm font-medium text-muted-foreground mb-1">Office (USA)</h3>
-                                        <p className="text-lg font-medium text-white">
+                                        <p className="text-lg font-medium text-foreground">
                                             {t.contact.info.companyUS}
                                         </p>
                                         <p className="text-muted-foreground">
@@ -146,7 +146,7 @@ export function Contact() {
 
                             {/* LinkedIn */}
                             <div className="flex items-start gap-4 group mt-8">
-                                <div className="p-3 bg-blue-900/20 text-blue-400 rounded-xl group-hover:bg-blue-700 group-hover:text-white transition-colors">
+                                <div className="p-3 bg-blue-900/20 text-blue-400 rounded-xl group-hover:bg-blue-700 group-hover:text-foreground transition-colors">
                                     <Linkedin size={24} />
                                 </div>
                                 <div>
@@ -155,7 +155,7 @@ export function Contact() {
                                         href="https://www.linkedin.com/in/gianlucapiazza/"
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="text-lg font-medium text-white hover:text-blue-400 transition-colors"
+                                        className="text-lg font-medium text-foreground hover:text-blue-400 transition-colors"
                                     >
                                         Connect on LinkedIn
                                     </a>
@@ -183,7 +183,7 @@ export function Contact() {
                                             value={formData.name}
                                             onChange={handleChange}
                                             required
-                                            className="w-full px-6 py-4 bg-input border border-input rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-white placeholder:text-muted-foreground/50"
+                                            className="w-full px-6 py-4 bg-input border border-input rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-foreground placeholder:text-muted-foreground/50"
                                             placeholder="John Doe"
                                         />
                                     </div>
@@ -195,7 +195,7 @@ export function Contact() {
                                             value={formData.email}
                                             onChange={handleChange}
                                             required
-                                            className="w-full px-6 py-4 bg-input border border-input rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-white placeholder:text-muted-foreground/50"
+                                            className="w-full px-6 py-4 bg-input border border-input rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-foreground placeholder:text-muted-foreground/50"
                                             placeholder="john@example.com"
                                         />
                                     </div>
@@ -208,7 +208,7 @@ export function Contact() {
                                         name="company"
                                         value={formData.company}
                                         onChange={handleChange}
-                                        className="w-full px-6 py-4 bg-input border border-input rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-white placeholder:text-muted-foreground/50"
+                                        className="w-full px-6 py-4 bg-input border border-input rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-foreground placeholder:text-muted-foreground/50"
                                         placeholder="Company Ltd."
                                     />
                                 </div>
@@ -221,7 +221,7 @@ export function Contact() {
                                         value={formData.message}
                                         onChange={handleChange}
                                         required
-                                        className="w-full px-6 py-4 bg-input border border-input rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all resize-none text-white placeholder:text-muted-foreground/50"
+                                        className="w-full px-6 py-4 bg-input border border-input rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all resize-none text-foreground placeholder:text-muted-foreground/50"
                                         placeholder="How can I help you?"
                                     ></textarea>
                                 </div>

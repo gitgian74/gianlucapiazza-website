@@ -44,7 +44,7 @@ export function About() {
                             <motion.h1
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                className="text-4xl md:text-5xl font-bold text-white mb-6"
+                                className="text-4xl md:text-5xl font-bold text-foreground mb-6"
                             >
                                 {t.about.title}
                             </motion.h1>
@@ -78,7 +78,7 @@ export function About() {
                                 <div className="p-3 bg-blue-900/30 text-blue-400 rounded-xl">
                                     <Briefcase size={24} />
                                 </div>
-                                <h2 className="text-2xl font-bold text-white">{t.about.experienceTitle}</h2>
+                                <h2 className="text-2xl font-bold text-foreground">{t.about.experienceTitle}</h2>
                             </div>
                             <div className="prose prose-invert prose-lg text-muted-foreground space-y-6">
                                 <p>{t.about.experience1}</p>
@@ -98,7 +98,7 @@ export function About() {
                                 <div className="p-3 bg-purple-900/30 text-purple-400 rounded-xl">
                                     <Award size={24} />
                                 </div>
-                                <h2 className="text-2xl font-bold text-white">{t.about.projectsTitle}</h2>
+                                <h2 className="text-2xl font-bold text-foreground">{t.about.projectsTitle}</h2>
                             </div>
                             <p className="text-lg text-muted-foreground leading-relaxed">
                                 {t.about.projects}
@@ -117,7 +117,7 @@ export function About() {
                                 <div className="p-3 bg-green-900/30 text-green-400 rounded-xl">
                                     <BookOpen size={24} />
                                 </div>
-                                <h2 className="text-2xl font-bold text-white">{t.about.backgroundTitle}</h2>
+                                <h2 className="text-2xl font-bold text-foreground">{t.about.backgroundTitle}</h2>
                             </div>
                             <p className="text-lg text-muted-foreground leading-relaxed">
                                 {t.about.background}
@@ -134,9 +134,9 @@ export function About() {
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="bg-primary text-white p-8 rounded-3xl shadow-lg shadow-blue-900/10 relative overflow-hidden"
+                            className="bg-foreground text-background text-foreground p-8 rounded-3xl shadow-lg shadow-blue-900/10 relative overflow-hidden"
                         >
-                            <div className="absolute top-0 right-0 w-32 h-32 bg-white opacity-10 rounded-full blur-3xl -mr-16 -mt-16"></div>
+                            <div className="absolute top-0 right-0 w-32 h-32 bg-background opacity-10 rounded-full blur-3xl -mr-16 -mt-16"></div>
 
                             <h3 className="text-xl font-bold mb-4 opacity-90">{t.about.philosophyTitle}</h3>
                             <blockquote className="text-2xl font-serif italic mb-6 leading-snug">
@@ -154,7 +154,7 @@ export function About() {
                             viewport={{ once: true }}
                             className="p-8 md:p-10"
                         >
-                            <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                            <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center gap-3">
                                 <User className="text-blue-400" />
                                 {t.about.skillsTitle}
                             </h2>
@@ -162,7 +162,7 @@ export function About() {
                                 {t.about.skills.map((skill, index) => (
                                     <span
                                         key={index}
-                                        className="px-4 py-2 bg-card text-muted-foreground rounded-lg border border-border font-medium text-sm hover:bg-blue-900 hover:text-blue-300 hover:border-blue-700 transition-colors cursor-default"
+                                        className="px-4 py-2 bento-card text-muted-foreground rounded-lg border border-border font-medium text-sm hover:bg-blue-900 hover:text-blue-300 hover:border-blue-700 transition-colors cursor-default"
                                     >
                                         {skill}
                                     </span>

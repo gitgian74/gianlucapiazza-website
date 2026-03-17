@@ -78,7 +78,7 @@ export function MarketResearch() {
                 title="AI Market Research"
                 subtitle="Ask me anything about global markets, expansion strategies, or industry trends."
             >
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/30 text-primary border border-primary/50 mb-6">
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-foreground text-background/30 text-primary border border-primary/50 mb-6">
                     <Sparkles size={16} />
                     <span className="text-sm font-medium">Powered by Gemini 1.5 Pro</span>
                 </div>
@@ -96,14 +96,14 @@ export function MarketResearch() {
                                 className={`flex items-start gap-4 ${msg.role === 'user' ? 'flex-row-reverse' : ''}`}
                             >
                                 <div className={`w-10 h-10 rounded-full flex items-center justify-center shrink-0 ${msg.role === 'assistant'
-                                    ? 'bg-primary text-white'
+                                    ? 'bg-foreground text-background text-foreground'
                                     : 'bg-muted text-muted-foreground'
                                     }`}>
                                     {msg.role === 'assistant' ? <Bot size={20} /> : <User size={20} />}
                                 </div>
                                 <div className={`p-4 rounded-2xl max-w-[80%] ${msg.role === 'assistant'
-                                    ? 'bg-card/50 text-foreground border border-border rounded-tl-none'
-                                    : 'bg-primary text-white rounded-tr-none'
+                                    ? 'bento-card/50 text-foreground border border-border rounded-tl-none'
+                                    : 'bg-foreground text-background text-foreground rounded-tr-none'
                                     }`}>
                                     <p className="leading-relaxed whitespace-pre-wrap">{msg.content}</p>
                                 </div>
@@ -115,10 +115,10 @@ export function MarketResearch() {
                                 animate={{ opacity: 1, y: 0 }}
                                 className="flex items-start gap-4"
                             >
-                                <div className="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center shrink-0">
+                                <div className="w-10 h-10 rounded-full bg-foreground text-background text-foreground flex items-center justify-center shrink-0">
                                     <Bot size={20} />
                                 </div>
-                                <div className="bg-card/50 p-4 rounded-2xl rounded-tl-none border border-border flex items-center gap-3">
+                                <div className="bento-card/50 p-4 rounded-2xl rounded-tl-none border border-border flex items-center gap-3">
                                     <Loader2 size={20} className="text-primary animate-spin" />
                                     <span className="text-muted-foreground">Analyzing market data...</span>
                                 </div>
@@ -134,26 +134,26 @@ export function MarketResearch() {
                     </div>
 
                     {/* Input Area */}
-                    <div className="p-6 bg-card/50 border-t border-border">
+                    <div className="p-6 bento-card/50 border-t border-border">
                         <form onSubmit={handleSubmit} className="relative">
                             <input
                                 type="text"
                                 value={input}
                                 onChange={(e) => setInput(e.target.value)}
                                 placeholder="Ask about a market (e.g., 'What are the trends in Italian coffee market?')"
-                                className="w-full pl-6 pr-16 py-4 bg-input border border-border rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 text-white placeholder:text-muted-foreground/50 transition-all"
+                                className="w-full pl-6 pr-16 py-4 bg-input border border-border rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 text-foreground placeholder:text-muted-foreground/50 transition-all"
                                 disabled={isLoading}
                             />
                             <Button
                                 type="submit"
                                 disabled={!input.trim() || isLoading}
-                                className="absolute right-2 top-2 p-2 bg-primary text-white rounded-xl hover:bg-blue-50 disabled:opacity-50 disabled:hover:bg-primary transition-colors"
+                                className="absolute right-2 top-2 p-2 bg-foreground text-background text-foreground rounded-xl hover:bg-blue-50 disabled:opacity-50 disabled:hover:bg-foreground text-background transition-colors"
                                 size="icon"
                             >
                                 <Send size={20} />
                             </Button>
                         </form>
-                        <p className="text-center text-xs text-slate-600 mt-4">
+                        <p className="text-center text-xs text-muted-foreground mt-4">
                             AI can make mistakes. Please verify important information.
                         </p>
                     </div>

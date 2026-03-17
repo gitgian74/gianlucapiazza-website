@@ -72,15 +72,15 @@ export function Services() {
                                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                                 />
                                 <div className="absolute bottom-4 left-6 z-20 flex items-center gap-3">
-                                    <div className={`p-3 rounded-xl bg-card/50 backdrop-blur-md text-${service.color.split('-')[1]}-400 border border-border`}>
+                                    <div className={`p-3 rounded-xl bento-card/80 backdrop-blur-md text-foreground border border-border`}>
                                         {service.icon}
                                     </div>
-                                    <h3 className="text-xl font-bold text-white">{service.data.title}</h3>
+                                    <h3 className="text-xl font-bold text-foreground">{service.data.title}</h3>
                                 </div>
                             </div>
 
                             <div className="p-8">
-                                <p className="text-muted-foreground leading-relaxed mb-8">
+                                <p className="text-muted-foreground leading-relaxed mb-4">
                                     {service.data.description}
                                 </p>
                             </div>
@@ -93,10 +93,10 @@ export function Services() {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="mt-20 bg-card rounded-3xl p-12 text-center relative overflow-hidden border border-sky-100"
+                    className="mt-20 bento-card text-center relative overflow-hidden border-border"
                 >
                     <div className="relative z-10">
-                        <h2 className="text-3xl font-bold text-white mb-6">
+                        <h2 className="text-3xl font-bold text-foreground mb-6">
                             {t.services.ctaTitle}
                         </h2>
                         <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">

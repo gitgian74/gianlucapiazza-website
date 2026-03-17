@@ -24,7 +24,7 @@ export function Privacy() {
 
                         <div className="mt-8 space-y-8">
                             {/* Data Controller */}
-                            <section className="bg-card/50 p-6 rounded-2xl border border-border">
+                            <section className="bento-card/50 p-6 rounded-2xl border border-border">
                                 <h2 className="text-xl font-bold text-foreground mb-4">{t.privacy.controller.title}</h2>
                                 <p className="text-muted-foreground mb-2">{t.privacy.controller.text}</p>
                                 <div className="text-muted-foreground">
