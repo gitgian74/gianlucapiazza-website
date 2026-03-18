@@ -136,13 +136,12 @@ export function Home() {
             Navigate<br />
             <span className="gradient-text-apple">Global Markets</span>
           </h1>
-          <p className="hero-subtitle-apple">{t.home.tagline}</p>
+          <p className="hero-subtitle-apple">{t.home.subtitle}</p>
           <div className="hero-buttons-apple">
             <Link to="/contact" className="btn-primary-apple">
-              {t.home.ctaButton} <span className="btn-arrow-apple">→</span>
-            </Link>
+              {t.contact?.cta?.button || 'Richiedi una Consulenza →'} </Link>
             <Link to="/services" className="btn-secondary-apple">
-              {t.home.discoverServices} <span className="btn-arrow-apple">→</span>
+              {t.nav.services} <span className="btn-arrow-apple">→</span>
             </Link>
           </div>
         </motion.div>
@@ -151,16 +150,16 @@ export function Home() {
       <section className="stats-section-apple">
         <motion.div className="stats-grid-apple" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
           <div className="stat-card-apple">
-            <div className="stat-number-apple">{t.home.stats.experienceValue}</div>
-            <div className="stat-label-apple">{t.home.stats.experience}</div>
+            <div className="stat-number-apple">18+</div>
+            <div className="stat-label-apple">{t.home.stats.founded}</div>
           </div>
           <div className="stat-card-apple">
-            <div className="stat-number-apple">{t.home.stats.marketsValue}</div>
+            <div className="stat-number-apple">50+</div>
+            <div className="stat-label-apple">{t.home.stats.clients}</div>
+          </div>
+          <div className="stat-card-apple">
+            <div className="stat-number-apple">6</div>
             <div className="stat-label-apple">{t.home.stats.markets}</div>
-          </div>
-          <div className="stat-card-apple">
-            <div className="stat-number-apple">Global</div>
-            <div className="stat-label-apple">{t.home.stats.partnerships}</div>
           </div>
         </motion.div>
       </section>
@@ -169,7 +168,7 @@ export function Home() {
         <motion.div className="section-inner-apple" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
           <div className="section-eyebrow-apple">Chi Sono</div>
           <h2 className="section-title-apple">Consulente Internazionalizzazione.<br />Business Developer.<br />Entrepreneur.</h2>
-          <p className="section-text-apple">{t.home.intro}</p>
+          <p className="section-text-apple">{t.about.subtitle}</p>
           <div className="markets-grid-apple">
             {['Florida', 'TriState', 'Texas', 'Washington State', 'California', 'Las Vegas'].map(market => (
               <span key={market} className="market-tag-apple">🇺🇸 {market}</span>
@@ -187,10 +186,12 @@ export function Home() {
         </div>
         <div className="services-grid-apple">
           {[
-            { icon: <Globe size={28} />, title: t.services.service1.title, desc: t.services.service1.description, color: '#0071e3' },
-            { icon: <TrendingUp size={28} />, title: t.services.service2.title, desc: t.services.service2.description, color: '#5e5ce6' },
-            { icon: <Handshake size={28} />, title: 'Partnership Strategiche', desc: 'Costruzione e gestione di network di partner internazionali per creare sinergie e opportunità di business cross-border tra Italia e USA.', color: '#30d158' },
-            { icon: <Brain size={28} />, title: 'AI Market Research', desc: 'Analisi di mercato avanzata powered by AI per identificare trend, opportunità e posizionamento competitivo nei mercati internazionali target.', color: '#ff9f0a' },
+            ...(t.services.list || []).slice(0, 4).map((s, i) => ({
+              icon: [<Globe size={28} />, <TrendingUp size={28} />, <Handshake size={28} />, <Brain size={28} />][i],
+              title: s.title,
+              desc: s.description,
+              color: ['#0071e3', '#5e5ce6', '#30d158', '#ff9f0a'][i],
+            })),
           ].map((service, idx) => (
             <motion.div key={idx} className="service-card-apple" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: idx * 0.1 }}>
               <div className="service-icon-apple" style={{ color: service.color }}>{service.icon}</div>
@@ -205,11 +206,10 @@ export function Home() {
       <section className="cta-section-apple">
         <div className="cta-glow" />
         <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} style={{ position: 'relative', zIndex: 2 }}>
-          <h2 className="section-title-apple" style={{ color: 'white', maxWidth: 700, margin: '0 auto 24px' }}>{t.home.ctaTitle}</h2>
-          <p className="section-text-apple" style={{ color: 'rgba(255,255,255,0.5)', maxWidth: 520, margin: '0 auto 40px' }}>{t.home.ctaText}</p>
+          <h2 className="section-title-apple" style={{ color: 'white', maxWidth: 700, margin: '0 auto 24px' }}>{t.services?.cta?.title || 'Pronto a Espandere il Tuo Business?'}</h2>
+          <p className="section-text-apple" style={{ color: 'rgba(255,255,255,0.5)', maxWidth: 520, margin: '0 auto 40px' }}>{t.services?.cta?.description || 'Contattami per una consulenza personalizzata.'}</p>
           <Link to="/contact" className="btn-primary-apple" style={{ fontSize: 17 }}>
-            {t.home.ctaButton} <span className="btn-arrow-apple">→</span>
-          </Link>
+            {t.contact?.cta?.button || 'Richiedi una Consulenza →'}</Link>
           <div className="cta-contacts">
             <div><span className="cta-contact-label">Email</span><span>mail@gianlucapiazza.com</span></div>
             <div><span className="cta-contact-label">Italia</span><span>+39 337 303431</span></div>
