@@ -67,12 +67,12 @@ function TickerRow({ config }) {
 }
 
 const rowConfigs = [
-  { style: { top: '6%', animation: 'tickerScroll1 80s linear infinite', transform: 'translateZ(-180px) rotateX(3deg) rotateY(-0.5deg)', opacity: 0.4 }},
-  { style: { top: '20%', animation: 'tickerScroll2 70s linear infinite', transform: 'translateZ(80px) rotateX(-1.5deg) rotateY(0.3deg)', opacity: 0.65 }},
-  { style: { top: '36%', animation: 'tickerScroll3 60s linear infinite', transform: 'translateZ(220px) rotateX(1deg) rotateY(-0.4deg)', opacity: 0.9 }},
-  { style: { top: '54%', animation: 'tickerScroll4 75s linear infinite', transform: 'translateZ(120px) rotateX(-0.8deg) rotateY(0.5deg)', opacity: 0.7 }},
-  { style: { top: '70%', animation: 'tickerScroll5 85s linear infinite', transform: 'translateZ(-80px) rotateX(2deg) rotateY(-0.3deg)', opacity: 0.45 }},
-  { style: { top: '86%', animation: 'tickerScroll6 78s linear infinite', transform: 'translateZ(-220px) rotateX(3.5deg) rotateY(0.4deg)', opacity: 0.3 }},
+  { style: { top: '6%', animation: 'tickerScroll1 90s linear infinite', transform: 'translateZ(-180px) rotateX(3deg) rotateY(-0.5deg)', opacity: 0.4 }},
+  { style: { top: '20%', animation: 'tickerScroll2 87s linear infinite', transform: 'translateZ(80px) rotateX(-1.5deg) rotateY(0.3deg)', opacity: 0.65 }},
+  { style: { top: '36%', animation: 'tickerScroll3 85s linear infinite', transform: 'translateZ(220px) rotateX(1deg) rotateY(-0.4deg)', opacity: 0.9 }},
+  { style: { top: '54%', animation: 'tickerScroll4 88s linear infinite', transform: 'translateZ(120px) rotateX(-0.8deg) rotateY(0.5deg)', opacity: 0.7 }},
+  { style: { top: '70%', animation: 'tickerScroll5 90s linear infinite', transform: 'translateZ(-80px) rotateX(2deg) rotateY(-0.3deg)', opacity: 0.45 }},
+  { style: { top: '86%', animation: 'tickerScroll6 86s linear infinite', transform: 'translateZ(-220px) rotateX(3.5deg) rotateY(0.4deg)', opacity: 0.3 }},
 ];
 
 export function Home() {
