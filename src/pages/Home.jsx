@@ -67,12 +67,12 @@ function TickerRow({ config }) {
 }
 
 const rowConfigs = [
-  { style: { top: '8%', animation: 'tickerScroll1 45s linear infinite', transform: 'translateZ(-100px) rotateX(2deg)', opacity: 0.35 }},
-  { style: { top: '22%', animation: 'tickerScroll2 38s linear infinite', transform: 'translateZ(50px) rotateX(-1deg)', opacity: 0.55 }},
-  { style: { top: '38%', animation: 'tickerScroll3 32s linear infinite', transform: 'translateZ(150px) rotateX(0.5deg)', opacity: 0.85 }},
-  { style: { top: '55%', animation: 'tickerScroll4 40s linear infinite', transform: 'translateZ(80px) rotateX(-0.5deg)', opacity: 0.6 }},
-  { style: { top: '70%', animation: 'tickerScroll5 50s linear infinite', transform: 'translateZ(-50px) rotateX(1.5deg)', opacity: 0.4 }},
-  { style: { top: '85%', animation: 'tickerScroll6 42s linear infinite', transform: 'translateZ(-150px) rotateX(2.5deg)', opacity: 0.25 }},
+  { style: { top: '6%', animation: 'tickerScroll1 80s linear infinite', transform: 'translateZ(-180px) rotateX(3deg) rotateY(-0.5deg)', opacity: 0.4 }},
+  { style: { top: '20%', animation: 'tickerScroll2 70s linear infinite', transform: 'translateZ(80px) rotateX(-1.5deg) rotateY(0.3deg)', opacity: 0.65 }},
+  { style: { top: '36%', animation: 'tickerScroll3 60s linear infinite', transform: 'translateZ(220px) rotateX(1deg) rotateY(-0.4deg)', opacity: 0.9 }},
+  { style: { top: '54%', animation: 'tickerScroll4 75s linear infinite', transform: 'translateZ(120px) rotateX(-0.8deg) rotateY(0.5deg)', opacity: 0.7 }},
+  { style: { top: '70%', animation: 'tickerScroll5 85s linear infinite', transform: 'translateZ(-80px) rotateX(2deg) rotateY(-0.3deg)', opacity: 0.45 }},
+  { style: { top: '86%', animation: 'tickerScroll6 78s linear infinite', transform: 'translateZ(-220px) rotateX(3.5deg) rotateY(0.4deg)', opacity: 0.3 }},
 ];
 
 export function Home() {
@@ -117,8 +117,9 @@ export function Home() {
     <div className="apple-redesign">
       <section className="hero-3d">
         <div className="ticker-scene">
-          <div className="ambient-dot" style={{ width: 300, height: 300, top: '20%', left: '10%' }} />
-          <div className="ambient-dot" style={{ width: 200, height: 200, top: '60%', right: '15%', background: 'rgba(94,92,230,0.2)' }} />
+          <div className="ambient-dot" style={{ width: 400, height: 400, top: '15%', left: '8%', background: 'rgba(0,113,227,0.35)' }} />
+          <div className="ambient-dot" style={{ width: 350, height: 350, top: '55%', right: '10%', background: 'rgba(94,92,230,0.25)' }} />
+          <div className="ambient-dot" style={{ width: 500, height: 500, top: '35%', left: '35%', background: 'rgba(100,210,255,0.12)' }} />
           {rowConfigs.map((config, idx) => (
             <TickerRow key={idx} config={config} />
           ))}
