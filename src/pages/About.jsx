@@ -1,178 +1,213 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../hooks/use-language';
-import { User, Briefcase, Award, BookOpen } from 'lucide-react';
-import { PageHeader } from '../components/shared/PageHeader';
-import { Section } from '../components/shared/Section';
-import { Card } from '../components/shared/Card';
+import { CheckCircle2, Target, Heart, Shield } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 export function About() {
-    const { t } = useLanguage();
+  const { t } = useLanguage();
 
-    return (
-        <div className="min-h-screen bg-background pb-20">
-            {/* Header */}
-            <div className="relative">
-                <div className="absolute inset-0 z-0">
-                    <img
-                        src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&q=80&w=1920"
-                        alt="Miami Skyline"
-                        className="w-full h-full object-cover opacity-75"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-b from-background/30 via-background/60 to-background"></div>
+  return (
+    <div className="apple-redesign">
+      {/* Hero Section */}
+      <section style={{ background: '#1d1d1f', padding: '120px 24px 80px', textAlign: 'center' }}>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          <div className="section-eyebrow-apple" style={{ color: '#86868b' }}>
+            {t.about.eyebrow}
+          </div>
+          <h1 className="section-title-apple" style={{ color: 'white', marginBottom: '16px' }}>
+            {t.about.title}
+          </h1>
+          <p className="section-text-apple" style={{ color: '#a1a1a6', maxWidth: '720px', margin: '0 auto' }}>
+            {t.about.subtitle}
+          </p>
+        </motion.div>
+      </section>
+
+      {/* Experience Timeline */}
+      <section style={{ padding: '80px 24px', background: 'white' }}>
+        <div className="section-inner-apple">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <h2 className="section-title-apple" style={{ marginBottom: '60px', textAlign: 'center' }}>
+              {t.about.experience.title}
+            </h2>
+          </motion.div>
+
+          <div style={{ maxWidth: '800px', margin: '0 auto' }}>
+            {t.about.experience.items.map((item, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: idx * 0.1 }}
+                style={{
+                  paddingBottom: '48px',
+                  paddingLeft: '40px',
+                  borderLeft: '2px solid #d5d5d7',
+                  position: 'relative',
+                  marginLeft: '12px',
+                }}
+              >
+                <div
+                  style={{
+                    position: 'absolute',
+                    left: '-8px',
+                    top: '0px',
+                    width: '12px',
+                    height: '12px',
+                    background: '#1d1d1f',
+                    borderRadius: '50%',
+                  }}
+                />
+                <div style={{ marginBottom: '8px', color: '#a1a1a6', fontSize: '14px', fontWeight: '600' }}>
+                  {item.year}
                 </div>
-
-                <div className="relative pt-32 pb-20 px-6 container mx-auto max-w-5xl z-10">
-                    <div className="flex flex-col md:flex-row items-center gap-12">
-                        {/* Profile Image */}
-                        <motion.div
-                            initial={{ opacity: 0, scale: 0.9 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.5 }}
-                            className="w-48 h-48 md:w-64 md:h-64 flex-shrink-0 relative"
-                        >
-                            <div className="absolute inset-0 bg-blue-100 rounded-full blur-2xl opacity-50 transform translate-y-4"></div>
-                            <img
-                                src="/gianluca-profile.webp"
-                                alt="Gianluca Piazza"
-                                className="w-full h-full object-cover rounded-full shadow-xl border-4 border-white relative z-10"
-                            />
-                        </motion.div>
-
-                        {/* Intro Text */}
-                        <div className="text-center md:text-left flex-grow">
-                            <motion.h1
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                className="text-4xl md:text-5xl font-bold text-white mb-6"
-                            >
-                                {t.about.title}
-                            </motion.h1>
-                            <motion.p
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.1 }}
-                                className="text-xl text-muted-foreground leading-relaxed"
-                            >
-                                {t.about.intro}
-                            </motion.p>
-                        </div>
-                    </div>
+                <h3 style={{ fontSize: '18px', fontWeight: '600', marginBottom: '4px', color: '#1d1d1f' }}>
+                  {item.role}
+                </h3>
+                <div style={{ fontSize: '14px', color: '#6f6f72', marginBottom: '8px' }}>
+                  {item.company}
                 </div>
-            </div>
-
-            <Section className="max-w-6xl">
-                <div className="grid md:grid-cols-12 gap-8">
-
-                    {/* Left Column - Main Content */}
-                    <div className="md:col-span-8 space-y-8">
-
-                        {/* Experience Card */}
-                        <Card
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            className="p-8"
-                        >
-                            <div className="flex items-center gap-4 mb-6">
-                                <div className="p-3 bg-blue-900/30 text-blue-400 rounded-xl">
-                                    <Briefcase size={24} />
-                                </div>
-                                <h2 className="text-2xl font-bold text-white">{t.about.experienceTitle}</h2>
-                            </div>
-                            <div className="prose prose-invert prose-lg text-muted-foreground space-y-6">
-                                <p>{t.about.experience1}</p>
-                                <p>{t.about.experience2}</p>
-                            </div>
-                        </Card>
-
-                        {/* Projects Card */}
-                        <Card
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: 0.1 }}
-                            className="p-8"
-                        >
-                            <div className="flex items-center gap-4 mb-6">
-                                <div className="p-3 bg-purple-900/30 text-purple-400 rounded-xl">
-                                    <Award size={24} />
-                                </div>
-                                <h2 className="text-2xl font-bold text-white">{t.about.projectsTitle}</h2>
-                            </div>
-                            <p className="text-lg text-muted-foreground leading-relaxed">
-                                {t.about.projects}
-                            </p>
-                        </Card>
-
-                        {/* Background Card */}
-                        <Card
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: 0.2 }}
-                            className="p-8"
-                        >
-                            <div className="flex items-center gap-4 mb-6">
-                                <div className="p-3 bg-green-900/30 text-green-400 rounded-xl">
-                                    <BookOpen size={24} />
-                                </div>
-                                <h2 className="text-2xl font-bold text-white">{t.about.backgroundTitle}</h2>
-                            </div>
-                            <p className="text-lg text-muted-foreground leading-relaxed">
-                                {t.about.background}
-                            </p>
-                        </Card>
-
-                    </div>
-
-                    {/* Right Column - Sidebar */}
-                    <div className="md:col-span-4 space-y-8">
-
-                        {/* Philosophy Card */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            className="bg-primary text-white p-8 rounded-3xl shadow-lg shadow-blue-900/10 relative overflow-hidden"
-                        >
-                            <div className="absolute top-0 right-0 w-32 h-32 bg-white opacity-10 rounded-full blur-3xl -mr-16 -mt-16"></div>
-
-                            <h3 className="text-xl font-bold mb-4 opacity-90">{t.about.philosophyTitle}</h3>
-                            <blockquote className="text-2xl font-serif italic mb-6 leading-snug">
-                                "{t.about.philosophyQuote}"
-                            </blockquote>
-                            <p className="text-blue-100 leading-relaxed text-sm">
-                                {t.about.philosophy}
-                            </p>
-                        </motion.div>
-
-                        {/* Skills Card */}
-                        <Card
-                            initial={{ opacity: 0, x: 20 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                            className="p-8 md:p-10"
-                        >
-                            <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
-                                <User className="text-blue-400" />
-                                {t.about.skillsTitle}
-                            </h2>
-                            <div className="flex flex-wrap gap-2">
-                                {t.about.skills.map((skill, index) => (
-                                    <span
-                                        key={index}
-                                        className="px-4 py-2 bg-card text-muted-foreground rounded-lg border border-border font-medium text-sm hover:bg-blue-900 hover:text-blue-300 hover:border-blue-700 transition-colors cursor-default"
-                                    >
-                                        {skill}
-                                    </span>
-                                ))}
-                            </div>
-                        </Card>
-
-                    </div>
-                </div>
-            </Section>
+                <p style={{ fontSize: '14px', color: '#555555', lineHeight: '1.6' }}>
+                  {item.description}
+                </p>
+              </motion.div>
+            ))}
+          </div>
         </div>
-    );
+      </section>
+
+      {/* Skills Grid */}
+      <section style={{ padding: '80px 24px', background: '#f5f5f7' }}>
+        <div className="section-inner-apple">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            style={{ marginBottom: '60px', textAlign: 'center' }}
+          >
+            <h2 className="section-title-apple">{t.about.skills.title}</h2>
+          </motion.div>
+
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+              gap: '24px',
+              maxWidth: '900px',
+              margin: '0 auto',
+            }}
+          >
+            {t.about.skills.items.map((skill, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: idx * 0.05 }}
+                className="service-card-apple"
+                style={{
+                  padding: '28px 24px',
+                  background: 'white',
+                  borderRadius: '18px',
+                  border: '1px solid #e5e5e7',
+                  textAlign: 'center',
+                }}
+              >
+                <p style={{ fontSize: '15px', fontWeight: '600', color: '#1d1d1f' }}>
+                  {skill}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Philosophy Section */}
+      <section style={{ padding: '80px 24px', background: 'white' }}>
+        <div className="section-inner-apple">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <h2 className="section-title-apple" style={{ marginBottom: '40px', textAlign: 'center' }}>
+              {t.about.philosophy.title}
+            </h2>
+            <p className="section-text-apple" style={{ textAlign: 'center', marginBottom: '60px', maxWidth: '700px', margin: '0 auto 60px' }}>
+              {t.about.philosophy.description}
+            </p>
+
+            <div
+              style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+                gap: '24px',
+                maxWidth: '900px',
+                margin: '0 auto',
+              }}
+            >
+              {t.about.philosophy.values.map((value, idx) => (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: idx * 0.1 }}
+                  style={{
+                    padding: '24px',
+                    background: '#f5f5f7',
+                    borderRadius: '14px',
+                    display: 'flex',
+                    gap: '12px',
+                  }}
+                >
+                  <CheckCircle2 size={20} style={{ color: '#34c759', flexShrink: 0, marginTop: '2px' }} />
+                  <p style={{ fontSize: '14px', color: '#1d1d1f', lineHeight: '1.6' }}>
+                    {value}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="cta-section-apple">
+        <div className="cta-glow" />
+        <motion.div
+          style={{ position: 'relative', zIndex: 2 }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
+          <h2 className="section-title-apple" style={{ color: 'white', marginBottom: '24px', textAlign: 'center' }}>
+            {t.about.cta.title}
+          </h2>
+          <p style={{ color: '#a1a1a6', textAlign: 'center', marginBottom: '40px', fontSize: '17px' }}>
+            {t.about.cta.description}
+          </p>
+          <div style={{ textAlign: 'center' }}>
+            <Link to="/contact" className="btn-primary-apple">
+              {t.about.cta.button}
+            </Link>
+          </div>
+        </motion.div>
+      </section>
+    </div>
+  );
 }

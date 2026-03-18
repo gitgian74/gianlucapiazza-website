@@ -1,117 +1,166 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../hooks/use-language';
-import { Globe, TrendingUp, Handshake, Scale, ArrowRight } from 'lucide-react';
+import { CheckCircle2, Sparkles, Wine, Zap, Cog } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { PageHeader } from '../components/shared/PageHeader';
-import { Section } from '../components/shared/Section';
-import { Card } from '../components/shared/Card';
-import { Button } from '../components/shared/Button';
 
 export function Services() {
-    const { t } = useLanguage();
+  const { t } = useLanguage();
 
-    const services = [
-        {
-            id: 'service1',
-            icon: <Globe size={32} className="text-blue-600" />,
-            color: 'bg-blue-50',
-            image: "https://images.unsplash.com/photo-1526304640152-d4619684e484?auto=format&fit=crop&q=80",
-            data: t.services.service1
-        },
-        {
-            id: 'service2',
-            icon: <TrendingUp size={32} className="text-purple-600" />,
-            color: 'bg-purple-50',
-            image: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80",
-            data: t.services.service2
-        },
-        {
-            id: 'service3',
-            icon: <Handshake size={32} className="text-green-600" />,
-            color: 'bg-green-50',
-            image: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&q=80",
-            data: t.services.service3
-        },
-        {
-            id: 'service4',
-            icon: <Scale size={32} className="text-orange-600" />,
-            color: 'bg-orange-50',
-            image: "https://images.unsplash.com/photo-1505664194779-8beaceb93744?auto=format&fit=crop&q=80",
-            data: t.services.service4
-        }
-    ];
+  const iconMap = {
+    Sparkles: Sparkles,
+    Wine: Wine,
+    Zap: Zap,
+    Cog: Cog,
+  };
 
-    return (
-        <div className="min-h-screen bg-background pb-20">
-            {/* Header */}
-            <PageHeader
-                title={t.services.title}
-                subtitle={t.services.subtitle}
-                backgroundImage="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&q=80&w=1920"
-            />
+  return (
+    <div className="apple-redesign">
+      {/* Hero Section */}
+      <section style={{ background: '#1d1d1f', padding: '120px 24px 80px', textAlign: 'center' }}>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          <div className="section-eyebrow-apple" style={{ color: '#86868b' }}>
+            {t.services.eyebrow}
+          </div>
+          <h1 className="section-title-apple" style={{ color: 'white', marginBottom: '16px' }}>
+            {t.services.title}
+          </h1>
+          <p className="section-text-apple" style={{ color: '#a1a1a6', maxWidth: '720px', margin: '0 auto' }}>
+            {t.services.subtitle}
+          </p>
+        </motion.div>
+      </section>
 
-            <Section className="max-w-7xl">
-                <div className="grid md:grid-cols-2 gap-8">
-                    {services.map((service, index) => (
-                        <Card
-                            key={index}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: index * 0.1 }}
-                            hoverEffect={true}
-                            className="group"
-                        >
-                            {/* Image Section */}
-                            <div className="h-48 overflow-hidden relative">
-                                <div className="absolute inset-0 bg-gradient-to-t from-background/90 to-transparent z-10"></div>
-                                <img
-                                    src={service.image}
-                                    alt={service.data.title}
-                                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                                />
-                                <div className="absolute bottom-4 left-6 z-20 flex items-center gap-3">
-                                    <div className={`p-3 rounded-xl bg-card/50 backdrop-blur-md text-${service.color.split('-')[1]}-400 border border-border`}>
-                                        {service.icon}
-                                    </div>
-                                    <h3 className="text-xl font-bold text-white">{service.data.title}</h3>
-                                </div>
-                            </div>
-
-                            <div className="p-8">
-                                <p className="text-muted-foreground leading-relaxed mb-8">
-                                    {service.data.description}
-                                </p>
-                            </div>
-                        </Card>
-                    ))}
-                </div>
-
-                {/* CTA Section */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="mt-20 bg-card rounded-3xl p-12 text-center relative overflow-hidden border border-sky-100"
-                >
-                    <div className="relative z-10">
-                        <h2 className="text-3xl font-bold text-white mb-6">
-                            {t.services.ctaTitle}
-                        </h2>
-                        <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-                            {t.services.ctaText}
-                        </p>
-                        <Link to="/contact">
-                            <Button variant="primary" size="lg" className="bg-foreground text-background hover:bg-blue-50">
-                                {t.services.ctaButton}
-                                <ArrowRight size={20} />
-                            </Button>
-                        </Link>
+      {/* Services Grid */}
+      <section style={{ padding: '80px 24px', background: 'white' }}>
+        <div className="section-inner-apple">
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+              gap: '32px',
+            }}
+          >
+            {t.services.list.map((service, idx) => (
+              <motion.div
+                key={service.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: idx * 0.1 }}
+                className="service-card-apple"
+                style={{
+                  padding: '36px 28px',
+                  background: '#f5f5f7',
+                  borderRadius: '18px',
+                  border: '1px solid #e5e5e7',
+                }}
+              >
+                <h3 style={{ fontSize: '18px', fontWeight: '600', marginBottom: '12px', color: '#1d1d1f' }}>
+                  {service.title}
+                </h3>
+                <p style={{ fontSize: '15px', color: '#555555', lineHeight: '1.6', marginBottom: '24px' }}>
+                  {service.description}
+                </p>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                  {service.features.map((feature, fidx) => (
+                    <div key={fidx} style={{ display: 'flex', gap: '10px', alignItems: 'flex-start' }}>
+                      <CheckCircle2 size={18} style={{ color: '#34c759', flexShrink: 0, marginTop: '2px' }} />
+                      <span style={{ fontSize: '13px', color: '#555555' }}>
+                        {feature}
+                      </span>
                     </div>
-                </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-            </Section>
-        </div >
-    );
+      {/* Industries Section */}
+      <section style={{ padding: '80px 24px', background: '#f5f5f7' }}>
+        <div className="section-inner-apple">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            style={{ marginBottom: '60px', textAlign: 'center' }}
+          >
+            <h2 className="section-title-apple" style={{ marginBottom: '12px' }}>
+              {t.services.industries.title}
+            </h2>
+            <p className="section-text-apple" style={{ color: '#555555', maxWidth: '600px', margin: '0 auto' }}>
+              {t.services.industries.subtitle}
+            </p>
+          </motion.div>
+
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+              gap: '24px',
+            }}
+          >
+            {t.services.industries.sectors.map((sector, idx) => {
+              const IconComponent = iconMap[sector.icon] || Sparkles;
+              return (
+                <motion.div
+                  key={sector.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: idx * 0.1 }}
+                  style={{
+                    padding: '32px 24px',
+                    background: 'white',
+                    borderRadius: '16px',
+                    border: '1px solid #e5e5e7',
+                    textAlign: 'center',
+                  }}
+                >
+                  <IconComponent size={32} style={{ color: '#34c759', margin: '0 auto 16px' }} />
+                  <h3 style={{ fontSize: '16px', fontWeight: '600', marginBottom: '12px', color: '#1d1d1f' }}>
+                    {sector.name}
+                  </h3>
+                  <p style={{ fontSize: '13px', color: '#555555', lineHeight: '1.6' }}>
+                    {sector.description}
+                  </p>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="cta-section-apple">
+        <div className="cta-glow" />
+        <motion.div
+          style={{ position: 'relative', zIndex: 2 }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
+          <h2 className="section-title-apple" style={{ color: 'white', marginBottom: '24px', textAlign: 'center' }}>
+            {t.services.cta.title}
+          </h2>
+          <p style={{ color: '#a1a1a6', textAlign: 'center', marginBottom: '40px', fontSize: '17px' }}>
+            {t.services.cta.description}
+          </p>
+          <div style={{ textAlign: 'center' }}>
+            <Link to="/contact" className="btn-primary-apple">
+              {t.services.cta.button}
+            </Link>
+          </div>
+        </motion.div>
+      </section>
+    </div>
+  );
 }

@@ -1,143 +1,154 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../hooks/use-language';
-import { ArrowUpRight, MapPin, Target, Trophy } from 'lucide-react';
-import { PageHeader } from '../components/shared/PageHeader';
-import { Section } from '../components/shared/Section';
-import { Card } from '../components/shared/Card';
-import { Button } from '../components/shared/Button';
+import { ArrowRight, CheckCircle2 } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 export function Projects() {
-    const { t } = useLanguage();
+  const { t } = useLanguage();
 
-    const projects = [
-        t.projects.project1,
-        t.projects.project2,
-        t.projects.project3,
-        t.projects.project4,
-        t.projects.project5,
-        t.projects.project6,
-        t.projects.project7,
-    ];
+  return (
+    <div className="apple-redesign">
+      {/* Hero Section */}
+      <section style={{ background: '#1d1d1f', padding: '120px 24px 80px', textAlign: 'center' }}>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          <div className="section-eyebrow-apple" style={{ color: '#86868b' }}>
+            {t.projects.eyebrow}
+          </div>
+          <h1 className="section-title-apple" style={{ color: 'white', marginBottom: '16px' }}>
+            {t.projects.title}
+          </h1>
+          <p className="section-text-apple" style={{ color: '#a1a1a6', maxWidth: '720px', margin: '0 auto' }}>
+            {t.projects.subtitle}
+          </p>
+        </motion.div>
+      </section>
 
-    const projectImages = [
-        "https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&q=80", // Coffee/Starbucks vibe
-        "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&q=80", // Water/Bottles
-        "https://images.unsplash.com/photo-1578916171728-46686eac8d58?auto=format&fit=crop&q=80", // Logistics/Warehouse
-        "https://images.unsplash.com/photo-1550989460-0adf9ea622e2?auto=format&fit=crop&q=80", // Gourmet Food
-        "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80", // Tech/IoT
-        "https://images.unsplash.com/photo-1592478411213-61535fdd861d?auto=format&fit=crop&q=80", // VR/Headset
-        "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80", // Security/AI
-    ];
-
-    return (
-        <div className="min-h-screen bg-background pb-20">
-            {/* Header */}
-            <PageHeader
-                title={t.projects.title}
-                subtitle={t.projects.subtitle}
-                backgroundImage="https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?auto=format&fit=crop&q=80&w=1920"
-            />
-
-            <Section className="max-w-6xl">
-                <div className="grid gap-8">
-                    {projects.map((project, index) => (
-                        <Card
-                            key={index}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: index * 0.1 }}
-                            hoverEffect={true}
-                            className="group flex flex-col md:flex-row"
-                        >
-                            {/* Image Section */}
-                            <div className="md:w-1/3 h-64 md:h-auto overflow-hidden relative">
-                                <div className="absolute inset-0 bg-gradient-to-t from-background/50 to-transparent z-10"></div>
-                                <img
-                                    src={projectImages[index]}
-                                    alt={project.title}
-                                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                                />
-
-                                {project.marketName && (
-                                    <div className="absolute bottom-4 left-4 z-20 flex items-start gap-3">
-                                        <div className="p-2 bg-card/80 backdrop-blur-sm rounded-lg text-muted-foreground">
-                                            <MapPin size={16} />
-                                        </div>
-                                        <div>
-                                            <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">{project.market}</p>
-                                            <p className="text-white font-medium text-sm">{project.marketName}</p>
-                                        </div>
-                                    </div>
-                                )}
-                            </div>
-
-                            {/* Content Section */}
-                            <div className="p-8 md:p-10 md:w-2/3 flex flex-col">
-                                <div className="mb-6">
-                                    <h2 className="text-2xl font-bold text-white mb-2 group-hover:text-blue-400 transition-colors">
-                                        {project.title}
-                                    </h2>
-                                    <div className="h-1 w-12 bg-blue-500 rounded-full mt-4"></div>
-                                </div>
-
-                                <div className="space-y-6 flex-grow">
-                                    {/* Objective */}
-                                    <div className="bg-blue-900/10 rounded-2xl p-5 border border-blue-900/30">
-                                        <div className="flex items-center gap-2 mb-2">
-                                            <Target size={18} className="text-blue-400" />
-                                            <h3 className="font-bold text-blue-100 text-sm uppercase tracking-wide">{project.objective}</h3>
-                                        </div>
-                                        <p className="text-muted-foreground text-sm leading-relaxed">
-                                            {project.objectiveText}
-                                        </p>
-                                    </div>
-
-                                    {/* Results */}
-                                    <div>
-                                        <div className="flex items-center gap-2 mb-3">
-                                            <Trophy size={18} className="text-orange-400" />
-                                            <h3 className="font-bold text-orange-100 text-sm uppercase tracking-wide">{project.results}</h3>
-                                        </div>
-                                        <div className="grid sm:grid-cols-2 gap-3">
-                                            {project.resultsList.map((result, idx) => (
-                                                <div key={idx} className="flex items-start gap-2">
-                                                    <div className="mt-1.5 w-1.5 h-1.5 bg-orange-400 rounded-full flex-shrink-0"></div>
-                                                    <p className="text-muted-foreground text-sm leading-relaxed">{result}</p>
-                                                </div>
-                                            ))}
-                                        </div>
-                                    </div>
-                                </div>
-
-                                {/* Tags */}
-                                <div className="flex flex-wrap gap-2 mt-8 pt-6 border-t border-border">
-                                    {project.skillsList.map((skill, idx) => (
-                                        <span
-                                            key={idx}
-                                            className="px-3 py-1 bg-white text-slate-600 rounded-full text-xs font-medium border border-sky-100"
-                                        >
-                                            {skill}
-                                        </span>
-                                    ))}
-                                </div>
-                            </div>
-                        </Card>
-                    ))}
+      {/* Case Studies Grid */}
+      <section style={{ padding: '80px 24px', background: 'white' }}>
+        <div className="section-inner-apple">
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))',
+              gap: '28px',
+            }}
+          >
+            {t.projects.cases.map((caseStudy, idx) => (
+              <motion.div
+                key={caseStudy.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: idx * 0.05 }}
+                style={{
+                  padding: '32px 28px',
+                  background: '#f5f5f7',
+                  borderRadius: '18px',
+                  border: '1px solid #e5e5e7',
+                  display: 'flex',
+                  flexDirection: 'column',
+                }}
+              >
+                {/* Industry Tags */}
+                <div style={{ display: 'flex', gap: '8px', marginBottom: '16px', flexWrap: 'wrap' }}>
+                  {caseStudy.industries.map((industry, iidx) => (
+                    <span
+                      key={iidx}
+                      style={{
+                        fontSize: '12px',
+                        fontWeight: '600',
+                        color: '#34c759',
+                        background: '#e8f5e9',
+                        padding: '4px 12px',
+                        borderRadius: '12px',
+                      }}
+                    >
+                      {industry}
+                    </span>
+                  ))}
                 </div>
 
-                {/* CTA */}
-                <div className="mt-20 text-center">
-                    <p className="text-xl text-muted-foreground mb-6">{t.projects.ctaText}</p>
-                    <a href="mailto:mail@gianlucapiazza.com">
-                        <Button variant="secondary" size="lg" className="shadow-lg">
-                            {t.projects.ctaButton}
-                            <ArrowUpRight size={20} />
-                        </Button>
-                    </a>
+                {/* Title */}
+                <h3 style={{ fontSize: '17px', fontWeight: '600', marginBottom: '8px', color: '#1d1d1f' }}>
+                  {caseStudy.title}
+                </h3>
+
+                {/* Subtitle */}
+                <p style={{ fontSize: '13px', color: '#86868b', marginBottom: '20px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                  <ArrowRight size={14} />
+                  {caseStudy.subtitle}
+                </p>
+
+                {/* Challenge */}
+                <div style={{ marginBottom: '16px' }}>
+                  <p style={{ fontSize: '12px', fontWeight: '600', color: '#555555', marginBottom: '6px' }}>
+                    Challenge
+                  </p>
+                  <p style={{ fontSize: '13px', color: '#666666', lineHeight: '1.5' }}>
+                    {caseStudy.challenge}
+                  </p>
                 </div>
-            </Section>
+
+                {/* Solution */}
+                <div style={{ marginBottom: '16px' }}>
+                  <p style={{ fontSize: '12px', fontWeight: '600', color: '#555555', marginBottom: '6px' }}>
+                    Solution
+                  </p>
+                  <p style={{ fontSize: '13px', color: '#666666', lineHeight: '1.5' }}>
+                    {caseStudy.solution}
+                  </p>
+                </div>
+
+                {/* Result */}
+                <div style={{ marginBottom: '16px', paddingTop: '16px', borderTop: '1px solid #d5d5d7' }}>
+                  <p style={{ fontSize: '12px', fontWeight: '600', color: '#34c759', marginBottom: '6px' }}>
+                    Result
+                  </p>
+                  <p style={{ fontSize: '13px', color: '#1d1d1f', lineHeight: '1.5', fontWeight: '500' }}>
+                    {caseStudy.result}
+                  </p>
+                </div>
+
+                {/* Metrics */}
+                <div style={{ marginTop: 'auto', paddingTop: '16px', borderTop: '1px solid #d5d5d7' }}>
+                  <p style={{ fontSize: '12px', color: '#555555', lineHeight: '1.6' }}>
+                    {caseStudy.metrics}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
-    );
+      </section>
+
+      {/* CTA Section */}
+      <section className="cta-section-apple">
+        <div className="cta-glow" />
+        <motion.div
+          style={{ position: 'relative', zIndex: 2 }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
+          <h2 className="section-title-apple" style={{ color: 'white', marginBottom: '24px', textAlign: 'center' }}>
+            {t.projects.cta.title}
+          </h2>
+          <p style={{ color: '#a1a1a6', textAlign: 'center', marginBottom: '40px', fontSize: '17px' }}>
+            {t.projects.cta.description}
+          </p>
+          <div style={{ textAlign: 'center' }}>
+            <Link to="/contact" className="btn-primary-apple">
+              {t.projects.cta.button}
+            </Link>
+          </div>
+        </motion.div>
+      </section>
+    </div>
+  );
 }

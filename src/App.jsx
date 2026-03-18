@@ -22,7 +22,7 @@ function App() {
             <Route path="/services" element={<Services />} />
             <Route path="/projects" element={<Projects />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="/market-research" element={<MarketResearch />} />
+            <Route path="/research" element={<MarketResearch />} />
             <Route path="/privacy" element={<Privacy />} />
           </Routes>
         </Layout>

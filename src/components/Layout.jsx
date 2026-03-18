@@ -1,181 +1,286 @@
 import React, { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Globe, ChevronRight, Sparkles } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { useLanguage } from '../hooks/use-language';
-import { CookieConsent } from './shared/CookieConsent';
+import { Menu, X, Globe } from 'lucide-react';
 
 export function Layout({ children }) {
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const { language, setLanguage, t } = useLanguage();
-    const location = useLocation();
+  const { t, language, setLanguage } = useLanguage();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-    const toggleLanguage = () => {
-        setLanguage(prev => prev === 'it' ? 'en' : 'it');
-    };
+  const navLinks = [
+    { path: '/', label: t.nav.home },
+    { path: '/about', label: t.nav.about },
+    { path: '/services', label: t.nav.services },
+    { path: '/projects', label: t.nav.projects },
+    { path: '/research', label: t.nav.research },
+    { path: '/contact', label: t.nav.contact },
+  ];
 
-    const isActive = (path) => location.pathname === path;
+  return (
+    <div>
+      {/* Navbar */}
+      <nav
+        style={{
+          background: 'rgba(255, 255, 255, 0.7)',
+          backdropFilter: 'blur(20px)',
+          borderBottom: '1px solid rgba(0, 0, 0, 0.1)',
+          padding: '16px 24px',
+          position: 'sticky',
+          top: 0,
+          zIndex: 100,
+        }}
+      >
+        <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          {/* Logo */}
+          <Link
+            to="/"
+            style={{
+              fontSize: '18px',
+              fontWeight: '700',
+              color: '#1d1d1f',
+              textDecoration: 'none',
+              letterSpacing: '-0.5px',
+            }}
+          >
+            Gianluca Piazza
+          </Link>
 
-    return (
-        <div className="min-h-screen bg-background font-sans text-foreground flex flex-col">
-            {/* Navigation */}
-            <nav className="fixed top-0 left-0 right-0 z-50 glass-nav">
-                <div className="container mx-auto px-6 h-20 flex items-center justify-between">
-                    {/* Logo */}
-                    <Link to="/" className="text-2xl font-bold tracking-tight text-primary flex items-center gap-2">
-                        <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-white font-bold text-lg">
-                            G
-                        </div>
-                        <span>Piazza</span>
-                    </Link>
+          {/* Desktop Menu */}
+          <div
+            style={{
+              display: 'none',
+              gap: '32px',
+              alignItems: 'center',
+              '@media (min-width: 768px)': {
+                display: 'flex',
+              },
+            }}
+            className="desktop-menu"
+          >
+            {navLinks.map((link) => (
+              <Link
+                key={link.path}
+                to={link.path}
+                style={{
+                  fontSize: '13px',
+                  fontWeight: '500',
+                  color: '#1d1d1f',
+                  textDecoration: 'none',
+                  transition: 'color 0.2s',
+                }}
+                onMouseEnter={(e) => (e.target.style.color = '#34c759')}
+                onMouseLeave={(e) => (e.target.style.color = '#1d1d1f')}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </div>
 
-                    {/* Desktop Menu */}
-                    <div className="hidden md:flex items-center gap-8">
-                        <div className="flex items-center gap-1 bg-slate-100/50 p-1 rounded-full border border-slate-200">
-                            {[
-                                { path: '/', label: t.nav.home },
-                                { path: '/about', label: t.nav.about },
-                                { path: '/services', label: t.nav.services },
-                                { path: '/projects', label: t.nav.projects },
-                                { path: '/market-research', label: 'AI Research' },
-                            ].map((link) => (
-                                <Link
-                                    key={link.path}
-                                    to={link.path}
-                                    className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${isActive(link.path)
-                                        ? 'bg-white text-primary shadow-sm'
-                                        : 'text-slate-500 hover:text-primary hover:bg-white/50'
-                                        }`}
-                                >
-                                    {link.label}
-                                </Link>
-                            ))}
-                        </div>
+          {/* Language Toggle & Mobile Menu Button */}
+          <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
+            <button
+              onClick={() => setLanguage(language === 'it' ? 'en' : 'it')}
+              style={{
+                padding: '8px 12px',
+                background: '#f5f5f7',
+                border: '1px solid #d5d5d7',
+                borderRadius: '8px',
+                fontSize: '12px',
+                fontWeight: '600',
+                color: '#1d1d1f',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '6px',
+                transition: 'all 0.2s',
+              }}
+              onMouseEnter={(e) => {
+                e.target.style.background = '#e5e5e7';
+              }}
+              onMouseLeave={(e) => {
+                e.target.style.background = '#f5f5f7';
+              }}
+            >
+              <Globe size={14} />
+              {language === 'it' ? 'EN' : 'IT'}
+            </button>
 
-                        <button
-                            onClick={toggleLanguage}
-                            className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/50 hover:bg-white text-slate-600 transition-colors text-sm font-medium border border-sky-100"
-                        >
-                            <Globe size={16} />
-                            <span>{language.toUpperCase()}</span>
-                        </button>
-
-                        <Link
-                            to="/contact"
-                            className="px-5 py-2.5 bg-primary text-white rounded-full font-medium hover:bg-primary/90 transition-all shadow-md hover:shadow-lg text-sm"
-                        >
-                            {t.nav.contact}
-                        </Link>
-                    </div>
-
-                    {/* Mobile Menu Button */}
-                    <div className="md:hidden flex items-center gap-4">
-                        <button
-                            onClick={toggleLanguage}
-                            className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/50 text-slate-600 text-sm font-medium border border-sky-100"
-                        >
-                            <Globe size={16} />
-                            <span>{language.toUpperCase()}</span>
-                        </button>
-                        <button
-                            className="p-2 text-slate-700 hover:bg-sky-50 rounded-full transition-colors"
-                            onClick={() => setIsMenuOpen(!isMenuOpen)}
-                        >
-                            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-                        </button>
-                    </div>
-                </div>
-            </nav>
-
-            {/* Mobile Menu Overlay */}
-            <AnimatePresence>
-                {isMenuOpen && (
-                    <motion.div
-                        initial={{ opacity: 0, y: -20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -20 }}
-                        className="fixed inset-0 z-40 bg-background/95 backdrop-blur-xl pt-24 px-6 md:hidden"
-                    >
-                        <div className="flex flex-col gap-4">
-                            {[
-                                { path: '/', label: t.nav.home },
-                                { path: '/about', label: t.nav.about },
-                                { path: '/services', label: t.nav.services },
-                                { path: '/projects', label: t.nav.projects },
-                                { path: '/market-research', label: 'AI Research' },
-                                { path: '/contact', label: t.nav.contact },
-                            ].map((link) => (
-                                <Link
-                                    key={link.path}
-                                    to={link.path}
-                                    onClick={() => setIsMenuOpen(false)}
-                                    className="flex items-center justify-between p-4 rounded-xl bg-card hover:bg-sky-100 text-lg font-medium text-foreground transition-colors border border-sky-50"
-                                >
-                                    {link.label}
-                                    <ChevronRight size={20} className="text-muted-foreground" />
-                                </Link>
-                            ))}
-                        </div>
-                    </motion.div>
-                )}
-            </AnimatePresence>
-
-            {/* Main Content */}
-            <main className="flex-grow pt-20">
-                {children}
-            </main>
-
-            {/* Footer */}
-            <footer className="bg-background border-t border-border py-12 mt-auto">
-                <div className="container mx-auto px-6">
-                    <div className="grid md:grid-cols-4 gap-8 mb-8">
-                        <div className="col-span-1 md:col-span-2">
-                            <Link to="/" className="text-xl font-bold text-primary mb-4 block">
-                                Gianluca Piazza
-                            </Link>
-                            <p className="text-muted-foreground max-w-md leading-relaxed">
-                                {t.footer.about}
-                            </p>
-                        </div>
-
-                        <div>
-                            <h4 className="font-semibold text-foreground mb-4">{t.footer.quickLinks}</h4>
-                            <ul className="space-y-2">
-                                <Link to="/services" className="text-sm font-medium text-muted-foreground hover:text-white transition-colors">{t.nav.services}</Link>
-                                <Link to="/projects" className="text-sm font-medium text-muted-foreground hover:text-white transition-colors">{t.nav.projects}</Link>
-                                <Link to="/market-research" className="text-sm font-medium text-blue-400 hover:text-blue-300 transition-colors flex items-center gap-1">
-                                    <Sparkles size={14} />
-                                    AI Research
-                                </Link>
-                                <Link to="/contact" className="px-5 py-2.5 bg-white text-slate-900 rounded-full text-sm font-bold hover:bg-blue-50 transition-colors shadow-lg shadow-blue-500/10">
-                                    {t.nav.contact}
-                                </Link>
-                            </ul>
-                        </div>
-
-                        <div>
-                            <h4 className="font-semibold text-foreground mb-4">{t.footer.contactTitle}</h4>
-                            <ul className="space-y-2 text-muted-foreground">
-                                <li>mail@gianlucapiazza.com</li>
-                                <li>+39 337 303431</li>
-                                <li>+1 (305) 548-0002</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div className="border-t border-border mt-12 pt-8 flex flex-col md:flex-row justify-between items-center text-muted-foreground text-sm">
-                        <p>&copy; {new Date().getFullYear()} Gianluca Piazza. {t.footer.rights}</p>
-                        <div className="flex gap-6 mt-4 md:mt-0">
-                            <Link to="/privacy" className="hover:text-blue-400 transition-colors">{t.footer.privacy}</Link>
-                            <a href="#cookie-policy" className="hover:text-blue-400 transition-colors">{t.footer.cookie}</a>
-                            <a href="https://www.linkedin.com/in/gianlucapiazza/" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">LinkedIn</a>
-                            <a href="#" className="hover:text-primary transition-colors">Twitter</a>
-                        </div>
-                    </div>
-                </div>
-            </footer>
-            {/* Cookie Consent */}
-            <CookieConsent />
+            {/* Mobile Menu Toggle */}
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              style={{
+                display: 'flex',
+                '@media (min-width: 768px)': {
+                  display: 'none',
+                },
+                background: 'none',
+                border: 'none',
+                cursor: 'pointer',
+                color: '#1d1d1f',
+              }}
+              className="mobile-menu-btn"
+            >
+              {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
-    );
+
+        {/* Mobile Menu */}
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.2 }}
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '12px',
+              marginTop: '16px',
+              paddingTop: '16px',
+              borderTop: '1px solid #e5e5e7',
+            }}
+            className="mobile-menu"
+          >
+            {navLinks.map((link) => (
+              <Link
+                key={link.path}
+                to={link.path}
+                onClick={() => setMobileMenuOpen(false)}
+                style={{
+                  fontSize: '14px',
+                  fontWeight: '500',
+                  color: '#1d1d1f',
+                  textDecoration: 'none',
+                  padding: '8px 0',
+                }}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </motion.div>
+        )}
+      </nav>
+
+      {/* Main Content */}
+      <main>{children}</main>
+
+      {/* Footer */}
+      <footer
+        style={{
+          background: '#1d1d1f',
+          color: '#f5f5f7',
+          padding: '60px 24px 40px',
+          marginTop: '80px',
+        }}
+      >
+        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+          {/* Footer Grid */}
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+              gap: '40px',
+              marginBottom: '60px',
+            }}
+          >
+            {/* Brand Column */}
+            <div>
+              <h3 style={{ fontSize: '16px', fontWeight: '600', marginBottom: '12px' }}>
+                {t.footer.company}
+              </h3>
+              <p style={{ fontSize: '13px', color: '#a1a1a6', lineHeight: '1.6' }}>
+                {t.footer.tagline}
+              </p>
+            </div>
+
+            {/* Services Column */}
+            <div>
+              <h4 style={{ fontSize: '14px', fontWeight: '600', marginBottom: '16px' }}>
+                Services
+              </h4>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                <Link to="/services" style={{ fontSize: '13px', color: '#a1a1a6', textDecoration: 'none' }} onMouseEnter={(e) => (e.target.style.color = '#34c759')} onMouseLeave={(e) => (e.target.style.color = '#a1a1a6')}>
+                  {t.services.list[0]?.title}
+                </Link>
+                <Link to="/services" style={{ fontSize: '13px', color: '#a1a1a6', textDecoration: 'none' }} onMouseEnter={(e) => (e.target.style.color = '#34c759')} onMouseLeave={(e) => (e.target.style.color = '#a1a1a6')}>
+                  {t.services.list[1]?.title}
+                </Link>
+              </div>
+            </div>
+
+            {/* Company Column */}
+            <div>
+              <h4 style={{ fontSize: '14px', fontWeight: '600', marginBottom: '16px' }}>
+                Company
+              </h4>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                <Link to="/about" style={{ fontSize: '13px', color: '#a1a1a6', textDecoration: 'none' }} onMouseEnter={(e) => (e.target.style.color = '#34c759')} onMouseLeave={(e) => (e.target.style.color = '#a1a1a6')}>
+                  {t.nav.about}
+                </Link>
+                <Link to="/contact" style={{ fontSize: '13px', color: '#a1a1a6', textDecoration: 'none' }} onMouseEnter={(e) => (e.target.style.color = '#34c759')} onMouseLeave={(e) => (e.target.style.color = '#a1a1a6')}>
+                  {t.nav.contact}
+                </Link>
+              </div>
+            </div>
+
+            {/* Contact Column */}
+            <div>
+              <h4 style={{ fontSize: '14px', fontWeight: '600', marginBottom: '16px' }}>
+                {t.footer.contact}
+              </h4>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                <a href="mailto:info@gianlucapiazza.com" style={{ fontSize: '13px', color: '#a1a1a6', textDecoration: 'none' }} onMouseEnter={(e) => (e.target.style.color = '#34c759')} onMouseLeave={(e) => (e.target.style.color = '#a1a1a6')}>
+                  info@gianlucapiazza.com
+                </a>
+                <a href="tel:+390000000000" style={{ fontSize: '13px', color: '#a1a1a6', textDecoration: 'none' }} onMouseEnter={(e) => (e.target.style.color = '#34c759')} onMouseLeave={(e) => (e.target.style.color = '#a1a1a6')}>
+                  +39 02 XXXX XXXX
+                </a>
+              </div>
+            </div>
+          </div>
+
+          {/* Footer Bottom */}
+          <div
+            style={{
+              paddingTop: '24px',
+              borderTop: '1px solid #424245',
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              flexWrap: 'wrap',
+              gap: '16px',
+            }}
+          >
+            <p style={{ fontSize: '12px', color: '#86868b' }}>
+              © 2026 {t.footer.company}. {t.footer.rights}
+            </p>
+            <div style={{ display: 'flex', gap: '24px' }}>
+              <Link to="/privacy" style={{ fontSize: '12px', color: '#86868b', textDecoration: 'none' }} onMouseEnter={(e) => (e.target.style.color = '#34c759')} onMouseLeave={(e) => (e.target.style.color = '#86868b')}>
+                {t.footer.privacy}
+              </Link>
+              <a href="#" style={{ fontSize: '12px', color: '#86868b', textDecoration: 'none' }} onMouseEnter={(e) => (e.target.style.color = '#34c759')} onMouseLeave={(e) => (e.target.style.color = '#86868b')}>
+                {t.footer.terms}
+              </a>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+      {/* Responsive Styles */}
+      <style>{`
+        @media (min-width: 768px) {
+          .mobile-menu {
+            display: none !important;
+          }
+          .desktop-menu {
+            display: flex !important;
+          }
+          .mobile-menu-btn {
+            display: none !important;
+          }
+        }
+      `}</style>
+    </div>
+  );
 }
