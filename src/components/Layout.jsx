@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../hooks/use-language';
@@ -7,6 +7,28 @@ import { Menu, X, Globe } from 'lucide-react';
 export function Layout({ children }) {
   const { t, language, setLanguage } = useLanguage();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [showCookieBanner, setShowCookieBanner] = useState(false);
+
+  useEffect(() => {
+    const cookieConsent = localStorage.getItem('cookieConsent');
+    if (!cookieConsent) {
+      setShowCookieBanner(true);
+    }
+  }, []);
+
+  const handleCookieAccept = () => {
+    localStorage.setItem('cookieConsent', 'accepted');
+    setShowCookieBanner(false);
+    // Load GA4 when accepted
+    window.gtag?.('consent', 'update', {
+      'analytics_storage': 'granted'
+    });
+  };
+
+  const handleCookieDecline = () => {
+    localStorage.setItem('cookieConsent', 'declined');
+    setShowCookieBanner(false);
+  };
 
   const navLinks = [
     { path: '/', label: t.nav.home },
@@ -266,6 +288,86 @@ export function Layout({ children }) {
           </div>
         </div>
       </footer>
+
+      {/* Cookie Consent Banner */}
+      {showCookieBanner && (
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3 }}
+          style={{
+            position: 'fixed',
+            bottom: 0,
+            left: 0,
+            right: 0,
+            background: 'rgba(29, 29, 31, 0.95)',
+            backdropFilter: 'blur(20px)',
+            color: '#f5f5f7',
+            padding: '24px',
+            zIndex: 1000,
+            borderTop: '1px solid rgba(255, 255, 255, 0.1)',
+          }}
+        >
+          <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr auto', gap: '24px', alignItems: 'center' }}>
+            <div>
+              <h3 style={{ fontSize: '16px', fontWeight: '600', marginBottom: '8px' }}>
+                Cookie & Privacy Notice
+              </h3>
+              <p style={{ fontSize: '14px', color: '#a1a1a6', lineHeight: '1.6' }}>
+                We use cookies and analytics to improve your experience. We collect only essential data and respect your privacy. See our <Link to="/privacy" style={{ color: '#34c759', textDecoration: 'none' }}>Privacy Policy</Link> for details.
+              </p>
+            </div>
+            <div style={{ display: 'flex', gap: '12px', flexWrap: 'nowrap', whiteSpace: 'nowrap' }}>
+              <button
+                onClick={handleCookieDecline}
+                style={{
+                  padding: '8px 16px',
+                  background: 'transparent',
+                  border: '1px solid #86868b',
+                  borderRadius: '8px',
+                  color: '#a1a1a6',
+                  fontSize: '13px',
+                  fontWeight: '600',
+                  cursor: 'pointer',
+                  transition: 'all 0.2s',
+                }}
+                onMouseEnter={(e) => {
+                  e.target.style.background = 'rgba(255, 255, 255, 0.1)';
+                  e.target.style.borderColor = '#a1a1a6';
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.background = 'transparent';
+                  e.target.style.borderColor = '#86868b';
+                }}
+              >
+                Decline
+              </button>
+              <button
+                onClick={handleCookieAccept}
+                style={{
+                  padding: '8px 16px',
+                  background: '#34c759',
+                  border: 'none',
+                  borderRadius: '8px',
+                  color: 'white',
+                  fontSize: '13px',
+                  fontWeight: '600',
+                  cursor: 'pointer',
+                  transition: 'all 0.2s',
+                }}
+                onMouseEnter={(e) => {
+                  e.target.style.background = '#30b452';
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.background = '#34c759';
+                }}
+              >
+                Accept
+              </button>
+            </div>
+          </div>
+        </motion.div>
+      )}
 
       {/* Responsive Styles */}
       <style>{`

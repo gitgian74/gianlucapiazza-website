@@ -10,7 +10,10 @@ export function About() {
   return (
     <div className="apple-redesign">
       {/* Hero Section */}
-      <section className="page-hero-apple">
+      <section className="page-hero-apple" style={{ 
+        background: 'linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url(https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1600&q=80) center/cover',
+        backgroundAttachment: 'fixed'
+      }}>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}

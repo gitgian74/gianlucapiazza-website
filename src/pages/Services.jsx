@@ -17,7 +17,10 @@ export function Services() {
   return (
     <div className="apple-redesign">
       {/* Hero Section */}
-      <section className="page-hero-apple">
+      <section className="page-hero-apple" style={{ 
+        background: 'linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url(https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1600&q=80) center/cover',
+        backgroundAttachment: 'fixed'
+      }}>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -91,6 +94,14 @@ export function Services() {
           <div className="card-grid-4col">
             {t.services.industries.sectors.map((sector, idx) => {
               const IconComponent = iconMap[sector.icon] || Sparkles;
+              const industryImages = {
+                'fashion': 'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=600&q=80',
+                'food': 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80',
+                'tech': 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&q=80',
+                'manufacturing': 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&q=80'
+              };
+              const imgSrc = industryImages[sector.id?.toLowerCase()] || industryImages['tech'];
+              
               return (
                 <motion.div
                   key={sector.id}
@@ -99,8 +110,9 @@ export function Services() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: idx * 0.1 }}
                   className="info-card-white"
-                  style={{ textAlign: 'center' }}
+                  style={{ textAlign: 'center', overflow: 'hidden' }}
                 >
+                  <img src={imgSrc} alt={sector.name} loading="lazy" style={{ width: '100%', height: '120px', objectFit: 'cover', marginBottom: '16px', borderRadius: '8px' }} />
                   <IconComponent size={32} style={{ color: '#34c759', margin: '0 auto 16px', display: 'block' }} />
                   <h3 style={{ fontSize: '16px', fontWeight: '600', marginBottom: '12px', color: '#1d1d1f' }}>
                     {sector.name}
