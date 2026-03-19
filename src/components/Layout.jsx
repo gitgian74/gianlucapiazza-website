@@ -252,11 +252,14 @@ export function Layout({ children }) {
                 {t.footer.contact}
               </h4>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                <a href="mailto:info@gianlucapiazza.com" style={{ fontSize: '13px', color: '#a1a1a6', textDecoration: 'none' }} onMouseEnter={(e) => (e.target.style.color = '#34c759')} onMouseLeave={(e) => (e.target.style.color = '#a1a1a6')}>
-                  info@gianlucapiazza.com
+                <a href="mailto:mail@gianlucapiazza.com" style={{ fontSize: '13px', color: '#a1a1a6', textDecoration: 'none' }} onMouseEnter={(e) => (e.target.style.color = '#34c759')} onMouseLeave={(e) => (e.target.style.color = '#a1a1a6')}>
+                  mail@gianlucapiazza.com
                 </a>
-                <a href="tel:+390000000000" style={{ fontSize: '13px', color: '#a1a1a6', textDecoration: 'none' }} onMouseEnter={(e) => (e.target.style.color = '#34c759')} onMouseLeave={(e) => (e.target.style.color = '#a1a1a6')}>
-                  +39 02 XXXX XXXX
+                <a href="tel:+39337303431" style={{ fontSize: '13px', color: '#a1a1a6', textDecoration: 'none' }} onMouseEnter={(e) => (e.target.style.color = '#34c759')} onMouseLeave={(e) => (e.target.style.color = '#a1a1a6')}>
+                  +39 337 303431
+                </a>
+                <a href="tel:+13055480002" style={{ fontSize: '13px', color: '#a1a1a6', textDecoration: 'none' }} onMouseEnter={(e) => (e.target.style.color = '#34c759')} onMouseLeave={(e) => (e.target.style.color = '#a1a1a6')}>
+                  +1 (305) 548-0002
                 </a>
               </div>
             </div>

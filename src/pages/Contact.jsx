@@ -25,7 +25,7 @@ export function Contact() {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Simple mailto fallback
-    const mailtoLink = `mailto:info@gianlucapiazza.com?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(
+    const mailtoLink = `mailto:mail@gianlucapiazza.com?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(
       `Name: ${formData.name}\nEmail: ${formData.email}\nCompany: ${formData.company}\n\nMessage:\n${formData.message}`
     )}`;
     window.location.href = mailtoLink;
@@ -164,17 +164,22 @@ export function Contact() {
 
               {/* Italy Office Card */}
               <div className="info-card-apple" style={{ marginBottom: '24px' }}>
-                <div style={{ display: 'flex', gap: '12px', marginBottom: '16px' }}>
-                  <MapPin size={20} style={{ color: '#34c759', flexShrink: 0 }} />
+                <div style={{ display: 'flex', gap: '12px' }}>
+                  <MapPin size={20} style={{ color: '#34c759', flexShrink: 0, marginTop: '2px' }} />
                   <div>
-                    <p style={{ fontSize: '14px', fontWeight: '600', color: '#1d1d1f' }}>
-                      {t.contact.info.italy.city}
+                    <p style={{ fontSize: '15px', fontWeight: '600', color: '#1d1d1f', marginBottom: '4px' }}>
+                      {t.contact.info.italy.label || 'Italia'}
                     </p>
-                    <p className="text-muted" style={{ marginTop: '4px' }}>
-                      {t.contact.info.italy.phone}
+                    <p style={{ fontSize: '13px', color: '#3d3d40', marginBottom: '4px' }}>
+                      {t.contact.info.italy.address}
                     </p>
-                    <p className="text-muted">
-                      {t.contact.info.italy.email}
+                    <p style={{ fontSize: '13px', color: '#3d3d40', marginBottom: '2px' }}>
+                      <Phone size={13} style={{ display: 'inline', marginRight: '6px', verticalAlign: 'middle' }} />
+                      <a href={'tel:' + t.contact.info.italy.phone} style={{ color: '#0071e3', textDecoration: 'none' }}>{t.contact.info.italy.phone}</a>
+                    </p>
+                    <p style={{ fontSize: '13px', color: '#3d3d40' }}>
+                      <Mail size={13} style={{ display: 'inline', marginRight: '6px', verticalAlign: 'middle' }} />
+                      <a href={'mailto:' + t.contact.info.italy.email} style={{ color: '#0071e3', textDecoration: 'none' }}>{t.contact.info.italy.email}</a>
                     </p>
                   </div>
                 </div>
@@ -182,32 +187,43 @@ export function Contact() {
 
               {/* USA Office Card */}
               <div className="info-card-apple" style={{ marginBottom: '24px' }}>
-                <div style={{ display: 'flex', gap: '12px', marginBottom: '16px' }}>
-                  <MapPin size={20} style={{ color: '#34c759', flexShrink: 0 }} />
+                <div style={{ display: 'flex', gap: '12px' }}>
+                  <MapPin size={20} style={{ color: '#0071e3', flexShrink: 0, marginTop: '2px' }} />
                   <div>
-                    <p style={{ fontSize: '14px', fontWeight: '600', color: '#1d1d1f' }}>
-                      {t.contact.info.usa.city}
+                    <p style={{ fontSize: '15px', fontWeight: '600', color: '#1d1d1f', marginBottom: '4px' }}>
+                      {t.contact.info.usa.label || 'USA'} — {t.contact.info.usa.company || ''}
                     </p>
-                    <p className="text-muted" style={{ marginTop: '4px' }}>
-                      {t.contact.info.usa.phone}
+                    <p style={{ fontSize: '13px', color: '#3d3d40', marginBottom: '4px' }}>
+                      {t.contact.info.usa.address}
                     </p>
-                    <p className="text-muted">
-                      {t.contact.info.usa.email}
+                    <p style={{ fontSize: '13px', color: '#3d3d40', marginBottom: '2px' }}>
+                      <Phone size={13} style={{ display: 'inline', marginRight: '6px', verticalAlign: 'middle' }} />
+                      <a href={'tel:' + t.contact.info.usa.phone} style={{ color: '#0071e3', textDecoration: 'none' }}>{t.contact.info.usa.phone}</a>
+                    </p>
+                    <p style={{ fontSize: '13px', color: '#3d3d40' }}>
+                      <Mail size={13} style={{ display: 'inline', marginRight: '6px', verticalAlign: 'middle' }} />
+                      <a href={'mailto:' + t.contact.info.usa.email} style={{ color: '#0071e3', textDecoration: 'none' }}>{t.contact.info.usa.email}</a>
                     </p>
                   </div>
                 </div>
               </div>
+
+              {/* LinkedIn */}
+              {t.contact.info.linkedin && (
+                <div className="info-card-apple" style={{ marginBottom: '24px', textAlign: 'center' }}>
+                  <a href={t.contact.info.linkedin} target="_blank" rel="noopener noreferrer" style={{ color: '#0071e3', fontSize: '15px', fontWeight: '500', textDecoration: 'none' }}>
+                    Connettiti su LinkedIn →
+                  </a>
+                </div>
+              )}
 
               {/* Hours Card */}
               <div className="info-card-apple">
                 <h4 style={{ fontSize: '14px', fontWeight: '600', marginBottom: '12px', color: '#1d1d1f' }}>
                   {t.contact.info.hours}
                 </h4>
-                <p className="text-muted" style={{ marginBottom: '4px' }}>
+                <p className="text-muted" style={{ marginBottom: '8px' }}>
                   {t.contact.info.mondayFriday}
-                </p>
-                <p className="text-muted" style={{ marginBottom: '12px' }}>
-                  {t.contact.info.saturday}
                 </p>
                 <p style={{ fontSize: '12px', color: '#a1a1a6' }}>
                   {t.contact.info.timezone}
