@@ -39,7 +39,7 @@ export function Contact() {
   return (
     <div className="apple-redesign">
       {/* Hero Section */}
-      <section style={{ background: '#1d1d1f', padding: '120px 24px 80px', textAlign: 'center' }}>
+      <section className="page-hero-apple">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -48,7 +48,7 @@ export function Contact() {
           <div className="section-eyebrow-apple" style={{ color: '#86868b' }}>
             {t.contact.eyebrow}
           </div>
-          <h1 className="section-title-apple" style={{ color: 'white', marginBottom: '16px' }}>
+          <h1 className="section-title-apple" style={{ marginBottom: '16px' }}>
             {t.contact.title}
           </h1>
           <p className="section-text-apple" style={{ color: '#a1a1a6', maxWidth: '720px', margin: '0 auto' }}>
@@ -58,7 +58,7 @@ export function Contact() {
       </section>
 
       {/* Contact Form & Info */}
-      <section style={{ padding: '80px 24px', background: 'white' }}>
+      <section className="content-section-apple">
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '60px', alignItems: 'start' }}>
             {/* Form */}
@@ -79,14 +79,7 @@ export function Contact() {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    style={{
-                      width: '100%',
-                      padding: '12px 16px',
-                      fontSize: '15px',
-                      border: '1px solid #d5d5d7',
-                      borderRadius: '10px',
-                      fontFamily: 'inherit',
-                    }}
+                    className="form-input-apple"
                   />
                 </div>
 
@@ -100,14 +93,7 @@ export function Contact() {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    style={{
-                      width: '100%',
-                      padding: '12px 16px',
-                      fontSize: '15px',
-                      border: '1px solid #d5d5d7',
-                      borderRadius: '10px',
-                      fontFamily: 'inherit',
-                    }}
+                    className="form-input-apple"
                   />
                 </div>
 
@@ -120,14 +106,7 @@ export function Contact() {
                     name="company"
                     value={formData.company}
                     onChange={handleChange}
-                    style={{
-                      width: '100%',
-                      padding: '12px 16px',
-                      fontSize: '15px',
-                      border: '1px solid #d5d5d7',
-                      borderRadius: '10px',
-                      fontFamily: 'inherit',
-                    }}
+                    className="form-input-apple"
                   />
                 </div>
 
@@ -141,14 +120,7 @@ export function Contact() {
                     value={formData.subject}
                     onChange={handleChange}
                     required
-                    style={{
-                      width: '100%',
-                      padding: '12px 16px',
-                      fontSize: '15px',
-                      border: '1px solid #d5d5d7',
-                      borderRadius: '10px',
-                      fontFamily: 'inherit',
-                    }}
+                    className="form-input-apple"
                   />
                 </div>
 
@@ -161,16 +133,7 @@ export function Contact() {
                     value={formData.message}
                     onChange={handleChange}
                     required
-                    rows="6"
-                    style={{
-                      width: '100%',
-                      padding: '12px 16px',
-                      fontSize: '15px',
-                      border: '1px solid #d5d5d7',
-                      borderRadius: '10px',
-                      fontFamily: 'inherit',
-                      resize: 'vertical',
-                    }}
+                    className="form-textarea-apple"
                   />
                 </div>
 
@@ -196,51 +159,51 @@ export function Contact() {
                 {t.contact.info.offices}
               </h3>
 
-              {/* Italy */}
-              <div style={{ marginBottom: '48px' }}>
+              {/* Italy Office Card */}
+              <div className="info-card-apple" style={{ marginBottom: '24px' }}>
                 <div style={{ display: 'flex', gap: '12px', marginBottom: '16px' }}>
                   <MapPin size={20} style={{ color: '#34c759', flexShrink: 0 }} />
                   <div>
                     <p style={{ fontSize: '14px', fontWeight: '600', color: '#1d1d1f' }}>
                       {t.contact.info.italy.city}
                     </p>
-                    <p style={{ fontSize: '13px', color: '#555555', marginTop: '4px' }}>
+                    <p className="text-muted" style={{ marginTop: '4px' }}>
                       {t.contact.info.italy.phone}
                     </p>
-                    <p style={{ fontSize: '13px', color: '#555555' }}>
+                    <p className="text-muted">
                       {t.contact.info.italy.email}
                     </p>
                   </div>
                 </div>
               </div>
 
-              {/* USA */}
-              <div style={{ marginBottom: '48px' }}>
+              {/* USA Office Card */}
+              <div className="info-card-apple" style={{ marginBottom: '24px' }}>
                 <div style={{ display: 'flex', gap: '12px', marginBottom: '16px' }}>
                   <MapPin size={20} style={{ color: '#34c759', flexShrink: 0 }} />
                   <div>
                     <p style={{ fontSize: '14px', fontWeight: '600', color: '#1d1d1f' }}>
                       {t.contact.info.usa.city}
                     </p>
-                    <p style={{ fontSize: '13px', color: '#555555', marginTop: '4px' }}>
+                    <p className="text-muted" style={{ marginTop: '4px' }}>
                       {t.contact.info.usa.phone}
                     </p>
-                    <p style={{ fontSize: '13px', color: '#555555' }}>
+                    <p className="text-muted">
                       {t.contact.info.usa.email}
                     </p>
                   </div>
                 </div>
               </div>
 
-              {/* Hours */}
-              <div style={{ marginBottom: '48px' }}>
+              {/* Hours Card */}
+              <div className="info-card-apple">
                 <h4 style={{ fontSize: '14px', fontWeight: '600', marginBottom: '12px', color: '#1d1d1f' }}>
                   {t.contact.info.hours}
                 </h4>
-                <p style={{ fontSize: '13px', color: '#555555', marginBottom: '4px' }}>
+                <p className="text-muted" style={{ marginBottom: '4px' }}>
                   {t.contact.info.mondayFriday}
                 </p>
-                <p style={{ fontSize: '13px', color: '#555555', marginBottom: '12px' }}>
+                <p className="text-muted" style={{ marginBottom: '12px' }}>
                   {t.contact.info.saturday}
                 </p>
                 <p style={{ fontSize: '12px', color: '#a1a1a6' }}>
@@ -249,8 +212,8 @@ export function Contact() {
               </div>
 
               {/* Response Time */}
-              <div style={{ padding: '16px', background: '#f5f5f7', borderRadius: '10px' }}>
-                <p style={{ fontSize: '13px', color: '#555555' }}>
+              <div style={{ padding: '16px', background: '#f5f5f7', borderRadius: '12px', marginTop: '24px' }}>
+                <p className="text-muted">
                   {t.contact.info.response}
                 </p>
               </div>

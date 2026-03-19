@@ -10,7 +10,7 @@ export function Projects() {
   return (
     <div className="apple-redesign">
       {/* Hero Section */}
-      <section style={{ background: '#1d1d1f', padding: '120px 24px 80px', textAlign: 'center' }}>
+      <section className="page-hero-apple">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -19,7 +19,7 @@ export function Projects() {
           <div className="section-eyebrow-apple" style={{ color: '#86868b' }}>
             {t.projects.eyebrow}
           </div>
-          <h1 className="section-title-apple" style={{ color: 'white', marginBottom: '16px' }}>
+          <h1 className="section-title-apple" style={{ marginBottom: '16px' }}>
             {t.projects.title}
           </h1>
           <p className="section-text-apple" style={{ color: '#a1a1a6', maxWidth: '720px', margin: '0 auto' }}>
@@ -29,15 +29,9 @@ export function Projects() {
       </section>
 
       {/* Case Studies Grid */}
-      <section style={{ padding: '80px 24px', background: 'white' }}>
-        <div className="section-inner-apple">
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))',
-              gap: '28px',
-            }}
-          >
+      <section className="content-section-apple">
+        <div style={{ maxWidth: '1080px', margin: '0 auto' }}>
+          <div className="card-grid-2col">
             {t.projects.cases.map((caseStudy, idx) => (
               <motion.div
                 key={caseStudy.id}
@@ -45,14 +39,8 @@ export function Projects() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: idx * 0.05 }}
-                style={{
-                  padding: '32px 28px',
-                  background: '#f5f5f7',
-                  borderRadius: '18px',
-                  border: '1px solid #e5e5e7',
-                  display: 'flex',
-                  flexDirection: 'column',
-                }}
+                className="info-card-apple"
+                style={{ display: 'flex', flexDirection: 'column' }}
               >
                 {/* Industry Tags */}
                 <div style={{ display: 'flex', gap: '8px', marginBottom: '16px', flexWrap: 'wrap' }}>
@@ -86,20 +74,20 @@ export function Projects() {
 
                 {/* Challenge */}
                 <div style={{ marginBottom: '16px' }}>
-                  <p style={{ fontSize: '12px', fontWeight: '600', color: '#555555', marginBottom: '6px' }}>
+                  <p style={{ fontSize: '12px', fontWeight: '600', color: '#3d3d40', marginBottom: '6px' }}>
                     Challenge
                   </p>
-                  <p style={{ fontSize: '13px', color: '#666666', lineHeight: '1.5' }}>
+                  <p style={{ fontSize: '13px', color: '#3d3d40', lineHeight: '1.5' }}>
                     {caseStudy.challenge}
                   </p>
                 </div>
 
                 {/* Solution */}
                 <div style={{ marginBottom: '16px' }}>
-                  <p style={{ fontSize: '12px', fontWeight: '600', color: '#555555', marginBottom: '6px' }}>
+                  <p style={{ fontSize: '12px', fontWeight: '600', color: '#3d3d40', marginBottom: '6px' }}>
                     Solution
                   </p>
-                  <p style={{ fontSize: '13px', color: '#666666', lineHeight: '1.5' }}>
+                  <p style={{ fontSize: '13px', color: '#3d3d40', lineHeight: '1.5' }}>
                     {caseStudy.solution}
                   </p>
                 </div>
@@ -116,7 +104,7 @@ export function Projects() {
 
                 {/* Metrics */}
                 <div style={{ marginTop: 'auto', paddingTop: '16px', borderTop: '1px solid #d5d5d7' }}>
-                  <p style={{ fontSize: '12px', color: '#555555', lineHeight: '1.6' }}>
+                  <p className="text-muted" style={{ lineHeight: '1.6' }}>
                     {caseStudy.metrics}
                   </p>
                 </div>

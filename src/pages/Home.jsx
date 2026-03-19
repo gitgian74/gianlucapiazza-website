@@ -186,7 +186,7 @@ export function Home() {
         </div>
         <div className="services-grid-apple">
           {[
-            ...(t.services.list || []).slice(0, 4).map((s, i) => ({
+            ...(t.services?.list || []).slice(0, 4).map((s, i) => ({
               icon: [<Globe size={28} />, <TrendingUp size={28} />, <Handshake size={28} />, <Brain size={28} />][i],
               title: s.title,
               desc: s.description,
@@ -196,7 +196,7 @@ export function Home() {
             <motion.div key={idx} className="service-card-apple" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: idx * 0.1 }}>
               <div className="service-icon-apple" style={{ color: service.color }}>{service.icon}</div>
               <h3>{service.title}</h3>
-              <p>{service.desc}</p>
+              <p style={{ color: '#3d3d40' }}>{service.desc}</p>
               <Link to="/services" className="service-link-apple">Scopri di più <span className="btn-arrow-apple">→</span></Link>
             </motion.div>
           ))}

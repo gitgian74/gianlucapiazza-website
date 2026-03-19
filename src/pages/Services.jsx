@@ -17,7 +17,7 @@ export function Services() {
   return (
     <div className="apple-redesign">
       {/* Hero Section */}
-      <section style={{ background: '#1d1d1f', padding: '120px 24px 80px', textAlign: 'center' }}>
+      <section className="page-hero-apple">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -26,7 +26,7 @@ export function Services() {
           <div className="section-eyebrow-apple" style={{ color: '#86868b' }}>
             {t.services.eyebrow}
           </div>
-          <h1 className="section-title-apple" style={{ color: 'white', marginBottom: '16px' }}>
+          <h1 className="section-title-apple" style={{ marginBottom: '16px' }}>
             {t.services.title}
           </h1>
           <p className="section-text-apple" style={{ color: '#a1a1a6', maxWidth: '720px', margin: '0 auto' }}>
@@ -36,15 +36,9 @@ export function Services() {
       </section>
 
       {/* Services Grid */}
-      <section style={{ padding: '80px 24px', background: 'white' }}>
-        <div className="section-inner-apple">
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-              gap: '32px',
-            }}
-          >
+      <section className="content-section-apple">
+        <div style={{ maxWidth: '1080px', margin: '0 auto' }}>
+          <div className="card-grid-2col">
             {t.services.list.map((service, idx) => (
               <motion.div
                 key={service.id}
@@ -52,25 +46,19 @@ export function Services() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: idx * 0.1 }}
-                className="service-card-apple"
-                style={{
-                  padding: '36px 28px',
-                  background: '#f5f5f7',
-                  borderRadius: '18px',
-                  border: '1px solid #e5e5e7',
-                }}
+                className="info-card-apple"
               >
                 <h3 style={{ fontSize: '18px', fontWeight: '600', marginBottom: '12px', color: '#1d1d1f' }}>
                   {service.title}
                 </h3>
-                <p style={{ fontSize: '15px', color: '#555555', lineHeight: '1.6', marginBottom: '24px' }}>
+                <p className="text-body" style={{ marginBottom: '24px' }}>
                   {service.description}
                 </p>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                <div className="feature-list">
                   {service.features.map((feature, fidx) => (
-                    <div key={fidx} style={{ display: 'flex', gap: '10px', alignItems: 'flex-start' }}>
-                      <CheckCircle2 size={18} style={{ color: '#34c759', flexShrink: 0, marginTop: '2px' }} />
-                      <span style={{ fontSize: '13px', color: '#555555' }}>
+                    <div key={fidx} className="feature-item">
+                      <CheckCircle2 size={18} className="feature-icon" />
+                      <span className="text-muted">
                         {feature}
                       </span>
                     </div>
@@ -83,8 +71,8 @@ export function Services() {
       </section>
 
       {/* Industries Section */}
-      <section style={{ padding: '80px 24px', background: '#f5f5f7' }}>
-        <div className="section-inner-apple">
+      <section className="content-section-alt-apple">
+        <div style={{ maxWidth: '1080px', margin: '0 auto' }}>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -95,18 +83,12 @@ export function Services() {
             <h2 className="section-title-apple" style={{ marginBottom: '12px' }}>
               {t.services.industries.title}
             </h2>
-            <p className="section-text-apple" style={{ color: '#555555', maxWidth: '600px', margin: '0 auto' }}>
+            <p className="text-body" style={{ color: '#6e6e73', maxWidth: '600px', margin: '0 auto' }}>
               {t.services.industries.subtitle}
             </p>
           </motion.div>
 
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-              gap: '24px',
-            }}
-          >
+          <div className="card-grid-4col">
             {t.services.industries.sectors.map((sector, idx) => {
               const IconComponent = iconMap[sector.icon] || Sparkles;
               return (
@@ -116,19 +98,14 @@ export function Services() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: idx * 0.1 }}
-                  style={{
-                    padding: '32px 24px',
-                    background: 'white',
-                    borderRadius: '16px',
-                    border: '1px solid #e5e5e7',
-                    textAlign: 'center',
-                  }}
+                  className="info-card-white"
+                  style={{ textAlign: 'center' }}
                 >
-                  <IconComponent size={32} style={{ color: '#34c759', margin: '0 auto 16px' }} />
+                  <IconComponent size={32} style={{ color: '#34c759', margin: '0 auto 16px', display: 'block' }} />
                   <h3 style={{ fontSize: '16px', fontWeight: '600', marginBottom: '12px', color: '#1d1d1f' }}>
                     {sector.name}
                   </h3>
-                  <p style={{ fontSize: '13px', color: '#555555', lineHeight: '1.6' }}>
+                  <p className="text-muted" style={{ lineHeight: '1.6' }}>
                     {sector.description}
                   </p>
                 </motion.div>
