@@ -52,103 +52,96 @@
 }
 
 :root {
-  --radius: 0.75rem;
+  --radius: 1rem;
+  /* Apple-like rounded corners */
 
-  /* User Defined Palette */
-  --gray-dark: #2A2A2A;
-  --blue-dark: #1E3A5F;
-  --white: #FFFFFF;
-  --gray-light: #E6E6E6;
-  --orange: #FF7A21;
+  /* Modern Palette - Dark Mode Default (Deep Blue/Gray base) */
+  --background: #0f172a;
+  /* Slate 900 */
+  --foreground: #f8fafc;
+  /* Slate 50 */
 
-  /* Semantic Mapping (Dark Theme Default) */
-  --background: var(--gray-dark);
-  --foreground: var(--white);
+  --card: #1e293b;
+  /* Slate 800 */
+  --card-foreground: #f8fafc;
 
-  --card: var(--blue-dark);
-  --card-foreground: var(--white);
+  --popover: #1e293b;
+  --popover-foreground: #f8fafc;
 
-  --popover: var(--blue-dark);
-  --popover-foreground: var(--white);
+  --primary: #3b82f6;
+  /* Vibrant Blue (Apple/Google standard) */
+  --primary-foreground: #ffffff;
 
-  --primary: var(--orange);
-  --primary-foreground: var(--white);
+  --secondary: #334155;
+  /* Slate 700 */
+  --secondary-foreground: #f8fafc;
 
-  --secondary: var(--blue-dark);
-  --secondary-foreground: var(--gray-light);
+  --muted: #334155;
+  --muted-foreground: #94a3b8;
+  /* Slate 400 */
 
-  --muted: var(--blue-dark);
-  --muted-foreground: var(--gray-light);
+  --accent: #1e293b;
+  --accent-foreground: #3b82f6;
 
-  --accent: var(--blue-dark);
-  --accent-foreground: var(--orange);
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
 
-  --destructive: oklch(0.6 0.2 20);
-  /* Keep destructive as is for now */
+  --border: #334155;
+  --input: #334155;
+  --ring: #3b82f6;
 
-  --border: var(--blue-dark);
-  --input: var(--blue-dark);
-  --ring: var(--orange);
+  --chart-1: #3b82f6;
+  --chart-2: #60a5fa;
+  --chart-3: #93c5fd;
+  --chart-4: #bfdbfe;
+  --chart-5: #dbeafe;
 
-  --chart-1: var(--orange);
-  --chart-2: var(--blue-dark);
-  --chart-3: var(--gray-light);
-  --chart-4: var(--gray-dark);
-  --chart-5: var(--orange);
-
-  --sidebar: var(--blue-dark);
-  --sidebar-foreground: var(--white);
-  --sidebar-primary: var(--orange);
-  --sidebar-primary-foreground: var(--white);
-  --sidebar-accent: var(--gray-dark);
-  --sidebar-accent-foreground: var(--white);
-  --sidebar-border: var(--gray-dark);
-  --sidebar-ring: var(--orange);
+  --sidebar: #0f172a;
+  --sidebar-foreground: #f8fafc;
+  --sidebar-primary: #3b82f6;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #1e293b;
+  --sidebar-accent-foreground: #f8fafc;
+  --sidebar-border: #334155;
+  --sidebar-ring: #3b82f6;
 }
 
 .light {
-  /* Miami Professional Bright (Trust & Energy) */
-  --background: #FFFFFF;
+  /* Modern Palette - Light Mode (Clean, Airy, Apple-like) */
+  --background: #ffffff;
   /* Pure White */
-  --foreground: #0F172A;
-  /* Slate 900 - Navy Blue */
+  --foreground: #0f172a;
+  /* Slate 900 */
 
-  --card: #F0F9FF;
-  /* Sky 50 - Ice Blue */
-  --card-foreground: #334155;
-  /* Slate 700 */
+  --card: #ffffff;
+  --card-foreground: #0f172a;
 
-  --popover: #FFFFFF;
-  --popover-foreground: #0F172A;
+  --popover: #ffffff;
+  --popover-foreground: #0f172a;
 
-  --primary: #FF7A21;
-  /* Vibrant Orange */
-  --primary-foreground: #FFFFFF;
-  /* White Text */
+  --primary: #007AFF;
+  /* Apple Blue */
+  --primary-foreground: #ffffff;
 
-  --secondary: #F0F9FF;
-  /* Sky 50 */
-  --secondary-foreground: #0F172A;
+  --secondary: #f1f5f9;
+  /* Slate 100 */
+  --secondary-foreground: #0f172a;
 
-  --muted: #F8FAFC;
-  /* Slate 50 */
+  --muted: #f1f5f9;
   --muted-foreground: #64748B;
-  /* Slate 500 - Cool Gray */
 
-  --accent: #E0F2FE;
-  /* Sky 100 */
-  --accent-foreground: #0F172A;
+  --accent: #f1f5f9;
+  --accent-foreground: #0f172a;
 
-  --destructive: #EF4444;
-  --destructive-foreground: #FFFFFF;
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
 
-  --border: #E0F2FE;
-  /* Sky 100 */
-  --input: #E0F2FE;
-  --ring: #0EA5E9;
-  /* Sky 500 - Teal/Aqua */
+  --border: #e2e8f0;
+  /* Slate 200 */
+  --input: #e2e8f0;
+  --ring: #007AFF;
 
-  --radius: 0.75rem;
+  --radius: 1rem;
 }
 
 @layer base {
@@ -164,10 +157,14 @@
 
 @layer utilities {
   .card-hover {
-    @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:shadow-blue-900/5;
+    @apply transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:shadow-primary/10 border border-transparent hover:border-border/50;
   }
 
   .glass-nav {
-    @apply bg-white/80 backdrop-blur-md border-b border-gray-200/50;
+    @apply bg-background/70 backdrop-blur-xl border-b border-border/10 supports-[backdrop-filter]:bg-background/60;
+  }
+
+  .glass-card {
+    @apply bg-card/80 backdrop-blur-md border border-white/10 shadow-lg;
   }
 }

@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useLanguage } from '../hooks/use-language';
 import { Send, Bot, User, Sparkles, Loader2, AlertCircle } from 'lucide-react';
 import { PageHeader } from '../components/shared/PageHeader';
 import { Section } from '../components/shared/Section';
@@ -8,7 +7,6 @@ import { Card } from '../components/shared/Card';
 import { Button } from '../components/shared/Button';
 
 export function MarketResearch() {
-    const { t } = useLanguage();
     const [messages, setMessages] = useState([
         {
             role: 'assistant',

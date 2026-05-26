@@ -26,7 +26,7 @@ export function Projects() {
         "https://images.unsplash.com/photo-1578916171728-46686eac8d58?auto=format&fit=crop&q=80", // Logistics/Warehouse
         "https://images.unsplash.com/photo-1550989460-0adf9ea622e2?auto=format&fit=crop&q=80", // Gourmet Food
         "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80", // Tech/IoT
-        "https://images.unsplash.com/photo-1592478411213-61535fdd861d?auto=format&fit=crop&q=80", // VR/Headset
+        "https://images.unsplash.com/photo-1622979135228-d0a136e1c561?auto=format&fit=crop&q=80", // VR/Headset
         "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80", // Security/AI
     ];
 
@@ -58,6 +58,7 @@ export function Projects() {
                                     src={projectImages[index]}
                                     alt={project.title}
                                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                    loading="lazy"
                                 />
 
                                 {project.marketName && (

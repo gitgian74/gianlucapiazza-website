@@ -16,7 +16,7 @@ export function Services() {
             id: 'service1',
             icon: <Globe size={32} className="text-blue-600" />,
             color: 'bg-blue-50',
-            image: "https://images.unsplash.com/photo-1526304640152-d4619684e484?auto=format&fit=crop&q=80",
+            image: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&q=80",
             data: t.services.service1
         },
         {
@@ -70,6 +70,7 @@ export function Services() {
                                     src={service.image}
                                     alt={service.data.title}
                                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                    loading="lazy"
                                 />
                                 <div className="absolute bottom-4 left-6 z-20 flex items-center gap-3">
                                     <div className={`p-3 rounded-xl bg-card/50 backdrop-blur-md text-${service.color.split('-')[1]}-400 border border-border`}>

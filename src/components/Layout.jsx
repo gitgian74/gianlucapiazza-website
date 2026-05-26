@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useScroll } from 'framer-motion';
 import { Menu, X, Globe, ChevronRight, Sparkles } from 'lucide-react';
 import { useLanguage } from '../hooks/use-language';
 import { CookieConsent } from './shared/CookieConsent';
@@ -10,171 +10,179 @@ export function Layout({ children }) {
     const { language, setLanguage, t } = useLanguage();
     const location = useLocation();
 
+    const { scrollY } = useScroll();
+    const [isScrolled, setIsScrolled] = useState(false);
+
+    React.useEffect(() => {
+        return scrollY.onChange((latest) => {
+            setIsScrolled(latest > 50);
+        });
+    }, [scrollY]);
+
     const toggleLanguage = () => {
         setLanguage(prev => prev === 'it' ? 'en' : 'it');
     };
 
     const isActive = (path) => location.pathname === path;
 
+    const navLinks = [
+        { path: '/', label: t.nav.home },
+        { path: '/about', label: t.nav.about },
+        { path: '/services', label: t.nav.services },
+        { path: '/projects', label: t.nav.projects },
+        { path: '/market-research', label: 'AI Research' },
+    ];
+
     return (
-        <div className="min-h-screen bg-background font-sans text-foreground flex flex-col">
-            {/* Navigation */}
-            <nav className="fixed top-0 left-0 right-0 z-50 glass-nav">
-                <div className="container mx-auto px-6 h-20 flex items-center justify-between">
-                    {/* Logo */}
-                    <Link to="/" className="text-2xl font-bold tracking-tight text-primary flex items-center gap-2">
-                        <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-white font-bold text-lg">
-                            G
-                        </div>
-                        <span>Piazza</span>
+        <div className="min-h-screen bg-background font-sans text-foreground flex flex-col selection:bg-primary/20 selection:text-primary">
+            {/* Floating Navigation */}
+            <div className="fixed top-6 left-0 right-0 z-50 flex justify-center px-4 pointer-events-none">
+                <motion.nav
+                    initial={{ y: -100, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    className={`pointer-events-auto flex items-center gap-2 p-2 rounded-full transition-all duration-500 ${isScrolled
+                            ? 'bg-background/80 backdrop-blur-xl shadow-lg border border-border/50'
+                            : 'bg-transparent'
+                        }`}
+                >
+                    <Link to="/" className="flex items-center justify-center w-10 h-10 rounded-full bg-primary text-primary-foreground font-bold text-xl mr-2 hover:scale-105 transition-transform">
+                        G
                     </Link>
 
                     {/* Desktop Menu */}
-                    <div className="hidden md:flex items-center gap-8">
-                        <div className="flex items-center gap-1 bg-slate-100/50 p-1 rounded-full border border-slate-200">
-                            {[
-                                { path: '/', label: t.nav.home },
-                                { path: '/about', label: t.nav.about },
-                                { path: '/services', label: t.nav.services },
-                                { path: '/projects', label: t.nav.projects },
-                                { path: '/market-research', label: 'AI Research' },
-                            ].map((link) => (
-                                <Link
-                                    key={link.path}
-                                    to={link.path}
-                                    className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${isActive(link.path)
-                                        ? 'bg-white text-primary shadow-sm'
-                                        : 'text-slate-500 hover:text-primary hover:bg-white/50'
-                                        }`}
-                                >
-                                    {link.label}
-                                </Link>
-                            ))}
-                        </div>
+                    <div className="hidden md:flex items-center gap-1">
+                        {navLinks.map((link) => (
+                            <Link
+                                key={link.path}
+                                to={link.path}
+                                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${isActive(link.path)
+                                        ? 'bg-foreground text-background shadow-sm'
+                                        : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
+                                    }`}
+                            >
+                                {link.label}
+                            </Link>
+                        ))}
+                    </div>
 
+                    <div className="h-6 w-px bg-border/50 mx-2 hidden md:block"></div>
+
+                    <div className="flex items-center gap-2">
                         <button
                             onClick={toggleLanguage}
-                            className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/50 hover:bg-white text-slate-600 transition-colors text-sm font-medium border border-sky-100"
+                            className="flex items-center justify-center w-10 h-10 rounded-full hover:bg-muted transition-colors text-sm font-medium text-muted-foreground hover:text-foreground"
                         >
-                            <Globe size={16} />
-                            <span>{language.toUpperCase()}</span>
+                            {language.toUpperCase()}
                         </button>
 
                         <Link
                             to="/contact"
-                            className="px-5 py-2.5 bg-primary text-white rounded-full font-medium hover:bg-primary/90 transition-all shadow-md hover:shadow-lg text-sm"
+                            className="hidden md:flex px-5 py-2.5 bg-primary text-primary-foreground rounded-full font-medium hover:bg-primary/90 transition-all shadow-md hover:shadow-lg text-sm items-center gap-2"
                         >
                             {t.nav.contact}
+                            <ChevronRight size={14} />
                         </Link>
-                    </div>
 
-                    {/* Mobile Menu Button */}
-                    <div className="md:hidden flex items-center gap-4">
+                        {/* Mobile Menu Toggle */}
                         <button
-                            onClick={toggleLanguage}
-                            className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/50 text-slate-600 text-sm font-medium border border-sky-100"
-                        >
-                            <Globe size={16} />
-                            <span>{language.toUpperCase()}</span>
-                        </button>
-                        <button
-                            className="p-2 text-slate-700 hover:bg-sky-50 rounded-full transition-colors"
+                            className="md:hidden p-2 text-foreground hover:bg-muted rounded-full transition-colors"
                             onClick={() => setIsMenuOpen(!isMenuOpen)}
                         >
                             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
                         </button>
                     </div>
-                </div>
-            </nav>
+                </motion.nav>
+            </div>
 
             {/* Mobile Menu Overlay */}
             <AnimatePresence>
                 {isMenuOpen && (
                     <motion.div
-                        initial={{ opacity: 0, y: -20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -20 }}
-                        className="fixed inset-0 z-40 bg-background/95 backdrop-blur-xl pt-24 px-6 md:hidden"
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.95 }}
+                        className="fixed inset-x-4 top-24 z-40 bg-card/95 backdrop-blur-2xl rounded-3xl border border-border/50 shadow-2xl p-6 md:hidden overflow-hidden"
                     >
-                        <div className="flex flex-col gap-4">
-                            {[
-                                { path: '/', label: t.nav.home },
-                                { path: '/about', label: t.nav.about },
-                                { path: '/services', label: t.nav.services },
-                                { path: '/projects', label: t.nav.projects },
-                                { path: '/market-research', label: 'AI Research' },
-                                { path: '/contact', label: t.nav.contact },
-                            ].map((link) => (
+                        <div className="flex flex-col gap-2">
+                            {navLinks.map((link) => (
                                 <Link
                                     key={link.path}
                                     to={link.path}
                                     onClick={() => setIsMenuOpen(false)}
-                                    className="flex items-center justify-between p-4 rounded-xl bg-card hover:bg-sky-100 text-lg font-medium text-foreground transition-colors border border-sky-50"
+                                    className={`flex items-center justify-between p-4 rounded-2xl text-lg font-medium transition-colors ${isActive(link.path)
+                                            ? 'bg-primary/10 text-primary'
+                                            : 'hover:bg-muted text-foreground'
+                                        }`}
                                 >
                                     {link.label}
-                                    <ChevronRight size={20} className="text-muted-foreground" />
+                                    <ChevronRight size={20} className="opacity-50" />
                                 </Link>
                             ))}
+                            <Link
+                                to="/contact"
+                                onClick={() => setIsMenuOpen(false)}
+                                className="mt-4 flex items-center justify-center p-4 rounded-2xl bg-primary text-primary-foreground text-lg font-medium"
+                            >
+                                {t.nav.contact}
+                            </Link>
                         </div>
                     </motion.div>
                 )}
             </AnimatePresence>
 
             {/* Main Content */}
-            <main className="flex-grow pt-20">
+            <main className="flex-grow">
                 {children}
             </main>
 
             {/* Footer */}
-            <footer className="bg-background border-t border-border py-12 mt-auto">
-                <div className="container mx-auto px-6">
-                    <div className="grid md:grid-cols-4 gap-8 mb-8">
-                        <div className="col-span-1 md:col-span-2">
-                            <Link to="/" className="text-xl font-bold text-primary mb-4 block">
+            <footer className="bg-card border-t border-border py-16 mt-auto relative overflow-hidden">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--color-primary)_0%,_transparent_40%)] opacity-5"></div>
+
+                <div className="container mx-auto px-6 relative z-10">
+                    <div className="flex flex-col md:flex-row justify-between items-start gap-12 mb-16">
+                        <div className="max-w-md">
+                            <Link to="/" className="text-2xl font-bold tracking-tight mb-6 block">
                                 Gianluca Piazza
                             </Link>
-                            <p className="text-muted-foreground max-w-md leading-relaxed">
+                            <p className="text-muted-foreground text-lg leading-relaxed">
                                 {t.footer.about}
                             </p>
                         </div>
 
-                        <div>
-                            <h4 className="font-semibold text-foreground mb-4">{t.footer.quickLinks}</h4>
-                            <ul className="space-y-2">
-                                <Link to="/services" className="text-sm font-medium text-muted-foreground hover:text-white transition-colors">{t.nav.services}</Link>
-                                <Link to="/projects" className="text-sm font-medium text-muted-foreground hover:text-white transition-colors">{t.nav.projects}</Link>
-                                <Link to="/market-research" className="text-sm font-medium text-blue-400 hover:text-blue-300 transition-colors flex items-center gap-1">
-                                    <Sparkles size={14} />
-                                    AI Research
-                                </Link>
-                                <Link to="/contact" className="px-5 py-2.5 bg-white text-slate-900 rounded-full text-sm font-bold hover:bg-blue-50 transition-colors shadow-lg shadow-blue-500/10">
-                                    {t.nav.contact}
-                                </Link>
-                            </ul>
-                        </div>
-
-                        <div>
-                            <h4 className="font-semibold text-foreground mb-4">{t.footer.contactTitle}</h4>
-                            <ul className="space-y-2 text-muted-foreground">
-                                <li>mail@gianlucapiazza.com</li>
-                                <li>+39 337 303431</li>
-                                <li>+1 (305) 548-0002</li>
-                            </ul>
+                        <div className="grid grid-cols-2 gap-12">
+                            <div>
+                                <h4 className="font-semibold text-foreground mb-6">{t.footer.quickLinks}</h4>
+                                <ul className="space-y-4">
+                                    <li><Link to="/services" className="text-muted-foreground hover:text-primary transition-colors">{t.nav.services}</Link></li>
+                                    <li><Link to="/projects" className="text-muted-foreground hover:text-primary transition-colors">{t.nav.projects}</Link></li>
+                                    <li>
+                                        <Link to="/market-research" className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2">
+                                            AI Research
+                                            <span className="px-2 py-0.5 rounded-full bg-primary/10 text-primary text-[10px] font-bold uppercase tracking-wider">New</span>
+                                        </Link>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 className="font-semibold text-foreground mb-6">Connect</h4>
+                                <ul className="space-y-4">
+                                    <li><a href="https://www.linkedin.com/in/gianlucapiazza/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">LinkedIn</a></li>
+                                    <li><a href="mailto:mail@gianlucapiazza.com" className="text-muted-foreground hover:text-primary transition-colors">Email</a></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
 
-                    <div className="border-t border-border mt-12 pt-8 flex flex-col md:flex-row justify-between items-center text-muted-foreground text-sm">
+                    <div className="border-t border-border pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-muted-foreground text-sm">
                         <p>&copy; {new Date().getFullYear()} Gianluca Piazza. {t.footer.rights}</p>
-                        <div className="flex gap-6 mt-4 md:mt-0">
-                            <Link to="/privacy" className="hover:text-blue-400 transition-colors">{t.footer.privacy}</Link>
-                            <a href="#cookie-policy" className="hover:text-blue-400 transition-colors">{t.footer.cookie}</a>
-                            <a href="https://www.linkedin.com/in/gianlucapiazza/" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">LinkedIn</a>
-                            <a href="#" className="hover:text-primary transition-colors">Twitter</a>
+                        <div className="flex gap-6">
+                            <Link to="/privacy" className="hover:text-foreground transition-colors">{t.footer.privacy}</Link>
+                            <Link to="/privacy" className="hover:text-foreground transition-colors">{t.footer.cookie}</Link>
                         </div>
                     </div>
                 </div>
             </footer>
-            {/* Cookie Consent */}
             <CookieConsent />
         </div>
     );

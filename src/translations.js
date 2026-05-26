@@ -10,7 +10,7 @@ export const translations = {
     },
     home: {
       title: 'Gianluca Piazza',
-      subtitle: 'Consulente Internazionalizzazione | Business Developer | Entrepreneur',
+      subtitle: 'Internazionalizzazione | Business Builder | Entrepreneur',
       tagline: 'Trasformo le sfide dell\'internazionalizzazione in opportunità di successo globale',
       futureTrading: 'The future of your trading',
       intro: 'Con oltre 18 anni di esperienza nei mercati internazionali, supporto aziende italiane ed europee nella loro espansione globale, con particolare focus sui mercati USA (Florida, TriState, Texas, Washington State, California, Las Vegas).',
@@ -35,7 +35,7 @@ export const translations = {
       intro: 'Mi chiamo Gianluca Piazza e sono un manager per l\'internazionalizzazione e business developer con una carriera che abbraccia continenti e industrie. La mia missione è accompagnare le aziende nel loro percorso di espansione, trasformando visioni ambiziose in realtà concrete sui mercati globali.',
       experienceTitle: 'Esperienza Internazionale',
       experience1: 'Opero come consulente strategico indipendente, guidando aziende italiane ed europee nel complesso percorso di espansione verso i mercati esteri. La mia attività si concentra sulla creazione di ponti commerciali solidi e duraturi, sfruttando un network consolidato e una profonda conoscenza delle dinamiche di business internazionali.',
-      experience2: 'La mia esperienza internazionale si è consolidata in 18 anni come Senior Business Developer presso GP Business and Market Strategy, dove ho coordinato iniziative e progetti di investimento nei principali mercati statunitensi: Florida, TriState (New York, New Jersey, Connecticut), Texas, Washington State, California e Las Vegas. Durante il mio periodo negli Stati Uniti, ho mantenuto un\'attenzione costante ai progressi tecnologici, integrando le ultime innovazioni nelle strategie aziendali e anticipando i trend di settore.',
+      experience2: 'La mia esperienza internazionale si è consolidata in 18 anni come Senior Business Builder presso GP Business and Market Strategy, dove ho coordinato iniziative e progetti di investimento nei principali mercati statunitensi: Florida, TriState (New York, New Jersey, Connecticut), Texas, Washington State, California e Las Vegas. Durante il mio periodo negli Stati Uniti, ho mantenuto un\'attenzione costante ai progressi tecnologici, integrando le ultime innovazioni nelle strategie aziendali e anticipando i trend di settore.',
       projectsTitle: 'Progetti di Rilievo',
       projects: 'Ho co-fondato e ricoperto il ruolo di Executive Director di Vine N Ale Distributors a Miami, svolgendo un ruolo chiave nell\'espansione della presenza sul mercato. Ho negoziato partnership con le principali catene retail, introducendo prodotti iconici come quelli del Birrificio Angelo Poretti in Starbucks Reserve, e collaborato con Acque Minerali d\'Italia in un progetto con Niagara Waters che ha portato l\'eccellenza italiana in network come Walmart, Publix, Target, Sedano\'s e Fresh Market.',
       backgroundTitle: 'Background e Formazione',
@@ -270,7 +270,7 @@ export const translations = {
       disclaimer: "L'IA può commettere errori. Verifica le informazioni importanti."
     },
     footer: {
-      about: 'Consulente Internazionalizzazione | Business Developer | Entrepreneur',
+      about: 'Internazionalizzazione | Business Builder | Entrepreneur',
       contactTitle: 'Contatti',
       quickLinks: 'Link Rapidi',
       rights: 'Tutti i diritti riservati.',
@@ -278,9 +278,9 @@ export const translations = {
       cookie: 'Cookie Policy'
     },
     cookieConsent: {
-      text: 'Questo sito utilizza i cookie per migliorare la tua esperienza. Continuando a navigare accetti la nostra',
+      text: 'Questo sito usa solo preferenze tecniche locali e Vercel Web Analytics senza cookie. Puoi accettare o disattivare la misurazione anonima nella',
       accept: 'Accetta',
-      decline: 'Rifiuta',
+      decline: 'Disattiva',
       learnMore: 'Cookie Policy'
     },
     privacy: {
@@ -290,18 +290,19 @@ export const translations = {
       controller: {
         title: 'Titolare del Trattamento',
         text: 'Il Titolare del trattamento dei dati è:',
-        name: 'Lab101 Srl',
-        address: 'Via delle Primule 62, Monteviale (VI)',
-        vat: 'P.IVA 04309800243',
+        name: 'Gianluca Piazza / GianlucaPiazza.com',
+        address: 'Italia',
+        vat: '',
         email: 'mail@gianlucapiazza.com'
       },
       collection: {
         title: 'Tipologia di Dati Raccolti',
         text: 'Durante la navigazione e l\'utilizzo del sito, possono essere raccolti i seguenti dati:',
         list: [
-          'Dati di navigazione (indirizzi IP, orari di richiesta, ecc.)',
+          'Dati tecnici di navigazione trattati dall’infrastruttura di hosting Vercel (es. log di richiesta, orari, user agent, stato della risposta).',
           'Dati forniti volontariamente dall\'utente (nome, email, azienda, telefono nel form di contatto)',
-          'Cookie e dati di utilizzo'
+          'Dati aggregati e anonimizzati di utilizzo tramite Vercel Web Analytics, senza cookie di terza parte.',
+          'Preferenze tecniche salvate nel browser, come scelta lingua e preferenza cookie/analytics.'
         ]
       },
       purpose: {
@@ -311,17 +312,19 @@ export const translations = {
           'Rispondere alle richieste di contatto e informazioni',
           'Fornire i servizi di consulenza richiesti',
           'Migliorare l\'esperienza utente sul sito',
-          'Analisi statistiche anonime sull\'utilizzo del sito'
+          'Analisi statistiche aggregate sull\'utilizzo del sito, sui referrer e sulle pagine visitate',
+          'Sicurezza, prevenzione abusi e corretto funzionamento tecnico del sito'
         ]
       },
       cookies: {
         title: 'Cookie Policy',
-        text: 'Questo sito utilizza cookie per migliorare l\'esperienza di navigazione. Nello specifico:',
+        text: 'Il sito non installa cookie di profilazione e non usa pixel pubblicitari Google, Meta o TikTok. Nello specifico:',
         types: [
-          'Cookie Tecnici: Necessari per il funzionamento del sito.',
-          'Cookie Analitici: Utilizzati per raccogliere informazioni statistiche in forma anonima.'
+          'Preferenze tecniche/local storage: usate per ricordare lingua e scelta cookie/analytics sul dispositivo dell’utente.',
+          'Vercel Web Analytics: misura pagine visitate, referrer, browser, sistema operativo, paese e device in forma aggregata e senza cookie.',
+          'Marketing e advertising pixel: non attivi. Eventuali tag Google Ads, Meta Pixel o TikTok Pixel saranno attivati solo dopo aggiornamento informativa e consenso preventivo.'
         ],
-        management: 'L\'utente può gestire le preferenze sui cookie direttamente dalle impostazioni del proprio browser.'
+        management: 'L’utente può disattivare la misurazione anonima dal banner cookie o cancellare le preferenze salvate dal browser. I cookie e lo storage possono essere gestiti anche dalle impostazioni del browser.'
       },
       rights: {
         title: 'Diritti degli Interessati',
@@ -344,7 +347,7 @@ export const translations = {
     },
     home: {
       title: 'Gianluca Piazza',
-      subtitle: 'Internationalization Consultant | Business Developer | Entrepreneur',
+      subtitle: 'Internationalization | Business Builder | Entrepreneur',
       tagline: 'I transform internationalization challenges into global success opportunities',
       futureTrading: 'The future of your trading',
       intro: 'With over 18 years of experience in international markets, I support Italian and European companies in their global expansion, with a particular focus on US markets (Florida, TriState, Texas, Washington State, California, Las Vegas).',
@@ -369,7 +372,7 @@ export const translations = {
       intro: 'My name is Gianluca Piazza and I am an internationalization manager and business developer with a career spanning continents and industries. My mission is to accompany companies on their expansion journey, transforming ambitious visions into concrete realities in global markets.',
       experienceTitle: 'International Experience',
       experience1: 'I operate as an independent strategic consultant, guiding Italian and European companies through the complex journey of expansion into foreign markets. My activity focuses on creating solid and lasting commercial bridges, leveraging a consolidated network and deep knowledge of international business dynamics.',
-      experience2: 'My international experience was consolidated over 18 years as Senior Business Developer at GP Business and Market Strategy, where I coordinated initiatives and investment projects in the main US markets: Florida, TriState (New York, New Jersey, Connecticut), Texas, Washington State, California, and Las Vegas. During my time in the United States, I maintained constant attention to technological progress, integrating the latest innovations into business strategies and anticipating industry trends.',
+      experience2: 'My international experience was consolidated over 18 years as Senior Business Builder at GP Business and Market Strategy, where I coordinated initiatives and investment projects in the main US markets: Florida, TriState (New York, New Jersey, Connecticut), Texas, Washington State, California, and Las Vegas. During my time in the United States, I maintained constant attention to technological progress, integrating the latest innovations into business strategies and anticipating industry trends.',
       projectsTitle: 'Notable Projects',
       projects: 'I co-founded and served as Executive Director of Vine N Ale Distributors in Miami, playing a key role in expanding market presence. I negotiated partnerships with major retail chains, introducing iconic products such as those from Birrificio Angelo Poretti at Starbucks Reserve, and collaborated with Acque Minerali d\'Italia on a project with Niagara Waters that brought Italian excellence to networks such as Walmart, Publix, Target, Sedano\'s and Fresh Market.',
       backgroundTitle: 'Background and Education',
@@ -604,7 +607,7 @@ export const translations = {
       disclaimer: "L'IA può commettere errori. Verifica le informazioni importanti."
     },
     footer: {
-      about: 'Internationalization Consultant | Business Developer | Entrepreneur',
+      about: 'Internationalization | Business Builder | Entrepreneur',
       contactTitle: 'Contact',
       quickLinks: 'Quick Links',
       rights: 'All rights reserved.',
@@ -612,9 +615,9 @@ export const translations = {
       cookie: 'Cookie Policy'
     },
     cookieConsent: {
-      text: 'This website uses cookies to enhance your experience. By continuing to browse, you agree to our',
+      text: 'This website only uses local technical preferences and cookieless Vercel Web Analytics. You can accept or disable anonymous measurement in the',
       accept: 'Accept',
-      decline: 'Decline',
+      decline: 'Disable',
       learnMore: 'Cookie Policy'
     },
     privacy: {
@@ -624,18 +627,19 @@ export const translations = {
       controller: {
         title: 'Data Controller',
         text: 'The Data Controller is:',
-        name: 'Lab101 Srl',
-        address: 'Via delle Primule 62, Monteviale (VI) - Italy',
-        vat: 'VAT ID 04309800243',
+        name: 'Gianluca Piazza / GianlucaPiazza.com',
+        address: 'Italy',
+        vat: '',
         email: 'mail@gianlucapiazza.com'
       },
       collection: {
         title: 'Types of Data Collected',
         text: 'During navigation and use of the site, the following data may be collected:',
         list: [
-          'Navigation data (IP addresses, request times, etc.)',
+          'Technical navigation data processed by the Vercel hosting infrastructure (for example request logs, timestamps, user agent, response status).',
           'Data voluntarily provided by the user (name, email, company, phone in the contact form)',
-          'Cookies and usage data'
+          'Aggregated and anonymized usage data through Vercel Web Analytics, without third-party cookies.',
+          'Technical preferences stored in the browser, such as language and cookie/analytics preference.'
         ]
       },
       purpose: {
@@ -645,17 +649,19 @@ export const translations = {
           'Respond to contact and information requests',
           'Provide requested consulting services',
           'Improve user experience on the site',
-          'Anonymous statistical analysis of site usage'
+          'Aggregate statistical analysis of site usage, referrers and visited pages',
+          'Security, abuse prevention and correct technical operation of the website'
         ]
       },
       cookies: {
         title: 'Cookie Policy',
-        text: 'This site uses cookies to improve the browsing experience. Specifically:',
+        text: 'The website does not set profiling cookies and does not use Google, Meta or TikTok advertising pixels. Specifically:',
         types: [
-          'Technical Cookies: Necessary for the site to function.',
-          'Analytical Cookies: Used to collect statistical information in anonymous form.'
+          'Technical preferences/local storage: used to remember language and cookie/analytics choices on the user device.',
+          'Vercel Web Analytics: measures visited pages, referrers, browser, operating system, country and device in aggregate form and without cookies.',
+          'Marketing and advertising pixels: not active. Any Google Ads, Meta Pixel or TikTok Pixel tags will only be enabled after updating this notice and collecting prior consent.'
         ],
-        management: 'Users can manage cookie preferences directly from their browser settings.'
+        management: 'Users can disable anonymous measurement from the cookie banner or clear saved preferences from their browser. Cookies and storage can also be managed from browser settings.'
       },
       rights: {
         title: 'Rights of Data Subjects',

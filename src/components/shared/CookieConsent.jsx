@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion as Motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '../../hooks/use-language';
 import { Button } from './Button';
 import { Link } from 'react-router-dom';
-import { Cookie } from 'lucide-react';
+import { CONSENT_EVENT } from './analyticsConsent';
 
 export function CookieConsent() {
     const { t } = useLanguage();
@@ -20,18 +20,27 @@ export function CookieConsent() {
 
     const handleAccept = () => {
         localStorage.setItem('cookieConsent', 'accepted');
+        localStorage.removeItem('va-disable');
+        window.dispatchEvent(new Event(CONSENT_EVENT));
         setIsVisible(false);
     };
 
     const handleDecline = () => {
         localStorage.setItem('cookieConsent', 'declined');
+        localStorage.setItem('va-disable', '1');
+        window.dispatchEvent(new Event(CONSENT_EVENT));
         setIsVisible(false);
     };
+
+    // Safety check: return null if translations aren't loaded yet
+    if (!t || !t.cookieConsent) {
+        return null;
+    }
 
     return (
         <AnimatePresence>
             {isVisible && (
-                <motion.div
+                <Motion.div
                     initial={{ y: 100, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     exit={{ y: 100, opacity: 0 }}
@@ -63,7 +72,7 @@ export function CookieConsent() {
                             </Button>
                         </div>
                     </div>
-                </motion.div>
+                </Motion.div>
             )}
         </AnimatePresence>
     );

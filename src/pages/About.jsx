@@ -36,6 +36,7 @@ export function About() {
                                 src="/gianluca-profile.webp"
                                 alt="Gianluca Piazza"
                                 className="w-full h-full object-cover rounded-full shadow-xl border-4 border-white relative z-10"
+                                loading="eager"
                             />
                         </motion.div>
 

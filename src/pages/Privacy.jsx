@@ -30,7 +30,7 @@ export function Privacy() {
                                 <div className="text-muted-foreground">
                                     <p className="font-semibold text-foreground">{t.privacy.controller.name}</p>
                                     <p>{t.privacy.controller.address}</p>
-                                    <p>{t.privacy.controller.vat}</p>
+                                    {t.privacy.controller.vat && <p>{t.privacy.controller.vat}</p>}
                                     <p className="mt-2">Email: <a href={`mailto:${t.privacy.controller.email}`} className="text-blue-400 hover:text-blue-300">{t.privacy.controller.email}</a></p>
                                 </div>
                             </section>
