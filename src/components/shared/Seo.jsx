@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import { useLanguage } from '../../hooks/use-language';
 
 const SITE_URL = 'https://gianlucapiazza.com';
 const DEFAULT_IMAGE = `${SITE_URL}/gianluca-profile.webp`;
@@ -70,17 +71,19 @@ function upsertJsonLd(id, data) {
 
 export function Seo() {
     const location = useLocation();
+    const { language } = useLanguage();
 
     useEffect(() => {
         const pathname = location.pathname === '/' ? '/' : location.pathname.replace(/\/$/, '');
         const meta = META_BY_PATH[pathname] || META_BY_PATH['/'];
         const canonical = `${SITE_URL}${pathname === '/' ? '/' : pathname}`;
+        const isKnownPath = Boolean(META_BY_PATH[pathname]);
 
-        document.documentElement.lang = 'it';
+        document.documentElement.lang = language;
         document.title = meta.title;
 
         upsertMeta('meta[name="description"]', { name: 'description', content: meta.description });
-        upsertMeta('meta[name="robots"]', { name: 'robots', content: 'index, follow' });
+        upsertMeta('meta[name="robots"]', { name: 'robots', content: isKnownPath ? 'index, follow' : 'noindex, follow' });
         upsertMeta('meta[property="og:type"]', { property: 'og:type', content: 'website' });
         upsertMeta('meta[property="og:site_name"]', { property: 'og:site_name', content: 'Gianluca Piazza' });
         upsertMeta('meta[property="og:title"]', { property: 'og:title', content: meta.title });
@@ -109,7 +112,7 @@ export function Seo() {
                 'Export',
             ],
         });
-    }, [location.pathname]);
+    }, [language, location.pathname]);
 
     return null;
 }

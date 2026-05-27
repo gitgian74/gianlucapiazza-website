@@ -3,10 +3,10 @@ import { cn } from '../../lib/utils';
 
 export function Button({ children, className, variant = 'primary', size = 'default', ...props }) {
     const variants = {
-        primary: "bg-primary text-white hover:bg-primary/90 shadow-lg shadow-blue-500/20",
-        secondary: "bg-white text-slate-700 border border-slate-200 hover:bg-slate-50 shadow-sm",
-        outline: "bg-transparent border border-slate-300 text-slate-700 hover:bg-slate-50 hover:text-slate-900",
-        ghost: "bg-transparent text-slate-600 hover:text-slate-900 hover:bg-slate-100"
+        primary: "bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/20",
+        secondary: "bg-secondary text-secondary-foreground border border-border hover:bg-secondary/80 shadow-sm",
+        outline: "bg-transparent border border-border text-foreground hover:bg-muted",
+        ghost: "bg-transparent text-muted-foreground hover:text-foreground hover:bg-muted"
     };
 
     const sizes = {

@@ -1,12 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { CONSENT_EVENT } from './analyticsConsent';
+import { CONSENT_EVENT, hasAnalyticsConsent } from './analyticsConsent';
 
 const GA_MEASUREMENT_ID = import.meta.env.VITE_GA_MEASUREMENT_ID;
-
-function hasAnalyticsConsent() {
-    return localStorage.getItem('cookieConsent') === 'accepted';
-}
 
 function setupGoogleAnalytics() {
     if (!GA_MEASUREMENT_ID || document.querySelector(`script[src*="${GA_MEASUREMENT_ID}"]`)) {

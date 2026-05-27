@@ -20,14 +20,12 @@ export function CookieConsent() {
 
     const handleAccept = () => {
         localStorage.setItem('cookieConsent', 'accepted');
-        localStorage.removeItem('va-disable');
         window.dispatchEvent(new Event(CONSENT_EVENT));
         setIsVisible(false);
     };
 
     const handleDecline = () => {
         localStorage.setItem('cookieConsent', 'declined');
-        localStorage.setItem('va-disable', '1');
         window.dispatchEvent(new Event(CONSENT_EVENT));
         setIsVisible(false);
     };

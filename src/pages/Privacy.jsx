@@ -77,6 +77,14 @@ export function Privacy() {
                                 </p>
                             </section>
 
+                            {/* AI Tool */}
+                            <section>
+                                <h2 className="text-2xl font-bold text-foreground mb-4">{t.privacy.ai.title}</h2>
+                                <p className="text-muted-foreground leading-relaxed">
+                                    {t.privacy.ai.text}
+                                </p>
+                            </section>
+
                             {/* Rights */}
                             <section>
                                 <h2 className="text-2xl font-bold text-foreground mb-4">{t.privacy.rights.title}</h2>

@@ -15,28 +15,28 @@ export function Services() {
         {
             id: 'service1',
             icon: <Globe size={32} className="text-blue-600" />,
-            color: 'bg-blue-50',
+            iconWrapClass: 'bg-blue-500/10 text-blue-400',
             image: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&q=80",
             data: t.services.service1
         },
         {
             id: 'service2',
             icon: <TrendingUp size={32} className="text-purple-600" />,
-            color: 'bg-purple-50',
+            iconWrapClass: 'bg-purple-500/10 text-purple-400',
             image: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80",
             data: t.services.service2
         },
         {
             id: 'service3',
             icon: <Handshake size={32} className="text-green-600" />,
-            color: 'bg-green-50',
+            iconWrapClass: 'bg-green-500/10 text-green-400',
             image: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&q=80",
             data: t.services.service3
         },
         {
             id: 'service4',
             icon: <Scale size={32} className="text-orange-600" />,
-            color: 'bg-orange-50',
+            iconWrapClass: 'bg-orange-500/10 text-orange-400',
             image: "https://images.unsplash.com/photo-1505664194779-8beaceb93744?auto=format&fit=crop&q=80",
             data: t.services.service4
         }
@@ -73,7 +73,7 @@ export function Services() {
                                     loading="lazy"
                                 />
                                 <div className="absolute bottom-4 left-6 z-20 flex items-center gap-3">
-                                    <div className={`p-3 rounded-xl bg-card/50 backdrop-blur-md text-${service.color.split('-')[1]}-400 border border-border`}>
+                                    <div className={`p-3 rounded-xl ${service.iconWrapClass} backdrop-blur-md border border-border`}>
                                         {service.icon}
                                     </div>
                                     <h3 className="text-xl font-bold text-white">{service.data.title}</h3>
@@ -84,6 +84,28 @@ export function Services() {
                                 <p className="text-muted-foreground leading-relaxed mb-8">
                                     {service.data.description}
                                 </p>
+                                {service.data.items && (
+                                    <div className="space-y-3">
+                                        <h4 className="text-sm font-semibold uppercase tracking-wide text-foreground">
+                                            {service.data.includes || t.services.service1.includes}
+                                        </h4>
+                                        <ul className="space-y-2">
+                                            {service.data.items.slice(0, 4).map((item) => (
+                                                <li key={item} className="flex items-start gap-3 text-sm text-muted-foreground">
+                                                    <span className="mt-2 h-1.5 w-1.5 rounded-full bg-primary shrink-0"></span>
+                                                    <span>{item}</span>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                        <Link
+                                            to="/contact"
+                                            className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-primary hover:text-primary/80"
+                                        >
+                                            {t.services.ctaButton}
+                                            <ArrowRight size={16} />
+                                        </Link>
+                                    </div>
+                                )}
                             </div>
                         </Card>
                     ))}

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { motion, AnimatePresence, useScroll } from 'framer-motion';
-import { Menu, X, Globe, ChevronRight, Sparkles } from 'lucide-react';
+import { motion, AnimatePresence, useReducedMotion, useScroll } from 'framer-motion';
+import { Menu, X, ChevronRight } from 'lucide-react';
 import { useLanguage } from '../hooks/use-language';
 import { CookieConsent } from './shared/CookieConsent';
 
@@ -9,6 +9,7 @@ export function Layout({ children }) {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const { language, setLanguage, t } = useLanguage();
     const location = useLocation();
+    const shouldReduceMotion = useReducedMotion();
 
     const { scrollY } = useScroll();
     const [isScrolled, setIsScrolled] = useState(false);
@@ -38,7 +39,7 @@ export function Layout({ children }) {
             {/* Floating Navigation */}
             <div className="fixed top-6 left-0 right-0 z-50 flex justify-center px-4 pointer-events-none">
                 <motion.nav
-                    initial={{ y: -100, opacity: 0 }}
+                    initial={shouldReduceMotion ? false : { y: -100, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     className={`pointer-events-auto flex items-center gap-2 p-2 rounded-full transition-all duration-500 ${isScrolled
                             ? 'bg-background/80 backdrop-blur-xl shadow-lg border border-border/50'
@@ -70,6 +71,7 @@ export function Layout({ children }) {
                     <div className="flex items-center gap-2">
                         <button
                             onClick={toggleLanguage}
+                            aria-label={language === 'it' ? 'Switch language to English' : 'Cambia lingua in italiano'}
                             className="flex items-center justify-center w-10 h-10 rounded-full hover:bg-muted transition-colors text-sm font-medium text-muted-foreground hover:text-foreground"
                         >
                             {language.toUpperCase()}
@@ -87,6 +89,9 @@ export function Layout({ children }) {
                         <button
                             className="md:hidden p-2 text-foreground hover:bg-muted rounded-full transition-colors"
                             onClick={() => setIsMenuOpen(!isMenuOpen)}
+                            aria-label={isMenuOpen ? 'Chiudi menu' : 'Apri menu'}
+                            aria-expanded={isMenuOpen}
+                            aria-controls="mobile-navigation"
                         >
                             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
                         </button>
@@ -98,7 +103,8 @@ export function Layout({ children }) {
             <AnimatePresence>
                 {isMenuOpen && (
                     <motion.div
-                        initial={{ opacity: 0, scale: 0.95 }}
+                        id="mobile-navigation"
+                        initial={shouldReduceMotion ? false : { opacity: 0, scale: 0.95 }}
                         animate={{ opacity: 1, scale: 1 }}
                         exit={{ opacity: 0, scale: 0.95 }}
                         className="fixed inset-x-4 top-24 z-40 bg-card/95 backdrop-blur-2xl rounded-3xl border border-border/50 shadow-2xl p-6 md:hidden overflow-hidden"

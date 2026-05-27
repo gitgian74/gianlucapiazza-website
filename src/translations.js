@@ -10,11 +10,13 @@ export const translations = {
     },
     home: {
       title: 'Gianluca Piazza',
+      heroHeadline: 'Gianluca Piazza',
       subtitle: 'Internazionalizzazione | Business Builder | Entrepreneur',
       tagline: 'Trasformo le sfide dell\'internazionalizzazione in opportunità di successo globale',
       futureTrading: 'The future of your trading',
       intro: 'Con oltre 18 anni di esperienza nei mercati internazionali, supporto aziende italiane ed europee nella loro espansione globale, con particolare focus sui mercati USA (Florida, TriState, Texas, Washington State, California, Las Vegas).',
       discoverServices: 'Scopri i Servizi',
+      learnMore: 'Scopri di più',
       contactMe: 'Contattami',
       stats: {
         experience: 'Anni di Esperienza',
@@ -249,7 +251,12 @@ export const translations = {
         email: 'Email',
         company: 'Azienda',
         message: 'Messaggio',
-        send: 'Invia Messaggio'
+        website: 'Sito web',
+        send: 'Invia Messaggio',
+        sending: 'Invio in corso...',
+        success: 'Messaggio inviato. Ti risponderò il prima possibile.',
+        error: 'Non è stato possibile inviare il messaggio. Riprova o scrivi direttamente via email.',
+        nextStep: 'Riceverai una conferma via email se l’invio va a buon fine.'
       },
       info: {
         title: 'Informazioni di Contatto',
@@ -267,7 +274,13 @@ export const translations = {
       title: "AI Market Research",
       subtitle: "Chiedimi qualsiasi cosa sui mercati globali, strategie di espansione o trend di settore.",
       placeholder: "Chiedi informazioni su un mercato (es. 'Quali sono i trend del caffè in Italia?')",
-      disclaimer: "L'IA può commettere errori. Verifica le informazioni importanti."
+      initialMessage: "Ciao. Posso aiutarti a ragionare su trend di mercato, opportunità e strategie di espansione internazionale. Non inserire dati personali, riservati o accordi non pubblici.",
+      loading: "Analisi in corso...",
+      localFallback: "Sono in modalità sviluppo locale e l'API non è collegata. In produzione userò Gemini per rispondere alle domande di market research.",
+      error: "Non riesco a collegarmi in questo momento. Riprova più tardi.",
+      poweredBy: "Powered by Gemini",
+      send: "Invia domanda",
+      disclaimer: "L'IA può commettere errori. Verifica le informazioni importanti e non inviare dati personali o confidenziali."
     },
     footer: {
       about: 'Internazionalizzazione | Business Builder | Entrepreneur',
@@ -278,9 +291,9 @@ export const translations = {
       cookie: 'Cookie Policy'
     },
     cookieConsent: {
-      text: 'Questo sito usa solo preferenze tecniche locali e Vercel Web Analytics senza cookie. Puoi accettare o disattivare la misurazione anonima nella',
+      text: 'Questo sito usa preferenze tecniche locali. Vercel Web Analytics e GA4 vengono attivati solo se accetti la misurazione analytics nella',
       accept: 'Accetta',
-      decline: 'Disattiva',
+      decline: 'Rifiuta',
       learnMore: 'Cookie Policy'
     },
     privacy: {
@@ -301,6 +314,7 @@ export const translations = {
         list: [
           'Dati tecnici di navigazione trattati dall’infrastruttura di hosting Vercel (es. log di richiesta, orari, user agent, stato della risposta).',
           'Dati forniti volontariamente dall\'utente (nome, email, azienda, telefono nel form di contatto)',
+          'Prompt e messaggi inseriti volontariamente nello strumento AI Market Research, trattati tramite API Google Gemini per generare la risposta.',
           'Dati aggregati e anonimizzati di utilizzo tramite Vercel Web Analytics, senza cookie di terza parte.',
           'Preferenze tecniche salvate nel browser, come scelta lingua e preferenza cookie/analytics.'
         ]
@@ -311,6 +325,7 @@ export const translations = {
         list: [
           'Rispondere alle richieste di contatto e informazioni',
           'Fornire i servizi di consulenza richiesti',
+          'Generare risposte alle richieste inviate allo strumento AI Market Research',
           'Migliorare l\'esperienza utente sul sito',
           'Analisi statistiche aggregate sull\'utilizzo del sito, sui referrer e sulle pagine visitate',
           'Sicurezza, prevenzione abusi e corretto funzionamento tecnico del sito'
@@ -321,10 +336,14 @@ export const translations = {
         text: 'Il sito non installa cookie di profilazione e non usa pixel pubblicitari Google, Meta o TikTok. Nello specifico:',
         types: [
           'Preferenze tecniche/local storage: usate per ricordare lingua e scelta cookie/analytics sul dispositivo dell’utente.',
-          'Vercel Web Analytics: misura pagine visitate, referrer, browser, sistema operativo, paese e device in forma aggregata e senza cookie.',
+          'Vercel Web Analytics e GA4: attivati solo dopo accettazione del banner analytics; misurano pagine visitate, referrer, browser, sistema operativo, paese e device.',
           'Marketing e advertising pixel: non attivi. Eventuali tag Google Ads, Meta Pixel o TikTok Pixel saranno attivati solo dopo aggiornamento informativa e consenso preventivo.'
         ],
-        management: 'L’utente può disattivare la misurazione anonima dal banner cookie o cancellare le preferenze salvate dal browser. I cookie e lo storage possono essere gestiti anche dalle impostazioni del browser.'
+        management: 'L’utente può rifiutare la misurazione analytics dal banner o cancellare le preferenze salvate dal browser. I cookie e lo storage possono essere gestiti anche dalle impostazioni del browser.'
+      },
+      ai: {
+        title: 'Strumento AI Market Research',
+        text: 'Le domande inserite nello strumento AI Market Research vengono inviate a Google Gemini tramite API per generare una risposta. Lo strumento è pensato per richieste generali di ricerca di mercato: non inserire dati personali, informazioni riservate, segreti commerciali, accordi non pubblici o dati di terzi.'
       },
       rights: {
         title: 'Diritti degli Interessati',
@@ -334,6 +353,11 @@ export const translations = {
         title: 'Contatti Privacy',
         text: 'Per esercitare i propri diritti o per qualsiasi informazione relativa alla privacy, è possibile contattare il Titolare all\'indirizzo email:'
       }
+    },
+    notFound: {
+      title: 'Pagina non trovata',
+      subtitle: 'Il link richiesto non esiste o è stato spostato.',
+      cta: 'Torna alla home'
     }
   },
   en: {
@@ -347,11 +371,13 @@ export const translations = {
     },
     home: {
       title: 'Gianluca Piazza',
+      heroHeadline: 'Gianluca Piazza',
       subtitle: 'Internationalization | Business Builder | Entrepreneur',
       tagline: 'I transform internationalization challenges into global success opportunities',
       futureTrading: 'The future of your trading',
       intro: 'With over 18 years of experience in international markets, I support Italian and European companies in their global expansion, with a particular focus on US markets (Florida, TriState, Texas, Washington State, California, Las Vegas).',
       discoverServices: 'Discover Services',
+      learnMore: 'Learn more',
       contactMe: 'Contact Me',
       stats: {
         experience: 'Years of Experience',
@@ -586,7 +612,12 @@ export const translations = {
         email: 'Email',
         company: 'Company',
         message: 'Message',
-        send: 'Send Message'
+        website: 'Website',
+        send: 'Send Message',
+        sending: 'Sending...',
+        success: 'Message sent. I will get back to you as soon as possible.',
+        error: 'The message could not be sent. Please try again or email me directly.',
+        nextStep: 'You will receive an email confirmation if the submission succeeds.'
       },
       info: {
         title: 'Contact Information',
@@ -602,9 +633,15 @@ export const translations = {
     },
     marketResearch: {
       title: "AI Market Research",
-      subtitle: "Chiedimi qualsiasi cosa sui mercati globali, strategie di espansione o trend di settore.",
-      placeholder: "Chiedi informazioni su un mercato (es. 'Quali sono i trend del caffè in Italia?')",
-      disclaimer: "L'IA può commettere errori. Verifica le informazioni importanti."
+      subtitle: "Ask about global markets, expansion strategies, or industry trends.",
+      placeholder: "Ask about a market (for example, 'What are the trends in the Italian coffee market?')",
+      initialMessage: "Hello. I can help you reason about market trends, opportunities, and international expansion strategies. Do not submit personal, confidential, or non-public business information.",
+      loading: "Analyzing market context...",
+      localFallback: "I am currently in local development mode and the API is not connected. In production I will use Gemini to answer market research questions.",
+      error: "I am having trouble connecting right now. Please try again later.",
+      poweredBy: "Powered by Gemini",
+      send: "Send question",
+      disclaimer: "AI can make mistakes. Verify important information and do not submit personal or confidential data."
     },
     footer: {
       about: 'Internationalization | Business Builder | Entrepreneur',
@@ -615,9 +652,9 @@ export const translations = {
       cookie: 'Cookie Policy'
     },
     cookieConsent: {
-      text: 'This website only uses local technical preferences and cookieless Vercel Web Analytics. You can accept or disable anonymous measurement in the',
+      text: 'This website uses local technical preferences. Vercel Web Analytics and GA4 are activated only if you accept analytics measurement in the',
       accept: 'Accept',
-      decline: 'Disable',
+      decline: 'Reject',
       learnMore: 'Cookie Policy'
     },
     privacy: {
@@ -638,6 +675,7 @@ export const translations = {
         list: [
           'Technical navigation data processed by the Vercel hosting infrastructure (for example request logs, timestamps, user agent, response status).',
           'Data voluntarily provided by the user (name, email, company, phone in the contact form)',
+          'Prompts and messages voluntarily entered in the AI Market Research tool, processed through the Google Gemini API to generate the answer.',
           'Aggregated and anonymized usage data through Vercel Web Analytics, without third-party cookies.',
           'Technical preferences stored in the browser, such as language and cookie/analytics preference.'
         ]
@@ -648,6 +686,7 @@ export const translations = {
         list: [
           'Respond to contact and information requests',
           'Provide requested consulting services',
+          'Generate answers to requests submitted through the AI Market Research tool',
           'Improve user experience on the site',
           'Aggregate statistical analysis of site usage, referrers and visited pages',
           'Security, abuse prevention and correct technical operation of the website'
@@ -658,10 +697,14 @@ export const translations = {
         text: 'The website does not set profiling cookies and does not use Google, Meta or TikTok advertising pixels. Specifically:',
         types: [
           'Technical preferences/local storage: used to remember language and cookie/analytics choices on the user device.',
-          'Vercel Web Analytics: measures visited pages, referrers, browser, operating system, country and device in aggregate form and without cookies.',
+          'Vercel Web Analytics and GA4: activated only after accepting the analytics banner; they measure visited pages, referrers, browser, operating system, country and device.',
           'Marketing and advertising pixels: not active. Any Google Ads, Meta Pixel or TikTok Pixel tags will only be enabled after updating this notice and collecting prior consent.'
         ],
-        management: 'Users can disable anonymous measurement from the cookie banner or clear saved preferences from their browser. Cookies and storage can also be managed from browser settings.'
+        management: 'Users can reject analytics measurement from the banner or clear saved preferences from their browser. Cookies and storage can also be managed from browser settings.'
+      },
+      ai: {
+        title: 'AI Market Research Tool',
+        text: 'Questions entered in the AI Market Research tool are sent to Google Gemini through an API to generate an answer. The tool is intended for general market research requests: do not submit personal data, confidential information, trade secrets, non-public agreements, or third-party data.'
       },
       rights: {
         title: 'Rights of Data Subjects',
@@ -671,6 +714,11 @@ export const translations = {
         title: 'Privacy Contact',
         text: 'To exercise your rights or for any information regarding privacy, you can contact the Controller at the email address:'
       }
+    },
+    notFound: {
+      title: 'Page not found',
+      subtitle: 'The requested link does not exist or has moved.',
+      cta: 'Back to home'
     }
   }
 }

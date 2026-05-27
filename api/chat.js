@@ -1,11 +1,37 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
+import { z } from 'zod';
+import { enforceJsonBody, getClientId, isRateLimited } from './_security.js';
+
+const chatSchema = z.object({
+    message: z.string().trim().min(3).max(1_200),
+});
+
+const RATE_LIMIT = {
+    limit: 10,
+    windowMs: 15 * 60 * 1000,
+};
+
+const GEMINI_MODEL = process.env.GEMINI_MODEL || 'gemini-2.5-flash';
 
 export default async function handler(req, res) {
     if (req.method !== 'POST') {
         return res.status(405).json({ error: 'Method not allowed' });
     }
 
-    const { message } = req.body;
+    const limited = isRateLimited(`chat:${getClientId(req)}`, RATE_LIMIT);
+    if (limited) {
+        return res.status(429).json({ error: 'Too many requests. Please try again later.' });
+    }
+
+    const { body, error } = enforceJsonBody(req, 3_000);
+    if (error) {
+        return res.status(error.status).json({ error: error.message });
+    }
+
+    const parsed = chatSchema.safeParse(body);
+    if (!parsed.success) {
+        return res.status(400).json({ error: 'Invalid message' });
+    }
 
     if (!process.env.GEMINI_API_KEY) {
         return res.status(500).json({ error: 'GEMINI_API_KEY not configured' });
@@ -13,13 +39,14 @@ export default async function handler(req, res) {
 
     try {
         const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-        const model = genAI.getGenerativeModel({ model: 'gemini-1.5-pro' });
+        const model = genAI.getGenerativeModel({ model: GEMINI_MODEL });
 
         const prompt = `You are an expert Market Research Assistant for Gianluca Piazza, an Internationalization Manager. 
     Your goal is to help users understand market trends, international expansion strategies, and business opportunities.
     Keep your answers professional, concise, and insightful.
+    Do not ask for confidential, sensitive, or personal data.
     
-    User Question: ${message}`;
+    User Question: ${parsed.data.message}`;
 
         const result = await model.generateContent(prompt);
         const response = await result.response;

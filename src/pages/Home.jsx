@@ -46,11 +46,13 @@ export function Home() {
                         className="max-w-4xl mx-auto"
                     >
                         <h1 className="text-6xl md:text-8xl font-bold text-white mb-8 tracking-tight leading-tight drop-shadow-lg">
-                            Building <br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-200 to-white">Global Business</span>
+                            {t.home.heroHeadline}
                         </h1>
 
-                        <p className="text-xl md:text-2xl text-blue-50 mb-12 max-w-2xl mx-auto font-light leading-relaxed drop-shadow-md">
+                        <p className="text-xl md:text-2xl text-blue-50 mb-4 max-w-2xl mx-auto font-light leading-relaxed drop-shadow-md">
+                            {t.home.tagline}
+                        </p>
+                        <p className="text-base md:text-lg text-blue-100 mb-12 max-w-2xl mx-auto font-light leading-relaxed drop-shadow-md">
                             {t.home.subtitle}
                         </p>
 
@@ -163,7 +165,7 @@ export function Home() {
                                     </p>
                                 </div>
                                 <div className="mt-10 flex items-center text-primary font-bold text-lg">
-                                    Learn more <ArrowRight size={20} className="ml-2 group-hover:translate-x-2 transition-transform" />
+                                    {t.home.learnMore} <ArrowRight size={20} className="ml-2 group-hover:translate-x-2 transition-transform" />
                                 </div>
                             </div>
                         </Link>
@@ -184,7 +186,7 @@ export function Home() {
                                     </p>
                                 </div>
                                 <div className="mt-10 flex items-center text-purple-500 font-bold text-lg">
-                                    Learn more <ArrowRight size={20} className="ml-2 group-hover:translate-x-2 transition-transform" />
+                                    {t.home.learnMore} <ArrowRight size={20} className="ml-2 group-hover:translate-x-2 transition-transform" />
                                 </div>
                             </div>
                         </Link>

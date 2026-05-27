@@ -5,12 +5,14 @@ import { PageHeader } from '../components/shared/PageHeader';
 import { Section } from '../components/shared/Section';
 import { Card } from '../components/shared/Card';
 import { Button } from '../components/shared/Button';
+import { useLanguage } from '../hooks/use-language';
 
 export function MarketResearch() {
+    const { t } = useLanguage();
     const [messages, setMessages] = useState([
         {
             role: 'assistant',
-            content: "Hello! I'm your AI Market Research Assistant. I can help you analyze market trends, identify opportunities, or answer questions about international expansion. How can I assist you today?"
+            content: t.marketResearch.initialMessage
         }
     ]);
     const [input, setInput] = useState('');
@@ -59,12 +61,12 @@ export function MarketResearch() {
                 setTimeout(() => {
                     setMessages(prev => [...prev, {
                         role: 'assistant',
-                        content: "I'm currently in local development mode and the API is not connected. In production, I will use Gemini 1.5 Pro to answer your market research questions accurately."
+                        content: t.marketResearch.localFallback
                     }]);
                     setIsLoading(false);
                 }, 1000);
             } else {
-                setError("I'm having trouble connecting right now. Please try again later.");
+                setError(t.marketResearch.error);
                 setIsLoading(false);
             }
         }
@@ -73,12 +75,12 @@ export function MarketResearch() {
     return (
         <div className="min-h-screen bg-background pb-20">
             <PageHeader
-                title="AI Market Research"
-                subtitle="Ask me anything about global markets, expansion strategies, or industry trends."
+                title={t.marketResearch.title}
+                subtitle={t.marketResearch.subtitle}
             >
                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/30 text-primary border border-primary/50 mb-6">
                     <Sparkles size={16} />
-                    <span className="text-sm font-medium">Powered by Gemini 1.5 Pro</span>
+                    <span className="text-sm font-medium">{t.marketResearch.poweredBy}</span>
                 </div>
             </PageHeader>
 
@@ -118,7 +120,7 @@ export function MarketResearch() {
                                 </div>
                                 <div className="bg-card/50 p-4 rounded-2xl rounded-tl-none border border-border flex items-center gap-3">
                                     <Loader2 size={20} className="text-primary animate-spin" />
-                                    <span className="text-muted-foreground">Analyzing market data...</span>
+                                    <span className="text-muted-foreground">{t.marketResearch.loading}</span>
                                 </div>
                             </motion.div>
                         )}
@@ -134,25 +136,29 @@ export function MarketResearch() {
                     {/* Input Area */}
                     <div className="p-6 bg-card/50 border-t border-border">
                         <form onSubmit={handleSubmit} className="relative">
+                            <label htmlFor="market-research-input" className="sr-only">{t.marketResearch.placeholder}</label>
                             <input
+                                id="market-research-input"
                                 type="text"
                                 value={input}
                                 onChange={(e) => setInput(e.target.value)}
-                                placeholder="Ask about a market (e.g., 'What are the trends in Italian coffee market?')"
+                                maxLength={1200}
+                                placeholder={t.marketResearch.placeholder}
                                 className="w-full pl-6 pr-16 py-4 bg-input border border-border rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 text-white placeholder:text-muted-foreground/50 transition-all"
                                 disabled={isLoading}
                             />
                             <Button
                                 type="submit"
                                 disabled={!input.trim() || isLoading}
+                                aria-label={t.marketResearch.send}
                                 className="absolute right-2 top-2 p-2 bg-primary text-white rounded-xl hover:bg-blue-50 disabled:opacity-50 disabled:hover:bg-primary transition-colors"
                                 size="icon"
                             >
                                 <Send size={20} />
                             </Button>
                         </form>
-                        <p className="text-center text-xs text-slate-600 mt-4">
-                            AI can make mistakes. Please verify important information.
+                        <p className="text-center text-xs text-muted-foreground mt-4">
+                            {t.marketResearch.disclaimer}
                         </p>
                     </div>
                 </Card>

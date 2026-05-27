@@ -13,7 +13,8 @@ export function Contact() {
         name: '',
         email: '',
         company: '',
-        message: ''
+        message: '',
+        website: ''
     });
     const [status, setStatus] = React.useState('idle'); // idle, sending, success, error
 
@@ -39,7 +40,7 @@ export function Contact() {
 
             if (response.ok) {
                 setStatus('success');
-                setFormData({ name: '', email: '', company: '', message: '' });
+                setFormData({ name: '', email: '', company: '', message: '', website: '' });
             } else {
                 const data = await response.json();
                 console.error('Server Error:', data);
@@ -176,8 +177,9 @@ export function Contact() {
                             <form onSubmit={handleSubmit} className="space-y-6">
                                 <div className="grid md:grid-cols-2 gap-6">
                                     <div className="space-y-2">
-                                        <label className="text-sm font-semibold text-muted-foreground ml-1">{t.contact.form.name}</label>
+                                        <label htmlFor="contact-name" className="text-sm font-semibold text-muted-foreground ml-1">{t.contact.form.name}</label>
                                         <input
+                                            id="contact-name"
                                             type="text"
                                             name="name"
                                             value={formData.name}
@@ -188,8 +190,9 @@ export function Contact() {
                                         />
                                     </div>
                                     <div className="space-y-2">
-                                        <label className="text-sm font-semibold text-muted-foreground ml-1">{t.contact.form.email}</label>
+                                        <label htmlFor="contact-email" className="text-sm font-semibold text-muted-foreground ml-1">{t.contact.form.email}</label>
                                         <input
+                                            id="contact-email"
                                             type="email"
                                             name="email"
                                             value={formData.email}
@@ -202,8 +205,9 @@ export function Contact() {
                                 </div>
 
                                 <div className="space-y-2">
-                                    <label className="text-sm font-semibold text-muted-foreground ml-1">{t.contact.form.company}</label>
+                                    <label htmlFor="contact-company" className="text-sm font-semibold text-muted-foreground ml-1">{t.contact.form.company}</label>
                                     <input
+                                        id="contact-company"
                                         type="text"
                                         name="company"
                                         value={formData.company}
@@ -214,8 +218,9 @@ export function Contact() {
                                 </div>
 
                                 <div className="space-y-2">
-                                    <label className="text-sm font-semibold text-muted-foreground ml-1">{t.contact.form.message}</label>
+                                    <label htmlFor="contact-message" className="text-sm font-semibold text-muted-foreground ml-1">{t.contact.form.message}</label>
                                     <textarea
+                                        id="contact-message"
                                         rows={6}
                                         name="message"
                                         value={formData.message}
@@ -226,21 +231,38 @@ export function Contact() {
                                     ></textarea>
                                 </div>
 
+                                <div className="sr-only" aria-hidden="true">
+                                    <label htmlFor="contact-website">{t.contact.form.website}</label>
+                                    <input
+                                        id="contact-website"
+                                        type="text"
+                                        name="website"
+                                        value={formData.website}
+                                        onChange={handleChange}
+                                        tabIndex={-1}
+                                        autoComplete="off"
+                                    />
+                                </div>
+
                                 <Button
                                     type="submit"
                                     disabled={status === 'sending'}
                                     className="w-full py-4 text-lg shadow-lg shadow-blue-500/20 hover:shadow-xl hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed"
                                 >
-                                    {status === 'sending' ? 'Sending...' : t.contact.form.send}
+                                    {status === 'sending' ? t.contact.form.sending : t.contact.form.send}
                                     <Send size={20} />
                                 </Button>
 
-                                {status === 'success' && (
-                                    <p className="text-green-400 text-center font-medium">Message sent successfully!</p>
-                                )}
-                                {status === 'error' && (
-                                    <p className="text-red-400 text-center font-medium">Failed to send message. Please try again.</p>
-                                )}
+                                <p className="text-center text-sm text-muted-foreground">{t.contact.form.nextStep}</p>
+
+                                <div role="status" aria-live="polite">
+                                    {status === 'success' && (
+                                        <p className="text-green-400 text-center font-medium">{t.contact.form.success}</p>
+                                    )}
+                                    {status === 'error' && (
+                                        <p className="text-red-400 text-center font-medium">{t.contact.form.error}</p>
+                                    )}
+                                </div>
                             </form>
                         </Card>
                     </div>
