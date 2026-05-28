@@ -101,6 +101,20 @@ export const translations = {
           'Prevenzione controversie commerciali'
         ]
       },
+      service5: {
+        title: 'Apertura Sedi USA & Team Locale',
+        description: 'Supporto completo per l\'apertura di uffici, filiali e dipartimenti aziendali in territorio americano. Dalla costituzione legale alla costruzione del team locale: professionisti selezionati e gi\u00e0 operativi sul territorio USA.',
+        items: [
+          'Costituzione LLC / Corporation negli Stati Uniti',
+          'Ricerca e selezione spazi ufficio e sedi operative',
+          'Reclutamento team locale: sales, operations, legal, HR',
+          'Onboarding e gestione iniziale del personale americano',
+          'Supporto fiscale e compliance USA (federal & state)',
+          'Affiancamento management italiano nel trasferimento operativo',
+          'Rete di professionisti locali: avvocati, accountant, broker',
+          'Go-to-market con presidio fisico sul territorio'
+        ]
+      },
       ctaTitle: 'Interessato ai Miei Servizi?',
       ctaText: 'Contattami per discutere come posso aiutare la tua azienda a crescere nei mercati internazionali.',
       ctaButton: 'Richiedi una Consulenza'
@@ -462,6 +476,20 @@ export const translations = {
           'Cross-border debt recovery',
           'International arbitration support',
           'Commercial dispute prevention'
+        ]
+      },
+      service5: {
+        title: 'US Office Setup & Local Team',
+        description: 'Full support for opening offices, branches and corporate departments on US soil. From legal incorporation to building your local team: vetted professionals already operating in the American market.',
+        items: [
+          'LLC / Corporation formation in the United States',
+          'Office space and operational facility search',
+          'Local team recruitment: sales, operations, legal, HR',
+          'Onboarding and initial management of US staff',
+          'US tax and compliance support (federal & state)',
+          'Operational transition support for Italian management',
+          'Local professional network: lawyers, accountants, brokers',
+          'Go-to-market with physical presence on the ground'
         ]
       },
       ctaTitle: 'Interested in My Services?',

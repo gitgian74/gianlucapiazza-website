@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../hooks/use-language';
-import { Globe, TrendingUp, Handshake, Scale, ArrowRight } from 'lucide-react';
+import { Globe, TrendingUp, Handshake, Scale, Building2, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { PageHeader } from '../components/shared/PageHeader';
 import { Section } from '../components/shared/Section';
@@ -39,6 +39,13 @@ export function Services() {
             iconWrapClass: 'bg-orange-500/10 text-orange-400',
             image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&q=80",
             data: t.services.service4
+        },
+        {
+            id: 'service5',
+            icon: <Building2 size={32} className="text-emerald-600" />,
+            iconWrapClass: 'bg-emerald-500/10 text-emerald-400',
+            image: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80",
+            data: t.services.service5
         }
     ];
 
