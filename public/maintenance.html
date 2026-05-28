@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="it" id="html-root">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>In aggiornamento — Gianluca Piazza</title>
+  <title>In aggiornamento / Under Maintenance — Gianluca Piazza</title>
   <meta name="robots" content="noindex, nofollow" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -111,21 +111,85 @@
     }
 
     .contact a:hover { opacity: 0.75; }
+
+    .lang-switch {
+      position: fixed;
+      top: 1.5rem;
+      right: 1.5rem;
+      display: flex;
+      gap: 0.4rem;
+    }
+
+    .lang-btn {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.3em 0.65em;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .lang-btn.active,
+    .lang-btn:hover {
+      color: var(--accent);
+      border-color: rgba(200,169,110,0.4);
+    }
+
+    [data-lang] { display: none; }
+    .lang-it [data-lang="it"],
+    .lang-en [data-lang="en"] { display: block; }
   </style>
 </head>
-<body>
+<body class="lang-it">
+
+  <div class="lang-switch">
+    <button class="lang-btn active" onclick="setLang('it')" id="btn-it">IT</button>
+    <button class="lang-btn" onclick="setLang('en')" id="btn-en">EN</button>
+  </div>
+
   <img class="logo" src="/logo.svg" alt="GP" onerror="this.style.display='none'" />
 
-  <div class="badge">In aggiornamento</div>
+  <div class="badge">
+    <span data-lang="it">In aggiornamento</span>
+    <span data-lang="en">Under Maintenance</span>
+  </div>
 
-  <h1>Torneremo presto.</h1>
+  <h1>
+    <span data-lang="it">Torneremo presto.</span>
+    <span data-lang="en">We’ll be back soon.</span>
+  </h1>
 
-  <p>Il sito è momentaneamente offline per aggiornamenti. Ci vediamo tra poco.</p>
+  <p>
+    <span data-lang="it">Il sito è momentaneamente offline per aggiornamenti. Ci vediamo tra poco.</span>
+    <span data-lang="en">The site is temporarily offline for updates. See you shortly.</span>
+  </p>
 
   <div class="divider"></div>
 
   <p class="contact">
-    Per contatti urgenti: <a href="mailto:mail@gianlucapiazza.com">mail@gianlucapiazza.com</a>
+    <span data-lang="it">Per contatti urgenti:</span>
+    <span data-lang="en">For urgent inquiries:</span>
+    <a href="mailto:mail@gianlucapiazza.com">mail@gianlucapiazza.com</a>
   </p>
+
+  <script>
+    function setLang(lang) {
+      document.body.className = 'lang-' + lang;
+      document.getElementById('html-root').lang = lang;
+      document.getElementById('btn-it').classList.toggle('active', lang === 'it');
+      document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+      localStorage.setItem('lang', lang);
+    }
+    (function() {
+      var saved = localStorage.getItem('lang');
+      var browser = (navigator.language || '').toLowerCase().startsWith('it') ? 'it' : 'en';
+      setLang(saved || browser);
+    })();
+  </script>
 </body>
 </html>
