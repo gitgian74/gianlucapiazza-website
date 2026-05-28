@@ -6,7 +6,7 @@
   "framework": "vite",
   "redirects": [
     {
-      "source": "/((?!maintenance.html).*)",
+      "source": "/((?!api/|maintenance\\.html).*)",
       "destination": "/maintenance.html",
       "permanent": false
     }
