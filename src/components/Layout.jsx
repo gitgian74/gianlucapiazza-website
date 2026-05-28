@@ -142,7 +142,7 @@ export function Layout({ children }) {
             </main>
 
             {/* Footer */}
-            <footer className="bg-card border-t border-border py-16 mt-auto relative overflow-hidden">
+            <footer className="bg-card border-t border-border py-10 md:py-16 mt-auto relative overflow-hidden">
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--color-primary)_0%,_transparent_40%)] opacity-5"></div>
 
                 <div className="container mx-auto px-6 relative z-10">

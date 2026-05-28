@@ -211,21 +211,21 @@ export function Home() {
             </section>
 
             {/* CTA Section */}
-            <section className="py-32 px-6">
+            <section className="py-12 md:py-24 px-4 md:px-6">
                 <div className="container mx-auto max-w-6xl">
-                    <div className="bg-primary rounded-[3rem] p-12 md:p-24 text-center relative overflow-hidden shadow-2xl shadow-primary/20 group">
+                    <div className="bg-primary rounded-[2rem] md:rounded-[3rem] p-8 md:p-20 text-center relative overflow-hidden shadow-2xl shadow-primary/20 group">
                         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--color-primary-foreground)_0%,_transparent_100%)] opacity-0 group-hover:opacity-5 transition-opacity duration-1000"></div>
 
                         <div className="relative z-10">
-                            <h2 className="text-4xl md:text-6xl font-bold text-primary-foreground mb-8 tracking-tight">
+                            <h2 className="text-2xl md:text-6xl font-bold text-primary-foreground mb-6 md:mb-8 tracking-tight">
                                 {t.home.ctaTitle}
                             </h2>
-                            <p className="text-xl md:text-2xl text-primary-foreground/80 mb-12 max-w-3xl mx-auto font-light">
+                            <p className="text-base md:text-2xl text-primary-foreground/80 mb-8 max-w-3xl mx-auto font-light">
                                 {t.home.ctaText}
                             </p>
                             <Link
                                 to="/contact"
-                                className="inline-flex items-center gap-3 px-12 py-6 bg-background text-foreground rounded-full font-bold text-xl hover:scale-105 transition-all shadow-xl"
+                                className="inline-flex items-center gap-3 px-8 md:px-12 py-4 md:py-6 bg-background text-foreground rounded-full font-bold text-base md:text-xl hover:scale-105 transition-all shadow-xl"
                             >
                                 {t.home.ctaButton}
                                 <ArrowRight size={24} />
