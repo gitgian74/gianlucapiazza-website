@@ -149,7 +149,7 @@ export function Layout({ children }) {
                     <div className="flex flex-col md:flex-row justify-between items-start gap-12 mb-16">
                         <div className="max-w-md">
                             <Link to="/" className="text-2xl font-bold tracking-tight mb-6 block">
-                                Gianluca Piazza
+                                GP & Partners
                             </Link>
                             <p className="text-muted-foreground text-lg leading-relaxed">
                                 {t.footer.about}
@@ -181,7 +181,7 @@ export function Layout({ children }) {
                     </div>
 
                     <div className="border-t border-border pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-muted-foreground text-sm">
-                        <p>&copy; {new Date().getFullYear()} Gianluca Piazza. {t.footer.rights}</p>
+                        <p>&copy; {new Date().getFullYear()} GP & Partners. {t.footer.rights}</p>
                         <div className="flex gap-6">
                             <Link to="/privacy" className="hover:text-foreground transition-colors">{t.footer.privacy}</Link>
                             <Link to="/privacy" className="hover:text-foreground transition-colors">{t.footer.cookie}</Link>

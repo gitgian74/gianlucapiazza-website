@@ -9,8 +9,8 @@ export const translations = {
       contact: 'Contatti'
     },
     home: {
-      title: 'Gianluca Piazza',
-      heroHeadline: 'Gianluca Piazza',
+      title: 'GP & Partners',
+      heroHeadline: 'GP & Partners',
       subtitle: 'Internazionalizzazione | Business Builder | Entrepreneur',
       tagline: 'Trasformo le sfide dell\'internazionalizzazione in opportunità di successo globale',
       futureTrading: 'The future of your trading',
@@ -370,8 +370,8 @@ export const translations = {
       contact: 'Contact'
     },
     home: {
-      title: 'Gianluca Piazza',
-      heroHeadline: 'Gianluca Piazza',
+      title: 'GP & Partners',
+      heroHeadline: 'GP & Partners',
       subtitle: 'Internationalization | Business Builder | Entrepreneur',
       tagline: 'I transform internationalization challenges into global success opportunities',
       futureTrading: 'The future of your trading',
