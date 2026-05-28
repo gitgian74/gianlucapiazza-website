@@ -17,6 +17,10 @@ const Contact = lazy(() => import('./pages/Contact').then(module => ({ default: 
 const MarketResearch = lazy(() => import('./pages/MarketResearch').then(module => ({ default: module.MarketResearch })));
 const Privacy = lazy(() => import('./pages/Privacy').then(module => ({ default: module.Privacy })));
 const NotFound = lazy(() => import('./pages/NotFound').then(module => ({ default: module.NotFound })));
+const Caribbean = lazy(() => import('./pages/markets/Caribbean').then(module => ({ default: module.Caribbean })));
+const Chicago = lazy(() => import('./pages/markets/Chicago').then(module => ({ default: module.Chicago })));
+const Boston = lazy(() => import('./pages/markets/Boston').then(module => ({ default: module.Boston })));
+const LasVegas = lazy(() => import('./pages/markets/LasVegas').then(module => ({ default: module.LasVegas })));
 
 // Loading component
 const PageLoader = () => (
@@ -64,6 +68,10 @@ function App() {
               <Route path="/contact" element={<Contact />} />
               <Route path="/market-research" element={<MarketResearch />} />
               <Route path="/privacy" element={<Privacy />} />
+              <Route path="/mercati/caraibi" element={<Caribbean />} />
+              <Route path="/mercati/chicago" element={<Chicago />} />
+              <Route path="/mercati/boston" element={<Boston />} />
+              <Route path="/mercati/las-vegas" element={<LasVegas />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>
