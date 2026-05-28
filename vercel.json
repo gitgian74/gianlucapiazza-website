@@ -10,7 +10,6 @@
       "destination": "/maintenance.html"
     }
   ],
-  "_maintenance_mode": true,
   "headers": [
     {
       "source": "/fonts/(.*)",
