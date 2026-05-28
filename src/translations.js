@@ -11,8 +11,10 @@ export const translations = {
     home: {
       title: 'GP & Partners',
       heroHeadline: 'GP & Partners',
-      subtitle: 'Internazionalizzazione | Business Builder | Entrepreneur',
-      tagline: 'Trasformo le sfide dell\'internazionalizzazione in opportunità di successo globale',
+      subtitle: 'USA Market Entry | Business Builder | Strategic Partner',
+      tagline: 'Apriamo le porte del mercato USA per le imprese italiane.',
+      taglineSub: 'Dalla strategia all\'esecuzione — con 18 anni di presenza diretta negli Stati Uniti.',
+      taglineUsa: 'Florida · New York · Texas · California',  
       futureTrading: 'The future of your trading',
       intro: 'Con oltre 18 anni di esperienza nei mercati internazionali, supporto aziende italiane ed europee nella loro espansione globale, con particolare focus sui mercati USA (Florida, TriState, Texas, Washington State, California, Las Vegas).',
       discoverServices: 'Scopri i Servizi',
@@ -27,9 +29,9 @@ export const translations = {
         ceo: 'Global Consultant'
       },
       servicesTitle: 'Aree di Competenza',
-      servicesSubtitle: 'Servizi specializzati per la crescita internazionale',
-      ctaTitle: 'Pronto a Espandere il Tuo Business?',
-      ctaText: 'Trasforma la tua visione globale in realtà. Contattami per una consulenza personalizzata.',
+      servicesSubtitle: 'Servizi specializzati per entrare e crescere nel mercato USA',
+      ctaTitle: 'Pronto ad entrare nel mercato USA?',
+      ctaText: 'GP & Partners ti affianca dalla strategia all\'esecuzione. Contattaci per una consulenza personalizzata.',
       ctaButton: 'Richiedi una Consulenza'
     },
     about: {
@@ -105,7 +107,7 @@ export const translations = {
     },
     projects: {
       title: 'Progetti e Case Studies',
-      subtitle: 'Alcuni dei progetti di internazionalizzazione e partnership strategiche che ho guidato con successo.',
+      subtitle: 'Alcuni dei progetti e partnership strategiche sul mercato USA che ho guidato con successo.',
       project1: {
         title: 'Birrificio Angelo Poretti × Starbucks Reserve',
         client: 'Cliente:',
@@ -245,7 +247,7 @@ export const translations = {
     },
     contact: {
       title: 'Contatti',
-      subtitle: 'Hai un progetto di internazionalizzazione? Parliamone insieme.',
+      subtitle: 'Vuoi entrare nel mercato USA? Parliamone insieme.',
       form: {
         name: 'Nome',
         email: 'Email',
@@ -283,7 +285,7 @@ export const translations = {
       disclaimer: "L'IA può commettere errori. Verifica le informazioni importanti e non inviare dati personali o confidenziali."
     },
     footer: {
-      about: 'Internazionalizzazione | Business Builder | Entrepreneur',
+      about: 'USA Market Entry | Business Builder | Strategic Partner',
       contactTitle: 'Contatti',
       quickLinks: 'Link Rapidi',
       rights: 'Tutti i diritti riservati.',
@@ -372,8 +374,10 @@ export const translations = {
     home: {
       title: 'GP & Partners',
       heroHeadline: 'GP & Partners',
-      subtitle: 'Internationalization | Business Builder | Entrepreneur',
-      tagline: 'I transform internationalization challenges into global success opportunities',
+      subtitle: 'USA Market Entry | Business Builder | Strategic Partner',
+      tagline: 'We open the US market for Italian businesses.',
+      taglineSub: 'From strategy to execution — 18 years of direct presence across the United States.',
+      taglineUsa: 'Florida · New York · Texas · California',  
       futureTrading: 'The future of your trading',
       intro: 'With over 18 years of experience in international markets, I support Italian and European companies in their global expansion, with a particular focus on US markets (Florida, TriState, Texas, Washington State, California, Las Vegas).',
       discoverServices: 'Discover Services',
@@ -388,9 +392,9 @@ export const translations = {
         ceo: 'Global Consultant'
       },
       servicesTitle: 'Areas of Expertise',
-      servicesSubtitle: 'Specialized services for international growth',
-      ctaTitle: 'Ready to Expand Your Business?',
-      ctaText: 'Transform your global vision into reality. Contact me for a personalized consultation.',
+      servicesSubtitle: 'Specialized services to enter and grow in the US market',
+      ctaTitle: 'Ready to enter the US market?',
+      ctaText: 'GP & Partners guides you from strategy to execution. Contact us for a personalized consultation.',
       ctaButton: 'Request a Consultation'
     },
     about: {
@@ -644,7 +648,7 @@ export const translations = {
       disclaimer: "AI can make mistakes. Verify important information and do not submit personal or confidential data."
     },
     footer: {
-      about: 'Internationalization | Business Builder | Entrepreneur',
+      about: 'USA Market Entry | Business Builder | Strategic Partner',
       contactTitle: 'Contact',
       quickLinks: 'Quick Links',
       rights: 'All rights reserved.',
