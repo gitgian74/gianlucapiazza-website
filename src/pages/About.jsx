@@ -2,7 +2,6 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../hooks/use-language';
 import { User, Briefcase, Award, BookOpen } from 'lucide-react';
-import { PageHeader } from '../components/shared/PageHeader';
 import { Section } from '../components/shared/Section';
 import { Card } from '../components/shared/Card';
 
@@ -17,31 +16,32 @@ export function About() {
                     <img
                         src="https://images.unsplash.com/photo-1546436836-07a91091f160?auto=format&fit=crop&q=80&w=1920"
                         alt="Miami Skyline"
-                        className="w-full h-full object-cover opacity-75"
+                        className="w-full h-full object-cover object-[58%_center] opacity-75"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-b from-background/30 via-background/60 to-background"></div>
+                    <div className="absolute inset-0 bg-gradient-to-b from-background/35 via-background/70 to-background"></div>
                 </div>
 
                 <div className="relative pt-32 pb-20 px-6 container mx-auto max-w-5xl z-10">
-                    <div className="flex flex-col md:flex-row items-center gap-12">
-                        {/* Profile Image */}
+                    <div className="grid md:grid-cols-[0.8fr_1.2fr] items-center gap-8 md:gap-12">
                         <motion.div
-                            initial={{ opacity: 0, scale: 0.9 }}
-                            animate={{ opacity: 1, scale: 1 }}
+                            initial={{ opacity: 0, y: 18 }}
+                            animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5 }}
-                            className="w-48 h-48 md:w-64 md:h-64 flex-shrink-0 relative"
+                            className="w-full max-w-sm mx-auto md:mx-0 rounded-3xl border border-white/10 bg-background/65 p-6 shadow-2xl backdrop-blur-xl"
                         >
-                            <div className="absolute inset-0 bg-blue-100 rounded-full blur-2xl opacity-50 transform translate-y-4"></div>
-                            <img
-                                src="/gianluca-profile.webp"
-                                alt="Gianluca Piazza"
-                                className="w-full h-full object-cover rounded-full shadow-xl border-4 border-white relative z-10"
-                                loading="eager"
-                            />
+                            <div className="mb-10 flex h-16 w-16 items-center justify-center rounded-2xl bg-primary text-2xl font-bold text-primary-foreground">
+                                GP
+                            </div>
+                            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.24em] text-primary">
+                                {t.about.heroKicker}
+                            </p>
+                            <p className="text-2xl font-semibold leading-tight text-white">
+                                {t.about.heroCard}
+                            </p>
                         </motion.div>
 
                         {/* Intro Text */}
-                        <div className="text-center md:text-left flex-grow">
+                        <div className="text-center md:text-left">
                             <motion.h1
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}

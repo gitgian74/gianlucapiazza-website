@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { useLanguage } from '../../hooks/use-language';
 
 const SITE_URL = 'https://gianlucapiazza.com';
-const DEFAULT_IMAGE = `${SITE_URL}/gianluca-profile.webp`;
+const DEFAULT_IMAGE = `${SITE_URL}/logo.png`;
 
 const META_BY_PATH = {
     '/': {

@@ -36,6 +36,8 @@ export const translations = {
     },
     about: {
       title: 'Chi Sono',
+      heroKicker: 'GP & Partners',
+      heroCard: 'Business development internazionale per aziende italiane che entrano nel mercato USA.',
       intro: 'Mi chiamo Gianluca Piazza e sono un manager per l\'internazionalizzazione e business developer con una carriera che abbraccia continenti e industrie. La mia missione è accompagnare le aziende nel loro percorso di espansione, trasformando visioni ambiziose in realtà concrete sui mercati globali.',
       experienceTitle: 'Esperienza Internazionale',
       experience1: 'Opero come consulente strategico indipendente, guidando aziende italiane ed europee nel complesso percorso di espansione verso i mercati esteri. La mia attività si concentra sulla creazione di ponti commerciali solidi e duraturi, sfruttando un network consolidato e una profonda conoscenza delle dinamiche di business internazionali.',
@@ -413,6 +415,8 @@ export const translations = {
     },
     about: {
       title: 'About Me',
+      heroKicker: 'GP & Partners',
+      heroCard: 'International business development for Italian companies entering the US market.',
       intro: 'My name is Gianluca Piazza and I am an internationalization manager and business developer with a career spanning continents and industries. My mission is to accompany companies on their expansion journey, transforming ambitious visions into concrete realities in global markets.',
       experienceTitle: 'International Experience',
       experience1: 'I operate as an independent strategic consultant, guiding Italian and European companies through the complex journey of expansion into foreign markets. My activity focuses on creating solid and lasting commercial bridges, leveraging a consolidated network and deep knowledge of international business dynamics.',
