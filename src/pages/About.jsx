@@ -83,7 +83,26 @@ export function About() {
                 </div>
             </header>
 
-            <Section className="relative z-20 -mt-8 max-w-6xl">
+            <Section className="relative z-20 -mt-16 max-w-6xl">
+                <motion.figure
+                    initial={{ opacity: 0, y: 24 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.55 }}
+                    className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-slate-950 shadow-2xl shadow-slate-950/30"
+                >
+                    <img
+                        src="/images/vr-work-strategy-room.webp"
+                        alt="Scenario di lavoro immersivo con dashboard 3D e interfacce VR"
+                        className="aspect-[16/9] w-full object-cover"
+                        loading="lazy"
+                    />
+                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-slate-950/42 via-transparent to-blue-950/12"></div>
+                    <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-background/50 to-transparent"></div>
+                </motion.figure>
+            </Section>
+
+            <Section className="relative z-10 max-w-6xl">
                 <div className="grid gap-8 lg:grid-cols-12">
 
                     {/* Left Column - Main Content */}
