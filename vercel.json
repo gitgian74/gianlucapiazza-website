@@ -4,13 +4,6 @@
   "devCommand": "npm run dev",
   "installCommand": "pnpm install",
   "framework": "vite",
-  "redirects": [
-    {
-      "source": "/((?!api/|maintenance\\.html).*)",
-      "destination": "/maintenance.html",
-      "permanent": false
-    }
-  ],
   "rewrites": [
     {
       "source": "/(.*)",
