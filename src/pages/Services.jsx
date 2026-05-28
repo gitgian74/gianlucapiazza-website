@@ -16,28 +16,28 @@ export function Services() {
             id: 'service1',
             icon: <Globe size={32} className="text-blue-600" />,
             iconWrapClass: 'bg-blue-500/10 text-blue-400',
-            image: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&q=80",
+            image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80",
             data: t.services.service1
         },
         {
             id: 'service2',
             icon: <TrendingUp size={32} className="text-purple-600" />,
             iconWrapClass: 'bg-purple-500/10 text-purple-400',
-            image: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80",
+            image: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&q=80",
             data: t.services.service2
         },
         {
             id: 'service3',
             icon: <Handshake size={32} className="text-green-600" />,
             iconWrapClass: 'bg-green-500/10 text-green-400',
-            image: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&q=80",
+            image: "https://images.unsplash.com/photo-1664575602554-2087b04935a5?auto=format&fit=crop&q=80",
             data: t.services.service3
         },
         {
             id: 'service4',
             icon: <Scale size={32} className="text-orange-600" />,
             iconWrapClass: 'bg-orange-500/10 text-orange-400',
-            image: "https://images.unsplash.com/photo-1505664194779-8beaceb93744?auto=format&fit=crop&q=80",
+            image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&q=80",
             data: t.services.service4
         }
     ];

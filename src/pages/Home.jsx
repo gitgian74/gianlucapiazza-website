@@ -122,7 +122,7 @@ export function Home() {
             </section>
 
             {/* Intro Text */}
-            <section className="py-32 px-6 relative z-10">
+            <section className="py-12 px-6 relative z-10">
                 <div className="container mx-auto max-w-4xl text-center">
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
