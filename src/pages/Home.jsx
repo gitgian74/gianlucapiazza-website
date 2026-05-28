@@ -138,7 +138,7 @@ export function Home() {
             </section>
 
             {/* Services Preview - Apple Style Cards */}
-            <section className="py-24 px-6 bg-secondary/30">
+            <section className="py-12 md:py-24 px-4 md:px-6 bg-secondary/30">
                 <div className="container mx-auto max-w-7xl">
                     <div className="text-center mb-10 md:mb-20">
                         <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">{t.home.servicesTitle}</h2>
@@ -154,14 +154,14 @@ export function Home() {
                                     <div className="mb-8 p-5 bg-blue-500/10 rounded-2xl inline-block text-primary group-hover:scale-110 transition-transform duration-500">
                                         <Globe size={40} />
                                     </div>
-                                    <h3 className="text-3xl font-bold text-foreground mb-6 group-hover:text-primary transition-colors">
+                                    <h3 className="text-lg md:text-3xl font-bold text-foreground mb-4 md:mb-6 group-hover:text-primary transition-colors leading-tight">
                                         {t.services.service1.title}
                                     </h3>
-                                    <p className="text-xl text-muted-foreground leading-relaxed">
+                                    <p className="text-sm md:text-xl text-muted-foreground leading-relaxed">
                                         {t.services.service1.description}
                                     </p>
                                 </div>
-                                <div className="mt-10 flex items-center text-primary font-bold text-lg">
+                                <div className="mt-6 md:mt-10 flex items-center text-primary font-bold text-sm md:text-lg">
                                     {t.home.learnMore} <ArrowRight size={20} className="ml-2 group-hover:translate-x-2 transition-transform" />
                                 </div>
                             </div>
@@ -175,14 +175,14 @@ export function Home() {
                                     <div className="mb-8 p-5 bg-purple-500/10 rounded-2xl inline-block text-purple-500 group-hover:scale-110 transition-transform duration-500">
                                         <TrendingUp size={40} />
                                     </div>
-                                    <h3 className="text-3xl font-bold text-foreground mb-6 group-hover:text-purple-500 transition-colors">
+                                    <h3 className="text-lg md:text-3xl font-bold text-foreground mb-4 md:mb-6 group-hover:text-purple-500 transition-colors leading-tight">
                                         {t.services.service2.title}
                                     </h3>
-                                    <p className="text-xl text-muted-foreground leading-relaxed">
+                                    <p className="text-sm md:text-xl text-muted-foreground leading-relaxed">
                                         {t.services.service2.description}
                                     </p>
                                 </div>
-                                <div className="mt-10 flex items-center text-purple-500 font-bold text-lg">
+                                <div className="mt-6 md:mt-10 flex items-center text-purple-500 font-bold text-sm md:text-lg">
                                     {t.home.learnMore} <ArrowRight size={20} className="ml-2 group-hover:translate-x-2 transition-transform" />
                                 </div>
                             </div>
