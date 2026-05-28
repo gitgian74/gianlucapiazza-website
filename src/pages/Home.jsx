@@ -145,7 +145,7 @@ export function Home() {
                         <p className="text-xl text-muted-foreground max-w-2xl mx-auto">{t.home.servicesSubtitle}</p>
                     </div>
 
-                    <div className="grid md:grid-cols-2 gap-8">
+                    <div className="grid md:grid-cols-3 gap-6 md:gap-8">
                         <Link to="/services" className="group">
                             <div className="bg-card p-6 md:p-12 rounded-[1.5rem] md:rounded-[2.5rem] shadow-sm border border-border/50 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 h-full flex flex-col justify-between overflow-hidden relative">
                                 <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/5 rounded-full blur-3xl -mr-16 -mt-16 transition-opacity group-hover:opacity-100 opacity-50"></div>
@@ -183,6 +183,25 @@ export function Home() {
                                     </p>
                                 </div>
                                 <div className="mt-6 md:mt-10 flex items-center text-purple-500 font-bold text-sm md:text-lg">
+                                    {t.home.learnMore} <ArrowRight size={20} className="ml-2 group-hover:translate-x-2 transition-transform" />
+                                </div>
+                            </div>
+                        </Link>
+                        <Link to="/services" className="group">
+                            <div className="bg-card p-6 md:p-12 rounded-[1.5rem] md:rounded-[2.5rem] shadow-sm border border-border/50 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 h-full flex flex-col justify-between overflow-hidden relative">
+                                <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-500/5 rounded-full blur-3xl -mr-16 -mt-16 transition-opacity group-hover:opacity-100 opacity-50"></div>
+                                <div>
+                                    <div className="mb-5 md:mb-8 p-4 md:p-5 bg-emerald-500/10 rounded-2xl inline-block text-emerald-500 group-hover:scale-110 transition-transform duration-500">
+                                        <Building2 size={28} />
+                                    </div>
+                                    <h3 className="text-lg md:text-3xl font-bold text-foreground mb-4 md:mb-6 group-hover:text-emerald-500 transition-colors leading-tight">
+                                        {t.services.service5.title}
+                                    </h3>
+                                    <p className="text-sm md:text-xl text-muted-foreground leading-relaxed">
+                                        {t.services.service5.description}
+                                    </p>
+                                </div>
+                                <div className="mt-6 md:mt-10 flex items-center text-emerald-500 font-bold text-sm md:text-lg">
                                     {t.home.learnMore} <ArrowRight size={20} className="ml-2 group-hover:translate-x-2 transition-transform" />
                                 </div>
                             </div>
