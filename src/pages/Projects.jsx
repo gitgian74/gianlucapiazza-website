@@ -36,7 +36,7 @@ export function Projects() {
             <PageHeader
                 title={t.projects.title}
                 subtitle={t.projects.subtitle}
-                backgroundImage="https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?auto=format&fit=crop&q=80&w=1920"
+                backgroundImage="https://images.unsplash.com/photo-1533929736458-ca588d08c8be?auto=format&fit=crop&q=80&w=1920"
             />
 
             <Section className="max-w-6xl">
