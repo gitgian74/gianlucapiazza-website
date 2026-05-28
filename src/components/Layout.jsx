@@ -41,9 +41,9 @@ export function Layout({ children }) {
                 <motion.nav
                     initial={shouldReduceMotion ? false : { y: -100, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
-                    className={`pointer-events-auto flex items-center gap-2 p-2 rounded-full transition-all duration-500 ${isScrolled
-                            ? 'bg-background/80 backdrop-blur-xl shadow-lg border border-border/50'
-                            : 'bg-transparent'
+                    className={`pointer-events-auto flex items-center gap-2 p-2 rounded-full border transition-all duration-500 ${isScrolled
+                            ? 'bg-slate-950/85 border-white/15 shadow-2xl shadow-slate-950/20 backdrop-blur-2xl'
+                            : 'bg-slate-950/55 border-white/15 shadow-xl shadow-slate-950/20 backdrop-blur-2xl'
                         }`}
                 >
                     <Link to="/" className="flex items-center justify-center w-10 h-10 rounded-full bg-primary text-primary-foreground font-bold text-xl mr-2 hover:scale-105 transition-transform">
@@ -57,8 +57,8 @@ export function Layout({ children }) {
                                 key={link.path}
                                 to={link.path}
                                 className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${isActive(link.path)
-                                        ? 'bg-foreground text-background shadow-sm'
-                                        : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
+                                        ? 'bg-white text-slate-950 shadow-sm'
+                                        : 'text-white/82 hover:text-white hover:bg-white/10'
                                     }`}
                             >
                                 {link.label}
@@ -66,13 +66,13 @@ export function Layout({ children }) {
                         ))}
                     </div>
 
-                    <div className="h-6 w-px bg-border/50 mx-2 hidden md:block"></div>
+                    <div className="h-6 w-px bg-white/20 mx-2 hidden md:block"></div>
 
                     <div className="flex items-center gap-2">
                         <button
                             onClick={toggleLanguage}
                             aria-label={language === 'it' ? 'Switch language to English' : 'Cambia lingua in italiano'}
-                            className="flex items-center justify-center w-10 h-10 rounded-full hover:bg-muted transition-colors text-sm font-medium text-muted-foreground hover:text-foreground"
+                            className="flex items-center justify-center w-10 h-10 rounded-full text-sm font-medium text-white/82 transition-colors hover:bg-white/10 hover:text-white"
                         >
                             {language.toUpperCase()}
                         </button>
@@ -87,7 +87,7 @@ export function Layout({ children }) {
 
                         {/* Mobile Menu Toggle */}
                         <button
-                            className="md:hidden p-2 text-foreground hover:bg-muted rounded-full transition-colors"
+                            className="md:hidden p-2 text-white hover:bg-white/10 rounded-full transition-colors"
                             onClick={() => setIsMenuOpen(!isMenuOpen)}
                             aria-label={isMenuOpen ? 'Chiudi menu' : 'Apri menu'}
                             aria-expanded={isMenuOpen}
