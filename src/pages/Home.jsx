@@ -35,7 +35,8 @@ export function Home() {
                         fetchPriority="high"
                         loading="eager"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-background"></div>
+                    <div className="absolute inset-0 bg-gradient-to-b from-slate-950/45 via-slate-950/15 to-background"></div>
+                    <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(15,23,42,0.72)_0%,_rgba(15,23,42,0.44)_34%,_rgba(15,23,42,0.16)_58%,_transparent_78%)]"></div>
                 </div>
 
                 <div className="container mx-auto px-6 relative z-10 text-center">
@@ -45,14 +46,14 @@ export function Home() {
                         transition={{ duration: 0.8, ease: "easeOut" }}
                         className="max-w-4xl mx-auto"
                     >
-                        <h1 className="text-6xl md:text-8xl font-bold text-white mb-8 tracking-tight leading-tight drop-shadow-lg">
+                        <h1 className="text-6xl md:text-8xl font-bold text-white mb-8 tracking-tight leading-tight drop-shadow-2xl">
                             {t.home.heroHeadline}
                         </h1>
 
-                        <p className="text-xl md:text-2xl text-blue-50 mb-4 max-w-2xl mx-auto font-light leading-relaxed drop-shadow-md">
+                        <p className="text-xl md:text-2xl text-white/95 mb-4 max-w-2xl mx-auto font-normal leading-relaxed drop-shadow-[0_2px_18px_rgba(2,6,23,0.95)]">
                             {t.home.tagline}
                         </p>
-                        <p className="text-base md:text-lg text-blue-100 mb-12 max-w-2xl mx-auto font-light leading-relaxed drop-shadow-md">
+                        <p className="text-base md:text-lg text-white/78 mb-12 max-w-2xl mx-auto font-normal leading-relaxed tracking-wide drop-shadow-[0_2px_16px_rgba(2,6,23,0.9)]">
                             {t.home.subtitle}
                         </p>
 
