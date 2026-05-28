@@ -65,7 +65,7 @@ export const translations = {
         'Niente folklore sul Made in Italy: negli USA contano valore, margine, affidabilità e velocità.'
       ],
       skillsTitle: 'Competenze Chiave',
-      skills: ['USA Market Entry', 'Business Development', 'Retail Negotiation', 'Strategic Partnerships', 'Local Team Setup', 'Cross-border Disputes']
+      skills: ['USA Market Entry', 'Strategic Planning', 'Project Management', 'Brand Consulting', 'Marketing Consulting', 'PR & Positioning', 'Retail Negotiation', 'SEM']
     },
     services: {
       title: 'Servizi di Consulenza',
@@ -459,7 +459,7 @@ export const translations = {
         'No folklore about Made in Italy: in the US, value, margin, reliability, and speed matter.'
       ],
       skillsTitle: 'Key Skills',
-      skills: ['USA Market Entry', 'Business Development', 'Retail Negotiation', 'Strategic Partnerships', 'Local Team Setup', 'Cross-border Disputes']
+      skills: ['USA Market Entry', 'Strategic Planning', 'Project Management', 'Brand Consulting', 'Marketing Consulting', 'PR & Positioning', 'Retail Negotiation', 'SEM']
     },
     services: {
       title: 'Consulting Services',
