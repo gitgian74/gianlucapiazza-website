@@ -85,55 +85,52 @@ export function Home() {
             </section>
 
             {/* Stats Cards - Floating Overlap */}
-            <section className="py-20 px-6 -mt-24 relative z-20">
+            <section className="py-12 px-6 md:-mt-24 relative z-20">
                 <div className="container mx-auto max-w-6xl">
                     <motion.div
                         variants={container}
                         initial="hidden"
                         whileInView="show"
                         viewport={{ once: true }}
-                        className="grid grid-cols-1 md:grid-cols-3 gap-8"
+                        className="grid grid-cols-3 gap-3 md:gap-8"
                     >
-                        <motion.div variants={item} className="glass-card p-10 rounded-[2rem] hover:scale-[1.02] transition-transform duration-300">
-                            <div className="w-14 h-14 bg-blue-500/20 rounded-2xl flex items-center justify-center text-blue-400 mb-6">
-                                <Globe size={28} />
+                        <motion.div variants={item} className="glass-card p-4 md:p-10 rounded-[1.5rem] md:rounded-[2rem] hover:scale-[1.02] transition-transform duration-300">
+                            <div className="w-10 h-10 md:w-14 md:h-14 bg-blue-500/20 rounded-2xl flex items-center justify-center text-blue-400 mb-4">
+                                <Globe size={20} />
                             </div>
-                            <h3 className="text-5xl font-bold text-white mb-2">{t.home.stats.experienceValue}</h3>
-                            <p className="text-muted-foreground font-medium text-lg">{t.home.stats.experience}</p>
+                            <h3 className="text-2xl md:text-5xl font-bold text-white mb-1 md:mb-2">{t.home.stats.experienceValue}</h3>
+                            <p className="text-muted-foreground font-medium text-xs md:text-lg">{t.home.stats.experience}</p>
                         </motion.div>
 
-                        <motion.div variants={item} className="glass-card p-10 rounded-[2rem] hover:scale-[1.02] transition-transform duration-300">
-                            <div className="w-14 h-14 bg-green-500/20 rounded-2xl flex items-center justify-center text-green-400 mb-6">
-                                <TrendingUp size={28} />
+                        <motion.div variants={item} className="glass-card p-4 md:p-10 rounded-[1.5rem] md:rounded-[2rem] hover:scale-[1.02] transition-transform duration-300">
+                            <div className="w-10 h-10 md:w-14 md:h-14 bg-green-500/20 rounded-2xl flex items-center justify-center text-green-400 mb-4">
+                                <TrendingUp size={20} />
                             </div>
-                            <h3 className="text-5xl font-bold text-white mb-2">{t.home.stats.marketsValue}</h3>
-                            <p className="text-muted-foreground font-medium text-lg">{t.home.stats.markets}</p>
+                            <h3 className="text-2xl md:text-5xl font-bold text-white mb-1 md:mb-2">{t.home.stats.marketsValue}</h3>
+                            <p className="text-muted-foreground font-medium text-xs md:text-lg">{t.home.stats.markets}</p>
                         </motion.div>
 
-                        <motion.div variants={item} className="glass-card p-10 rounded-[2rem] hover:scale-[1.02] transition-transform duration-300">
-                            <div className="w-14 h-14 bg-purple-500/20 rounded-2xl flex items-center justify-center text-purple-400 mb-6">
-                                <Building2 size={28} />
+                        <motion.div variants={item} className="glass-card p-4 md:p-10 rounded-[1.5rem] md:rounded-[2rem] hover:scale-[1.02] transition-transform duration-300">
+                            <div className="w-10 h-10 md:w-14 md:h-14 bg-purple-500/20 rounded-2xl flex items-center justify-center text-purple-400 mb-4">
+                                <Building2 size={20} />
                             </div>
-                            <h3 className="text-5xl font-bold text-white mb-2">Global</h3>
-                            <p className="text-muted-foreground font-medium text-lg">{t.home.stats.partnerships}</p>
+                            <h3 className="text-2xl md:text-5xl font-bold text-white mb-1 md:mb-2">Global</h3>
+                            <p className="text-muted-foreground font-medium text-xs md:text-lg">{t.home.stats.partnerships}</p>
                         </motion.div>
                     </motion.div>
                 </div>
             </section>
 
             {/* Intro Text */}
-            <section className="py-12 px-6 relative z-10">
-                <div className="container mx-auto max-w-4xl text-center">
+            <section className="py-8 md:py-12 px-6 relative z-10">
+                <div className="container mx-auto max-w-3xl text-center">
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.8 }}
                     >
-                        <h2 className="text-4xl md:text-6xl font-bold text-foreground mb-12 tracking-tight">
-                            {t.home.intro.split('.')[0]}.
-                        </h2>
-                        <p className="text-2xl text-muted-foreground leading-relaxed font-light">
+                        <p className="text-base md:text-xl text-muted-foreground leading-relaxed font-light">
                             {t.home.intro}
                         </p>
                     </motion.div>
@@ -143,14 +140,14 @@ export function Home() {
             {/* Services Preview - Apple Style Cards */}
             <section className="py-24 px-6 bg-secondary/30">
                 <div className="container mx-auto max-w-7xl">
-                    <div className="text-center mb-20">
+                    <div className="text-center mb-10 md:mb-20">
                         <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">{t.home.servicesTitle}</h2>
                         <p className="text-xl text-muted-foreground max-w-2xl mx-auto">{t.home.servicesSubtitle}</p>
                     </div>
 
                     <div className="grid md:grid-cols-2 gap-8">
                         <Link to="/services" className="group">
-                            <div className="bg-card p-12 rounded-[2.5rem] shadow-sm border border-border/50 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 h-full flex flex-col justify-between overflow-hidden relative">
+                            <div className="bg-card p-6 md:p-12 rounded-[1.5rem] md:rounded-[2.5rem] shadow-sm border border-border/50 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 h-full flex flex-col justify-between overflow-hidden relative">
                                 <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/5 rounded-full blur-3xl -mr-16 -mt-16 transition-opacity group-hover:opacity-100 opacity-50"></div>
 
                                 <div>
@@ -171,7 +168,7 @@ export function Home() {
                         </Link>
 
                         <Link to="/services" className="group">
-                            <div className="bg-card p-12 rounded-[2.5rem] shadow-sm border border-border/50 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 h-full flex flex-col justify-between overflow-hidden relative">
+                            <div className="bg-card p-6 md:p-12 rounded-[1.5rem] md:rounded-[2.5rem] shadow-sm border border-border/50 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 h-full flex flex-col justify-between overflow-hidden relative">
                                 <div className="absolute top-0 right-0 w-64 h-64 bg-purple-500/5 rounded-full blur-3xl -mr-16 -mt-16 transition-opacity group-hover:opacity-100 opacity-50"></div>
 
                                 <div>
