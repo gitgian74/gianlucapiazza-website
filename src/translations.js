@@ -29,7 +29,7 @@ export const translations = {
         ceo: 'Global Consultant'
       },
       servicesTitle: 'Aree di Competenza',
-      servicesSubtitle: 'Servizi specializzati per entrare e crescere nel mercato USA',
+      servicesSubtitle: 'Dal singolo professionista al team dedicato: servizi modulari per entrare e crescere nel mercato USA',
       ctaTitle: 'Pronto ad entrare nel mercato USA?',
       ctaText: 'GP & Partners ti affianca dalla strategia all\'esecuzione. Contattaci per una consulenza personalizzata.',
       ctaButton: 'Richiedi una Consulenza'
@@ -69,7 +69,14 @@ export const translations = {
     },
     services: {
       title: 'Servizi di Consulenza',
-      intro: 'Offro servizi di consulenza specializzati per accompagnare le aziende nel loro percorso di crescita internazionale, con particolare focus sui mercati USA e sull\'integrazione di innovazione tecnologica nelle strategie di business.',
+      subtitle: 'Competenze modulari per progetti internazionali: dall\'intervento specialistico al team operativo dedicato.',
+      intro: 'GP & Partners è uno studio operativo che affianca aziende e imprenditori nei percorsi di crescita internazionale, con particolare focus sul mercato USA, sulle partnership commerciali e sull\'integrazione di competenze specialistiche nei processi aziendali.',
+      modular: {
+        eyebrow: 'Modulare e scalabile',
+        title: 'Dal singolo professionista al team dedicato',
+        text: 'Ogni progetto può partire in modo mirato, con un professionista specializzato su una fase specifica, oppure crescere fino a un team di lavoro dedicato. È prevista anche disponibilità come temporary manager per export, sviluppo commerciale e avviamento fisico della presenza aziendale nel mercato USA.',
+        steps: ['Intervento mirato', 'Temporary manager', 'Unità specialistica', 'Team dedicato']
+      },
       service1: {
         title: 'Consulenza Internazionalizzazione',
         description: 'Supporto strategico completo per l\'espansione internazionale della tua azienda. Dall\'analisi dei mercati target alla definizione della strategia di ingresso, fino all\'implementazione operativa e al consolidamento della presenza estera.',
@@ -85,11 +92,12 @@ export const translations = {
         marketsList: 'Stati Uniti (Miami, New York, San Francisco), Europa, Mercati emergenti'
       },
       service2: {
-        title: 'Business Development',
-        description: 'Sviluppo di nuove opportunità di business, identificazione di canali distributivi e creazione di partnership strategiche per accelerare la crescita aziendale.',
+        title: 'Business Development & Temporary Export Manager',
+        description: 'Sviluppo di nuove opportunità di business, identificazione di canali distributivi e creazione di partnership strategiche per accelerare la crescita aziendale. Disponibilità anche come temporary export/commercial manager per guidare una fase operativa di ingresso o sviluppo nel mercato USA.',
         items: [
           'Identificazione opportunità di crescita',
           'Sviluppo rete commerciale',
+          'Temporary export manager per avvio o sviluppo USA',
           'Analisi competitor e posizionamento',
           'Strategie di go-to-market',
           'KPI e monitoraggio performance'
@@ -120,10 +128,11 @@ export const translations = {
       },
       service5: {
         title: 'Apertura Sedi USA & Team Locale',
-        description: 'Supporto completo per l\'apertura di uffici, filiali e dipartimenti aziendali in territorio americano. Dalla costituzione legale alla costruzione del team locale: professionisti selezionati e gi\u00e0 operativi sul territorio USA.',
+        description: 'Supporto completo per l\'apertura di uffici, filiali e dipartimenti aziendali in territorio americano. Dalla costituzione legale alla costruzione del team locale, con affiancamento temporary management per l\'avviamento fisico e operativo dell\'impresa negli Stati Uniti.',
         items: [
           'Costituzione LLC / Corporation negli Stati Uniti',
           'Ricerca e selezione spazi ufficio e sedi operative',
+          'Avviamento fisico dell\'impresa e presidio operativo iniziale',
           'Reclutamento team locale: sales, operations, legal, HR',
           'Onboarding e gestione iniziale del personale americano',
           'Supporto fiscale e compliance USA (federal & state)',
@@ -132,8 +141,8 @@ export const translations = {
           'Go-to-market con presidio fisico sul territorio'
         ]
       },
-      ctaTitle: 'Interessato ai Miei Servizi?',
-      ctaText: 'Contattami per discutere come posso aiutare la tua azienda a crescere nei mercati internazionali.',
+      ctaTitle: 'Vuoi strutturare il tuo progetto internazionale?',
+      ctaText: 'Partiamo dal punto in cui si trova la tua azienda: un intervento mirato, una funzione specialistica o un team dedicato al mercato USA.',
       ctaButton: 'Richiedi una Consulenza'
     },
     projects: {
@@ -423,7 +432,7 @@ export const translations = {
         ceo: 'Global Consultant'
       },
       servicesTitle: 'Areas of Expertise',
-      servicesSubtitle: 'Specialized services to enter and grow in the US market',
+      servicesSubtitle: 'From a single specialist to a dedicated team: modular services to enter and grow in the US market',
       ctaTitle: 'Ready to enter the US market?',
       ctaText: 'GP & Partners guides you from strategy to execution. Contact us for a personalized consultation.',
       ctaButton: 'Request a Consultation'
@@ -463,7 +472,14 @@ export const translations = {
     },
     services: {
       title: 'Consulting Services',
-      intro: 'I offer specialized consulting services to accompany companies on their international growth journey, with particular focus on US markets and integration of technological innovation into business strategies.',
+      subtitle: 'Modular capabilities for international projects: from specialist engagement to a dedicated operating team.',
+      intro: 'GP & Partners is an operating studio supporting companies and entrepreneurs in international growth projects, with a specific focus on the US market, commercial partnerships, and the integration of specialist capabilities into business processes.',
+      modular: {
+        eyebrow: 'Modular and scalable',
+        title: 'From a single specialist to a dedicated team',
+        text: 'Each project can start with a focused specialist working on one specific phase, or scale into a dedicated working team. Temporary management is also available for export, commercial development, and the physical setup of the company presence in the US market.',
+        steps: ['Focused engagement', 'Temporary manager', 'Specialist unit', 'Dedicated team']
+      },
       service1: {
         title: 'Internationalization Consulting',
         description: 'Complete strategic support for your company\'s international expansion. From target market analysis to entry strategy definition, to operational implementation and consolidation of foreign presence.',
@@ -479,11 +495,12 @@ export const translations = {
         marketsList: 'United States (Miami, New York, San Francisco), Europe, Emerging markets'
       },
       service2: {
-        title: 'Business Development',
-        description: 'Development of new business opportunities, identification of distribution channels and creation of strategic partnerships to accelerate company growth.',
+        title: 'Business Development & Temporary Export Manager',
+        description: 'Development of new business opportunities, identification of distribution channels and creation of strategic partnerships to accelerate company growth. Available also as temporary export/commercial manager to lead an operating phase of US market entry or development.',
         items: [
           'Growth opportunity identification',
           'Commercial network development',
+          'Temporary export manager for US launch or development',
           'Competitor analysis and positioning',
           'Go-to-market strategies',
           'KPIs and performance monitoring'
@@ -514,10 +531,11 @@ export const translations = {
       },
       service5: {
         title: 'US Office Setup & Local Team',
-        description: 'Full support for opening offices, branches and corporate departments on US soil. From legal incorporation to building your local team: vetted professionals already operating in the American market.',
+        description: 'Full support for opening offices, branches and corporate departments on US soil. From legal incorporation to building your local team, with temporary management support for the physical and operational setup of the company in the United States.',
         items: [
           'LLC / Corporation formation in the United States',
           'Office space and operational facility search',
+          'Physical company setup and initial operating oversight',
           'Local team recruitment: sales, operations, legal, HR',
           'Onboarding and initial management of US staff',
           'US tax and compliance support (federal & state)',
@@ -526,8 +544,8 @@ export const translations = {
           'Go-to-market with physical presence on the ground'
         ]
       },
-      ctaTitle: 'Interested in My Services?',
-      ctaText: 'Contact me to discuss how I can help your company grow in international markets.',
+      ctaTitle: 'Ready to structure your international project?',
+      ctaText: 'We start from where your company is today: a focused engagement, a specialist function, or a dedicated team for the US market.',
       ctaButton: 'Request a Consultation'
     },
     projects: {

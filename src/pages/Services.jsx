@@ -9,7 +9,7 @@ import { Card } from '../components/shared/Card';
 import { Button } from '../components/shared/Button';
 
 export function Services() {
-    const { t } = useLanguage();
+    const { language, t } = useLanguage();
 
     const services = [
         {
@@ -49,6 +49,33 @@ export function Services() {
         }
     ];
 
+    const usMarketPaths = [
+        {
+            to: '/usa-market-entry-italian-companies',
+            label: language === 'it' ? 'USA Market Entry' : 'USA Market Entry',
+        },
+        {
+            to: '/temporary-export-manager-usa',
+            label: language === 'it' ? 'Temporary Export Manager USA' : 'Temporary Export Manager USA',
+        },
+        {
+            to: '/ricerca-distributori-usa',
+            label: language === 'it' ? 'Ricerca distributori USA' : 'US Distributor Search',
+        },
+        {
+            to: '/business-development-usa',
+            label: language === 'it' ? 'Business Development USA' : 'Business Development USA',
+        },
+        {
+            to: '/us-retail-partnerships',
+            label: language === 'it' ? 'Retail partnership USA' : 'US Retail Partnerships',
+        },
+        {
+            to: '/vendere-prodotti-italiani-usa',
+            label: language === 'it' ? 'Vendere prodotti italiani negli USA' : 'Selling Italian Products in the USA',
+        },
+    ];
+
     return (
         <div className="min-h-screen bg-background pb-20">
             {/* Header */}
@@ -59,6 +86,39 @@ export function Services() {
             />
 
             <Section className="max-w-7xl">
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    className="mb-14 md:mb-20"
+                >
+                    <div className="grid lg:grid-cols-[1.1fr_1fr] gap-8 md:gap-12 items-start">
+                        <div>
+                            <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
+                                {t.services.intro}
+                            </p>
+                        </div>
+                        <div className="border border-border/70 bg-card/60 rounded-3xl p-6 md:p-8">
+                            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary mb-3">
+                                {t.services.modular.eyebrow}
+                            </p>
+                            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
+                                {t.services.modular.title}
+                            </h2>
+                            <p className="text-muted-foreground leading-relaxed mb-6">
+                                {t.services.modular.text}
+                            </p>
+                            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
+                                {t.services.modular.steps.map((step) => (
+                                    <div key={step} className="rounded-2xl border border-border/70 bg-background/70 px-4 py-3 text-sm font-medium text-foreground">
+                                        {step}
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                </motion.div>
+
                 <div className="grid md:grid-cols-2 gap-8">
                     {services.map((service, index) => (
                         <Card
@@ -116,6 +176,24 @@ export function Services() {
                             </div>
                         </Card>
                     ))}
+                </div>
+
+                <div className="mt-16 border-y border-border/70 py-8">
+                    <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary mb-5">
+                        {language === 'it' ? 'Percorsi USA' : 'US Paths'}
+                    </p>
+                    <div className="flex flex-wrap gap-3">
+                        {usMarketPaths.map((path) => (
+                            <Link
+                                key={path.to}
+                                to={path.to}
+                                className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-background px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-primary hover:text-primary"
+                            >
+                                {path.label}
+                                <ArrowRight size={15} />
+                            </Link>
+                        ))}
+                    </div>
                 </div>
 
                 {/* CTA Section */}

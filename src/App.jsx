@@ -21,6 +21,12 @@ const Caribbean = lazy(() => import('./pages/markets/Caribbean').then(module => 
 const Chicago = lazy(() => import('./pages/markets/Chicago').then(module => ({ default: module.Chicago })));
 const Boston = lazy(() => import('./pages/markets/Boston').then(module => ({ default: module.Boston })));
 const LasVegas = lazy(() => import('./pages/markets/LasVegas').then(module => ({ default: module.LasVegas })));
+const UsaMarketEntryItalianCompanies = lazy(() => import('./pages/seo/UsaMarketEntryItalianCompanies').then(module => ({ default: module.UsaMarketEntryItalianCompanies })));
+const BusinessDevelopmentUsa = lazy(() => import('./pages/seo/BusinessDevelopmentUsa').then(module => ({ default: module.BusinessDevelopmentUsa })));
+const RicercaDistributoriUsa = lazy(() => import('./pages/seo/RicercaDistributoriUsa').then(module => ({ default: module.RicercaDistributoriUsa })));
+const UsRetailPartnerships = lazy(() => import('./pages/seo/UsRetailPartnerships').then(module => ({ default: module.UsRetailPartnerships })));
+const VendereProdottiItalianiUsa = lazy(() => import('./pages/seo/VendereProdottiItalianiUsa').then(module => ({ default: module.VendereProdottiItalianiUsa })));
+const TemporaryExportManagerUsa = lazy(() => import('./pages/seo/TemporaryExportManagerUsa').then(module => ({ default: module.TemporaryExportManagerUsa })));
 
 // Loading component
 const PageLoader = () => (
@@ -72,6 +78,12 @@ function App() {
               <Route path="/mercati/chicago" element={<Chicago />} />
               <Route path="/mercati/boston" element={<Boston />} />
               <Route path="/mercati/las-vegas" element={<LasVegas />} />
+              <Route path="/usa-market-entry-italian-companies" element={<UsaMarketEntryItalianCompanies />} />
+              <Route path="/business-development-usa" element={<BusinessDevelopmentUsa />} />
+              <Route path="/ricerca-distributori-usa" element={<RicercaDistributoriUsa />} />
+              <Route path="/us-retail-partnerships" element={<UsRetailPartnerships />} />
+              <Route path="/vendere-prodotti-italiani-usa" element={<VendereProdottiItalianiUsa />} />
+              <Route path="/temporary-export-manager-usa" element={<TemporaryExportManagerUsa />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>

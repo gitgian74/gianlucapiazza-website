@@ -1,9 +1,21 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useLanguage } from '../../hooks/use-language';
+import { seoPages } from '../../pages/seo/seoPageData';
 
 const SITE_URL = 'https://gianlucapiazza.com';
 const DEFAULT_IMAGE = `${SITE_URL}/logo.png`;
+
+const SEO_LANDING_META = Object.values(seoPages).reduce((acc, page) => {
+    acc[page.path] = {
+        title: page.it.title,
+        description: page.it.description,
+        keywords: page.keywords,
+        hasPageJsonLd: true,
+    };
+
+    return acc;
+}, {});
 
 const META_BY_PATH = {
     '/': {
@@ -34,6 +46,27 @@ const META_BY_PATH = {
         title: 'Privacy & Cookie Policy | Gianluca Piazza',
         description: 'Informativa privacy e cookie policy del sito gianlucapiazza.com.',
     },
+    '/mercati/chicago': {
+        title: 'Consulente Mercato Chicago per Aziende Italiane | GP & Partners',
+        description: 'GP & Partners apre il mercato di Chicago e Midwest per PMI italiane: business development, partnership, distributori e market entry USA.',
+        keywords: 'consulente Chicago azienda italiana, mercato Chicago italiani, business development Chicago, Midwest USA italiani, GP Partners',
+    },
+    '/mercati/boston': {
+        title: 'Consulente Mercato Boston per Aziende Italiane | GP & Partners',
+        description: 'GP & Partners apre il mercato di Boston e New England per PMI italiane: tech, biotech, universita, food e business development USA.',
+        keywords: 'consulente Boston mercato americano italiani, business development Boston, azienda italiana Boston, New England mercato USA, GP Partners',
+    },
+    '/mercati/las-vegas': {
+        title: 'Consulente Mercato Las Vegas per Aziende Italiane | GP & Partners',
+        description: 'GP & Partners apre il mercato di Las Vegas e Nevada per PMI italiane: hospitality, food and beverage, luxury, retail e fiere USA.',
+        keywords: 'consulente Las Vegas italiani, business Las Vegas azienda italiana, mercato Nevada italiani, hospitality Las Vegas Made in Italy, GP Partners',
+    },
+    '/mercati/caraibi': {
+        title: 'Consulente Mercato Caraibi per Aziende Italiane | GP & Partners',
+        description: 'GP & Partners apre il mercato caraibico per PMI italiane: business development, partnership commerciali, distributori e market entry nei Caraibi.',
+        keywords: 'consulente caraibi italiani, business development caraibi, mercato caraibico aziende italiane, market entry caraibi, GP Partners',
+    },
+    ...SEO_LANDING_META,
 };
 
 function upsertMeta(selector, attributes) {
@@ -69,20 +102,45 @@ function upsertJsonLd(id, data) {
     element.textContent = JSON.stringify(data);
 }
 
-export function Seo() {
+function removeElementById(id) {
+    const element = document.getElementById(id);
+    if (element) {
+        element.remove();
+    }
+}
+
+function removeHeadElement(selector) {
+    const element = document.head.querySelector(selector);
+    if (element) {
+        element.remove();
+    }
+}
+
+export function Seo({ title, description, keywords, jsonLd } = {}) {
     const location = useLocation();
     const { language } = useLanguage();
 
     useEffect(() => {
         const pathname = location.pathname === '/' ? '/' : location.pathname.replace(/\/$/, '');
-        const meta = META_BY_PATH[pathname] || META_BY_PATH['/'];
+        const pathMeta = META_BY_PATH[pathname];
+        const meta = {
+            ...(pathMeta || META_BY_PATH['/']),
+            ...(title ? { title } : {}),
+            ...(description ? { description } : {}),
+            ...(keywords ? { keywords } : {}),
+        };
         const canonical = `${SITE_URL}${pathname === '/' ? '/' : pathname}`;
-        const isKnownPath = Boolean(META_BY_PATH[pathname]);
+        const isKnownPath = Boolean(pathMeta || title || description);
 
         document.documentElement.lang = language;
         document.title = meta.title;
 
         upsertMeta('meta[name="description"]', { name: 'description', content: meta.description });
+        if (meta.keywords) {
+            upsertMeta('meta[name="keywords"]', { name: 'keywords', content: meta.keywords });
+        } else {
+            removeHeadElement('meta[name="keywords"]');
+        }
         upsertMeta('meta[name="robots"]', { name: 'robots', content: isKnownPath ? 'index, follow' : 'noindex, follow' });
         upsertMeta('meta[property="og:type"]', { property: 'og:type', content: 'website' });
         upsertMeta('meta[property="og:site_name"]', { property: 'og:site_name', content: 'Gianluca Piazza' });
@@ -110,9 +168,64 @@ export function Seo() {
                 'Partnership strategiche',
                 'Market entry',
                 'Export',
+                'USA market entry',
+                'Retail negotiation',
+                'Distribution channels',
             ],
         });
-    }, [language, location.pathname]);
+
+        upsertJsonLd('structured-data-professional-service', {
+            '@context': 'https://schema.org',
+            '@type': 'ProfessionalService',
+            name: 'GP & Partners',
+            url: SITE_URL,
+            image: DEFAULT_IMAGE,
+            founder: {
+                '@type': 'Person',
+                name: 'Gianluca Piazza',
+            },
+            areaServed: ['United States', 'Italy', 'Europe'],
+            serviceType: [
+                'USA Market Entry',
+                'International Business Development',
+                'Retail Partnership Strategy',
+                'Distribution Channel Development',
+            ],
+            knowsAbout: [
+                'USA market entry for Italian companies',
+                'Business development USA',
+                'US retail partnerships',
+                'Distributor search USA',
+            ],
+        });
+
+        upsertJsonLd('structured-data-breadcrumbs', {
+            '@context': 'https://schema.org',
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+                {
+                    '@type': 'ListItem',
+                    position: 1,
+                    name: 'Home',
+                    item: `${SITE_URL}/`,
+                },
+                ...(pathname === '/'
+                    ? []
+                    : [{
+                        '@type': 'ListItem',
+                        position: 2,
+                        name: meta.title.replace(' | GP & Partners', '').replace(' | Gianluca Piazza', ''),
+                        item: canonical,
+                    }]),
+            ],
+        });
+
+        if (jsonLd) {
+            upsertJsonLd('structured-data-page', jsonLd);
+        } else if (!pathMeta?.hasPageJsonLd) {
+            removeElementById('structured-data-page');
+        }
+    }, [description, jsonLd, keywords, language, location.pathname, title]);
 
     return null;
 }
