@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useLanguage } from '../../hooks/use-language';
 import { seoPages } from '../../pages/seo/seoPageData';
+import { socialProfileUrls } from '../../lib/socialLinks';
 
 const SITE_URL = 'https://gianlucapiazza.com';
 const DEFAULT_IMAGE = `${SITE_URL}/logo.png`;
@@ -161,7 +162,7 @@ export function Seo({ title, description, keywords, jsonLd } = {}) {
             url: SITE_URL,
             image: DEFAULT_IMAGE,
             jobTitle: 'Consulente Internazionalizzazione e Business Developer',
-            sameAs: ['https://www.linkedin.com/in/gianlucapiazza/'],
+            sameAs: socialProfileUrls,
             knowsAbout: [
                 'Internazionalizzazione',
                 'Business development',

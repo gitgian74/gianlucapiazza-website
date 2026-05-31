@@ -1,11 +1,12 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../hooks/use-language';
-import { Mail, Phone, MapPin, Send, Linkedin, Building2 } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, Building2 } from 'lucide-react';
 import { PageHeader } from '../components/shared/PageHeader';
 import { Section } from '../components/shared/Section';
 import { Card } from '../components/shared/Card';
 import { Button } from '../components/shared/Button';
+import { SocialLinks } from '../components/shared/SocialLinks';
 
 export function Contact() {
     const { t } = useLanguage();
@@ -145,22 +146,9 @@ export function Contact() {
                                 </div>
                             </div>
 
-                            {/* LinkedIn */}
-                            <div className="flex items-start gap-4 group mt-8">
-                                <div className="p-3 bg-blue-900/20 text-blue-400 rounded-xl group-hover:bg-blue-700 group-hover:text-white transition-colors">
-                                    <Linkedin size={24} />
-                                </div>
-                                <div>
-                                    <h3 className="text-sm font-medium text-muted-foreground mb-1">LinkedIn</h3>
-                                    <a
-                                        href="https://www.linkedin.com/in/gianlucapiazza/"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="text-lg font-medium text-white hover:text-blue-400 transition-colors"
-                                    >
-                                        Connect on LinkedIn
-                                    </a>
-                                </div>
+                            <div className="mt-8 border-t border-border pt-8">
+                                <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-muted-foreground">{t.contact.info.followSocial}</h3>
+                                <SocialLinks showLabels linkClassName="bg-slate-950/30" />
                             </div>
 
                         </Card>

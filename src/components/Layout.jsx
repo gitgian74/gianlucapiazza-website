@@ -4,6 +4,7 @@ import { motion, AnimatePresence, useReducedMotion, useScroll } from 'framer-mot
 import { Menu, X, ChevronRight } from 'lucide-react';
 import { useLanguage } from '../hooks/use-language';
 import { CookieConsent } from './shared/CookieConsent';
+import { SocialLinks } from './shared/SocialLinks';
 
 export function Layout({ children }) {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -131,6 +132,10 @@ export function Layout({ children }) {
                             >
                                 {t.nav.contact}
                             </Link>
+                            <div className="mt-4 border-t border-border pt-5">
+                                <p className="mb-3 text-sm font-semibold text-muted-foreground">{t.footer.followSocial}</p>
+                                <SocialLinks showLabels linkClassName="bg-muted/30" />
+                            </div>
                         </div>
                     </motion.div>
                 )}
@@ -171,11 +176,9 @@ export function Layout({ children }) {
                                 </ul>
                             </div>
                             <div>
-                                <h4 className="font-semibold text-foreground mb-6">Connect</h4>
-                                <ul className="space-y-4">
-                                    <li><a href="https://www.linkedin.com/in/gianlucapiazza/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">LinkedIn</a></li>
-                                    <li><a href="mailto:mail@gianlucapiazza.com" className="text-muted-foreground hover:text-primary transition-colors">Email</a></li>
-                                </ul>
+                                <h4 className="font-semibold text-foreground mb-6">{t.footer.followSocial}</h4>
+                                <SocialLinks showLabels className="mb-5" linkClassName="bg-card/60" />
+                                <a href="mailto:mail@gianlucapiazza.com" className="text-muted-foreground hover:text-primary transition-colors">mail@gianlucapiazza.com</a>
                             </div>
                         </div>
                     </div>

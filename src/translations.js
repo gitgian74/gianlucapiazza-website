@@ -308,6 +308,7 @@ export const translations = {
         addressIT: 'via Conca 8, 36030 Villaverla - VI',
         addressUS: 'c/o 8Hz LLC, 4660 Arboretum Cir Unit 201, Naples FL 34112',
         linkedin: 'LinkedIn',
+        followSocial: 'Seguici sui social',
         companyIT: '',
         companyUS: '8Hz LLC'
       }
@@ -328,6 +329,7 @@ export const translations = {
       about: 'USA Market Entry | Business Builder | Strategic Partner',
       contactTitle: 'Contatti',
       quickLinks: 'Link Rapidi',
+      followSocial: 'Seguici sui social',
       rights: 'Tutti i diritti riservati.',
       privacy: 'Privacy Policy',
       cookie: 'Cookie Policy'
@@ -711,6 +713,7 @@ export const translations = {
         addressIT: 'via Conca 8, 36030 Villaverla - VI',
         addressUS: 'c/o 8Hz LLC, 4660 Arboretum Cir Unit 201, Naples FL 34112',
         linkedin: 'LinkedIn',
+        followSocial: 'Follow us on social',
         companyIT: '',
         companyUS: '8Hz LLC'
       }
@@ -731,6 +734,7 @@ export const translations = {
       about: 'USA Market Entry | Business Builder | Strategic Partner',
       contactTitle: 'Contact',
       quickLinks: 'Quick Links',
+      followSocial: 'Follow us on social',
       rights: 'All rights reserved.',
       privacy: 'Privacy Policy',
       cookie: 'Cookie Policy'
