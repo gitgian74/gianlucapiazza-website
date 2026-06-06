@@ -4,6 +4,7 @@ import { Analytics } from '@vercel/analytics/react';
 import { LanguageProvider } from './hooks/use-language';
 import { Layout } from './components/Layout';
 import { GoogleAnalytics } from './components/shared/GoogleAnalytics';
+import { ScrollToTop } from './components/shared/ScrollToTop';
 import { Seo } from './components/shared/Seo';
 import { CONSENT_EVENT, hasAnalyticsConsent } from './components/shared/analyticsConsent';
 import './index.css';
@@ -63,6 +64,7 @@ function App() {
   return (
     <LanguageProvider>
       <Router>
+        <ScrollToTop />
         <Seo />
         <Layout>
           <Suspense fallback={<PageLoader />}>
