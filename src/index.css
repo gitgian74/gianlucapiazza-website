@@ -68,8 +68,8 @@
   --popover: #1e293b;
   --popover-foreground: #f8fafc;
 
-  --primary: #3b82f6;
-  /* Vibrant Blue (Apple/Google standard) */
+  --primary: #B22234;
+  /* Old Glory Red (US flag) */
   --primary-foreground: #ffffff;
 
   --secondary: #334155;
@@ -81,14 +81,14 @@
   /* Slate 400 */
 
   --accent: #1e293b;
-  --accent-foreground: #3b82f6;
+  --accent-foreground: #B22234;
 
   --destructive: #ef4444;
   --destructive-foreground: #ffffff;
 
   --border: #334155;
   --input: #334155;
-  --ring: #3b82f6;
+  --ring: #B22234;
 
   --chart-1: #3b82f6;
   --chart-2: #60a5fa;
@@ -98,12 +98,12 @@
 
   --sidebar: #0f172a;
   --sidebar-foreground: #f8fafc;
-  --sidebar-primary: #3b82f6;
+  --sidebar-primary: #B22234;
   --sidebar-primary-foreground: #ffffff;
   --sidebar-accent: #1e293b;
   --sidebar-accent-foreground: #f8fafc;
   --sidebar-border: #334155;
-  --sidebar-ring: #3b82f6;
+  --sidebar-ring: #B22234;
 }
 
 .light {
@@ -119,8 +119,8 @@
   --popover: #ffffff;
   --popover-foreground: #0f172a;
 
-  --primary: #007AFF;
-  /* Apple Blue */
+  --primary: #B22234;
+  /* Old Glory Red (US flag) */
   --primary-foreground: #ffffff;
 
   --secondary: #f1f5f9;
@@ -139,7 +139,7 @@
   --border: #e2e8f0;
   /* Slate 200 */
   --input: #e2e8f0;
-  --ring: #007AFF;
+  --ring: #B22234;
 
   --radius: 1rem;
 }
