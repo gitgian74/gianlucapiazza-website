@@ -32,7 +32,8 @@ export function Layout({ children }) {
         { path: '/about', label: t.nav.about },
         { path: '/services', label: t.nav.services },
         { path: '/projects', label: t.nav.projects },
-        { path: '/market-research', label: 'AI Research' },
+        // Temporarily hidden — re-add to restore AI Research in the nav:
+        // { path: '/market-research', label: 'AI Research' },
     ];
 
     return (
@@ -167,12 +168,14 @@ export function Layout({ children }) {
                                 <ul className="space-y-4">
                                     <li><Link to="/services" className="text-muted-foreground hover:text-primary transition-colors">{t.nav.services}</Link></li>
                                     <li><Link to="/projects" className="text-muted-foreground hover:text-primary transition-colors">{t.nav.projects}</Link></li>
+                                    {/* Temporarily hidden — restore to bring back the AI Research footer link:
                                     <li>
                                         <Link to="/market-research" className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2">
                                             AI Research
                                             <span className="px-2 py-0.5 rounded-full bg-primary/10 text-primary text-[10px] font-bold uppercase tracking-wider">New</span>
                                         </Link>
                                     </li>
+                                    */}
                                 </ul>
                             </div>
                             <div>
