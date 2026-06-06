@@ -1,11 +1,49 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState } from 'react';
+import { motion, useReducedMotion } from 'framer-motion';
 import { useLanguage } from '../hooks/use-language';
 import { ArrowRight, Globe, TrendingUp, Users, Building2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
+// Hero LCP image. Unsplash's `auto=format` serves AVIF/WebP automatically based on
+// the browser Accept header, so a single srcset covers all modern formats. The
+// srcset below MUST stay in sync with the <link rel="preload" imagesrcset> in
+// index.html so the preloaded variant is reused (no double download).
+const HERO_BASE = 'https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop';
+const HERO_SRCSET = [
+    `${HERO_BASE}&q=68&w=640 640w`,
+    `${HERO_BASE}&q=68&w=828 828w`,
+    `${HERO_BASE}&q=68&w=1280 1280w`,
+    `${HERO_BASE}&q=70&w=1920 1920w`,
+    `${HERO_BASE}&q=72&w=2400 2400w`,
+].join(', ');
+const HERO_FALLBACK = `${HERO_BASE}&q=70&w=1280`;
+
 export function Home() {
     const { t } = useLanguage();
+
+    // Reduce above-the-fold animation work: honour the OS "reduce motion" setting
+    // and skip the hero entrance animation on small screens to speed up first paint.
+    const prefersReducedMotion = useReducedMotion();
+    const [isMobile] = useState(
+        () => typeof window !== 'undefined' && window.matchMedia('(max-width: 768px)').matches
+    );
+    const reduceInitialMotion = prefersReducedMotion || isMobile;
+
+    const heroMotion = reduceInitialMotion
+        ? {}
+        : {
+            initial: { opacity: 0, y: 30 },
+            animate: { opacity: 1, y: 0 },
+            transition: { duration: 0.8, ease: 'easeOut' },
+        };
+
+    const scrollIndicatorMotion = reduceInitialMotion
+        ? {}
+        : {
+            initial: { opacity: 0 },
+            animate: { opacity: 1 },
+            transition: { delay: 1, duration: 1 },
+        };
 
     const container = {
         hidden: { opacity: 0 },
@@ -29,11 +67,14 @@ export function Home() {
                 {/* Background Image */}
                 <div className="absolute inset-0 z-0">
                     <img
-                        src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&q=80&w=1920"
+                        src={HERO_FALLBACK}
+                        srcSet={HERO_SRCSET}
+                        sizes="100vw"
                         alt="Financial District Blue Sky"
                         className="w-full h-full object-cover"
                         fetchPriority="high"
                         loading="eager"
+                        decoding="async"
                     />
                     <div className="absolute inset-0 bg-gradient-to-b from-slate-950/45 via-slate-950/15 to-background"></div>
                     <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(15,23,42,0.72)_0%,_rgba(15,23,42,0.44)_34%,_rgba(15,23,42,0.16)_58%,_transparent_78%)]"></div>
@@ -41,9 +82,7 @@ export function Home() {
 
                 <div className="container mx-auto px-6 relative z-10 text-center">
                     <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, ease: "easeOut" }}
+                        {...heroMotion}
                         className="max-w-4xl mx-auto"
                     >
                         <h1 className="text-6xl md:text-8xl font-bold text-white mb-8 tracking-tight leading-tight drop-shadow-2xl">
@@ -76,9 +115,7 @@ export function Home() {
 
                 {/* Scroll Indicator */}
                 <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 1, duration: 1 }}
+                    {...scrollIndicatorMotion}
                     className="absolute bottom-10 left-1/2 -translate-x-1/2 text-white/50 animate-bounce"
                 >
                     <ArrowRight className="rotate-90" size={24} />
