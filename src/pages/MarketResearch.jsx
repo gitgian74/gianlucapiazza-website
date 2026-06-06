@@ -19,12 +19,19 @@ export function MarketResearch() {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
     const messagesEndRef = useRef(null);
+    const isFirstRender = useRef(true);
 
     const scrollToBottom = () => {
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
     };
 
     useEffect(() => {
+        // Don't auto-scroll on mount, or the page would load already scrolled
+        // down to the chat. Only follow newly added messages.
+        if (isFirstRender.current) {
+            isFirstRender.current = false;
+            return;
+        }
         scrollToBottom();
     }, [messages]);
 
