@@ -7,6 +7,7 @@ import { Section } from '../../components/shared/Section';
 import { Button } from '../../components/shared/Button';
 import { Seo } from '../../components/shared/Seo';
 import { useLanguage } from '../../hooks/use-language';
+import { trackSiteEvent } from '../../components/shared/tracking';
 
 const SITE_URL = 'https://gianlucapiazza.com';
 
@@ -41,20 +42,104 @@ const relatedPages = [
     it: 'Vendere prodotti italiani negli USA',
     en: 'Selling Italian Products in the USA',
   },
+  {
+    path: '/food-beverage-usa',
+    it: 'Food & Beverage USA',
+    en: 'Food & Beverage USA',
+  },
+  {
+    path: '/moda-design-usa',
+    it: 'Moda e Design USA',
+    en: 'Fashion and Design USA',
+  },
+  {
+    path: '/agente-vs-distributore-usa',
+    it: 'Agente vs distributore USA',
+    en: 'Agent vs Distributor USA',
+  },
 ];
 
-function buildFaqJsonLd(faqs) {
+function buildPageJsonLd(page, content) {
+  const pageUrl = `${SITE_URL}${page.path}`;
+
   return {
     '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: faqs.map(([question, answer]) => ({
-      '@type': 'Question',
-      name: question,
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: answer,
+    '@graph': [
+      {
+        '@type': 'Service',
+        '@id': `${pageUrl}#service`,
+        name: content.hero,
+        description: content.description,
+        serviceType: content.hero,
+        provider: {
+          '@type': 'ProfessionalService',
+          '@id': `${SITE_URL}/#organization`,
+          name: 'GP & Partners',
+          url: SITE_URL,
+          founder: {
+            '@type': 'Person',
+            '@id': `${SITE_URL}/about#person`,
+            name: 'Gianluca Piazza',
+          },
+        },
+        areaServed: [
+          {
+            '@type': 'Country',
+            name: 'United States',
+          },
+          {
+            '@type': 'Country',
+            name: 'Italy',
+          },
+          {
+            '@type': 'Place',
+            name: 'Europe',
+          },
+        ],
+        audience: {
+          '@type': 'BusinessAudience',
+          audienceType: 'Italian and European companies entering or growing in the US market',
+        },
+        keywords: page.keywords,
+        url: pageUrl,
       },
-    })),
+      {
+        '@type': 'FAQPage',
+        '@id': `${pageUrl}#faq`,
+        mainEntity: content.faqs.map(([question, answer]) => ({
+          '@type': 'Question',
+          name: question,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: answer,
+          },
+        })),
+      },
+      {
+        '@type': 'BreadcrumbList',
+        '@id': `${pageUrl}#breadcrumb`,
+        itemListElement: [
+          {
+            '@type': 'ListItem',
+            position: 1,
+            name: 'Home',
+            item: `${SITE_URL}/`,
+          },
+          {
+            '@type': 'ListItem',
+            position: 2,
+            name: 'Services',
+            item: `${SITE_URL}/services`,
+          },
+          {
+            '@type': 'ListItem',
+            position: 3,
+            name: content.hero,
+            item: pageUrl,
+          },
+        ],
+      },
+    ],
   };
 }
 
@@ -78,8 +163,16 @@ export function SeoLandingPage({ page }) {
   const { language } = useLanguage();
   const navigate = useNavigate();
   const content = page[language] || page.it;
-  const faqJsonLd = buildFaqJsonLd(content.faqs);
-  const openContact = () => navigate('/contact');
+  const pageJsonLd = buildPageJsonLd(page, content);
+  const openContact = (placement) => {
+    trackSiteEvent('cta_click', {
+      cta_id: 'seo_landing_contact',
+      destination: '/contact',
+      source_page: page.path,
+      placement,
+    });
+    navigate('/contact');
+  };
 
   return (
     <>
@@ -87,12 +180,12 @@ export function SeoLandingPage({ page }) {
         title={content.title}
         description={content.description}
         keywords={page.keywords}
-        jsonLd={faqJsonLd}
+        jsonLd={pageJsonLd}
       />
       <div className="min-h-screen bg-background pb-20">
         <PageHeader title={content.hero} subtitle={content.subtitle}>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-            <Button type="button" size="lg" onClick={openContact}>
+            <Button type="button" size="lg" onClick={() => openContact('seo_landing_hero')}>
               <span>{content.cta.label}</span>
               <ArrowRight size={18} />
             </Button>
@@ -169,6 +262,11 @@ export function SeoLandingPage({ page }) {
                   <Link
                     key={relatedPage.path}
                     to={relatedPage.path}
+                    onClick={() => trackSiteEvent('seo_path_click', {
+                      destination: relatedPage.path,
+                      source_page: page.path,
+                      placement: 'seo_landing_related_paths',
+                    })}
                     className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-card/30 px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-primary hover:text-primary"
                   >
                     {relatedPage[language] || relatedPage.it}
@@ -203,7 +301,7 @@ export function SeoLandingPage({ page }) {
         <Section className="max-w-4xl text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">{content.cta.label}</h2>
           <p className="text-muted-foreground leading-relaxed mb-8">{content.cta.note}</p>
-          <Button type="button" size="lg" onClick={openContact}>
+          <Button type="button" size="lg" onClick={() => openContact('seo_landing_bottom')}>
             <span>{content.cta.label}</span>
             <ArrowRight size={18} />
           </Button>

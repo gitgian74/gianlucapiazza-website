@@ -5,6 +5,7 @@ import { Menu, X, ChevronRight } from 'lucide-react';
 import { useLanguage } from '../hooks/use-language';
 import { CookieConsent } from './shared/CookieConsent';
 import { SocialLinks } from './shared/SocialLinks';
+import { trackSiteEvent } from './shared/tracking';
 
 export function Layout({ children }) {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -22,10 +23,16 @@ export function Layout({ children }) {
     }, [scrollY]);
 
     const toggleLanguage = () => {
+        trackSiteEvent('language_switch', {
+            from_language: language,
+            to_language: language === 'it' ? 'en' : 'it',
+            placement: 'header',
+        });
         setLanguage(prev => prev === 'it' ? 'en' : 'it');
     };
 
     const isActive = (path) => location.pathname === path;
+    const footerEmail = location.pathname === '/privacy' ? t.privacy.controller.email : 'mail@gianlucapiazza.com';
 
     const navLinks = [
         { path: '/', label: t.nav.home },
@@ -35,20 +42,25 @@ export function Layout({ children }) {
         // Temporarily hidden — re-add to restore AI Research in the nav:
         // { path: '/market-research', label: 'AI Research' },
     ];
+    const quickLinks = [
+        ...navLinks,
+        { path: '/contact', label: t.nav.contact },
+    ];
 
     return (
-        <div className="min-h-screen bg-background font-sans text-foreground flex flex-col selection:bg-primary/20 selection:text-primary">
+        <div className="min-h-screen bg-background font-sans text-foreground flex flex-col selection:bg-[var(--us-red)]/20 selection:text-[var(--us-red)]">
             {/* Floating Navigation */}
-            <div className="fixed top-6 left-0 right-0 z-50 flex justify-center px-4 pointer-events-none">
+            <div className="absolute right-4 top-3 z-50 flex pointer-events-none md:fixed md:left-0 md:right-0 md:top-6 md:justify-center md:px-4">
                 <motion.nav
                     initial={shouldReduceMotion ? false : { y: -100, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
-                    className={`pointer-events-auto flex items-center gap-2 p-2 rounded-full border transition-all duration-500 ${isScrolled
+                    className={`pointer-events-auto flex max-w-[calc(100vw-2rem)] items-center gap-1 rounded-full border p-1.5 transition-all duration-500 md:gap-2 md:p-2 ${isScrolled
                             ? 'bg-slate-950/85 border-white/15 shadow-2xl shadow-slate-950/20 backdrop-blur-2xl'
                             : 'bg-slate-950/55 border-white/15 shadow-xl shadow-slate-950/20 backdrop-blur-2xl'
                         }`}
                 >
-                    <Link to="/" className="flex items-center justify-center w-10 h-10 rounded-full bg-primary text-primary-foreground font-bold text-xl mr-2 hover:scale-105 transition-transform">
+                        <Link to="/" className="relative mr-1 flex h-9 w-9 items-center justify-center rounded-full bg-primary text-lg font-bold text-primary-foreground transition-transform hover:scale-105 md:mr-2 md:h-10 md:w-10 md:text-xl">
+                        <span className="absolute -right-0.5 -top-0.5 h-3 w-3 rounded-full bg-[var(--us-red)] ring-2 ring-slate-950"></span>
                         G
                     </Link>
 
@@ -58,9 +70,14 @@ export function Layout({ children }) {
                             <Link
                                 key={link.path}
                                 to={link.path}
+                                onClick={() => trackSiteEvent('navigation_click', {
+                                    destination: link.path,
+                                    label: link.label,
+                                    placement: 'header_desktop',
+                                })}
                                 className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${isActive(link.path)
-                                        ? 'bg-white text-slate-950 shadow-sm'
-                                        : 'text-white/82 hover:text-white hover:bg-white/10'
+                                        ? 'bg-white text-slate-950 shadow-sm ring-1 ring-[var(--us-red)]/25'
+                                        : 'text-white/82 hover:text-white hover:bg-white/10 hover:ring-1 hover:ring-[var(--us-red)]/20'
                                     }`}
                             >
                                 {link.label}
@@ -74,14 +91,19 @@ export function Layout({ children }) {
                         <button
                             onClick={toggleLanguage}
                             aria-label={language === 'it' ? 'Switch language to English' : 'Cambia lingua in italiano'}
-                            className="flex items-center justify-center w-10 h-10 rounded-full text-sm font-medium text-white/82 transition-colors hover:bg-white/10 hover:text-white"
+                            className="flex h-9 w-9 items-center justify-center rounded-full text-xs font-medium text-white/82 transition-colors hover:bg-white/10 hover:text-white md:h-10 md:w-10 md:text-sm"
                         >
                             {language.toUpperCase()}
                         </button>
 
                         <Link
                             to="/contact"
-                            className="hidden md:flex px-5 py-2.5 bg-primary text-primary-foreground rounded-full font-medium hover:bg-primary/90 transition-all shadow-md hover:shadow-lg text-sm items-center gap-2"
+                            onClick={() => trackSiteEvent('cta_click', {
+                                cta_id: 'header_contact',
+                                destination: '/contact',
+                                placement: 'header_desktop',
+                            })}
+                            className="hidden md:flex px-5 py-2.5 bg-[var(--us-red)] text-[var(--us-red-foreground)] rounded-full font-medium hover:bg-[#9f1539] transition-all shadow-md shadow-[var(--us-red)]/20 hover:shadow-lg text-sm items-center gap-2"
                         >
                             {t.nav.contact}
                             <ChevronRight size={14} />
@@ -116,9 +138,16 @@ export function Layout({ children }) {
                                 <Link
                                     key={link.path}
                                     to={link.path}
-                                    onClick={() => setIsMenuOpen(false)}
+                                    onClick={() => {
+                                        trackSiteEvent('navigation_click', {
+                                            destination: link.path,
+                                            label: link.label,
+                                            placement: 'mobile_menu',
+                                        });
+                                        setIsMenuOpen(false);
+                                    }}
                                     className={`flex items-center justify-between p-4 rounded-2xl text-lg font-medium transition-colors ${isActive(link.path)
-                                            ? 'bg-primary/10 text-primary'
+                                            ? 'bg-[var(--us-red)]/10 text-[var(--us-red)]'
                                             : 'hover:bg-muted text-foreground'
                                         }`}
                                 >
@@ -128,8 +157,15 @@ export function Layout({ children }) {
                             ))}
                             <Link
                                 to="/contact"
-                                onClick={() => setIsMenuOpen(false)}
-                                className="mt-4 flex items-center justify-center p-4 rounded-2xl bg-primary text-primary-foreground text-lg font-medium"
+                                onClick={() => {
+                                    trackSiteEvent('cta_click', {
+                                        cta_id: 'mobile_menu_contact',
+                                        destination: '/contact',
+                                        placement: 'mobile_menu',
+                                    });
+                                    setIsMenuOpen(false);
+                                }}
+                                className="mt-4 flex items-center justify-center p-4 rounded-2xl bg-[var(--us-red)] text-[var(--us-red-foreground)] text-lg font-medium"
                             >
                                 {t.nav.contact}
                             </Link>
@@ -150,11 +186,20 @@ export function Layout({ children }) {
             {/* Footer */}
             <footer className="bg-card border-t border-border py-10 md:py-16 mt-auto relative overflow-hidden">
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--color-primary)_0%,_transparent_40%)] opacity-5"></div>
+                <div className="absolute inset-x-0 top-0 h-px us-red-rule opacity-70"></div>
 
                 <div className="container mx-auto px-6 relative z-10">
                     <div className="flex flex-col md:flex-row justify-between items-start gap-12 mb-16">
                         <div className="max-w-md">
-                            <Link to="/" className="text-2xl font-bold tracking-tight mb-6 block">
+                            <Link
+                                to="/"
+                                onClick={() => trackSiteEvent('navigation_click', {
+                                    destination: '/',
+                                    label: 'GP & Partners',
+                                    placement: 'footer_brand',
+                                })}
+                                className="text-2xl font-bold tracking-tight mb-6 block"
+                            >
                                 GP & Partners
                             </Link>
                             <p className="text-muted-foreground text-lg leading-relaxed">
@@ -162,26 +207,40 @@ export function Layout({ children }) {
                             </p>
                         </div>
 
-                        <div className="grid grid-cols-2 gap-12">
+                        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 md:gap-12">
                             <div>
                                 <h4 className="font-semibold text-foreground mb-6">{t.footer.quickLinks}</h4>
                                 <ul className="space-y-4">
-                                    <li><Link to="/services" className="text-muted-foreground hover:text-primary transition-colors">{t.nav.services}</Link></li>
-                                    <li><Link to="/projects" className="text-muted-foreground hover:text-primary transition-colors">{t.nav.projects}</Link></li>
-                                    {/* Temporarily hidden — restore to bring back the AI Research footer link:
-                                    <li>
-                                        <Link to="/market-research" className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2">
-                                            AI Research
-                                            <span className="px-2 py-0.5 rounded-full bg-primary/10 text-primary text-[10px] font-bold uppercase tracking-wider">New</span>
-                                        </Link>
-                                    </li>
-                                    */}
+                                    {quickLinks.map((link) => (
+                                        <li key={link.path}>
+                                            <Link
+                                                to={link.path}
+                                                onClick={() => trackSiteEvent('navigation_click', {
+                                                    destination: link.path,
+                                                    label: link.label,
+                                                    placement: 'footer',
+                                                })}
+                                                className="text-muted-foreground hover:text-[var(--us-red)] transition-colors inline-flex items-center gap-2"
+                                            >
+                                                {link.label}
+                                                {link.path === '/market-research' && (
+                                                    <span className="px-2 py-0.5 rounded-full bg-[var(--us-red)]/10 text-[var(--us-red)] text-[10px] font-bold uppercase tracking-wider">New</span>
+                                                )}
+                                            </Link>
+                                        </li>
+                                    ))}
                                 </ul>
                             </div>
                             <div>
                                 <h4 className="font-semibold text-foreground mb-6">{t.footer.followSocial}</h4>
-                                <SocialLinks showLabels className="mb-5" linkClassName="bg-card/60" />
-                                <a href="mailto:mail@gianlucapiazza.com" className="text-muted-foreground hover:text-primary transition-colors">mail@gianlucapiazza.com</a>
+                                <SocialLinks showLabels className="mb-5 max-w-sm" linkClassName="bg-card/60" />
+                                <a
+                                    href={`mailto:${footerEmail}`}
+                                    onClick={() => trackSiteEvent('contact_click', { method: 'email', placement: 'footer' })}
+                                    className="text-muted-foreground hover:text-[var(--us-red)] transition-colors"
+                                >
+                                    {footerEmail}
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -189,8 +248,8 @@ export function Layout({ children }) {
                     <div className="border-t border-border pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-muted-foreground text-sm">
                         <p>&copy; {new Date().getFullYear()} GP & Partners. {t.footer.rights}</p>
                         <div className="flex gap-6">
-                            <Link to="/privacy" className="hover:text-foreground transition-colors">{t.footer.privacy}</Link>
-                            <Link to="/privacy" className="hover:text-foreground transition-colors">{t.footer.cookie}</Link>
+                            <Link to="/privacy" onClick={() => trackSiteEvent('navigation_click', { destination: '/privacy', label: 'privacy', placement: 'footer_legal' })} className="hover:text-foreground transition-colors">{t.footer.privacy}</Link>
+                            <Link to="/privacy" onClick={() => trackSiteEvent('navigation_click', { destination: '/privacy', label: 'cookie', placement: 'footer_legal' })} className="hover:text-foreground transition-colors">{t.footer.cookie}</Link>
                         </div>
                     </div>
                 </div>

@@ -8,6 +8,24 @@ const contactSchema = z.object({
     company: z.string().trim().max(160).optional().default(''),
     message: z.string().trim().min(10).max(3_000),
     website: z.string().trim().max(0).optional().default(''),
+    attribution: z.object({
+        utm_source: z.string().max(200).optional(),
+        utm_medium: z.string().max(200).optional(),
+        utm_campaign: z.string().max(200).optional(),
+        utm_term: z.string().max(200).optional(),
+        utm_content: z.string().max(200).optional(),
+        first_landing_page: z.string().max(500).optional(),
+        first_referrer: z.string().max(500).optional(),
+        first_seen_at: z.string().max(50).optional(),
+        last_landing_page: z.string().max(500).optional(),
+        last_referrer: z.string().max(500).optional(),
+        last_seen_at: z.string().max(50).optional(),
+        current_page: z.string().max(500).optional(),
+        current_path: z.string().max(500).optional(),
+        session_id: z.string().max(100).optional(),
+        consent_analytics: z.boolean().optional(),
+        consent_marketing: z.boolean().optional(),
+    }).optional().default({}),
 });
 
 const RATE_LIMIT = {
@@ -40,13 +58,20 @@ export default async function handler(req, res) {
         return res.status(500).json({ error: 'Server configuration error: Missing API Key' });
     }
 
-    const { name, email, company, message } = parsed.data;
+    const { name, email, company, message, attribution } = parsed.data;
     const safeName = escapeHtml(name);
     const safeEmail = escapeHtml(email);
     const safeCompany = escapeHtml(company || 'N/A');
     const safeMessage = escapeHtml(message).replace(/\n/g, '<br>');
     const textMessage = plainText(message);
     const textCompany = plainText(company || 'N/A');
+    const attributionEntries = Object.entries(attribution)
+        .filter(([, value]) => value !== undefined && value !== '')
+        .map(([key, value]) => `${key}: ${value}`);
+    const textAttribution = attributionEntries.length ? attributionEntries.join('\n') : 'N/A';
+    const safeAttribution = attributionEntries.length
+        ? attributionEntries.map((entry) => escapeHtml(entry)).join('<br>')
+        : 'N/A';
 
     try {
         const resend = new Resend(process.env.RESEND_API_KEY);
@@ -64,6 +89,9 @@ export default async function handler(req, res) {
                 `Email: ${email}`,
                 `Company: ${textCompany}`,
                 '',
+                'Attribution:',
+                textAttribution,
+                '',
                 'Message:',
                 textMessage,
             ].join('\n'),
@@ -72,6 +100,8 @@ export default async function handler(req, res) {
         <p><strong>Name:</strong> ${safeName}</p>
         <p><strong>Email:</strong> ${safeEmail}</p>
         <p><strong>Company:</strong> ${safeCompany}</p>
+        <p><strong>Attribution:</strong></p>
+        <p>${safeAttribution}</p>
         <p><strong>Message:</strong></p>
         <p>${safeMessage}</p>
       `,

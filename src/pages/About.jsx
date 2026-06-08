@@ -4,15 +4,35 @@ import { useLanguage } from '../hooks/use-language';
 import { ArrowRight, Award, Briefcase, CheckCircle2, MapPin, Target } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Section } from '../components/shared/Section';
-import { Card } from '../components/shared/Card';
+import { trackSiteEvent } from '../components/shared/tracking';
 
 export function About() {
     const { t } = useLanguage();
     const proofPoints = t.about.proofPoints || [];
     const principles = t.about.principles || [];
+    const profileCards = [
+        {
+            icon: Briefcase,
+            title: t.about.experienceTitle,
+            body: [t.about.experience1, t.about.experience2],
+            accent: 'blue',
+        },
+        {
+            icon: Award,
+            title: t.about.projectsTitle,
+            body: [t.about.projects],
+            accent: 'red',
+        },
+        {
+            icon: Target,
+            title: t.about.backgroundTitle,
+            body: [t.about.background],
+            accent: 'green',
+        },
+    ];
 
     return (
-        <div className="min-h-screen bg-background pb-16">
+        <div className="min-h-screen overflow-x-hidden bg-background pb-16">
             <header className="relative min-h-[82vh] overflow-hidden">
                 <div className="absolute inset-0 z-0">
                     <img
@@ -35,7 +55,7 @@ export function About() {
                             <p className="mb-5 text-xs font-semibold uppercase tracking-[0.28em] text-blue-300">
                                 {t.about.heroKicker}
                             </p>
-                            <h1 className="max-w-4xl text-4xl font-bold leading-[0.96] tracking-tight text-white md:text-6xl lg:text-7xl">
+                            <h1 className="max-w-4xl text-[2.35rem] font-bold leading-[1.04] tracking-normal text-white [overflow-wrap:break-word] sm:text-5xl md:text-6xl md:leading-[0.98] lg:text-7xl">
                                 {t.about.heroHeadline}
                             </h1>
                             <p className="mt-8 max-w-2xl text-lg leading-relaxed text-slate-200 md:text-xl">
@@ -44,14 +64,24 @@ export function About() {
                             <div className="mt-10 flex flex-col gap-4 sm:flex-row">
                                 <Link
                                     to="/contact"
-                                    className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-7 py-4 text-sm font-bold text-slate-950 shadow-2xl shadow-slate-950/20 transition hover:-translate-y-0.5 hover:bg-blue-50"
+                                    onClick={() => trackSiteEvent('cta_click', {
+                                        cta_id: 'about_hero_contact',
+                                        destination: '/contact',
+                                        placement: 'about_hero',
+                                    })}
+                                    className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-white px-6 py-4 text-sm font-bold text-slate-950 shadow-2xl shadow-slate-950/20 transition hover:-translate-y-0.5 hover:bg-blue-50 sm:w-auto sm:px-7"
                                 >
                                     {t.about.primaryCta}
                                     <ArrowRight size={16} />
                                 </Link>
                                 <Link
                                     to="/projects"
-                                    className="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/10 px-7 py-4 text-sm font-bold text-white backdrop-blur-xl transition hover:-translate-y-0.5 hover:bg-white/15"
+                                    onClick={() => trackSiteEvent('cta_click', {
+                                        cta_id: 'about_hero_projects',
+                                        destination: '/projects',
+                                        placement: 'about_hero',
+                                    })}
+                                    className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/20 bg-white/10 px-6 py-4 text-sm font-bold text-white backdrop-blur-xl transition hover:-translate-y-0.5 hover:bg-white/15 sm:w-auto sm:px-7"
                                 >
                                     {t.about.secondaryCta}
                                 </Link>
@@ -62,28 +92,32 @@ export function About() {
                             initial={{ opacity: 0, y: 18 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.12, duration: 0.55 }}
-                            className="rounded-[2rem] border border-white/15 bg-slate-950/50 p-6 shadow-2xl shadow-slate-950/30 backdrop-blur-2xl"
+                            className="relative overflow-hidden rounded-[1.35rem] border border-white/15 bg-slate-950/72 p-5 shadow-2xl shadow-slate-950/30 backdrop-blur-2xl sm:p-6"
                         >
-                            <div className="mb-8 flex h-14 w-14 items-center justify-center rounded-2xl bg-primary text-xl font-bold text-white">
-                                GP
+                            <div className="absolute inset-x-0 top-0 h-px us-red-rule"></div>
+                            <div className="mb-7 flex items-center justify-between gap-4">
+                                <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-white/15 bg-white/10 text-lg font-bold text-white">
+                                    GP
+                                </div>
+                                <div className="h-px flex-1 bg-white/12"></div>
                             </div>
-                            <p className="text-2xl font-semibold leading-tight text-white">
+                            <p className="text-xl font-semibold leading-tight text-white sm:text-2xl">
                                 {t.about.heroCard}
                             </p>
-                            <div className="mt-8 grid grid-cols-3 gap-3">
+                            <dl className="mt-8 divide-y divide-white/10 border-y border-white/10">
                                 {proofPoints.map((point) => (
-                                    <div key={point.label} className="rounded-2xl border border-white/10 bg-white/[0.08] p-4">
-                                        <div className="text-2xl font-bold text-white">{point.value}</div>
-                                        <div className="mt-1 text-xs leading-snug text-slate-300">{point.label}</div>
+                                    <div key={point.label} className="grid grid-cols-[4.5rem_1fr] items-baseline gap-4 py-3">
+                                        <dt className="text-2xl font-bold text-white">{point.value}</dt>
+                                        <dd className="text-sm leading-snug text-slate-300">{point.label}</dd>
                                     </div>
                                 ))}
-                            </div>
+                            </dl>
                         </motion.div>
                     </div>
                 </div>
             </header>
 
-            <Section className="relative z-20 -mt-16 max-w-6xl">
+            <Section className="relative z-20 -mt-8 max-w-6xl">
                 <motion.figure
                     initial={{ opacity: 0, y: 24 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -106,65 +140,49 @@ export function About() {
                 <div className="grid gap-8 lg:grid-cols-12">
 
                     {/* Left Column - Main Content */}
-                    <div className="space-y-8 lg:col-span-8">
+                    <div className="space-y-5 lg:col-span-8">
+                        {profileCards.map((card, index) => {
+                            const Icon = card.icon;
+                            const accentClasses = {
+                                blue: 'border-blue-400/35 bg-blue-400/10 text-blue-200',
+                                red: 'border-[var(--us-red)]/45 bg-[var(--us-red)]/12 text-rose-100',
+                                green: 'border-emerald-400/35 bg-emerald-400/10 text-emerald-100',
+                            }[card.accent];
 
-                        {/* Experience Card */}
-                        <Card
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            className="p-8 md:p-10"
-                        >
-                            <div className="flex items-center gap-4 mb-6">
-                                <div className="p-3 bg-blue-900/30 text-blue-400 rounded-xl">
-                                    <Briefcase size={24} />
-                                </div>
-                                <h2 className="text-2xl font-bold text-white">{t.about.experienceTitle}</h2>
-                            </div>
-                            <div className="prose prose-invert prose-lg text-muted-foreground space-y-6">
-                                <p>{t.about.experience1}</p>
-                                <p>{t.about.experience2}</p>
-                            </div>
-                        </Card>
-
-                        {/* Projects Card */}
-                        <Card
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: 0.1 }}
-                            className="p-8 md:p-10"
-                        >
-                            <div className="flex items-center gap-4 mb-6">
-                                <div className="p-3 bg-purple-900/30 text-purple-400 rounded-xl">
-                                    <Award size={24} />
-                                </div>
-                                <h2 className="text-2xl font-bold text-white">{t.about.projectsTitle}</h2>
-                            </div>
-                            <p className="text-lg text-muted-foreground leading-relaxed">
-                                {t.about.projects}
-                            </p>
-                        </Card>
-
-                        {/* Background Card */}
-                        <Card
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: 0.2 }}
-                            className="p-8 md:p-10"
-                        >
-                            <div className="flex items-center gap-4 mb-6">
-                                <div className="p-3 bg-green-900/30 text-green-400 rounded-xl">
-                                    <Target size={24} />
-                                </div>
-                                <h2 className="text-2xl font-bold text-white">{t.about.backgroundTitle}</h2>
-                            </div>
-                            <p className="text-lg text-muted-foreground leading-relaxed">
-                                {t.about.background}
-                            </p>
-                        </Card>
-
+                            return (
+                                <motion.article
+                                    key={card.title}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: index * 0.08 }}
+                                    className="group relative overflow-hidden rounded-[1.35rem] border border-white/10 bg-slate-900/72 p-6 shadow-xl shadow-slate-950/15 transition-colors hover:border-white/18 md:p-8"
+                                >
+                                    <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-[var(--us-red)] via-blue-400/70 to-transparent opacity-70"></div>
+                                    <div className="absolute inset-y-6 left-0 w-px bg-gradient-to-b from-transparent via-white/18 to-transparent"></div>
+                                    <div className="grid gap-5 md:grid-cols-[8rem_1fr] md:gap-8">
+                                        <div className="flex items-start justify-between gap-4 md:block">
+                                            <div className={`mb-4 flex h-11 w-11 items-center justify-center rounded-xl border ${accentClasses}`}>
+                                                <Icon size={21} strokeWidth={1.8} />
+                                            </div>
+                                            <span className="font-mono text-xs font-semibold uppercase tracking-[0.22em] text-slate-500 md:block">
+                                                0{index + 1}
+                                            </span>
+                                        </div>
+                                        <div>
+                                            <h2 className="max-w-2xl text-[clamp(1.35rem,5vw,2rem)] font-semibold leading-tight tracking-tight text-white">
+                                                {card.title}
+                                            </h2>
+                                            <div className="mt-5 space-y-5 text-base leading-relaxed text-slate-300 md:text-lg">
+                                                {card.body.map((paragraph) => (
+                                                    <p key={paragraph}>{paragraph}</p>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </motion.article>
+                            );
+                        })}
                     </div>
 
                     {/* Right Column - Sidebar */}
@@ -175,54 +193,53 @@ export function About() {
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="relative overflow-hidden rounded-3xl bg-primary p-8 text-white shadow-lg shadow-blue-900/10 lg:sticky lg:top-28"
+                            className="relative overflow-hidden rounded-[1.35rem] border border-blue-300/18 bg-gradient-to-br from-blue-600 to-slate-950 p-7 text-white shadow-xl shadow-blue-950/20 lg:sticky lg:top-28"
                         >
-                            <div className="absolute top-0 right-0 w-32 h-32 bg-white opacity-10 rounded-full blur-3xl -mr-16 -mt-16"></div>
-
-                            <h3 className="mb-5 text-xl font-bold opacity-90">{t.about.philosophyTitle}</h3>
-                            <blockquote className="mb-6 text-3xl font-semibold leading-tight">
+                            <div className="absolute inset-x-0 top-0 h-px us-red-rule opacity-90"></div>
+                            <h3 className="mb-5 text-sm font-semibold uppercase tracking-[0.22em] text-blue-100/85">{t.about.philosophyTitle}</h3>
+                            <blockquote className="mb-6 text-2xl font-semibold leading-tight sm:text-3xl">
                                 {t.about.philosophyQuote}
                             </blockquote>
-                            <p className="text-sm leading-relaxed text-blue-100">
+                            <p className="text-sm leading-relaxed text-blue-100/90">
                                 {t.about.philosophy}
                             </p>
                         </motion.div>
 
-                        <Card
+                        <motion.article
                             initial={{ opacity: 0, x: 20 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
-                            className="p-8"
+                            className="rounded-[1.35rem] border border-white/10 bg-slate-900/72 p-6 shadow-xl shadow-slate-950/10 md:p-7"
                         >
-                            <h2 className="mb-6 flex items-center gap-3 text-2xl font-bold text-white">
-                                <MapPin className="text-blue-400" />
+                            <h2 className="mb-6 flex items-center gap-3 text-xl font-semibold text-white">
+                                <MapPin className="h-5 w-5 text-blue-300" />
                                 {t.about.principlesTitle}
                             </h2>
                             <div className="space-y-4">
                                 {principles.map((principle) => (
-                                    <div key={principle} className="flex gap-3 text-sm leading-relaxed text-muted-foreground">
-                                        <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-blue-400" />
+                                    <div key={principle} className="flex gap-3 text-sm leading-relaxed text-slate-300">
+                                        <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-blue-300" />
                                         <span>{principle}</span>
                                     </div>
                                 ))}
                             </div>
-                        </Card>
+                        </motion.article>
 
-                        <Card
+                        <motion.article
                             initial={{ opacity: 0, x: 20 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
-                            className="p-8"
+                            className="rounded-[1.35rem] border border-white/10 bg-slate-900/72 p-6 shadow-xl shadow-slate-950/10 md:p-7"
                         >
-                            <h2 className="mb-6 text-2xl font-bold text-white">{t.about.skillsTitle}</h2>
+                            <h2 className="mb-6 text-xl font-semibold text-white">{t.about.skillsTitle}</h2>
                             <div className="flex flex-wrap gap-2">
                                 {t.about.skills.map((skill) => (
-                                    <span key={skill} className="rounded-full border border-border bg-secondary/60 px-4 py-2 text-sm font-medium text-slate-200">
+                                    <span key={skill} className="rounded-full border border-white/10 bg-white/[0.06] px-3.5 py-2 text-sm font-medium text-slate-200">
                                         {skill}
                                     </span>
                                 ))}
                             </div>
-                        </Card>
+                        </motion.article>
 
                     </div>
                 </div>

@@ -71,6 +71,8 @@
   --primary: #B22234;
   /* Old Glory Red (US flag) */
   --primary-foreground: #ffffff;
+  --us-red: #B31942;
+  --us-red-foreground: #ffffff;
 
   --secondary: #334155;
   /* Slate 700 */
@@ -122,6 +124,8 @@
   --primary: #B22234;
   /* Old Glory Red (US flag) */
   --primary-foreground: #ffffff;
+  --us-red: #B31942;
+  --us-red-foreground: #ffffff;
 
   --secondary: #f1f5f9;
   /* Slate 100 */
@@ -172,5 +176,13 @@ html {
 
   .glass-card {
     @apply bg-card/80 backdrop-blur-md border border-white/10 shadow-lg;
+  }
+
+  .us-red-rule {
+    background: linear-gradient(90deg, var(--us-red), rgba(179, 25, 66, 0));
+  }
+
+  .us-red-glow {
+    box-shadow: 0 24px 80px rgba(179, 25, 66, 0.24);
   }
 }

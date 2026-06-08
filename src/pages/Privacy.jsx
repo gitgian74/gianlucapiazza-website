@@ -7,6 +7,14 @@ import { Card } from '../components/shared/Card';
 
 export function Privacy() {
     const { t } = useLanguage();
+    const listSections = [
+        t.privacy.collection,
+        t.privacy.purpose,
+        t.privacy.legalBasis,
+        t.privacy.cookies,
+        t.privacy.sharing,
+        t.privacy.retention,
+    ];
 
     return (
         <div className="min-h-screen bg-background pb-20">
@@ -35,47 +43,29 @@ export function Privacy() {
                                 </div>
                             </section>
 
-                            {/* Data Collection */}
-                            <section>
-                                <h2 className="text-2xl font-bold text-foreground mb-4">{t.privacy.collection.title}</h2>
-                                <p className="text-muted-foreground leading-relaxed mb-4">
-                                    {t.privacy.collection.text}
-                                </p>
-                                <ul className="list-disc list-inside text-muted-foreground space-y-2 ml-4">
-                                    {t.privacy.collection.list.map((item, index) => (
-                                        <li key={index}>{item}</li>
-                                    ))}
-                                </ul>
-                            </section>
-
-                            {/* Purpose */}
-                            <section>
-                                <h2 className="text-2xl font-bold text-foreground mb-4">{t.privacy.purpose.title}</h2>
-                                <p className="text-muted-foreground leading-relaxed mb-4">
-                                    {t.privacy.purpose.text}
-                                </p>
-                                <ul className="list-disc list-inside text-muted-foreground space-y-2 ml-4">
-                                    {t.privacy.purpose.list.map((item, index) => (
-                                        <li key={index}>{item}</li>
-                                    ))}
-                                </ul>
-                            </section>
-
-                            {/* Cookies */}
-                            <section>
-                                <h2 className="text-2xl font-bold text-foreground mb-4">{t.privacy.cookies.title}</h2>
-                                <p className="text-muted-foreground leading-relaxed mb-4">
-                                    {t.privacy.cookies.text}
-                                </p>
-                                <ul className="list-disc list-inside text-muted-foreground space-y-2 ml-4 mb-4">
-                                    {t.privacy.cookies.types.map((item, index) => (
-                                        <li key={index}>{item}</li>
-                                    ))}
-                                </ul>
-                                <p className="text-muted-foreground italic">
-                                    {t.privacy.cookies.management}
-                                </p>
-                            </section>
+                            {listSections.map((section) => (
+                                <section key={section.title}>
+                                    <h2 className="text-2xl font-bold text-foreground mb-4">{section.title}</h2>
+                                    <p className="text-muted-foreground leading-relaxed mb-4">
+                                        {section.text}
+                                    </p>
+                                    <ul className="list-disc list-inside text-muted-foreground space-y-2 ml-4 mb-4">
+                                        {(section.list || section.types).map((item, index) => (
+                                            <li key={index}>{item}</li>
+                                        ))}
+                                    </ul>
+                                    {section.management && (
+                                        <p className="text-muted-foreground italic">
+                                            {section.management}
+                                        </p>
+                                    )}
+                                    {section.transfer && (
+                                        <p className="text-muted-foreground leading-relaxed">
+                                            {section.transfer}
+                                        </p>
+                                    )}
+                                </section>
+                            ))}
 
                             {/* AI Tool */}
                             <section>
@@ -90,6 +80,13 @@ export function Privacy() {
                                 <h2 className="text-2xl font-bold text-foreground mb-4">{t.privacy.rights.title}</h2>
                                 <p className="text-muted-foreground leading-relaxed">
                                     {t.privacy.rights.text}
+                                </p>
+                            </section>
+
+                            <section>
+                                <h2 className="text-2xl font-bold text-foreground mb-4">{t.privacy.usPrivacy.title}</h2>
+                                <p className="text-muted-foreground leading-relaxed">
+                                    {t.privacy.usPrivacy.text}
                                 </p>
                             </section>
 

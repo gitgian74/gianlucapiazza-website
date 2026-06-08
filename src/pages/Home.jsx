@@ -3,6 +3,7 @@ import { motion, useReducedMotion } from 'framer-motion';
 import { useLanguage } from '../hooks/use-language';
 import { ArrowRight, Globe, TrendingUp, Users, Building2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { trackSiteEvent } from '../components/shared/tracking';
 
 // Hero LCP image. Unsplash's `auto=format` serves AVIF/WebP automatically based on
 // the browser Accept header, so a single srcset covers all modern formats. The
@@ -85,6 +86,7 @@ export function Home() {
                         {...heroMotion}
                         className="max-w-4xl mx-auto"
                     >
+                        <div className="mx-auto mb-8 h-1 w-24 rounded-full us-red-rule"></div>
                         <h1 className="text-6xl md:text-8xl font-bold text-white mb-8 tracking-tight leading-tight drop-shadow-2xl">
                             {t.home.heroHeadline}
                         </h1>
@@ -99,12 +101,22 @@ export function Home() {
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
                             <Link
                                 to="/contact"
-                                className="px-10 py-5 bg-white text-primary rounded-full font-bold text-lg hover:bg-blue-50 transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1"
+                                onClick={() => trackSiteEvent('cta_click', {
+                                    cta_id: 'home_hero_contact',
+                                    destination: '/contact',
+                                    placement: 'home_hero',
+                                })}
+                                className="px-10 py-5 bg-white text-[var(--us-red)] rounded-full font-bold text-lg hover:bg-[#fff5f7] transition-all shadow-xl shadow-[var(--us-red)]/20 hover:shadow-2xl hover:-translate-y-1"
                             >
                                 {t.home.ctaButton}
                             </Link>
                             <Link
                                 to="/services"
+                                onClick={() => trackSiteEvent('cta_click', {
+                                    cta_id: 'home_hero_services',
+                                    destination: '/services',
+                                    placement: 'home_hero',
+                                })}
                                 className="px-10 py-5 bg-white/10 backdrop-blur-md text-white rounded-full font-bold text-lg hover:bg-white/20 transition-all border border-white/20 shadow-lg hover:shadow-xl"
                             >
                                 {t.home.discoverServices}
@@ -133,7 +145,7 @@ export function Home() {
                         className="grid grid-cols-3 gap-3 md:gap-8"
                     >
                         <motion.div variants={item} className="glass-card p-4 md:p-10 rounded-[1.5rem] md:rounded-[2rem] hover:scale-[1.02] transition-transform duration-300">
-                            <div className="w-10 h-10 md:w-14 md:h-14 bg-blue-500/20 rounded-2xl flex items-center justify-center text-blue-400 mb-4">
+                            <div className="w-10 h-10 md:w-14 md:h-14 bg-[var(--us-red)]/15 rounded-2xl flex items-center justify-center text-[var(--us-red)] mb-4">
                                 <Globe size={20} />
                             </div>
                             <h3 className="text-2xl md:text-5xl font-bold text-white mb-1 md:mb-2">{t.home.stats.experienceValue}</h3>
@@ -184,28 +196,45 @@ export function Home() {
                     </div>
 
                     <div className="grid md:grid-cols-3 gap-6 md:gap-8">
-                        <Link to="/services" className="group">
+                        <Link
+                            to="/services"
+                            onClick={() => trackSiteEvent('service_card_click', {
+                                service_id: 'internationalization',
+                                destination: '/services',
+                                placement: 'home_services_preview',
+                            })}
+                            className="group"
+                        >
                             <div className="bg-card p-6 md:p-12 rounded-[1.5rem] md:rounded-[2.5rem] shadow-sm border border-border/50 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 h-full flex flex-col justify-between overflow-hidden relative">
-                                <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/5 rounded-full blur-3xl -mr-16 -mt-16 transition-opacity group-hover:opacity-100 opacity-50"></div>
+                                <div className="absolute top-0 right-0 w-64 h-64 bg-[var(--us-red)]/10 rounded-full blur-3xl -mr-16 -mt-16 transition-opacity group-hover:opacity-100 opacity-50"></div>
+                                <div className="absolute left-0 top-0 h-full w-1 bg-[var(--us-red)] opacity-0 transition-opacity group-hover:opacity-100"></div>
 
                                 <div>
-                                    <div className="mb-8 p-5 bg-blue-500/10 rounded-2xl inline-block text-primary group-hover:scale-110 transition-transform duration-500">
+                                    <div className="mb-8 p-5 bg-[var(--us-red)]/10 rounded-2xl inline-block text-[var(--us-red)] group-hover:scale-110 transition-transform duration-500">
                                         <Globe size={40} />
                                     </div>
-                                    <h3 className="text-lg md:text-3xl font-bold text-foreground mb-4 md:mb-6 group-hover:text-primary transition-colors leading-tight">
+                                    <h3 className="text-lg md:text-3xl font-bold text-foreground mb-4 md:mb-6 group-hover:text-[var(--us-red)] transition-colors leading-tight">
                                         {t.services.service1.title}
                                     </h3>
                                     <p className="text-sm md:text-xl text-muted-foreground leading-relaxed">
                                         {t.services.service1.description}
                                     </p>
                                 </div>
-                                <div className="mt-6 md:mt-10 flex items-center text-primary font-bold text-sm md:text-lg">
+                                <div className="mt-6 md:mt-10 flex items-center text-[var(--us-red)] font-bold text-sm md:text-lg">
                                     {t.home.learnMore} <ArrowRight size={20} className="ml-2 group-hover:translate-x-2 transition-transform" />
                                 </div>
                             </div>
                         </Link>
 
-                        <Link to="/services" className="group">
+                        <Link
+                            to="/services"
+                            onClick={() => trackSiteEvent('service_card_click', {
+                                service_id: 'business_development',
+                                destination: '/services',
+                                placement: 'home_services_preview',
+                            })}
+                            className="group"
+                        >
                             <div className="bg-card p-6 md:p-12 rounded-[1.5rem] md:rounded-[2.5rem] shadow-sm border border-border/50 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 h-full flex flex-col justify-between overflow-hidden relative">
                                 <div className="absolute top-0 right-0 w-64 h-64 bg-purple-500/5 rounded-full blur-3xl -mr-16 -mt-16 transition-opacity group-hover:opacity-100 opacity-50"></div>
 
@@ -225,7 +254,15 @@ export function Home() {
                                 </div>
                             </div>
                         </Link>
-                        <Link to="/services" className="group">
+                        <Link
+                            to="/services"
+                            onClick={() => trackSiteEvent('service_card_click', {
+                                service_id: 'specialist_team',
+                                destination: '/services',
+                                placement: 'home_services_preview',
+                            })}
+                            className="group"
+                        >
                             <div className="bg-card p-6 md:p-12 rounded-[1.5rem] md:rounded-[2.5rem] shadow-sm border border-border/50 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 h-full flex flex-col justify-between overflow-hidden relative">
                                 <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-500/5 rounded-full blur-3xl -mr-16 -mt-16 transition-opacity group-hover:opacity-100 opacity-50"></div>
                                 <div>
@@ -253,6 +290,8 @@ export function Home() {
                 <div className="container mx-auto max-w-6xl">
                     <div className="bg-primary rounded-[2rem] md:rounded-[3rem] p-8 md:p-20 text-center relative overflow-hidden shadow-2xl shadow-primary/20 group">
                         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--color-primary-foreground)_0%,_transparent_100%)] opacity-0 group-hover:opacity-5 transition-opacity duration-1000"></div>
+                        <div className="absolute inset-x-10 top-0 h-1 us-red-rule opacity-90"></div>
+                        <div className="absolute -right-12 -top-12 h-40 w-40 rounded-full border border-[var(--us-red)]/35"></div>
 
                         <div className="relative z-10">
                             <h2 className="text-2xl md:text-6xl font-bold text-primary-foreground mb-6 md:mb-8 tracking-tight">
@@ -263,6 +302,11 @@ export function Home() {
                             </p>
                             <Link
                                 to="/contact"
+                                onClick={() => trackSiteEvent('cta_click', {
+                                    cta_id: 'home_bottom_contact',
+                                    destination: '/contact',
+                                    placement: 'home_bottom_cta',
+                                })}
                                 className="inline-flex items-center gap-3 px-8 md:px-12 py-4 md:py-6 bg-background text-foreground rounded-full font-bold text-base md:text-xl hover:scale-105 transition-all shadow-xl"
                             >
                                 {t.home.ctaButton}

@@ -1,2 +1,11 @@
 node_modules
 .git
+.openclaw
+AGENTS.md
+BRIEF_REDESIGN_2026.md
+HEARTBEAT.md
+IDENTITY.md
+PROMPT_CLAUDE_DESIGN.md
+SOUL.md
+TOOLS.md
+USER.md

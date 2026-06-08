@@ -7,6 +7,7 @@ import { Section } from '../components/shared/Section';
 import { Card } from '../components/shared/Card';
 import { Button } from '../components/shared/Button';
 import { SocialLinks } from '../components/shared/SocialLinks';
+import { getLeadAttribution, trackSiteEvent } from '../components/shared/tracking';
 
 export function Contact() {
     const { t } = useLanguage();
@@ -18,8 +19,16 @@ export function Contact() {
         website: ''
     });
     const [status, setStatus] = React.useState('idle'); // idle, sending, success, error
+    const hasTrackedFormStart = React.useRef(false);
 
     const handleChange = (e) => {
+        if (!hasTrackedFormStart.current && e.target.name !== 'website') {
+            hasTrackedFormStart.current = true;
+            trackSiteEvent('contact_form_start', {
+                field_name: e.target.name,
+            });
+        }
+
         setFormData(prev => ({
             ...prev,
             [e.target.name]: e.target.value
@@ -29,6 +38,10 @@ export function Contact() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setStatus('sending');
+        trackSiteEvent('contact_form_submit', {
+            has_company: Boolean(formData.company.trim()),
+            message_length_bucket: formData.message.length < 250 ? 'short' : formData.message.length < 1000 ? 'medium' : 'long',
+        });
 
         try {
             const response = await fetch('/api/contact', {
@@ -36,22 +49,44 @@ export function Contact() {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(formData),
+                body: JSON.stringify({
+                    ...formData,
+                    attribution: getLeadAttribution(),
+                }),
             });
 
             if (response.ok) {
                 setStatus('success');
                 setFormData({ name: '', email: '', company: '', message: '', website: '' });
+                trackSiteEvent('contact_form_success', {
+                    has_company: Boolean(formData.company.trim()),
+                    message_length_bucket: formData.message.length < 250 ? 'short' : formData.message.length < 1000 ? 'medium' : 'long',
+                }, {
+                    metaEvent: 'Lead',
+                });
+                trackSiteEvent('generate_lead', {
+                    source: 'contact_form',
+                    has_company: Boolean(formData.company.trim()),
+                }, {
+                    metaEvent: 'Lead',
+                });
             } else {
                 const data = await response.json();
                 console.error('Server Error:', data);
                 setStatus('error');
+                trackSiteEvent('contact_form_error', {
+                    error_type: 'server',
+                    status_code: response.status,
+                });
                 // Optional: Set a specific error message state to display to the user
                 // setErrorMessage(data.details || 'Failed to send message');
             }
         } catch (error) {
             console.error('Error sending message:', error);
             setStatus('error');
+            trackSiteEvent('contact_form_error', {
+                error_type: 'network',
+            });
         }
     };
 
@@ -84,7 +119,11 @@ export function Contact() {
                                     </div>
                                     <div>
                                         <h3 className="text-sm font-medium text-muted-foreground mb-1">Email</h3>
-                                        <a href={`mailto:${t.contact.info.email}`} className="text-lg font-medium text-white hover:text-blue-400 transition-colors">
+                                        <a
+                                            href={`mailto:${t.contact.info.email}`}
+                                            onClick={() => trackSiteEvent('contact_click', { method: 'email', placement: 'contact_card' })}
+                                            className="text-lg font-medium text-white hover:text-blue-400 transition-colors"
+                                        >
                                             {t.contact.info.email}
                                         </a>
                                     </div>
@@ -97,7 +136,11 @@ export function Contact() {
                                     </div>
                                     <div>
                                         <h3 className="text-sm font-medium text-muted-foreground mb-1">Phone (Italy)</h3>
-                                        <a href={`tel:${t.contact.info.phoneIT}`} className="text-lg font-medium text-white hover:text-green-400 transition-colors">
+                                        <a
+                                            href={`tel:${t.contact.info.phoneIT}`}
+                                            onClick={() => trackSiteEvent('contact_click', { method: 'phone_it', placement: 'contact_card' })}
+                                            className="text-lg font-medium text-white hover:text-green-400 transition-colors"
+                                        >
                                             {t.contact.info.phoneIT}
                                         </a>
                                     </div>
@@ -110,7 +153,11 @@ export function Contact() {
                                     </div>
                                     <div>
                                         <h3 className="text-sm font-medium text-muted-foreground mb-1">Phone (USA)</h3>
-                                        <a href={`tel:${t.contact.info.phoneUS}`} className="text-lg font-medium text-white hover:text-purple-400 transition-colors">
+                                        <a
+                                            href={`tel:${t.contact.info.phoneUS}`}
+                                            onClick={() => trackSiteEvent('contact_click', { method: 'phone_us', placement: 'contact_card' })}
+                                            className="text-lg font-medium text-white hover:text-purple-400 transition-colors"
+                                        >
                                             {t.contact.info.phoneUS}
                                         </a>
                                     </div>

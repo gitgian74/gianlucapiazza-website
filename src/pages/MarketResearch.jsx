@@ -1,11 +1,41 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Send, Bot, User, Sparkles, Loader2, AlertCircle } from 'lucide-react';
 import { PageHeader } from '../components/shared/PageHeader';
 import { Section } from '../components/shared/Section';
 import { Card } from '../components/shared/Card';
 import { Button } from '../components/shared/Button';
 import { useLanguage } from '../hooks/use-language';
+import { trackSiteEvent } from '../components/shared/tracking';
+
+const REQUEST_TIMEOUT_MS = 22_000;
+
+async function fetchChatResponse(message) {
+    const controller = new AbortController();
+    const timeoutId = window.setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
+
+    try {
+        const response = await fetch('/api/chat', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ message }),
+            signal: controller.signal,
+        });
+        const data = await response.json().catch(() => ({}));
+
+        if (!response.ok) {
+            const error = new Error(data.error || 'Failed to fetch response');
+            error.status = response.status;
+            throw error;
+        }
+
+        return data.response;
+    } finally {
+        window.clearTimeout(timeoutId);
+    }
+}
 
 export function MarketResearch() {
     const { t } = useLanguage();
@@ -44,25 +74,33 @@ export function MarketResearch() {
         setMessages(prev => [...prev, { role: 'user', content: userMessage }]);
         setIsLoading(true);
         setError(null);
+        trackSiteEvent('market_research_submit', {
+            query_length_bucket: userMessage.length < 80 ? 'short' : userMessage.length < 240 ? 'medium' : 'long',
+            message_count_before_submit: messages.length,
+        });
 
         try {
-            const response = await fetch('/api/chat', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ message: userMessage }),
-            });
-
-            if (!response.ok) {
-                throw new Error('Failed to fetch response');
+            let responseText;
+            try {
+                responseText = await fetchChatResponse(userMessage);
+            } catch (err) {
+                if (err.status === 429 || err.name === 'AbortError') {
+                    throw err;
+                }
+                await new Promise(resolve => window.setTimeout(resolve, 700));
+                responseText = await fetchChatResponse(userMessage);
             }
 
-            const data = await response.json();
-            setMessages(prev => [...prev, { role: 'assistant', content: data.response }]);
-            setIsLoading(false);
+            setMessages(prev => [...prev, { role: 'assistant', content: responseText }]);
+            trackSiteEvent('market_research_success', {
+                query_length_bucket: userMessage.length < 80 ? 'short' : userMessage.length < 240 ? 'medium' : 'long',
+                response_length_bucket: responseText.length < 500 ? 'short' : responseText.length < 1500 ? 'medium' : 'long',
+            });
         } catch (err) {
             console.error('Chat error:', err);
+            trackSiteEvent('market_research_error', {
+                error_type: err.status === 429 ? 'rate_limit' : err.name === 'AbortError' || err.status === 504 ? 'timeout' : 'server',
+            });
             // Fallback for local dev without API
             if (window.location.hostname === 'localhost') {
                 setTimeout(() => {
@@ -73,7 +111,16 @@ export function MarketResearch() {
                     setIsLoading(false);
                 }, 1000);
             } else {
-                setError(t.marketResearch.error);
+                const errorMessage = err.status === 429
+                    ? t.marketResearch.rateLimit
+                    : err.name === 'AbortError' || err.status === 504
+                        ? t.marketResearch.timeout
+                        : t.marketResearch.error;
+                setError(errorMessage);
+                setIsLoading(false);
+            }
+        } finally {
+            if (window.location.hostname !== 'localhost') {
                 setIsLoading(false);
             }
         }

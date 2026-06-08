@@ -23,6 +23,9 @@ ROUTES = [
     "/us-retail-partnerships",
     "/vendere-prodotti-italiani-usa",
     "/temporary-export-manager-usa",
+    "/food-beverage-usa",
+    "/moda-design-usa",
+    "/agente-vs-distributore-usa",
     "/privacy",
     "/missing-route",
 ]
@@ -61,7 +64,7 @@ def main():
             page = browser.new_page()
             page.goto(f"{BASE_URL}/", wait_until="networkidle")
             assert page.evaluate("localStorage.getItem('cookieConsent')") is None
-            page.wait_for_selector("text=Accetta", timeout=3000)
+            page.wait_for_selector("text=/Accetta tutto|Accept all/", timeout=3000)
             browser.close()
     finally:
         server.terminate()

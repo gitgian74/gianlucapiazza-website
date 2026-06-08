@@ -7,6 +7,7 @@ import { PageHeader } from '../components/shared/PageHeader';
 import { Section } from '../components/shared/Section';
 import { Card } from '../components/shared/Card';
 import { Button } from '../components/shared/Button';
+import { trackSiteEvent } from '../components/shared/tracking';
 
 export function Services() {
     const { language, t } = useLanguage();
@@ -14,8 +15,8 @@ export function Services() {
     const services = [
         {
             id: 'service1',
-            icon: <Globe size={32} className="text-blue-600" />,
-            iconWrapClass: 'bg-blue-500/10 text-blue-400',
+            icon: <Globe size={32} className="text-[var(--us-red)]" />,
+            iconWrapClass: 'bg-[var(--us-red)]/10 text-[var(--us-red)]',
             image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80",
             data: t.services.service1
         },
@@ -74,6 +75,18 @@ export function Services() {
             to: '/vendere-prodotti-italiani-usa',
             label: language === 'it' ? 'Vendere prodotti italiani negli USA' : 'Selling Italian Products in the USA',
         },
+        {
+            to: '/food-beverage-usa',
+            label: language === 'it' ? 'Food & Beverage USA' : 'Food & Beverage USA',
+        },
+        {
+            to: '/moda-design-usa',
+            label: language === 'it' ? 'Moda e Design USA' : 'Fashion and Design USA',
+        },
+        {
+            to: '/agente-vs-distributore-usa',
+            label: language === 'it' ? 'Agente vs distributore USA' : 'Agent vs Distributor USA',
+        },
     ];
 
     return (
@@ -99,7 +112,8 @@ export function Services() {
                             </p>
                         </div>
                         <div className="border border-border/70 bg-card/60 rounded-3xl p-6 md:p-8">
-                            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary mb-3">
+                            <div className="mb-5 h-1 w-20 rounded-full us-red-rule"></div>
+                            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[var(--us-red)] mb-3">
                                 {t.services.modular.eyebrow}
                             </p>
                             <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
@@ -159,14 +173,21 @@ export function Services() {
                                         <ul className="space-y-2">
                                             {service.data.items.slice(0, 4).map((item) => (
                                                 <li key={item} className="flex items-start gap-3 text-sm text-muted-foreground">
-                                                    <span className="mt-2 h-1.5 w-1.5 rounded-full bg-primary shrink-0"></span>
+                                                    <span className="mt-2 h-1.5 w-1.5 rounded-full bg-[var(--us-red)] shrink-0"></span>
                                                     <span>{item}</span>
                                                 </li>
                                             ))}
                                         </ul>
                                         <Link
                                             to="/contact"
-                                            className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-primary hover:text-primary/80"
+                                            onClick={() => trackSiteEvent('cta_click', {
+                                                cta_id: 'service_card_contact',
+                                                service_id: service.id,
+                                                service_title: service.data.title,
+                                                destination: '/contact',
+                                                placement: 'services_card',
+                                            })}
+                                            className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[var(--us-red)] hover:text-[#9f1539]"
                                         >
                                             {t.services.ctaButton}
                                             <ArrowRight size={16} />
@@ -179,7 +200,7 @@ export function Services() {
                 </div>
 
                 <div className="mt-16 border-y border-border/70 py-8">
-                    <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary mb-5">
+                    <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[var(--us-red)] mb-5">
                         {language === 'it' ? 'Percorsi USA' : 'US Paths'}
                     </p>
                     <div className="flex flex-wrap gap-3">
@@ -187,7 +208,12 @@ export function Services() {
                             <Link
                                 key={path.to}
                                 to={path.to}
-                                className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-background px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-primary hover:text-primary"
+                                onClick={() => trackSiteEvent('seo_path_click', {
+                                    destination: path.to,
+                                    label: path.label,
+                                    placement: 'services_us_paths',
+                                })}
+                                className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-background px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-[var(--us-red)] hover:text-[var(--us-red)]"
                             >
                                 {path.label}
                                 <ArrowRight size={15} />
@@ -201,8 +227,9 @@ export function Services() {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="mt-20 bg-card rounded-3xl p-12 text-center relative overflow-hidden border border-sky-100"
+                    className="mt-20 bg-card rounded-3xl p-12 text-center relative overflow-hidden border border-[var(--us-red)]/25"
                 >
+                    <div className="absolute inset-x-8 top-0 h-1 us-red-rule opacity-80"></div>
                     <div className="relative z-10">
                         <h2 className="text-3xl font-bold text-white mb-6">
                             {t.services.ctaTitle}
@@ -210,8 +237,15 @@ export function Services() {
                         <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
                             {t.services.ctaText}
                         </p>
-                        <Link to="/contact">
-                            <Button variant="primary" size="lg" className="bg-foreground text-background hover:bg-blue-50">
+                        <Link
+                            to="/contact"
+                            onClick={() => trackSiteEvent('cta_click', {
+                                cta_id: 'services_bottom_contact',
+                                destination: '/contact',
+                                placement: 'services_bottom_cta',
+                            })}
+                        >
+                            <Button variant="primary" size="lg" className="bg-[var(--us-red)] text-white shadow-[var(--us-red)]/20 hover:bg-[#9f1539]">
                                 {t.services.ctaButton}
                                 <ArrowRight size={20} />
                             </Button>

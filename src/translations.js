@@ -2,7 +2,7 @@ export const translations = {
   it: {
     nav: {
       home: 'Home',
-      about: 'Chi Sono',
+      about: 'Chi Siamo',
       services: 'Servizi',
       projects: 'Progetti',
       insights: 'Insights',
@@ -16,10 +16,10 @@ export const translations = {
       taglineSub: 'Dalla strategia all\'esecuzione — con 18 anni di presenza diretta negli Stati Uniti.',
       taglineUsa: 'Florida · Texas · California · Caraibi',
       futureTrading: 'The future of your trading',
-      intro: 'Con oltre 18 anni di esperienza nei mercati internazionali, supporto aziende italiane ed europee nella loro espansione globale, con focus su Florida, Texas, California, Boston, Chicago, Las Vegas e Caraibi.',
+      intro: 'Con oltre 18 anni di esperienza nei mercati internazionali, supportiamo aziende italiane ed europee nella loro espansione globale, con focus su Florida, Texas, California, Boston, Chicago, Las Vegas e Caraibi.',
       discoverServices: 'Scopri i Servizi',
       learnMore: 'Scopri di più',
-      contactMe: 'Contattami',
+      contactMe: 'Contattaci',
       stats: {
         experience: 'Anni di Esperienza',
         experienceValue: '18+',
@@ -35,11 +35,11 @@ export const translations = {
       ctaButton: 'Richiedi una Consulenza'
     },
     about: {
-      title: 'Chi Sono',
+      title: 'Chi Siamo',
       heroKicker: 'Profilo operativo',
-      heroHeadline: 'Apro il mercato USA alle imprese italiane che devono vendere, negoziare e costruire presenza reale.',
+      heroHeadline: 'Apriamo il mercato USA alle imprese italiane che devono vendere, negoziare e costruire presenza reale.',
       heroCard: 'Non consulenza da slide: relazioni commerciali, negoziazione e operatività sul campo.',
-      intro: 'GP & Partners nasce da un percorso vissuto tra Italia, Londra e Stati Uniti: distribuzione, retail, partnership strategiche, apertura mercato e gestione di trattative complesse.',
+      intro: 'GP & Partners nasce da un percorso vissuto da Gianluca Piazza tra Italia, Londra e Stati Uniti: esperienza diretta in distribuzione, retail, partnership strategiche, apertura mercato e trattative complesse, oggi messa al servizio di un team operativo.',
       primaryCta: 'Parliamo del tuo ingresso USA',
       secondaryCta: 'Vedi i casi',
       proofPoints: [
@@ -47,17 +47,17 @@ export const translations = {
         { value: '6', label: 'aree USA presidiate' },
         { value: 'GDO', label: 'retail e partnership strategiche' }
       ],
-      experienceTitle: 'Cosa porto al tavolo',
-      experience1: 'Un profilo ibrido: business developer, negoziatore e operatore. Entro quando un\'azienda italiana ha un prodotto valido, ma deve capire come trasformarlo in canali, accordi, presidio locale e crescita misurabile negli Stati Uniti.',
-      experience2: 'Il mio lavoro collega strategia e realtà operativa: analisi del mercato, scelta dei partner, trattativa commerciale, modello distributivo, team locale e gestione delle frizioni che normalmente bloccano l\'espansione.',
-      projectsTitle: 'Dove ho già giocato la partita',
-      projects: 'A Miami ho co-fondato Vine N Ale Distributors e guidato relazioni con catene e partner come Starbucks Reserve, Walmart, Publix, Target, Sedano\'s, Fresh Market e Niagara Waters. Non sono loghi messi in fila: sono contesti in cui prezzo, margini, logistica, posizionamento e fiducia decidono se un progetto entra davvero nel mercato.',
+      experienceTitle: 'Cosa portiamo al tavolo',
+      experience1: 'Un team operativo che unisce business development, negoziazione e presenza sul campo, con l\'esperienza imprenditoriale di Gianluca Piazza come leva e punto di sintesi. Entriamo quando un\'azienda italiana ha un prodotto valido, ma deve trasformarlo in canali, accordi, presidio locale e crescita misurabile negli Stati Uniti.',
+      experience2: 'Il nostro lavoro collega strategia e realtà operativa: analisi del mercato, scelta dei partner, trattativa commerciale, modello distributivo, team locale e gestione delle frizioni che normalmente bloccano l\'espansione. L\'esperienza personale del founder resta al servizio del metodo, non davanti al team.',
+      projectsTitle: 'Dove il team ha già giocato la partita',
+      projects: 'Nel percorso operativo tra Miami e Stati Uniti abbiamo costruito esperienza diretta con distribuzione, retail e relazioni con catene e partner come Starbucks Reserve, Walmart, Publix, Target, Sedano\'s, Fresh Market e Niagara Waters. Non sono loghi messi in fila: sono contesti in cui prezzo, margini, logistica, posizionamento e fiducia decidono se un progetto entra davvero nel mercato.',
       backgroundTitle: 'Il tratto distintivo',
-      background: 'Il valore non è “conoscere l\'America”. È sapere leggere il punto in cui prodotto, partner, compliance, distribuzione e cultura commerciale si incastrano. Da lì costruisco percorsi concreti: pochi passaggi chiari, priorità operative, responsabilità definite.',
+      background: 'Il valore non è “conoscere l\'America”. È sapere leggere il punto in cui prodotto, partner, compliance, distribuzione e cultura commerciale si incastrano. Da lì costruiamo percorsi concreti: pochi passaggi chiari, priorità operative, responsabilità definite.',
       philosophyTitle: 'Metodo',
       philosophyQuote: 'Prima la traiettoria, poi l\'execution.',
-      philosophy: 'La visione serve solo se diventa una sequenza di mosse verificabili. Preferisco una strategia asciutta, leggibile dal board e utile al team commerciale, a documenti lunghi che non cambiano il risultato.',
-      principlesTitle: 'Come lavoro',
+      philosophy: 'La visione serve solo se diventa una sequenza di mosse verificabili. Preferiamo una strategia asciutta, leggibile dal board e utile al team commerciale, a documenti lunghi che non cambiano il risultato.',
+      principlesTitle: 'Come lavoriamo',
       principles: [
         'Posizionamento chiaro prima di presentarsi a buyer, partner o investitori.',
         'Network usato con criterio: la relazione giusta vale più di cento contatti generici.',
@@ -283,7 +283,7 @@ export const translations = {
         skillsList: ['AI & Computer Vision', 'Infrastructure security', 'PNRR project management']
       },
       ctaText: 'Vuoi discutere un progetto simile per la tua azienda?',
-      ctaButton: 'Contattami'
+      ctaButton: 'Contattaci'
     },
     contact: {
       title: 'Contatti',
@@ -305,7 +305,7 @@ export const translations = {
         email: 'mail@gianlucapiazza.com',
         phoneIT: '+39 337 303431',
         phoneUS: '+1 (305) 548-0002',
-        addressIT: 'via Conca 8, 36030 Villaverla - VI',
+        addressIT: 'Vicenza',
         addressUS: 'c/o 8Hz LLC, 4660 Arboretum Cir Unit 201, Naples FL 34112',
         linkedin: 'LinkedIn',
         followSocial: 'Seguici sui social',
@@ -321,6 +321,8 @@ export const translations = {
       loading: "Analisi in corso...",
       localFallback: "Sono in modalità sviluppo locale e l'API non è collegata. In produzione userò Gemini per rispondere alle domande di market research.",
       error: "Non riesco a collegarmi in questo momento. Riprova più tardi.",
+      timeout: "La risposta sta impiegando troppo tempo. Riprova con una domanda più specifica.",
+      rateLimit: "Troppe richieste ravvicinate. Attendi qualche minuto e riprova.",
       poweredBy: "Powered by Gemini",
       send: "Invia domanda",
       disclaimer: "L'IA può commettere errori. Verifica le informazioni importanti e non inviare dati personali o confidenziali."
@@ -335,23 +337,26 @@ export const translations = {
       cookie: 'Cookie Policy'
     },
     cookieConsent: {
+      title: 'Preferenze privacy',
       text: 'Questo sito usa preferenze tecniche locali. Vercel Web Analytics e GA4 vengono attivati solo se accetti la misurazione analytics nella',
-      accept: 'Accetta',
+      marketingText: 'Il Meta Pixel viene caricato solo con consenso marketing separato e solo se configurato nel sito.',
+      acceptAll: 'Accetta tutto',
+      acceptAnalytics: 'Solo analytics',
       decline: 'Rifiuta',
       learnMore: 'Cookie Policy'
     },
-    privacy: {
-      title: 'Privacy & Cookie Policy',
-      lastUpdated: 'Ultimo aggiornamento:',
-      intro: 'Questa Informativa sulla Privacy descrive le modalità di gestione del sito web in riferimento al trattamento dei dati personali degli utenti che lo consultano. Si tratta di un\'informativa resa anche ai sensi dell\'art. 13 del Regolamento UE 2016/679 (GDPR).',
-      controller: {
-        title: 'Titolare del Trattamento',
-        text: 'Il Titolare del trattamento dei dati è:',
-        name: 'Gianluca Piazza / GianlucaPiazza.com',
-        address: 'Italia',
-        vat: '',
-        email: 'mail@gianlucapiazza.com'
-      },
+      privacy: {
+        title: 'Privacy & Cookie Policy',
+        lastUpdated: 'Ultimo aggiornamento:',
+        intro: 'Questa Informativa descrive come il sito gianlucapiazza.com tratta i dati personali degli utenti che lo consultano o usano i moduli e gli strumenti presenti. È redatta in ottica GDPR/UK GDPR, ePrivacy/cookie, principi FTC statunitensi e principali diritti privacy applicabili nei mercati internazionali, incluse le leggi privacy statali USA quando applicabili.',
+        controller: {
+          title: 'Titolare del Trattamento',
+          text: 'Il Titolare del trattamento è identificato attraverso il sito e il brand operativo:',
+          name: 'GP & Partners / gianlucapiazza.com',
+          address: 'Italia / Unione Europea',
+          vat: '',
+          email: 'privacy@gianlucapiazza.com'
+        },
       collection: {
         title: 'Tipologia di Dati Raccolti',
         text: 'Durante la navigazione e l\'utilizzo del sito, possono essere raccolti i seguenti dati:',
@@ -360,7 +365,8 @@ export const translations = {
           'Dati forniti volontariamente dall\'utente (nome, email, azienda, telefono nel form di contatto)',
           'Prompt e messaggi inseriti volontariamente nello strumento AI Market Research, trattati tramite API Google Gemini per generare la risposta.',
           'Dati aggregati e anonimizzati di utilizzo tramite Vercel Web Analytics, senza cookie di terza parte.',
-          'Preferenze tecniche salvate nel browser, come scelta lingua e preferenza cookie/analytics.'
+          'Preferenze tecniche salvate nel browser, come scelta lingua e preferenza cookie/analytics.',
+          'Dati di navigazione per misurazione marketing tramite Meta Pixel, solo se l’utente presta consenso marketing e il Pixel è configurato: pagine visitate, referrer, browser, dispositivo e interazioni tecniche essenziali alla misurazione.'
         ]
       },
       purpose: {
@@ -372,18 +378,51 @@ export const translations = {
           'Generare risposte alle richieste inviate allo strumento AI Market Research',
           'Migliorare l\'esperienza utente sul sito',
           'Analisi statistiche aggregate sull\'utilizzo del sito, sui referrer e sulle pagine visitate',
+          'Misurare l’efficacia di campagne e contenuti social/advertising tramite Meta Pixel, solo previo consenso marketing',
           'Sicurezza, prevenzione abusi e corretto funzionamento tecnico del sito'
+        ]
+      },
+      legalBasis: {
+        title: 'Basi giuridiche',
+        text: 'Le basi giuridiche utilizzate variano in base al trattamento:',
+        list: [
+          'Esecuzione di misure precontrattuali o contrattuali per rispondere a richieste di contatto, proposta o collaborazione.',
+          'Consenso per analytics non essenziali, marketing measurement e tecnologie assimilabili a cookie non strettamente necessari.',
+          'Legittimo interesse per sicurezza del sito, prevenzione abusi, diagnostica tecnica e tutela dei diritti del Titolare.',
+          'Obbligo legale quando la conservazione o comunicazione di informazioni è richiesta da norme applicabili.'
         ]
       },
       cookies: {
         title: 'Cookie Policy',
-        text: 'Il sito non installa cookie di profilazione e non usa pixel pubblicitari Google, Meta o TikTok. Nello specifico:',
+        text: 'Il sito separa preferenze tecniche, analytics e marketing. Nello specifico:',
         types: [
           'Preferenze tecniche/local storage: usate per ricordare lingua e scelta cookie/analytics sul dispositivo dell’utente.',
           'Vercel Web Analytics e GA4: attivati solo dopo accettazione del banner analytics; misurano pagine visitate, referrer, browser, sistema operativo, paese e device.',
-          'Marketing e advertising pixel: non attivi. Eventuali tag Google Ads, Meta Pixel o TikTok Pixel saranno attivati solo dopo aggiornamento informativa e consenso preventivo.'
+          'Meta Pixel: caricato solo dopo consenso marketing separato e solo se configurato con un Pixel ID valido; può misurare pagine visitate, referrer, browser e dispositivo per attribuzione e campagne.',
+          'Google Ads e TikTok Pixel: non attivi. Eventuali tag futuri saranno attivati solo dopo aggiornamento informativa e consenso preventivo.'
         ],
-        management: 'L’utente può rifiutare la misurazione analytics dal banner o cancellare le preferenze salvate dal browser. I cookie e lo storage possono essere gestiti anche dalle impostazioni del browser.'
+        management: 'L’utente può rifiutare analytics e marketing dal banner o cancellare le preferenze salvate dal browser. I cookie e lo storage possono essere gestiti anche dalle impostazioni del browser. Se il browser invia un segnale Global Privacy Control, il sito lo tratta come opt-out dal marketing measurement.'
+      },
+      sharing: {
+        title: 'Fornitori, destinatari e trasferimenti',
+        text: 'I dati possono essere trattati da fornitori tecnici necessari al funzionamento del sito e dei servizi collegati:',
+        list: [
+          'Vercel per hosting, deploy, sicurezza, log tecnici e analytics aggregati.',
+          'Google per GA4 e API Gemini, solo nelle funzionalità in cui tali servizi sono attivati o usati dall’utente.',
+          'Meta per il Pixel, solo previo consenso marketing e solo se il Pixel ID è configurato.',
+          'Provider email e strumenti operativi usati per ricevere e gestire richieste inviate volontariamente.'
+        ],
+        transfer: 'Alcuni fornitori possono trattare dati fuori da UE/SEE o dal paese dell’utente. Quando richiesto, il trasferimento avviene sulla base di garanzie appropriate, come clausole contrattuali standard, decisioni di adeguatezza, Data Privacy Framework o misure equivalenti disponibili.'
+      },
+      retention: {
+        title: 'Conservazione',
+        text: 'I dati sono conservati solo per il tempo necessario alle finalità indicate:',
+        list: [
+          'Richieste di contatto e corrispondenza: per il tempo necessario a gestire la richiesta e gli eventuali rapporti successivi, salvo obblighi legali o tutela di diritti.',
+          'Log tecnici e sicurezza: per periodi limitati definiti dai fornitori infrastrutturali e dalle esigenze di sicurezza.',
+          'Preferenze consenso: fino a modifica, cancellazione browser o aggiornamento della versione del consenso.',
+          'Dati analytics/marketing: secondo le impostazioni di conservazione dei relativi strumenti, nel rispetto del consenso prestato.'
+        ]
       },
       ai: {
         title: 'Strumento AI Market Research',
@@ -391,11 +430,15 @@ export const translations = {
       },
       rights: {
         title: 'Diritti degli Interessati',
-        text: 'Ai sensi del GDPR, gli utenti hanno il diritto di chiedere al Titolare l\'accesso ai dati, la rettifica, la cancellazione degli stessi o la limitazione del trattamento, oltre al diritto alla portabilità dei dati.'
+        text: 'Gli utenti nell’UE/SEE, Regno Unito e giurisdizioni analoghe possono chiedere accesso, rettifica, cancellazione, limitazione, portabilità, opposizione al trattamento e revoca del consenso. Hanno inoltre diritto di proporre reclamo all’autorità di controllo competente.'
+      },
+      usPrivacy: {
+        title: 'Utenti USA e mercati internazionali',
+        text: 'Per utenti negli Stati Uniti e in altri paesi, questa informativa è pensata per fornire una disclosure chiara su categorie di dati, finalità, fornitori, tecnologie di tracking e diritti disponibili. Se una legge statale USA applicabile, inclusa CCPA/CPRA per residenti in California, attribuisce diritti specifici, l’utente può richiedere accesso, cancellazione, correzione, portabilità e opt-out da vendita o condivisione per pubblicità comportamentale. Il sito non vende dati personali in cambio di denaro; l’uso di Meta Pixel o tecnologie simili può essere considerato “sharing”/targeted advertising in alcune giurisdizioni e viene quindi attivato solo previo consenso marketing, salvo opt-out browser come Global Privacy Control.'
       },
       contact: {
         title: 'Contatti Privacy',
-        text: 'Per esercitare i propri diritti o per qualsiasi informazione relativa alla privacy, è possibile contattare il Titolare all\'indirizzo email:'
+        text: 'Per esercitare i propri diritti o per informazioni privacy, usare il contatto dedicato:'
       }
     },
     notFound: {
@@ -421,10 +464,10 @@ export const translations = {
       taglineSub: 'From strategy to execution — 18 years of direct presence across the United States.',
       taglineUsa: 'Florida · Texas · California · Caraibi',
       futureTrading: 'The future of your trading',
-      intro: 'With over 18 years of experience in international markets, I support Italian and European companies in their global expansion, with a focus on Florida, Texas, California, Boston, Chicago, Las Vegas and the Caribbean.',
+      intro: 'With over 18 years of experience in international markets, we support Italian and European companies in their global expansion, with a focus on Florida, Texas, California, Boston, Chicago, Las Vegas and the Caribbean.',
       discoverServices: 'Discover Services',
       learnMore: 'Learn more',
-      contactMe: 'Contact Me',
+      contactMe: 'Contact Us',
       stats: {
         experience: 'Years of Experience',
         experienceValue: '18+',
@@ -440,11 +483,11 @@ export const translations = {
       ctaButton: 'Request a Consultation'
     },
     about: {
-      title: 'About Me',
+      title: 'About Us',
       heroKicker: 'Operating profile',
-      heroHeadline: 'I open the US market for Italian companies that need to sell, negotiate, and build real local presence.',
+      heroHeadline: 'We open the US market for Italian companies that need to sell, negotiate, and build real local presence.',
       heroCard: 'Not slide-deck consulting: commercial relationships, negotiation, and field execution.',
-      intro: 'GP & Partners comes from a path lived across Italy, London, and the United States: distribution, retail, strategic partnerships, market entry, and complex commercial negotiations.',
+      intro: 'GP & Partners comes from Gianluca Piazza\'s path across Italy, London, and the United States: direct experience in distribution, retail, strategic partnerships, market entry, and complex commercial negotiations, now placed at the service of an operating team.',
       primaryCta: 'Discuss your US entry',
       secondaryCta: 'View case studies',
       proofPoints: [
@@ -452,17 +495,17 @@ export const translations = {
         { value: '6', label: 'core US market areas' },
         { value: 'Retail', label: 'chains and strategic partners' }
       ],
-      experienceTitle: 'What I bring to the table',
-      experience1: 'A hybrid profile: business developer, negotiator, and operator. I step in when an Italian company has a strong product, but needs to turn it into channels, agreements, local presence, and measurable growth in the United States.',
-      experience2: 'My work connects strategy with operating reality: market analysis, partner selection, commercial negotiation, distribution model, local team, and the frictions that usually block expansion.',
-      projectsTitle: 'Where I have already played the game',
-      projects: 'In Miami I co-founded Vine N Ale Distributors and led relationships with chains and partners including Starbucks Reserve, Walmart, Publix, Target, Sedano\'s, Fresh Market, and Niagara Waters. These are not logos in a row: they are contexts where price, margins, logistics, positioning, and trust decide whether a project truly enters the market.',
+      experienceTitle: 'What we bring to the table',
+      experience1: 'An operating team combining business development, negotiation, and field execution, with Gianluca Piazza\'s entrepreneurial experience as a lever and point of synthesis. We step in when an Italian company has a strong product, but needs to turn it into channels, agreements, local presence, and measurable growth in the United States.',
+      experience2: 'Our work connects strategy with operating reality: market analysis, partner selection, commercial negotiation, distribution model, local team, and the frictions that usually block expansion. The founder\'s personal experience serves the method, not the other way around.',
+      projectsTitle: 'Where the team has already played the game',
+      projects: 'Across Miami and the United States, our operating experience includes distribution, retail, and relationships with chains and partners including Starbucks Reserve, Walmart, Publix, Target, Sedano\'s, Fresh Market, and Niagara Waters. These are not logos in a row: they are contexts where price, margins, logistics, positioning, and trust decide whether a project truly enters the market.',
       backgroundTitle: 'The differentiator',
-      background: 'The value is not “knowing America”. It is knowing where product, partner, compliance, distribution, and commercial culture need to lock together. From there I build concrete paths: clear steps, operating priorities, defined responsibility.',
+      background: 'The value is not “knowing America”. It is knowing where product, partner, compliance, distribution, and commercial culture need to lock together. From there we build concrete paths: clear steps, operating priorities, defined responsibility.',
       philosophyTitle: 'Method',
       philosophyQuote: 'Trajectory first. Execution immediately after.',
-      philosophy: 'Vision matters only when it becomes a sequence of verifiable moves. I prefer a sharp strategy that the board can understand and the sales team can use over long documents that do not change the outcome.',
-      principlesTitle: 'How I work',
+      philosophy: 'Vision matters only when it becomes a sequence of verifiable moves. We prefer a sharp strategy that the board can understand and the sales team can use over long documents that do not change the outcome.',
+      principlesTitle: 'How we work',
       principles: [
         'Clear positioning before approaching buyers, partners, or investors.',
         'Network used with discipline: the right relationship is worth more than a hundred generic contacts.',
@@ -688,7 +731,7 @@ export const translations = {
         skillsList: ['AI & Computer Vision', 'Infrastructure security', 'PNRR project management']
       },
       ctaText: 'Want to discuss a similar project for your company?',
-      ctaButton: 'Contact Me'
+      ctaButton: 'Contact Us'
     },
     contact: {
       title: 'Contact',
@@ -710,7 +753,7 @@ export const translations = {
         email: 'mail@gianlucapiazza.com',
         phoneIT: '+39 337 303431',
         phoneUS: '+1 (305) 548-0002',
-        addressIT: 'via Conca 8, 36030 Villaverla - VI',
+        addressIT: 'Vicenza',
         addressUS: 'c/o 8Hz LLC, 4660 Arboretum Cir Unit 201, Naples FL 34112',
         linkedin: 'LinkedIn',
         followSocial: 'Follow us on social',
@@ -726,6 +769,8 @@ export const translations = {
       loading: "Analyzing market context...",
       localFallback: "I am currently in local development mode and the API is not connected. In production I will use Gemini to answer market research questions.",
       error: "I am having trouble connecting right now. Please try again later.",
+      timeout: "The response is taking too long. Try again with a more specific question.",
+      rateLimit: "Too many requests in a short time. Please wait a few minutes and try again.",
       poweredBy: "Powered by Gemini",
       send: "Send question",
       disclaimer: "AI can make mistakes. Verify important information and do not submit personal or confidential data."
@@ -740,23 +785,26 @@ export const translations = {
       cookie: 'Cookie Policy'
     },
     cookieConsent: {
+      title: 'Privacy preferences',
       text: 'This website uses local technical preferences. Vercel Web Analytics and GA4 are activated only if you accept analytics measurement in the',
-      accept: 'Accept',
+      marketingText: 'Meta Pixel is loaded only with separate marketing consent and only if it is configured on the website.',
+      acceptAll: 'Accept all',
+      acceptAnalytics: 'Analytics only',
       decline: 'Reject',
       learnMore: 'Cookie Policy'
     },
-    privacy: {
-      title: 'Privacy & Cookie Policy',
-      lastUpdated: 'Last Updated:',
-      intro: 'This Privacy Policy describes how the website is managed with regard to the processing of personal data of users who consult it. This notice is also provided pursuant to Art. 13 of EU Regulation 2016/679 (GDPR).',
-      controller: {
-        title: 'Data Controller',
-        text: 'The Data Controller is:',
-        name: 'Gianluca Piazza / GianlucaPiazza.com',
-        address: 'Italy',
-        vat: '',
-        email: 'mail@gianlucapiazza.com'
-      },
+      privacy: {
+        title: 'Privacy & Cookie Policy',
+        lastUpdated: 'Last Updated:',
+        intro: 'This notice explains how gianlucapiazza.com processes personal data when users browse the site or use its forms and tools. It is drafted with GDPR/UK GDPR, ePrivacy/cookie rules, US FTC privacy principles and major international privacy rights in mind, including US state privacy laws where applicable.',
+        controller: {
+          title: 'Data Controller',
+          text: 'The Data Controller is identified through the website and operating brand:',
+          name: 'GP & Partners / gianlucapiazza.com',
+          address: 'Italy / European Union',
+          vat: '',
+          email: 'privacy@gianlucapiazza.com'
+        },
       collection: {
         title: 'Types of Data Collected',
         text: 'During navigation and use of the site, the following data may be collected:',
@@ -765,7 +813,8 @@ export const translations = {
           'Data voluntarily provided by the user (name, email, company, phone in the contact form)',
           'Prompts and messages voluntarily entered in the AI Market Research tool, processed through the Google Gemini API to generate the answer.',
           'Aggregated and anonymized usage data through Vercel Web Analytics, without third-party cookies.',
-          'Technical preferences stored in the browser, such as language and cookie/analytics preference.'
+          'Technical preferences stored in the browser, such as language and cookie/analytics preference.',
+          'Navigation data for marketing measurement through Meta Pixel, only if the user gives marketing consent and the Pixel is configured: visited pages, referrers, browser, device and technical interactions needed for measurement.'
         ]
       },
       purpose: {
@@ -777,18 +826,51 @@ export const translations = {
           'Generate answers to requests submitted through the AI Market Research tool',
           'Improve user experience on the site',
           'Aggregate statistical analysis of site usage, referrers and visited pages',
+          'Measure the effectiveness of social and advertising campaigns through Meta Pixel, only after marketing consent',
           'Security, abuse prevention and correct technical operation of the website'
+        ]
+      },
+      legalBasis: {
+        title: 'Legal Bases',
+        text: 'The legal bases vary depending on the processing activity:',
+        list: [
+          'Pre-contractual or contractual necessity to respond to contact, proposal or collaboration requests.',
+          'Consent for non-essential analytics, marketing measurement and cookie-like technologies that are not strictly necessary.',
+          'Legitimate interest for site security, abuse prevention, technical diagnostics and protection of the Controller’s rights.',
+          'Legal obligation when retention or disclosure of information is required by applicable law.'
         ]
       },
       cookies: {
         title: 'Cookie Policy',
-        text: 'The website does not set profiling cookies and does not use Google, Meta or TikTok advertising pixels. Specifically:',
+        text: 'The website separates technical preferences, analytics and marketing. Specifically:',
         types: [
           'Technical preferences/local storage: used to remember language and cookie/analytics choices on the user device.',
           'Vercel Web Analytics and GA4: activated only after accepting the analytics banner; they measure visited pages, referrers, browser, operating system, country and device.',
-          'Marketing and advertising pixels: not active. Any Google Ads, Meta Pixel or TikTok Pixel tags will only be enabled after updating this notice and collecting prior consent.'
+          'Meta Pixel: loaded only after separate marketing consent and only if configured with a valid Pixel ID; it may measure visited pages, referrers, browser and device for attribution and campaigns.',
+          'Google Ads and TikTok Pixel: not active. Any future tags will only be enabled after updating this notice and collecting prior consent.'
         ],
-        management: 'Users can reject analytics measurement from the banner or clear saved preferences from their browser. Cookies and storage can also be managed from browser settings.'
+        management: 'Users can reject analytics and marketing from the banner or clear saved preferences from their browser. Cookies and storage can also be managed from browser settings. If the browser sends a Global Privacy Control signal, the website treats it as an opt-out from marketing measurement.'
+      },
+      sharing: {
+        title: 'Providers, Recipients and Transfers',
+        text: 'Data may be processed by technical providers needed to operate the website and connected services:',
+        list: [
+          'Vercel for hosting, deployment, security, technical logs and aggregated analytics.',
+          'Google for GA4 and Gemini API, only where those services are enabled or used by the user.',
+          'Meta for the Pixel, only after marketing consent and only if the Pixel ID is configured.',
+          'Email providers and operating tools used to receive and manage voluntarily submitted requests.'
+        ],
+        transfer: 'Some providers may process data outside the EU/EEA or the user’s country. Where required, transfers rely on appropriate safeguards such as standard contractual clauses, adequacy decisions, the Data Privacy Framework or equivalent available measures.'
+      },
+      retention: {
+        title: 'Retention',
+        text: 'Data is kept only for as long as necessary for the purposes described:',
+        list: [
+          'Contact requests and correspondence: for the time needed to handle the request and any following relationship, unless legal obligations or rights protection require longer retention.',
+          'Technical and security logs: for limited periods set by infrastructure providers and security needs.',
+          'Consent preferences: until changed, cleared from the browser or superseded by a new consent version.',
+          'Analytics/marketing data: according to the retention settings of the relevant tools and the consent provided.'
+        ]
       },
       ai: {
         title: 'AI Market Research Tool',
@@ -796,11 +878,15 @@ export const translations = {
       },
       rights: {
         title: 'Rights of Data Subjects',
-        text: 'Under GDPR, users have the right to request from the Controller access to data, rectification, cancellation of the same or limitation of processing, as well as the right to data portability.'
+        text: 'Users in the EU/EEA, United Kingdom and similar jurisdictions may request access, correction, deletion, restriction, portability, objection to processing and withdrawal of consent. They may also lodge a complaint with the competent supervisory authority.'
+      },
+      usPrivacy: {
+        title: 'US Users and International Markets',
+        text: 'For users in the United States and other countries, this notice is designed to clearly disclose data categories, purposes, providers, tracking technologies and available rights. If an applicable US state law, including CCPA/CPRA for California residents, grants specific rights, users may request access, deletion, correction, portability and opt-out from sale or sharing for behavioral advertising. The website does not sell personal data for money; Meta Pixel or similar technologies may be considered “sharing”/targeted advertising in some jurisdictions and are therefore enabled only after marketing consent, unless the browser sends an opt-out signal such as Global Privacy Control.'
       },
       contact: {
         title: 'Privacy Contact',
-        text: 'To exercise your rights or for any information regarding privacy, you can contact the Controller at the email address:'
+        text: 'To exercise your rights or ask privacy questions, use the dedicated contact:'
       }
     },
     notFound: {

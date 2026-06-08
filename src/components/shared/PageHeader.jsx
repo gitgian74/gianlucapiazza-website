@@ -16,6 +16,7 @@ export function PageHeader({ title, subtitle, children, className, backgroundIma
                     <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/70 to-background"></div>
                 </div>
             )}
+            <div className="absolute inset-x-0 bottom-0 h-px us-red-rule opacity-80"></div>
             <div className="container mx-auto max-w-4xl text-center relative z-10">
                 <motion.h1
                     initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}

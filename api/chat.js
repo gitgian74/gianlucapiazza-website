@@ -11,12 +11,27 @@ const RATE_LIMIT = {
     windowMs: 15 * 60 * 1000,
 };
 
+const GEMINI_TIMEOUT_MS = 18_000;
+
 const GEMINI_MODELS = [
     process.env.GEMINI_MODEL || 'gemini-2.0-flash',
     'gemini-2.0-flash-lite',
     'gemini-2.5-flash',
     'gemini-2.5-flash-lite',
 ].filter((model, index, models) => model && models.indexOf(model) === index);
+
+function withTimeout(promise, ms) {
+    let timeoutId;
+    const timeout = new Promise((_, reject) => {
+        timeoutId = setTimeout(() => {
+            const error = new Error('Gemini request timed out');
+            error.status = 504;
+            reject(error);
+        }, ms);
+    });
+
+    return Promise.race([promise, timeout]).finally(() => clearTimeout(timeoutId));
+}
 
 export default async function handler(req, res) {
     if (req.method !== 'POST') {
@@ -56,14 +71,14 @@ export default async function handler(req, res) {
         for (const modelName of GEMINI_MODELS) {
             try {
                 const model = genAI.getGenerativeModel({ model: modelName });
-                const result = await model.generateContent(prompt);
+                const result = await withTimeout(model.generateContent(prompt), GEMINI_TIMEOUT_MS);
                 const response = await result.response;
                 const text = response.text();
 
                 return res.status(200).json({ response: text });
             } catch (error) {
                 lastError = error;
-                const retryable = error?.status === 429 || error?.status === 503;
+                const retryable = error?.status === 429 || error?.status === 503 || error?.status === 504;
                 if (!retryable) {
                     throw error;
                 }
@@ -74,6 +89,7 @@ export default async function handler(req, res) {
         throw lastError;
     } catch (error) {
         console.error('Gemini API Error:', error);
-        return res.status(500).json({ error: 'Failed to generate response' });
+        const status = error?.status === 429 || error?.status === 504 ? error.status : 500;
+        return res.status(status).json({ error: 'Failed to generate response' });
     }
 }

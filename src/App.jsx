@@ -1,12 +1,14 @@
 import React, { Suspense, lazy, useEffect, useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { Analytics } from '@vercel/analytics/react';
 import { LanguageProvider } from './hooks/use-language';
 import { Layout } from './components/Layout';
 import { GoogleAnalytics } from './components/shared/GoogleAnalytics';
 import { ScrollToTop } from './components/shared/ScrollToTop';
+import { MetaPixel } from './components/shared/MetaPixel';
 import { Seo } from './components/shared/Seo';
 import { CONSENT_EVENT, hasAnalyticsConsent } from './components/shared/analyticsConsent';
+import { rememberAttribution, trackSiteEvent } from './components/shared/tracking';
 import './index.css';
 
 // Lazy load pages
@@ -28,6 +30,9 @@ const RicercaDistributoriUsa = lazy(() => import('./pages/seo/RicercaDistributor
 const UsRetailPartnerships = lazy(() => import('./pages/seo/UsRetailPartnerships').then(module => ({ default: module.UsRetailPartnerships })));
 const VendereProdottiItalianiUsa = lazy(() => import('./pages/seo/VendereProdottiItalianiUsa').then(module => ({ default: module.VendereProdottiItalianiUsa })));
 const TemporaryExportManagerUsa = lazy(() => import('./pages/seo/TemporaryExportManagerUsa').then(module => ({ default: module.TemporaryExportManagerUsa })));
+const FoodBeverageUsa = lazy(() => import('./pages/seo/FoodBeverageUsa').then(module => ({ default: module.FoodBeverageUsa })));
+const ModaDesignUsa = lazy(() => import('./pages/seo/ModaDesignUsa').then(module => ({ default: module.ModaDesignUsa })));
+const AgenteVsDistributoreUsa = lazy(() => import('./pages/seo/AgenteVsDistributoreUsa').then(module => ({ default: module.AgenteVsDistributoreUsa })));
 
 // Loading component
 const PageLoader = () => (
@@ -60,6 +65,47 @@ function VercelAnalyticsWithConsent() {
   return <Analytics />;
 }
 
+function EngagementTracker() {
+  const location = useLocation();
+  const trackedPath = `${location.pathname}${location.search}`;
+
+  useEffect(() => {
+    rememberAttribution();
+  }, [trackedPath]);
+
+  useEffect(() => {
+    const thresholds = new Set();
+
+    const handleScroll = () => {
+      const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
+      if (scrollableHeight <= 0) {
+        return;
+      }
+
+      const scrollPercent = Math.round((window.scrollY / scrollableHeight) * 100);
+
+      [50, 90].forEach((threshold) => {
+        if (scrollPercent >= threshold && !thresholds.has(threshold)) {
+          thresholds.add(threshold);
+          trackSiteEvent('scroll_depth', {
+            depth_percent: threshold,
+            page_path: trackedPath,
+          });
+        }
+      });
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [trackedPath]);
+
+  return null;
+}
+
 function App() {
   return (
     <LanguageProvider>
@@ -86,12 +132,17 @@ function App() {
               <Route path="/us-retail-partnerships" element={<UsRetailPartnerships />} />
               <Route path="/vendere-prodotti-italiani-usa" element={<VendereProdottiItalianiUsa />} />
               <Route path="/temporary-export-manager-usa" element={<TemporaryExportManagerUsa />} />
+              <Route path="/food-beverage-usa" element={<FoodBeverageUsa />} />
+              <Route path="/moda-design-usa" element={<ModaDesignUsa />} />
+              <Route path="/agente-vs-distributore-usa" element={<AgenteVsDistributoreUsa />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>
         </Layout>
+        <EngagementTracker />
         <VercelAnalyticsWithConsent />
         <GoogleAnalytics />
+        <MetaPixel />
       </Router>
     </LanguageProvider>
   );

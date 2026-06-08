@@ -4,6 +4,18 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/logo.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Hero LCP image lives on the Unsplash CDN: warm the connection early and
+         preload the responsive variant the browser will actually use. `imagesizes`
+         mirrors the hero <img sizes>, so mobile preloads a small variant and never
+         the desktop image. Keep `imagesrcset` in sync with HERO_SRCSET in src/pages/Home.jsx. -->
+    <link rel="preconnect" href="https://images.unsplash.com" />
+    <link
+      rel="preload"
+      as="image"
+      fetchpriority="high"
+      imagesrcset="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&q=68&w=640 640w, https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&q=68&w=828 828w, https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&q=68&w=1280 1280w, https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&q=70&w=1920 1920w, https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&q=72&w=2400 2400w"
+      imagesizes="100vw"
+    />
     <meta name="description" content="Gianluca Piazza - Consulente Internazionalizzazione | Business Developer | Entrepreneur. Supporto aziende italiane ed europee nella loro espansione globale." />
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://gianlucapiazza.com/" />
@@ -18,8 +30,12 @@
     <meta name="twitter:description" content="Consulenza per internazionalizzazione, business development e partnership strategiche per aziende italiane ed europee che vogliono crescere sui mercati globali." />
     <meta name="twitter:image" content="https://gianlucapiazza.com/logo.png" />
     <title>Gianluca Piazza | Consulente Internazionalizzazione</title>
-    <script type="module" crossorigin src="/assets/index-CiBxHgzS.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-l3kxcOaY.css">
+    <script type="module" crossorigin src="/assets/index-Dk4fV447.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Cyuzqnbw.js">
+    <link rel="modulepreload" crossorigin href="/assets/framer-motion-naA82lAv.js">
+    <link rel="modulepreload" crossorigin href="/assets/react-router-C2uBLssp.js">
+    <link rel="modulepreload" crossorigin href="/assets/react-vendor-DoxKbt7m.js">
+    <link rel="stylesheet" crossorigin href="/assets/index-C4kHQZi_.css">
   </head>
   <body>
     <div id="root"></div>

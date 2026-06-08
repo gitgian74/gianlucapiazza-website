@@ -20,31 +20,31 @@ const SEO_LANDING_META = Object.values(seoPages).reduce((acc, page) => {
 
 const META_BY_PATH = {
     '/': {
-        title: 'Gianluca Piazza | Consulente Internazionalizzazione',
-        description: 'Consulenza per internazionalizzazione, business development e partnership strategiche per aziende italiane ed europee che vogliono crescere sui mercati globali.',
+        title: 'GP & Partners | Internazionalizzazione e Business Development',
+        description: 'GP & Partners affianca aziende italiane ed europee in internazionalizzazione, business development e partnership strategiche per crescere sui mercati globali.',
     },
     '/services': {
-        title: 'Servizi di Consulenza Internazionale | Gianluca Piazza',
-        description: 'Servizi per espansione internazionale, business development, partnership commerciali e risoluzione di dispute nei mercati esteri.',
+        title: 'Servizi di Consulenza Internazionale | GP & Partners',
+        description: 'Servizi GP & Partners per espansione internazionale, business development, partnership commerciali e risoluzione di dispute nei mercati esteri.',
     },
     '/projects': {
-        title: 'Progetti e Case Study Internazionali | Gianluca Piazza',
-        description: 'Case study di internazionalizzazione, partnership retail, distribuzione, business intelligence e trasformazione digitale guidati da Gianluca Piazza.',
+        title: 'Progetti e Case Study Internazionali | GP & Partners',
+        description: 'Case study GP & Partners di internazionalizzazione, partnership retail, distribuzione, business intelligence e trasformazione digitale.',
     },
     '/about': {
-        title: 'Chi Sono | Gianluca Piazza',
-        description: 'Profilo professionale di Gianluca Piazza: imprenditore, business builder e consulente per internazionalizzazione e sviluppo commerciale.',
+        title: 'Chi Siamo | GP & Partners',
+        description: 'Profilo operativo di GP & Partners: team per internazionalizzazione, business development, partnership strategiche e mercato USA.',
     },
     '/contact': {
-        title: 'Contatti | Gianluca Piazza',
-        description: 'Contatta Gianluca Piazza per progetti di internazionalizzazione, sviluppo commerciale, partnership strategiche e ingresso in nuovi mercati.',
+        title: 'Contatti | GP & Partners',
+        description: 'Contatta GP & Partners per progetti di internazionalizzazione, sviluppo commerciale, partnership strategiche e ingresso in nuovi mercati.',
     },
     '/market-research': {
-        title: 'AI Market Research | Gianluca Piazza',
+        title: 'AI Market Research | GP & Partners',
         description: 'Assistente AI per ricerche di mercato, trend internazionali e valutazioni preliminari di opportunita di espansione.',
     },
     '/privacy': {
-        title: 'Privacy & Cookie Policy | Gianluca Piazza',
+        title: 'Privacy & Cookie Policy | GP & Partners',
         description: 'Informativa privacy e cookie policy del sito gianlucapiazza.com.',
     },
     '/mercati/chicago': {
@@ -144,7 +144,7 @@ export function Seo({ title, description, keywords, jsonLd } = {}) {
         }
         upsertMeta('meta[name="robots"]', { name: 'robots', content: isKnownPath ? 'index, follow' : 'noindex, follow' });
         upsertMeta('meta[property="og:type"]', { property: 'og:type', content: 'website' });
-        upsertMeta('meta[property="og:site_name"]', { property: 'og:site_name', content: 'Gianluca Piazza' });
+        upsertMeta('meta[property="og:site_name"]', { property: 'og:site_name', content: 'GP & Partners' });
         upsertMeta('meta[property="og:title"]', { property: 'og:title', content: meta.title });
         upsertMeta('meta[property="og:description"]', { property: 'og:description', content: meta.description });
         upsertMeta('meta[property="og:url"]', { property: 'og:url', content: canonical });
@@ -158,6 +158,7 @@ export function Seo({ title, description, keywords, jsonLd } = {}) {
         upsertJsonLd('structured-data-person', {
             '@context': 'https://schema.org',
             '@type': 'Person',
+            '@id': `${SITE_URL}/about#person`,
             name: 'Gianluca Piazza',
             url: SITE_URL,
             image: DEFAULT_IMAGE,
@@ -178,11 +179,13 @@ export function Seo({ title, description, keywords, jsonLd } = {}) {
         upsertJsonLd('structured-data-professional-service', {
             '@context': 'https://schema.org',
             '@type': 'ProfessionalService',
+            '@id': `${SITE_URL}/#organization`,
             name: 'GP & Partners',
             url: SITE_URL,
             image: DEFAULT_IMAGE,
             founder: {
                 '@type': 'Person',
+                '@id': `${SITE_URL}/about#person`,
                 name: 'Gianluca Piazza',
             },
             areaServed: ['United States', 'Italy', 'Europe'],
