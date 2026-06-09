@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { useLanguage } from '../hooks/use-language';
 import { ArrowUpRight, MapPin, Target, Trophy } from 'lucide-react';
 import { PageHeader } from '../components/shared/PageHeader';
@@ -26,7 +27,7 @@ export function Projects() {
         "https://images.unsplash.com/photo-1578916171728-46686eac8d58?auto=format&fit=crop&q=80", // Logistics/Warehouse
         "https://images.unsplash.com/photo-1550989460-0adf9ea622e2?auto=format&fit=crop&q=80", // Gourmet Food
         "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80", // Tech/IoT
-        "https://images.unsplash.com/photo-1622979135228-d0a136e1c561?auto=format&fit=crop&q=80", // VR/Headset
+        "/images/project-teslasuit.png", // Teslasuit full suit image
         "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80", // Security/AI
     ];
 
@@ -52,12 +53,12 @@ export function Projects() {
                             className="group flex flex-col md:flex-row"
                         >
                             {/* Image Section */}
-                            <div className="md:w-1/3 h-64 md:h-auto overflow-hidden relative">
+                            <div className={`md:w-1/3 h-64 md:h-auto overflow-hidden relative ${index === 5 ? 'bg-black' : ''}`}>
                                 <div className="absolute inset-0 bg-gradient-to-t from-background/50 to-transparent z-10"></div>
                                 <img
                                     src={projectImages[index]}
                                     alt={project.title}
-                                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                    className={`w-full h-full group-hover:scale-105 transition-transform duration-500 ${index === 5 ? 'object-contain p-6' : 'object-cover'}`}
                                     loading="lazy"
                                 />
 
@@ -131,12 +132,12 @@ export function Projects() {
                 {/* CTA */}
                 <div className="mt-20 text-center">
                     <p className="text-xl text-muted-foreground mb-6">{t.projects.ctaText}</p>
-                    <a href="mailto:mail@gianlucapiazza.com">
+                    <Link to="/contact">
                         <Button variant="secondary" size="lg" className="shadow-lg">
                             {t.projects.ctaButton}
                             <ArrowUpRight size={20} />
                         </Button>
-                    </a>
+                    </Link>
                 </div>
             </Section>
         </div>

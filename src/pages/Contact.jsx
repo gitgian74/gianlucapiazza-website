@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../hooks/use-language';
-import { Mail, Phone, MapPin, Send, Building2 } from 'lucide-react';
+import { Phone, MapPin, Send, Building2 } from 'lucide-react';
 import { PageHeader } from '../components/shared/PageHeader';
 import { Section } from '../components/shared/Section';
 import { Card } from '../components/shared/Card';
@@ -112,23 +112,6 @@ export function Contact() {
                             <h2 className="text-2xl font-bold text-white mb-8">{t.contact.info.title}</h2>
 
                             <div className="space-y-8">
-                                {/* Email */}
-                                <div className="flex items-start gap-4 group">
-                                    <div className="p-3 bg-blue-900/20 text-blue-400 rounded-xl group-hover:bg-blue-600 group-hover:text-white transition-colors">
-                                        <Mail size={24} />
-                                    </div>
-                                    <div>
-                                        <h3 className="text-sm font-medium text-muted-foreground mb-1">Email</h3>
-                                        <a
-                                            href={`mailto:${t.contact.info.email}`}
-                                            onClick={() => trackSiteEvent('contact_click', { method: 'email', placement: 'contact_card' })}
-                                            className="text-lg font-medium text-white hover:text-blue-400 transition-colors"
-                                        >
-                                            {t.contact.info.email}
-                                        </a>
-                                    </div>
-                                </div>
-
                                 {/* Phone IT */}
                                 <div className="flex items-start gap-4 group">
                                     <div className="p-3 bg-green-900/20 text-green-400 rounded-xl group-hover:bg-green-600 group-hover:text-white transition-colors">

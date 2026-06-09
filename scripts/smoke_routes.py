@@ -1,11 +1,15 @@
-import subprocess
 import time
 import urllib.request
+from pathlib import Path
+import subprocess
 
 from playwright.sync_api import sync_playwright
 
 
 BASE_URL = "http://127.0.0.1:5173"
+ROOT = Path(__file__).resolve().parents[1]
+LOG_DIR = ROOT / ".openclaw"
+LOG_FILE = LOG_DIR / "vite-dev.log"
 ROUTES = [
     "/",
     "/about",
@@ -42,12 +46,16 @@ def wait_for_server(timeout=30):
     raise RuntimeError("Vite server did not start in time")
 
 
+def tail_log(lines=40):
+    if not LOG_FILE.exists():
+        return "(no vite log output captured)"
+    content = LOG_FILE.read_text(encoding="utf-8", errors="replace").splitlines()
+    return "\n".join(content[-lines:])
+
+
 def main():
-    server = subprocess.Popen(
-        ["pnpm", "dev", "--host", "127.0.0.1"],
-        stdout=subprocess.DEVNULL,
-        stderr=subprocess.DEVNULL,
-    )
+    LOG_DIR.mkdir(parents=True, exist_ok=True)
+    subprocess.run(["python3", "scripts/dev_server_guard.py"], cwd=ROOT, check=True)
 
     try:
         wait_for_server()
@@ -66,9 +74,9 @@ def main():
             assert page.evaluate("localStorage.getItem('cookieConsent')") is None
             page.wait_for_selector("text=/Accetta tutto|Accept all/", timeout=3000)
             browser.close()
-    finally:
-        server.terminate()
-        server.wait(timeout=10)
+    except Exception:
+        print(tail_log(), flush=True)
+        raise
 
 
 if __name__ == "__main__":

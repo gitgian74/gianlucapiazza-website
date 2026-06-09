@@ -2,8 +2,8 @@ export const socialProfiles = [
     {
         id: 'linkedin',
         label: 'LinkedIn',
-        handle: 'gianlucapiazza',
-        url: 'https://www.linkedin.com/in/gianlucapiazza/',
+        handle: 'GP & Partners',
+        url: 'https://www.linkedin.com/company/gp-and-partners/',
     },
     {
         id: 'instagram',

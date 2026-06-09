@@ -32,8 +32,6 @@ export function Layout({ children }) {
     };
 
     const isActive = (path) => location.pathname === path;
-    const footerEmail = location.pathname === '/privacy' ? t.privacy.controller.email : 'mail@gianlucapiazza.com';
-
     const navLinks = [
         { path: '/', label: t.nav.home },
         { path: '/about', label: t.nav.about },
@@ -59,9 +57,19 @@ export function Layout({ children }) {
                             : 'bg-slate-950/55 border-white/15 shadow-xl shadow-slate-950/20 backdrop-blur-2xl'
                         }`}
                 >
-                        <Link to="/" className="relative mr-1 flex h-9 w-9 items-center justify-center rounded-full bg-primary text-lg font-bold text-primary-foreground transition-transform hover:scale-105 md:mr-2 md:h-10 md:w-10 md:text-xl">
-                        <span className="absolute -right-0.5 -top-0.5 h-3 w-3 rounded-full bg-[var(--us-red)] ring-2 ring-slate-950"></span>
-                        G
+                    <Link
+                        to="/"
+                        aria-label="GP & Partners"
+                        className="mr-1 flex h-9 items-center gap-2 rounded-full pr-1.5 text-white transition-transform hover:scale-[1.02] md:mr-2 md:h-10 md:pr-3"
+                    >
+                        <img
+                            src="/logo.svg"
+                            alt=""
+                            className="h-9 w-9 rounded-full ring-1 ring-white/15 md:h-10 md:w-10"
+                        />
+                        <span className="hidden text-sm font-semibold tracking-normal text-white md:inline">
+                            GP &amp; Partners
+                        </span>
                     </Link>
 
                     {/* Desktop Menu */}
@@ -233,14 +241,7 @@ export function Layout({ children }) {
                             </div>
                             <div>
                                 <h4 className="font-semibold text-foreground mb-6">{t.footer.followSocial}</h4>
-                                <SocialLinks showLabels className="mb-5 max-w-sm" linkClassName="bg-card/60" />
-                                <a
-                                    href={`mailto:${footerEmail}`}
-                                    onClick={() => trackSiteEvent('contact_click', { method: 'email', placement: 'footer' })}
-                                    className="text-muted-foreground hover:text-[var(--us-red)] transition-colors"
-                                >
-                                    {footerEmail}
-                                </a>
+                                <SocialLinks showLabels className="max-w-sm" linkClassName="bg-card/60" />
                             </div>
                         </div>
                     </div>

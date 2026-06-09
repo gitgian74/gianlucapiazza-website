@@ -302,7 +302,6 @@ export const translations = {
       },
       info: {
         title: 'Informazioni di Contatto',
-        email: 'mail@gianlucapiazza.com',
         phoneIT: '+39 337 303431',
         phoneUS: '+1 (305) 548-0002',
         addressIT: 'Vicenza',
@@ -750,7 +749,6 @@ export const translations = {
       },
       info: {
         title: 'Contact Information',
-        email: 'mail@gianlucapiazza.com',
         phoneIT: '+39 337 303431',
         phoneUS: '+1 (305) 548-0002',
         addressIT: 'Vicenza',
