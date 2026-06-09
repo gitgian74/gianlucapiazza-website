@@ -31,6 +31,16 @@ export function Projects() {
         "/images/project-rfi-surveillance.jpg", // Railway construction cranes photo
     ];
 
+    const projectImagePositions = [
+        'center center',
+        'center center',
+        'center center',
+        'center center',
+        'center center',
+        'center 28%',
+        'center 32%',
+    ];
+
     return (
         <div className="min-h-screen bg-background pb-20">
             {/* Header */}
@@ -50,15 +60,16 @@ export function Projects() {
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.1 }}
                             hoverEffect={true}
-                            className="group flex flex-col md:flex-row"
+                            className="group flex flex-col md:flex-row md:items-stretch md:min-h-[26rem] lg:min-h-[28rem]"
                         >
                             {/* Image Section */}
-                            <div className={`md:w-1/3 h-64 md:h-auto overflow-hidden relative ${index === 5 ? 'bg-black' : index === 6 ? 'bg-slate-950' : ''}`}>
+                            <div className="relative h-64 overflow-hidden bg-slate-950 md:w-1/3 md:h-auto md:self-stretch">
                                 <div className="absolute inset-0 bg-gradient-to-t from-background/50 to-transparent z-10"></div>
                                 <img
                                     src={projectImages[index]}
                                     alt={project.title}
-                                    className={`w-full h-full group-hover:scale-105 transition-transform duration-500 ${index === 5 ? 'object-contain p-6' : index === 6 ? 'object-contain p-4' : 'object-cover'}`}
+                                    className="absolute inset-0 h-full w-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                    style={{ objectPosition: projectImagePositions[index] }}
                                     loading="lazy"
                                 />
 
