@@ -28,7 +28,7 @@ export function Projects() {
         "https://images.unsplash.com/photo-1550989460-0adf9ea622e2?auto=format&fit=crop&q=80", // Gourmet Food
         "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80", // Tech/IoT
         "/images/project-teslasuit.png", // Teslasuit full suit image
-        "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80", // Security/AI
+        "/images/project-rfi-surveillance.jpg", // Surveillance tower photo
     ];
 
     return (
@@ -53,12 +53,12 @@ export function Projects() {
                             className="group flex flex-col md:flex-row"
                         >
                             {/* Image Section */}
-                            <div className={`md:w-1/3 h-64 md:h-auto overflow-hidden relative ${index === 5 ? 'bg-black' : ''}`}>
+                            <div className={`md:w-1/3 h-64 md:h-auto overflow-hidden relative ${index === 5 ? 'bg-black' : index === 6 ? 'bg-slate-950' : ''}`}>
                                 <div className="absolute inset-0 bg-gradient-to-t from-background/50 to-transparent z-10"></div>
                                 <img
                                     src={projectImages[index]}
                                     alt={project.title}
-                                    className={`w-full h-full group-hover:scale-105 transition-transform duration-500 ${index === 5 ? 'object-contain p-6' : 'object-cover'}`}
+                                    className={`w-full h-full group-hover:scale-105 transition-transform duration-500 ${index === 5 ? 'object-contain p-6' : index === 6 ? 'object-contain p-4' : 'object-cover'}`}
                                     loading="lazy"
                                 />
 
