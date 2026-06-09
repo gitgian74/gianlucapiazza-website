@@ -23,7 +23,7 @@ export function Projects() {
 
     const projectImages = [
         "https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&q=80", // Coffee/Starbucks vibe
-        "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&q=80", // Water/Bottles
+        "/images/project-acque-minerali.jpg", // Natural spring source photo
         "https://images.unsplash.com/photo-1578916171728-46686eac8d58?auto=format&fit=crop&q=80", // Logistics/Warehouse
         "https://images.unsplash.com/photo-1550989460-0adf9ea622e2?auto=format&fit=crop&q=80", // Gourmet Food
         "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80", // Tech/IoT
