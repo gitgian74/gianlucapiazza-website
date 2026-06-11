@@ -5,6 +5,7 @@ import { ArrowRight, Award, Briefcase, CheckCircle2, MapPin, Target } from 'luci
 import { Link } from 'react-router-dom';
 import { Section } from '../components/shared/Section';
 import { trackSiteEvent } from '../components/shared/tracking';
+import { FadeIn } from '../components/vex/FadeIn';
 
 export function About() {
     const { t } = useLanguage();
@@ -36,8 +37,8 @@ export function About() {
             <header className="relative min-h-[82vh] overflow-hidden">
                 <div className="absolute inset-0 z-0">
                     <img
-                        src="https://images.unsplash.com/photo-1546436836-07a91091f160?auto=format&fit=crop&q=80&w=1920"
-                        alt="Miami Skyline"
+                        src="/images/heroes/new-york.jpg"
+                        alt="New York Skyline"
                         className="h-full w-full object-cover object-[58%_center]"
                     />
                     <div className="absolute inset-0 bg-gradient-to-br from-slate-950/88 via-slate-950/62 to-slate-950/25"></div>
@@ -46,22 +47,21 @@ export function About() {
 
                 <div className="container relative z-10 mx-auto flex min-h-[82vh] max-w-6xl flex-col justify-end px-6 pb-16 pt-36">
                     <div className="grid items-end gap-10 lg:grid-cols-[1.2fr_0.8fr]">
-                        <motion.div
-                            initial={{ opacity: 0, y: 18 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.55 }}
-                            className="max-w-4xl"
-                        >
-                            <p className="mb-5 text-xs font-semibold uppercase tracking-[0.28em] text-blue-300">
-                                {t.about.heroKicker}
-                            </p>
-                            <h1 className="max-w-4xl text-[2.35rem] font-bold leading-[1.04] tracking-normal text-white [overflow-wrap:break-word] sm:text-5xl md:text-6xl md:leading-[0.98] lg:text-7xl">
-                                {t.about.heroHeadline}
-                            </h1>
-                            <p className="mt-8 max-w-2xl text-lg leading-relaxed text-slate-200 md:text-xl">
-                                {t.about.intro}
-                            </p>
-                            <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+                        <div className="max-w-4xl">
+                            <FadeIn>
+                                <p className="mb-5 text-xs font-semibold uppercase tracking-[0.28em] text-blue-300">
+                                    {t.about.heroKicker}
+                                </p>
+                                <h1 className="max-w-4xl text-[2.35rem] font-bold leading-[1.04] tracking-tight text-white [overflow-wrap:break-word] sm:text-5xl md:text-6xl md:leading-[0.98] lg:text-7xl">
+                                    {t.about.heroHeadline}
+                                </h1>
+                            </FadeIn>
+                            <FadeIn delay={800}>
+                                <p className="mt-8 max-w-2xl text-lg leading-relaxed text-slate-200 md:text-xl">
+                                    {t.about.intro}
+                                </p>
+                            </FadeIn>
+                            <FadeIn delay={1200} className="mt-10 flex flex-col gap-4 sm:flex-row">
                                 <Link
                                     to="/contact"
                                     onClick={() => trackSiteEvent('cta_click', {
@@ -69,7 +69,7 @@ export function About() {
                                         destination: '/contact',
                                         placement: 'about_hero',
                                     })}
-                                    className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-white px-6 py-4 text-sm font-bold text-slate-950 shadow-2xl shadow-slate-950/20 transition hover:-translate-y-0.5 hover:bg-blue-50 sm:w-auto sm:px-7"
+                                    className="inline-flex w-full items-center justify-center gap-2 bg-white text-slate-950 px-8 py-3 rounded-lg font-medium hover:bg-gray-100 transition-colors sm:w-auto"
                                 >
                                     {t.about.primaryCta}
                                     <ArrowRight size={16} />
@@ -81,18 +81,18 @@ export function About() {
                                         destination: '/projects',
                                         placement: 'about_hero',
                                     })}
-                                    className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/20 bg-white/10 px-6 py-4 text-sm font-bold text-white backdrop-blur-xl transition hover:-translate-y-0.5 hover:bg-white/15 sm:w-auto sm:px-7"
+                                    className="liquid-glass inline-flex w-full items-center justify-center gap-2 border border-white/20 text-white px-8 py-3 rounded-lg font-medium hover:bg-white hover:text-slate-950 transition-colors sm:w-auto"
                                 >
                                     {t.about.secondaryCta}
                                 </Link>
-                            </div>
-                        </motion.div>
+                            </FadeIn>
+                        </div>
 
                         <motion.div
                             initial={{ opacity: 0, y: 18 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.12, duration: 0.55 }}
-                            className="relative overflow-hidden rounded-[1.35rem] border border-white/15 bg-slate-950/72 p-5 shadow-2xl shadow-slate-950/30 backdrop-blur-2xl sm:p-6"
+                            className="liquid-glass relative overflow-hidden rounded-[1.35rem] border border-white/20 p-5 shadow-2xl shadow-slate-950/30 sm:p-6"
                         >
                             <div className="absolute inset-x-0 top-0 h-px us-red-rule"></div>
                             <div className="mb-7 flex items-center justify-between gap-4">
@@ -156,7 +156,7 @@ export function About() {
                                     whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true }}
                                     transition={{ delay: index * 0.08 }}
-                                    className="group relative overflow-hidden rounded-[1.35rem] border border-white/10 bg-slate-900/72 p-6 shadow-xl shadow-slate-950/15 transition-colors hover:border-white/18 md:p-8"
+                                    className="group liquid-glass relative overflow-hidden rounded-[1.35rem] border border-white/20 p-6 shadow-xl shadow-slate-950/15 md:p-8"
                                 >
                                     <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-[var(--us-red)] via-blue-400/70 to-transparent opacity-70"></div>
                                     <div className="absolute inset-y-6 left-0 w-px bg-gradient-to-b from-transparent via-white/18 to-transparent"></div>
@@ -209,7 +209,7 @@ export function About() {
                             initial={{ opacity: 0, x: 20 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
-                            className="rounded-[1.35rem] border border-white/10 bg-slate-900/72 p-6 shadow-xl shadow-slate-950/10 md:p-7"
+                            className="liquid-glass rounded-[1.35rem] border border-white/20 p-6 shadow-xl shadow-slate-950/10 md:p-7"
                         >
                             <h2 className="mb-6 flex items-center gap-3 text-xl font-semibold text-white">
                                 <MapPin className="h-5 w-5 text-blue-300" />
@@ -229,7 +229,7 @@ export function About() {
                             initial={{ opacity: 0, x: 20 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
-                            className="rounded-[1.35rem] border border-white/10 bg-slate-900/72 p-6 shadow-xl shadow-slate-950/10 md:p-7"
+                            className="liquid-glass rounded-[1.35rem] border border-white/20 p-6 shadow-xl shadow-slate-950/10 md:p-7"
                         >
                             <h2 className="mb-6 text-xl font-semibold text-white">{t.about.skillsTitle}</h2>
                             <div className="flex flex-wrap gap-2">

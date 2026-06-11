@@ -2,14 +2,21 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion, useReducedMotion } from 'framer-motion';
 import { ArrowRight, CheckCircle2, MessageSquareText, SearchCheck } from 'lucide-react';
-import { PageHeader } from '../../components/shared/PageHeader';
 import { Section } from '../../components/shared/Section';
-import { Button } from '../../components/shared/Button';
 import { Seo } from '../../components/shared/Seo';
+import { PageHeader } from '../../components/shared/PageHeader';
 import { useLanguage } from '../../hooks/use-language';
 import { trackSiteEvent } from '../../components/shared/tracking';
 
 const SITE_URL = 'https://gianlucapiazza.com';
+
+const HERO_CITIES = ['miami', 'new-york', 'los-angeles', 'san-francisco', 'washington-dc'];
+
+function heroImageFor(slug) {
+  let sum = 0;
+  for (const char of slug) sum += char.charCodeAt(0);
+  return `/images/heroes/${HERO_CITIES[sum % HERO_CITIES.length]}.jpg`;
+}
 
 const relatedPages = [
   {
@@ -183,12 +190,20 @@ export function SeoLandingPage({ page }) {
         jsonLd={pageJsonLd}
       />
       <div className="min-h-screen bg-background pb-20">
-        <PageHeader title={content.hero} subtitle={content.subtitle}>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-            <Button type="button" size="lg" onClick={() => openContact('seo_landing_hero')}>
+        <PageHeader
+          title={content.hero}
+          subtitle={content.subtitle}
+          backgroundImage={heroImageFor(page.path)}
+        >
+          <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center">
+            <button
+              type="button"
+              onClick={() => openContact('seo_landing_hero')}
+              className="inline-flex items-center gap-2 bg-white text-slate-950 px-8 py-3 rounded-lg font-medium hover:bg-gray-100 transition-colors"
+            >
               <span>{content.cta.label}</span>
               <ArrowRight size={18} />
-            </Button>
+            </button>
             <span className="text-sm text-muted-foreground">
               {SITE_URL.replace('https://', '')}{page.path}
             </span>
@@ -197,7 +212,7 @@ export function SeoLandingPage({ page }) {
 
         <Section className="max-w-4xl mt-16">
           <MotionItem>
-            <div className="flex items-start gap-4 rounded-lg border border-border bg-card/40 p-6">
+            <div className="flex items-start gap-4 liquid-glass rounded-xl border border-white/20 p-6">
               <SearchCheck className="mt-1 text-primary shrink-0" size={26} />
               <p className="text-lg md:text-xl leading-relaxed text-foreground">
                 {content.answer}
@@ -222,7 +237,7 @@ export function SeoLandingPage({ page }) {
             <div className="space-y-4">
               {content.process.map((item, index) => (
                 <MotionItem key={item} delay={index * 0.04}>
-                  <div className="flex gap-4 rounded-lg border border-border bg-card/30 p-5">
+                  <div className="flex gap-4 liquid-glass rounded-xl border border-white/20 p-5">
                     <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary/15 text-sm font-bold text-primary">
                       {index + 1}
                     </span>
@@ -240,7 +255,7 @@ export function SeoLandingPage({ page }) {
             <div className="grid md:grid-cols-2 gap-5">
               {content.proof.map((item, index) => (
                 <MotionItem key={item} delay={index * 0.04}>
-                  <div className="flex gap-3 rounded-lg border border-border bg-background/50 p-5">
+                  <div className="flex gap-3 liquid-glass rounded-xl border border-white/20 p-5">
                     <CheckCircle2 className="mt-1 text-primary shrink-0" size={20} />
                     <p className="text-muted-foreground leading-relaxed">{item}</p>
                   </div>
@@ -284,7 +299,7 @@ export function SeoLandingPage({ page }) {
             {content.faqs.map(([question, answer]) => (
               <details
                 key={question}
-                className="group rounded-lg border border-border bg-card/30 p-5 open:bg-card/50 transition-colors"
+                className="group liquid-glass rounded-xl border border-white/20 p-5 open:bg-card/50 transition-colors"
               >
                 <summary className="cursor-pointer list-none font-semibold text-foreground">
                   <span className="inline-flex w-full items-center justify-between gap-4">
@@ -301,10 +316,14 @@ export function SeoLandingPage({ page }) {
         <Section className="max-w-4xl text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">{content.cta.label}</h2>
           <p className="text-muted-foreground leading-relaxed mb-8">{content.cta.note}</p>
-          <Button type="button" size="lg" onClick={() => openContact('seo_landing_bottom')}>
+          <button
+            type="button"
+            onClick={() => openContact('seo_landing_bottom')}
+            className="inline-flex items-center gap-2 bg-white text-slate-950 px-8 py-3 rounded-lg font-medium hover:bg-gray-100 transition-colors"
+          >
             <span>{content.cta.label}</span>
             <ArrowRight size={18} />
-          </Button>
+          </button>
         </Section>
       </div>
     </>

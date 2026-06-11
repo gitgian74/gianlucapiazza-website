@@ -17,7 +17,7 @@ export function NotFound() {
             />
             <Section className="max-w-3xl text-center">
                 <Link to="/">
-                    <Button size="lg">
+                    <Button size="lg" className="bg-white text-slate-950 px-8 py-3 rounded-lg font-medium shadow-none hover:bg-gray-100 transition-colors">
                         <ArrowLeft size={20} />
                         {t.notFound.cta}
                     </Button>

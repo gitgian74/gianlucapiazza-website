@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { motion, AnimatePresence, useReducedMotion, useScroll } from 'framer-motion';
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { Menu, X, ChevronRight } from 'lucide-react';
 import { useLanguage } from '../hooks/use-language';
 import { CookieConsent } from './shared/CookieConsent';
@@ -12,15 +12,6 @@ export function Layout({ children }) {
     const { language, setLanguage, t } = useLanguage();
     const location = useLocation();
     const shouldReduceMotion = useReducedMotion();
-
-    const { scrollY } = useScroll();
-    const [isScrolled, setIsScrolled] = useState(false);
-
-    React.useEffect(() => {
-        return scrollY.onChange((latest) => {
-            setIsScrolled(latest > 50);
-        });
-    }, [scrollY]);
 
     const toggleLanguage = () => {
         trackSiteEvent('language_switch', {
@@ -52,10 +43,7 @@ export function Layout({ children }) {
                 <motion.nav
                     initial={shouldReduceMotion ? false : { y: -100, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
-                    className={`pointer-events-auto flex max-w-[calc(100vw-2rem)] items-center gap-1 rounded-full border p-1.5 transition-all duration-500 md:gap-2 md:p-2 ${isScrolled
-                            ? 'bg-slate-950/85 border-white/15 shadow-2xl shadow-slate-950/20 backdrop-blur-2xl'
-                            : 'bg-slate-950/55 border-white/15 shadow-xl shadow-slate-950/20 backdrop-blur-2xl'
-                        }`}
+                    className="liquid-glass pointer-events-auto flex max-w-[calc(100vw-2rem)] items-center gap-1 rounded-full p-1.5 transition-all duration-500 md:gap-2 md:p-2"
                 >
                     <Link
                         to="/"
@@ -206,8 +194,9 @@ export function Layout({ children }) {
                                     label: 'GP & Partners',
                                     placement: 'footer_brand',
                                 })}
-                                className="text-2xl font-bold tracking-tight mb-6 block"
+                                className="mb-6 flex items-center gap-3 text-2xl font-bold tracking-tight"
                             >
+                                <img src="/logo.svg" alt="" className="h-10 w-10 rounded-full ring-1 ring-white/15" />
                                 GP & Partners
                             </Link>
                             <p className="text-muted-foreground text-lg leading-relaxed">

@@ -131,6 +131,7 @@ export function MarketResearch() {
             <PageHeader
                 title={t.marketResearch.title}
                 subtitle={t.marketResearch.subtitle}
+                backgroundImage="/images/heroes/san-francisco.jpg"
             >
                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/30 text-primary border border-primary/50 mb-6">
                     <Sparkles size={16} />
@@ -139,7 +140,7 @@ export function MarketResearch() {
             </PageHeader>
 
             <Section className="max-w-4xl px-3 sm:px-6">
-                <Card className="h-[min(680px,calc(100vh-220px))] min-h-[460px] sm:h-[600px] flex flex-col shadow-2xl">
+                <Card className="liquid-glass border-white/20 h-[min(680px,calc(100vh-220px))] min-h-[460px] sm:h-[600px] flex flex-col shadow-2xl">
                     {/* Messages Area */}
                     <div className="flex-1 overflow-y-auto p-3 sm:p-6 space-y-4 sm:space-y-6 scrollbar-thin scrollbar-thumb-border scrollbar-track-transparent">
                         {messages.map((msg, index) => (

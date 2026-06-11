@@ -3,9 +3,8 @@ import { motion } from 'framer-motion';
 import { useLanguage } from '../../hooks/use-language';
 import { Globe, TrendingUp, Handshake, ArrowRight, MapPin, CheckCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { PageHeader } from '../../components/shared/PageHeader';
-import { Button } from '../../components/shared/Button';
 import { Seo } from '../../components/shared/Seo';
+import { PageHeader } from '../../components/shared/PageHeader';
 
 const CONTENT = {
   it: {
@@ -139,7 +138,7 @@ export function Caribbean() {
                 key={i}
                 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.08 }}
-                className="border border-border rounded-xl p-5 bg-card/50"
+                className="liquid-glass border border-white/20 rounded-xl p-5"
               >
                 <div className="flex items-center gap-2 mb-2">
                   <MapPin size={16} className="text-primary" />
@@ -174,9 +173,12 @@ export function Caribbean() {
         {/* CTA */}
         <section className="max-w-3xl mx-auto px-6 py-16 text-center">
           <h2 className="text-2xl font-bold mb-6">{c.cta}</h2>
-          <Button asChild>
-            <Link to="/contact"><span>{c.ctaBtn}</span><ArrowRight size={16} /></Link>
-          </Button>
+          <Link
+            to="/contact"
+            className="inline-flex items-center gap-2 bg-white text-slate-950 px-8 py-3 rounded-lg font-medium hover:bg-gray-100 transition-colors"
+          >
+            <span>{c.ctaBtn}</span><ArrowRight size={16} />
+          </Link>
         </section>
       </div>
     </>

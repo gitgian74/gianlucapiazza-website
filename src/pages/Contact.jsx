@@ -96,6 +96,7 @@ export function Contact() {
             <PageHeader
                 title={t.contact.title}
                 subtitle={t.contact.subtitle}
+                backgroundImage="/images/heroes/miami.jpg"
             />
 
             <Section className="max-w-6xl">
@@ -107,7 +108,7 @@ export function Contact() {
                             initial={{ opacity: 0, x: -20 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ delay: 0.2 }}
-                            className="p-8 h-full"
+                            className="liquid-glass border-white/20 p-8 h-full"
                         >
                             <h2 className="text-2xl font-bold text-white mb-8">{t.contact.info.title}</h2>
 
@@ -190,7 +191,7 @@ export function Contact() {
                             initial={{ opacity: 0, x: 20 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ delay: 0.3 }}
-                            className="p-8 md:p-10 shadow-xl shadow-black/20"
+                            className="liquid-glass border-white/20 p-8 md:p-10 shadow-xl shadow-black/20"
                         >
                             <form onSubmit={handleSubmit} className="space-y-6">
                                 <div className="grid md:grid-cols-2 gap-6">

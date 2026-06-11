@@ -95,7 +95,7 @@ export function Services() {
             <PageHeader
                 title={t.services.title}
                 subtitle={t.services.subtitle}
-                backgroundImage="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&q=80&w=1920"
+                backgroundImage="/images/heroes/washington-dc.jpg"
             />
 
             <Section className="max-w-7xl">
@@ -111,7 +111,7 @@ export function Services() {
                                 {t.services.intro}
                             </p>
                         </div>
-                        <div className="border border-border/70 bg-card/60 rounded-3xl p-6 md:p-8">
+                        <div className="liquid-glass border border-white/20 rounded-3xl p-6 md:p-8">
                             <div className="mb-5 h-1 w-20 rounded-full us-red-rule"></div>
                             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[var(--us-red)] mb-3">
                                 {t.services.modular.eyebrow}
@@ -142,7 +142,7 @@ export function Services() {
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.1 }}
                             hoverEffect={true}
-                            className="group"
+                            className="group liquid-glass border-white/20"
                         >
                             {/* Image Section */}
                             <div className="h-48 overflow-hidden relative">
@@ -227,7 +227,7 @@ export function Services() {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="mt-20 bg-card rounded-3xl p-12 text-center relative overflow-hidden border border-[var(--us-red)]/25"
+                    className="mt-20 liquid-glass rounded-3xl p-12 text-center relative overflow-hidden border border-white/20"
                 >
                     <div className="absolute inset-x-8 top-0 h-1 us-red-rule opacity-80"></div>
                     <div className="relative z-10">
@@ -245,7 +245,7 @@ export function Services() {
                                 placement: 'services_bottom_cta',
                             })}
                         >
-                            <Button variant="primary" size="lg" className="bg-[var(--us-red)] text-white shadow-[var(--us-red)]/20 hover:bg-[#9f1539]">
+                            <Button variant="primary" size="lg" className="bg-white text-slate-950 px-8 py-3 rounded-lg font-medium shadow-none hover:bg-gray-100 transition-colors">
                                 {t.services.ctaButton}
                                 <ArrowRight size={20} />
                             </Button>

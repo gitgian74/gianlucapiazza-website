@@ -1,50 +1,29 @@
 import React, { useState } from 'react';
-import { motion, useReducedMotion } from 'framer-motion';
+import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 import { useLanguage } from '../hooks/use-language';
 import { ArrowRight, Globe, TrendingUp, Users, Building2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { trackSiteEvent } from '../components/shared/tracking';
+import { AnimatedHeading } from '../components/vex/AnimatedHeading';
+import { FadeIn } from '../components/vex/FadeIn';
 
-// Hero LCP image. Unsplash's `auto=format` serves AVIF/WebP automatically based on
-// the browser Accept header, so a single srcset covers all modern formats. The
-// srcset below MUST stay in sync with the <link rel="preload" imagesrcset> in
-// index.html so the preloaded variant is reused (no double download).
-const HERO_BASE = 'https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop';
-const HERO_SRCSET = [
-    `${HERO_BASE}&q=68&w=640 640w`,
-    `${HERO_BASE}&q=68&w=828 828w`,
-    `${HERO_BASE}&q=68&w=1280 1280w`,
-    `${HERO_BASE}&q=70&w=1920 1920w`,
-    `${HERO_BASE}&q=72&w=2400 2400w`,
-].join(', ');
-const HERO_FALLBACK = `${HERO_BASE}&q=70&w=1280`;
+const HERO_VIDEO = '/videos/miami-hero.mp4';
+const HERO_POSTER = '/videos/miami-hero-poster.jpg';
 
 export function Home() {
     const { t } = useLanguage();
+    const shouldReduceMotion = useReducedMotion();
 
-    // Reduce above-the-fold animation work: honour the OS "reduce motion" setting
-    // and skip the hero entrance animation on small screens to speed up first paint.
-    const prefersReducedMotion = useReducedMotion();
-    const [isMobile] = useState(
-        () => typeof window !== 'undefined' && window.matchMedia('(max-width: 768px)').matches
+    // Scroll-linked veil: the locked hero dims gradually as the content
+    // scrolls over it, fully solid after ~1.2 viewport heights.
+    const { scrollY } = useScroll();
+    const [viewportH] = useState(
+        () => (typeof window !== 'undefined' ? window.innerHeight : 800)
     );
-    const reduceInitialMotion = prefersReducedMotion || isMobile;
-
-    const heroMotion = reduceInitialMotion
-        ? {}
-        : {
-            initial: { opacity: 0, y: 30 },
-            animate: { opacity: 1, y: 0 },
-            transition: { duration: 0.8, ease: 'easeOut' },
-        };
-
-    const scrollIndicatorMotion = reduceInitialMotion
-        ? {}
-        : {
-            initial: { opacity: 0 },
-            animate: { opacity: 1 },
-            transition: { delay: 1, duration: 1 },
-        };
+    const veilOpacity = useTransform(scrollY, [0, viewportH * 1.2], [0, 1]);
+    // Hero text fades out early so it never clashes with the cards scrolling over it
+    const heroContentOpacity = useTransform(scrollY, [0, viewportH * 0.35], [1, 0]);
+    const heroPointerEvents = useTransform(heroContentOpacity, (o) => (o < 0.05 ? 'none' : 'auto'));
 
     const container = {
         hidden: { opacity: 0 },
@@ -62,80 +41,100 @@ export function Home() {
     };
 
     return (
-        <div className="min-h-screen bg-background">
-            {/* Hero Section */}
-            <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
-                {/* Background Image */}
-                <div className="absolute inset-0 z-0">
-                    <img
-                        src={HERO_FALLBACK}
-                        srcSet={HERO_SRCSET}
-                        sizes="100vw"
-                        alt="Financial District Blue Sky"
-                        className="w-full h-full object-cover"
-                        fetchPriority="high"
-                        loading="eager"
-                        decoding="async"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-b from-slate-950/45 via-slate-950/15 to-background"></div>
-                    <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(15,23,42,0.72)_0%,_rgba(15,23,42,0.44)_34%,_rgba(15,23,42,0.16)_58%,_transparent_78%)]"></div>
+        <div className="min-h-screen">
+            {/* Hero Section — locked in place (sticky): the sections below scroll up
+                over it while the scroll-linked veil dims it gradually.
+                100dvh inline style wins where supported; h-screen is the fallback. */}
+            <section className="sticky top-0 z-0 h-screen overflow-hidden" style={{ height: '100dvh' }}>
+                <div className="absolute inset-0" aria-hidden="true">
+                    {shouldReduceMotion ? (
+                        <img
+                            className="w-full h-full object-cover"
+                            src={HERO_POSTER}
+                            alt=""
+                        />
+                    ) : (
+                        <video
+                            className="w-full h-full object-cover"
+                            src={HERO_VIDEO}
+                            poster={HERO_POSTER}
+                            autoPlay
+                            loop
+                            muted
+                            playsInline
+                        />
+                    )}
                 </div>
+                <div className="absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-slate-950/60 to-transparent pointer-events-none"></div>
 
-                <div className="container mx-auto px-6 relative z-10 text-center">
-                    <motion.div
-                        {...heroMotion}
-                        className="max-w-4xl mx-auto"
-                    >
-                        <div className="mx-auto mb-8 h-1 w-24 rounded-full us-red-rule"></div>
-                        <h1 className="text-6xl md:text-8xl font-bold text-white mb-8 tracking-tight leading-tight drop-shadow-2xl">
-                            {t.home.heroHeadline}
-                        </h1>
+                <motion.div className="relative z-10 flex flex-col h-full" style={{ opacity: heroContentOpacity, pointerEvents: heroPointerEvents }}>
+                    <div className="px-6 md:px-12 lg:px-16 flex-1 flex flex-col justify-end pb-12 lg:pb-16">
+                        <div className="lg:grid lg:grid-cols-2 lg:items-end">
+                            <div>
+                                <AnimatedHeading
+                                    text={t.home.heroClaim}
+                                    className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-normal text-white mb-4 drop-shadow-[0_2px_18px_rgba(2,6,23,0.6)]"
+                                />
+                                <FadeIn delay={800} duration={1000}>
+                                    <p className="text-base md:text-lg text-white/90 mb-1 drop-shadow-[0_2px_16px_rgba(2,6,23,0.7)]">
+                                        {t.home.tagline}
+                                    </p>
+                                    <p className="text-sm md:text-base text-white/70 mb-5 drop-shadow-[0_2px_16px_rgba(2,6,23,0.7)]">
+                                        {t.home.taglineSub}
+                                    </p>
+                                </FadeIn>
+                                <FadeIn delay={1200} duration={1000}>
+                                    <div className="flex flex-wrap gap-4">
+                                        <Link
+                                            to="/contact"
+                                            onClick={() => trackSiteEvent('cta_click', {
+                                                cta_id: 'home_hero_contact',
+                                                destination: '/contact',
+                                                placement: 'home_hero',
+                                            })}
+                                            className="bg-white text-slate-950 px-8 py-3 rounded-lg font-medium hover:bg-gray-100 transition-colors"
+                                        >
+                                            {t.home.ctaButton}
+                                        </Link>
+                                        <Link
+                                            to="/services"
+                                            onClick={() => trackSiteEvent('cta_click', {
+                                                cta_id: 'home_hero_services',
+                                                destination: '/services',
+                                                placement: 'home_hero',
+                                            })}
+                                            className="liquid-glass border border-white/20 text-white px-8 py-3 rounded-lg font-medium hover:bg-white hover:text-slate-950 transition-colors"
+                                        >
+                                            {t.home.discoverServices}
+                                        </Link>
+                                    </div>
+                                </FadeIn>
+                            </div>
 
-                        <p className="text-xl md:text-2xl text-white/95 mb-4 max-w-2xl mx-auto font-normal leading-relaxed drop-shadow-[0_2px_18px_rgba(2,6,23,0.95)]">
-                            {t.home.tagline}
-                        </p>
-                        <p className="text-base md:text-lg text-white/78 mb-12 max-w-2xl mx-auto font-normal leading-relaxed tracking-wide drop-shadow-[0_2px_16px_rgba(2,6,23,0.9)]">
-                            {t.home.subtitle}
-                        </p>
-
-                        <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-                            <Link
-                                to="/contact"
-                                onClick={() => trackSiteEvent('cta_click', {
-                                    cta_id: 'home_hero_contact',
-                                    destination: '/contact',
-                                    placement: 'home_hero',
-                                })}
-                                className="px-10 py-5 bg-white text-[var(--us-red)] rounded-full font-bold text-lg hover:bg-[#fff5f7] transition-all shadow-xl shadow-[var(--us-red)]/20 hover:shadow-2xl hover:-translate-y-1"
-                            >
-                                {t.home.ctaButton}
-                            </Link>
-                            <Link
-                                to="/services"
-                                onClick={() => trackSiteEvent('cta_click', {
-                                    cta_id: 'home_hero_services',
-                                    destination: '/services',
-                                    placement: 'home_hero',
-                                })}
-                                className="px-10 py-5 bg-white/10 backdrop-blur-md text-white rounded-full font-bold text-lg hover:bg-white/20 transition-all border border-white/20 shadow-lg hover:shadow-xl"
-                            >
-                                {t.home.discoverServices}
-                            </Link>
+                            <FadeIn delay={1400} duration={1000} className="flex items-end justify-start lg:justify-end">
+                                <div className="liquid-glass border border-white/20 px-6 py-3 rounded-xl mt-8 lg:mt-0">
+                                    <span className="text-lg md:text-xl lg:text-2xl font-light text-white">
+                                        {t.home.heroTag}
+                                    </span>
+                                </div>
+                            </FadeIn>
                         </div>
-                    </motion.div>
-                </div>
-
-                {/* Scroll Indicator */}
-                <motion.div
-                    {...scrollIndicatorMotion}
-                    className="absolute bottom-10 left-1/2 -translate-x-1/2 text-white/50 animate-bounce"
-                >
-                    <ArrowRight className="rotate-90" size={24} />
+                    </div>
                 </motion.div>
             </section>
 
-            {/* Stats Cards - Floating Overlap */}
-            <section className="py-12 px-6 md:-mt-24 relative z-20">
+            {/* Scroll-linked veil: dims the locked hero as you scroll down */}
+            <motion.div
+                className="fixed inset-0 z-[1] bg-background pointer-events-none"
+                style={{ opacity: veilOpacity }}
+                aria-hidden="true"
+            ></motion.div>
+
+            {/* Post-hero content scrolls up over the locked hero */}
+            <div className="relative z-10">
+
+            {/* Stats Cards */}
+            <section className="py-12 px-6 relative z-20">
                 <div className="container mx-auto max-w-6xl">
                     <motion.div
                         variants={container}
@@ -144,7 +143,7 @@ export function Home() {
                         viewport={{ once: true }}
                         className="grid grid-cols-3 gap-3 md:gap-8"
                     >
-                        <motion.div variants={item} className="glass-card p-4 md:p-10 rounded-[1.5rem] md:rounded-[2rem] hover:scale-[1.02] transition-transform duration-300">
+                        <motion.div variants={item} className="liquid-glass border border-white/20 p-4 md:p-10 rounded-[1.5rem] md:rounded-[2rem] hover:scale-[1.02] transition-transform duration-300">
                             <div className="w-10 h-10 md:w-14 md:h-14 bg-[var(--us-red)]/15 rounded-2xl flex items-center justify-center text-[var(--us-red)] mb-4">
                                 <Globe size={20} />
                             </div>
@@ -152,7 +151,7 @@ export function Home() {
                             <p className="text-muted-foreground font-medium text-xs md:text-lg">{t.home.stats.experience}</p>
                         </motion.div>
 
-                        <motion.div variants={item} className="glass-card p-4 md:p-10 rounded-[1.5rem] md:rounded-[2rem] hover:scale-[1.02] transition-transform duration-300">
+                        <motion.div variants={item} className="liquid-glass border border-white/20 p-4 md:p-10 rounded-[1.5rem] md:rounded-[2rem] hover:scale-[1.02] transition-transform duration-300">
                             <div className="w-10 h-10 md:w-14 md:h-14 bg-green-500/20 rounded-2xl flex items-center justify-center text-green-400 mb-4">
                                 <TrendingUp size={20} />
                             </div>
@@ -160,7 +159,7 @@ export function Home() {
                             <p className="text-muted-foreground font-medium text-xs md:text-lg">{t.home.stats.markets}</p>
                         </motion.div>
 
-                        <motion.div variants={item} className="glass-card p-4 md:p-10 rounded-[1.5rem] md:rounded-[2rem] hover:scale-[1.02] transition-transform duration-300">
+                        <motion.div variants={item} className="liquid-glass border border-white/20 p-4 md:p-10 rounded-[1.5rem] md:rounded-[2rem] hover:scale-[1.02] transition-transform duration-300">
                             <div className="w-10 h-10 md:w-14 md:h-14 bg-purple-500/20 rounded-2xl flex items-center justify-center text-purple-400 mb-4">
                                 <Building2 size={20} />
                             </div>
@@ -180,7 +179,7 @@ export function Home() {
                         viewport={{ once: true }}
                         transition={{ duration: 0.8 }}
                     >
-                        <p className="text-base md:text-xl text-muted-foreground leading-relaxed font-light">
+                        <p className="text-base md:text-xl text-slate-200/95 leading-relaxed font-light drop-shadow-[0_1px_12px_rgba(2,6,23,0.8)]">
                             {t.home.intro}
                         </p>
                     </motion.div>
@@ -316,6 +315,8 @@ export function Home() {
                     </div>
                 </div>
             </section>
+
+            </div>
         </div>
     );
 }
