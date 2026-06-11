@@ -1,5 +1,5 @@
-import React from 'react';
-import { motion, useReducedMotion } from 'framer-motion';
+import React, { useState } from 'react';
+import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 import { useLanguage } from '../hooks/use-language';
 import { ArrowRight, Globe, TrendingUp, Users, Building2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -13,6 +13,14 @@ const HERO_POSTER = '/videos/miami-hero-poster.jpg';
 export function Home() {
     const { t } = useLanguage();
     const shouldReduceMotion = useReducedMotion();
+
+    // Scroll-linked veil: the locked hero dims gradually as the content
+    // scrolls over it, fully solid after ~1.2 viewport heights.
+    const { scrollY } = useScroll();
+    const [viewportH] = useState(
+        () => (typeof window !== 'undefined' ? window.innerHeight : 800)
+    );
+    const veilOpacity = useTransform(scrollY, [0, viewportH * 1.2], [0, 1]);
 
     const container = {
         hidden: { opacity: 0 },
@@ -31,31 +39,29 @@ export function Home() {
 
     return (
         <div className="min-h-screen">
-            {/* Fixed video backdrop: stays locked while hero and content scroll over it.
-                The post-hero veil below fades the page from transparent to solid. */}
-            <div className="fixed inset-0 z-0 pointer-events-none" aria-hidden="true">
-                {shouldReduceMotion ? (
-                    <img
-                        className="w-full h-full object-cover"
-                        src={HERO_POSTER}
-                        alt=""
-                    />
-                ) : (
-                    <video
-                        className="w-full h-full object-cover"
-                        src={HERO_VIDEO}
-                        poster={HERO_POSTER}
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
-                    />
-                )}
-            </div>
-
-            {/* Hero Section — VEX style: content bottom-anchored over the fixed video.
+            {/* Hero Section — locked in place (sticky): the sections below scroll up
+                over it while the scroll-linked veil dims it gradually.
                 100dvh inline style wins where supported; h-screen is the fallback. */}
-            <section className="relative z-10 h-screen overflow-hidden" style={{ height: '100dvh' }}>
+            <section className="sticky top-0 z-0 h-screen overflow-hidden" style={{ height: '100dvh' }}>
+                <div className="absolute inset-0" aria-hidden="true">
+                    {shouldReduceMotion ? (
+                        <img
+                            className="w-full h-full object-cover"
+                            src={HERO_POSTER}
+                            alt=""
+                        />
+                    ) : (
+                        <video
+                            className="w-full h-full object-cover"
+                            src={HERO_VIDEO}
+                            poster={HERO_POSTER}
+                            autoPlay
+                            loop
+                            muted
+                            playsInline
+                        />
+                    )}
+                </div>
                 <div className="absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-slate-950/60 to-transparent pointer-events-none"></div>
 
                 <div className="relative z-10 flex flex-col h-full">
@@ -114,11 +120,15 @@ export function Home() {
                 </div>
             </section>
 
-            {/* Post-hero content scrolls over the fixed video. The veil fades it out:
-                transparent under the stats cards, solid by the services section. */}
+            {/* Scroll-linked veil: dims the locked hero as you scroll down */}
+            <motion.div
+                className="fixed inset-0 z-[1] bg-background pointer-events-none"
+                style={{ opacity: veilOpacity }}
+                aria-hidden="true"
+            ></motion.div>
+
+            {/* Post-hero content scrolls up over the locked hero */}
             <div className="relative z-10">
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/70 via-30% to-background to-60% pointer-events-none"></div>
-                <div className="relative">
 
             {/* Stats Cards */}
             <section className="py-12 px-6 relative z-20">
@@ -303,7 +313,6 @@ export function Home() {
                 </div>
             </section>
 
-                </div>
             </div>
         </div>
     );
