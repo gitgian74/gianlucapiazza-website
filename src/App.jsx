@@ -24,6 +24,7 @@ const Caribbean = lazy(() => import('./pages/markets/Caribbean').then(module => 
 const Chicago = lazy(() => import('./pages/markets/Chicago').then(module => ({ default: module.Chicago })));
 const Boston = lazy(() => import('./pages/markets/Boston').then(module => ({ default: module.Boston })));
 const LasVegas = lazy(() => import('./pages/markets/LasVegas').then(module => ({ default: module.LasVegas })));
+const MarketLandingPage = lazy(() => import('./pages/markets/MarketLandingPage').then(module => ({ default: module.MarketLandingPage })));
 const UsaMarketEntryItalianCompanies = lazy(() => import('./pages/seo/UsaMarketEntryItalianCompanies').then(module => ({ default: module.UsaMarketEntryItalianCompanies })));
 const BusinessDevelopmentUsa = lazy(() => import('./pages/seo/BusinessDevelopmentUsa').then(module => ({ default: module.BusinessDevelopmentUsa })));
 const RicercaDistributoriUsa = lazy(() => import('./pages/seo/RicercaDistributoriUsa').then(module => ({ default: module.RicercaDistributoriUsa })));
@@ -126,6 +127,14 @@ function App() {
               <Route path="/mercati/chicago" element={<Chicago />} />
               <Route path="/mercati/boston" element={<Boston />} />
               <Route path="/mercati/las-vegas" element={<LasVegas />} />
+              <Route path="/mercati/miami" element={<MarketLandingPage city="miami" />} />
+              <Route path="/mercati/dallas" element={<MarketLandingPage city="dallas" />} />
+              <Route path="/mercati/houston" element={<MarketLandingPage city="houston" />} />
+              <Route path="/mercati/san-antonio" element={<MarketLandingPage city="san-antonio" />} />
+              <Route path="/mercati/new-york" element={<MarketLandingPage city="new-york" />} />
+              <Route path="/mercati/los-angeles" element={<MarketLandingPage city="los-angeles" />} />
+              <Route path="/mercati/san-diego" element={<MarketLandingPage city="san-diego" />} />
+              <Route path="/mercati/silicon-valley" element={<MarketLandingPage city="silicon-valley" />} />
               <Route path="/usa-market-entry-italian-companies" element={<UsaMarketEntryItalianCompanies />} />
               <Route path="/business-development-usa" element={<BusinessDevelopmentUsa />} />
               <Route path="/ricerca-distributori-usa" element={<RicercaDistributoriUsa />} />
