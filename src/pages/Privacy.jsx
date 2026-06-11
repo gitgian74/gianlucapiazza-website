@@ -21,10 +21,11 @@ export function Privacy() {
             <PageHeader
                 title={t.privacy.title}
                 subtitle={t.privacy.lastUpdated + ' ' + new Date().toLocaleDateString()}
+                backgroundImage="/images/heroes/washington-dc.jpg"
             />
 
             <Section className="max-w-4xl">
-                <Card className="p-8 md:p-12 space-y-8">
+                <Card className="liquid-glass border-white/20 p-8 md:p-12 space-y-8">
                     <div className="prose prose-invert max-w-none">
                         <p className="text-lg text-muted-foreground leading-relaxed">
                             {t.privacy.intro}
@@ -32,7 +33,7 @@ export function Privacy() {
 
                         <div className="mt-8 space-y-8">
                             {/* Data Controller */}
-                            <section className="bg-card/50 p-6 rounded-2xl border border-border">
+                            <section className="liquid-glass p-6 rounded-2xl border border-white/20">
                                 <h2 className="text-xl font-bold text-foreground mb-4">{t.privacy.controller.title}</h2>
                                 <p className="text-muted-foreground mb-2">{t.privacy.controller.text}</p>
                                 <div className="text-muted-foreground">

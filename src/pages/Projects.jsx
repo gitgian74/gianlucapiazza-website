@@ -47,7 +47,7 @@ export function Projects() {
             <PageHeader
                 title={t.projects.title}
                 subtitle={t.projects.subtitle}
-                backgroundImage="https://images.unsplash.com/photo-1533929736458-ca588d08c8be?auto=format&fit=crop&q=80&w=1920"
+                backgroundImage="/images/heroes/los-angeles.jpg"
             />
 
             <Section className="max-w-6xl">
@@ -60,7 +60,7 @@ export function Projects() {
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.1 }}
                             hoverEffect={true}
-                            className="group flex flex-col md:flex-row md:items-stretch md:min-h-[26rem] lg:min-h-[28rem]"
+                            className="group liquid-glass border-white/20 flex flex-col md:flex-row md:items-stretch md:min-h-[26rem] lg:min-h-[28rem]"
                         >
                             {/* Image Section */}
                             <div className="relative h-64 overflow-hidden bg-slate-950 md:w-1/3 md:h-auto md:self-stretch">
@@ -144,7 +144,7 @@ export function Projects() {
                 <div className="mt-20 text-center">
                     <p className="text-xl text-muted-foreground mb-6">{t.projects.ctaText}</p>
                     <Link to="/contact">
-                        <Button variant="secondary" size="lg" className="shadow-lg">
+                        <Button variant="secondary" size="lg" className="liquid-glass border-white/20 text-white px-8 py-3 rounded-lg font-medium shadow-none hover:bg-white hover:text-slate-950 transition-colors">
                             {t.projects.ctaButton}
                             <ArrowUpRight size={20} />
                         </Button>

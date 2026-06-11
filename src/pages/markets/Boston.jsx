@@ -3,9 +3,8 @@ import { motion } from 'framer-motion';
 import { useLanguage } from '../../hooks/use-language';
 import { ArrowRight, MapPin, CheckCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { PageHeader } from '../../components/shared/PageHeader';
-import { Button } from '../../components/shared/Button';
 import { Seo } from '../../components/shared/Seo';
+import { PageHeader } from '../../components/shared/PageHeader';
 
 const CONTENT = {
   it: {
@@ -89,7 +88,11 @@ export function Boston() {
     <>
       <Seo title={c.seoTitle} description={c.seoDesc} keywords="consulente Boston mercato americano italiani, business development Boston, azienda italiana Boston, New England mercato USA, GP Partners" />
       <div className="min-h-screen bg-background pb-20">
-        <PageHeader title={c.hero} subtitle={c.heroSub} backgroundImage="https://images.unsplash.com/photo-1501979376754-f8b7a96e611d?auto=format&fit=crop&q=80&w=1920" />
+        <PageHeader
+          title={c.hero}
+          subtitle={c.heroSub}
+          backgroundImage="https://images.unsplash.com/photo-1501979376754-f8b7a96e611d?auto=format&fit=crop&q=80&w=1920"
+        />
         <section className="max-w-4xl mx-auto px-6 py-16">
           <motion.p initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} className="text-xl text-muted-foreground leading-relaxed">{c.intro}</motion.p>
         </section>
@@ -110,7 +113,7 @@ export function Boston() {
           <h2 className="text-3xl font-bold mb-10">{c.markets}</h2>
           <div className="grid md:grid-cols-2 gap-6">
             {c.marketsList.map((m, i) => (
-              <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.08 }} className="border border-border rounded-xl p-5 bg-card/50">
+              <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.08 }} className="liquid-glass border border-white/20 rounded-xl p-5">
                 <div className="flex items-center gap-2 mb-2"><MapPin size={16} className="text-primary" /><span className="font-semibold">{m.name}</span></div>
                 <p className="text-sm text-muted-foreground">{m.note}</p>
               </motion.div>
@@ -132,7 +135,7 @@ export function Boston() {
         </section>
         <section className="max-w-3xl mx-auto px-6 py-16 text-center">
           <h2 className="text-2xl font-bold mb-6">{c.cta}</h2>
-          <Button asChild><Link to="/contact"><span>{c.ctaBtn}</span><ArrowRight size={16} /></Link></Button>
+          <Link to="/contact" className="inline-flex items-center gap-2 bg-white text-slate-950 px-8 py-3 rounded-lg font-medium hover:bg-gray-100 transition-colors"><span>{c.ctaBtn}</span><ArrowRight size={16} /></Link>
         </section>
       </div>
     </>

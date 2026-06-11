@@ -11,6 +11,8 @@ export const translations = {
     home: {
       title: 'GP & Partners',
       heroHeadline: 'GP & Partners',
+      heroClaim: 'Shaping tomorrow\nwith vision and action.',
+      heroTag: 'Strategy. Growth. Partnership.',
       subtitle: 'USA Market Entry | Business Builder | Strategic Partner',
       tagline: 'Apriamo le porte del mercato USA per le imprese italiane.',
       taglineSub: 'Dalla strategia all\'esecuzione — con 18 anni di presenza diretta negli Stati Uniti.',
@@ -458,6 +460,8 @@ export const translations = {
     home: {
       title: 'GP & Partners',
       heroHeadline: 'GP & Partners',
+      heroClaim: 'Shaping tomorrow\nwith vision and action.',
+      heroTag: 'Strategy. Growth. Partnership.',
       subtitle: 'USA Market Entry | Business Builder | Strategic Partner',
       tagline: 'We open the US market for Italian businesses.',
       taglineSub: 'From strategy to execution — 18 years of direct presence across the United States.',
