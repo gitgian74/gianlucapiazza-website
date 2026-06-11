@@ -23,6 +23,7 @@ export function Home() {
     const veilOpacity = useTransform(scrollY, [0, viewportH * 1.2], [0, 1]);
     // Hero text fades out early so it never clashes with the cards scrolling over it
     const heroContentOpacity = useTransform(scrollY, [0, viewportH * 0.35], [1, 0]);
+    const heroPointerEvents = useTransform(heroContentOpacity, (o) => (o < 0.05 ? 'none' : 'auto'));
 
     const container = {
         hidden: { opacity: 0 },
@@ -66,7 +67,7 @@ export function Home() {
                 </div>
                 <div className="absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-slate-950/60 to-transparent pointer-events-none"></div>
 
-                <motion.div className="relative z-10 flex flex-col h-full" style={{ opacity: heroContentOpacity }}>
+                <motion.div className="relative z-10 flex flex-col h-full" style={{ opacity: heroContentOpacity, pointerEvents: heroPointerEvents }}>
                     <div className="px-6 md:px-12 lg:px-16 flex-1 flex flex-col justify-end pb-12 lg:pb-16">
                         <div className="lg:grid lg:grid-cols-2 lg:items-end">
                             <div>
