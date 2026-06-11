@@ -30,28 +30,32 @@ export function Home() {
     };
 
     return (
-        <div className="min-h-screen bg-background">
-            {/* Hero Section — VEX style: video background, content bottom-anchored.
-                100dvh inline style wins where supported; h-screen is the fallback. */}
-            <section className="relative h-screen overflow-hidden" style={{ height: '100dvh' }}>
+        <div className="min-h-screen">
+            {/* Fixed video backdrop: stays locked while hero and content scroll over it.
+                The post-hero veil below fades the page from transparent to solid. */}
+            <div className="fixed inset-0 z-0 pointer-events-none" aria-hidden="true">
                 {shouldReduceMotion ? (
                     <img
-                        className="absolute inset-0 w-full h-full object-cover"
+                        className="w-full h-full object-cover"
                         src={HERO_POSTER}
-                        alt="Miami skyline over the water"
+                        alt=""
                     />
                 ) : (
                     <video
-                        className="absolute inset-0 w-full h-full object-cover"
+                        className="w-full h-full object-cover"
                         src={HERO_VIDEO}
                         poster={HERO_POSTER}
                         autoPlay
                         loop
                         muted
                         playsInline
-                        aria-hidden="true"
                     />
                 )}
+            </div>
+
+            {/* Hero Section — VEX style: content bottom-anchored over the fixed video.
+                100dvh inline style wins where supported; h-screen is the fallback. */}
+            <section className="relative z-10 h-screen overflow-hidden" style={{ height: '100dvh' }}>
                 <div className="absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-slate-950/60 to-transparent pointer-events-none"></div>
 
                 <div className="relative z-10 flex flex-col h-full">
@@ -110,6 +114,12 @@ export function Home() {
                 </div>
             </section>
 
+            {/* Post-hero content scrolls over the fixed video. The veil fades it out:
+                transparent under the stats cards, solid by the services section. */}
+            <div className="relative z-10">
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/70 via-30% to-background to-60% pointer-events-none"></div>
+                <div className="relative">
+
             {/* Stats Cards */}
             <section className="py-12 px-6 relative z-20">
                 <div className="container mx-auto max-w-6xl">
@@ -120,7 +130,7 @@ export function Home() {
                         viewport={{ once: true }}
                         className="grid grid-cols-3 gap-3 md:gap-8"
                     >
-                        <motion.div variants={item} className="glass-card p-4 md:p-10 rounded-[1.5rem] md:rounded-[2rem] hover:scale-[1.02] transition-transform duration-300">
+                        <motion.div variants={item} className="liquid-glass border border-white/20 p-4 md:p-10 rounded-[1.5rem] md:rounded-[2rem] hover:scale-[1.02] transition-transform duration-300">
                             <div className="w-10 h-10 md:w-14 md:h-14 bg-[var(--us-red)]/15 rounded-2xl flex items-center justify-center text-[var(--us-red)] mb-4">
                                 <Globe size={20} />
                             </div>
@@ -128,7 +138,7 @@ export function Home() {
                             <p className="text-muted-foreground font-medium text-xs md:text-lg">{t.home.stats.experience}</p>
                         </motion.div>
 
-                        <motion.div variants={item} className="glass-card p-4 md:p-10 rounded-[1.5rem] md:rounded-[2rem] hover:scale-[1.02] transition-transform duration-300">
+                        <motion.div variants={item} className="liquid-glass border border-white/20 p-4 md:p-10 rounded-[1.5rem] md:rounded-[2rem] hover:scale-[1.02] transition-transform duration-300">
                             <div className="w-10 h-10 md:w-14 md:h-14 bg-green-500/20 rounded-2xl flex items-center justify-center text-green-400 mb-4">
                                 <TrendingUp size={20} />
                             </div>
@@ -136,7 +146,7 @@ export function Home() {
                             <p className="text-muted-foreground font-medium text-xs md:text-lg">{t.home.stats.markets}</p>
                         </motion.div>
 
-                        <motion.div variants={item} className="glass-card p-4 md:p-10 rounded-[1.5rem] md:rounded-[2rem] hover:scale-[1.02] transition-transform duration-300">
+                        <motion.div variants={item} className="liquid-glass border border-white/20 p-4 md:p-10 rounded-[1.5rem] md:rounded-[2rem] hover:scale-[1.02] transition-transform duration-300">
                             <div className="w-10 h-10 md:w-14 md:h-14 bg-purple-500/20 rounded-2xl flex items-center justify-center text-purple-400 mb-4">
                                 <Building2 size={20} />
                             </div>
@@ -156,7 +166,7 @@ export function Home() {
                         viewport={{ once: true }}
                         transition={{ duration: 0.8 }}
                     >
-                        <p className="text-base md:text-xl text-muted-foreground leading-relaxed font-light">
+                        <p className="text-base md:text-xl text-slate-200/95 leading-relaxed font-light drop-shadow-[0_1px_12px_rgba(2,6,23,0.8)]">
                             {t.home.intro}
                         </p>
                     </motion.div>
@@ -292,6 +302,9 @@ export function Home() {
                     </div>
                 </div>
             </section>
+
+                </div>
+            </div>
         </div>
     );
 }
