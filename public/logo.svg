@@ -1,25 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
-  <title id="title">GP &amp; Partners</title>
-  <desc id="desc">Premium GP monogram for GP &amp; Partners</desc>
-  <defs>
-    <linearGradient id="navy" x1="96" y1="48" x2="416" y2="464" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#172033"/>
-      <stop offset="1" stop-color="#07111f"/>
-    </linearGradient>
-  </defs>
-
-  <rect x="40" y="40" width="432" height="432" rx="112" fill="url(#navy)"/>
-  <rect x="40" y="40" width="432" height="432" rx="112" fill="none" stroke="#27364f" stroke-width="12"/>
-  <path d="M132 378h248" fill="none" stroke="#B31942" stroke-width="18" stroke-linecap="round"/>
-  <path d="M380 134v244" fill="none" stroke="#B31942" stroke-width="18" stroke-linecap="round"/>
-
-  <text
-    x="256"
-    y="302"
-    fill="#F8FAFC"
-    font-family="Georgia, 'Times New Roman', serif"
-    font-size="174"
-    font-weight="700"
-    letter-spacing="-8"
-    text-anchor="middle">GP</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120" role="img" aria-label="GP &amp; Partners">
+  <rect width="120" height="120" rx="28" fill="#E30613"></rect>
+  <g transform="translate(18 18) scale(0.7)" fill="none" stroke="#FFFFFF" stroke-width="13" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M 78 38 A 34 34 0 1 0 78 86"></path>
+    <path d="M 84 61 L 63 61"></path>
+    <path d="M 90 26 L 90 100"></path>
+    <path d="M 90 26 A 21 21 0 0 1 90 68"></path>
+  </g>
 </svg>
