@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 120 120" role="img" aria-label="GP">
+  <rect width="120" height="120" rx="26" fill="#E30613"></rect>
+  <g transform="translate(18 18) scale(0.7)" fill="none" stroke="#FFFFFF" stroke-width="14" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M 78 38 A 34 34 0 1 0 78 86"></path>
+    <path d="M 84 61 L 63 61"></path>
+    <path d="M 90 26 L 90 100"></path>
+    <path d="M 90 26 A 21 21 0 0 1 90 68"></path>
+  </g>
+</svg>
