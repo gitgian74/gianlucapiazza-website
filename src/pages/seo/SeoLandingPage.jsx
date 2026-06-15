@@ -45,6 +45,11 @@ const relatedPages = [
     en: 'US Retail Partnerships',
   },
   {
+    path: '/buyer-readiness-usa',
+    it: 'Buyer Readiness USA',
+    en: 'Buyer Readiness USA',
+  },
+  {
     path: '/vendere-prodotti-italiani-usa',
     it: 'Vendere prodotti italiani negli USA',
     en: 'Selling Italian Products in the USA',
@@ -172,13 +177,26 @@ export function SeoLandingPage({ page }) {
   const content = page[language] || page.it;
   const pageJsonLd = buildPageJsonLd(page, content);
   const openContact = (placement) => {
-    trackSiteEvent('cta_click', {
-      cta_id: 'seo_landing_contact',
+    const eventPayload = {
+      cta_id: 'seo_landing_market_readiness_call',
       destination: '/contact',
       source_page: page.path,
       placement,
-    });
+      offer: 'market_readiness_call',
+    };
+
+    trackSiteEvent('landing_cta_click', eventPayload);
+    trackSiteEvent('book_call', eventPayload);
     navigate('/contact');
+  };
+
+  const trackChecklistDownload = (placement) => {
+    trackSiteEvent('download_checklist', {
+      asset_id: 'buyer_distributor_readiness_checklist',
+      asset_path: page.downloadPath,
+      source_page: page.path,
+      placement,
+    });
   };
 
   return (
@@ -204,6 +222,17 @@ export function SeoLandingPage({ page }) {
               <span>{content.cta.label}</span>
               <ArrowRight size={18} />
             </button>
+            {page.downloadPath && content.secondaryCta && (
+              <a
+                href={page.downloadPath}
+                download
+                onClick={() => trackChecklistDownload('seo_landing_hero')}
+                className="inline-flex items-center gap-2 liquid-glass border border-white/20 text-white px-8 py-3 rounded-lg font-medium hover:bg-white hover:text-slate-950 transition-colors"
+              >
+                <span>{content.secondaryCta}</span>
+                <ArrowRight size={18} />
+              </a>
+            )}
             <span className="text-sm text-muted-foreground">
               {SITE_URL.replace('https://', '')}{page.path}
             </span>
@@ -316,14 +345,27 @@ export function SeoLandingPage({ page }) {
         <Section className="max-w-4xl text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">{content.cta.label}</h2>
           <p className="text-muted-foreground leading-relaxed mb-8">{content.cta.note}</p>
-          <button
-            type="button"
-            onClick={() => openContact('seo_landing_bottom')}
-            className="inline-flex items-center gap-2 bg-white text-slate-950 px-8 py-3 rounded-lg font-medium hover:bg-gray-100 transition-colors"
-          >
-            <span>{content.cta.label}</span>
-            <ArrowRight size={18} />
-          </button>
+          <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <button
+              type="button"
+              onClick={() => openContact('seo_landing_bottom')}
+              className="inline-flex items-center gap-2 bg-white text-slate-950 px-8 py-3 rounded-lg font-medium hover:bg-gray-100 transition-colors"
+            >
+              <span>{content.cta.label}</span>
+              <ArrowRight size={18} />
+            </button>
+            {page.downloadPath && content.secondaryCta && (
+              <a
+                href={page.downloadPath}
+                download
+                onClick={() => trackChecklistDownload('seo_landing_bottom')}
+                className="inline-flex items-center gap-2 rounded-lg border border-border/70 px-8 py-3 font-medium text-foreground transition-colors hover:border-primary hover:text-primary"
+              >
+                <span>{content.secondaryCta}</span>
+                <ArrowRight size={18} />
+              </a>
+            )}
+          </div>
         </Section>
       </div>
     </>

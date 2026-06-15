@@ -38,5 +38,13 @@ coverage
 # Misc
 .vercel
 .netlify
-node_modules
-node_modules
+
+# Hermes/OpenClaw local agent context
+.openclaw
+.openclaw-screens
+AGENTS.md
+HEARTBEAT.md
+IDENTITY.md
+SOUL.md
+TOOLS.md
+USER.md

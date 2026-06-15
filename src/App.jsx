@@ -31,6 +31,7 @@ const RicercaDistributoriUsa = lazy(() => import('./pages/seo/RicercaDistributor
 const UsRetailPartnerships = lazy(() => import('./pages/seo/UsRetailPartnerships').then(module => ({ default: module.UsRetailPartnerships })));
 const VendereProdottiItalianiUsa = lazy(() => import('./pages/seo/VendereProdottiItalianiUsa').then(module => ({ default: module.VendereProdottiItalianiUsa })));
 const TemporaryExportManagerUsa = lazy(() => import('./pages/seo/TemporaryExportManagerUsa').then(module => ({ default: module.TemporaryExportManagerUsa })));
+const BuyerReadinessUsa = lazy(() => import('./pages/seo/BuyerReadinessUsa').then(module => ({ default: module.BuyerReadinessUsa })));
 const FoodBeverageUsa = lazy(() => import('./pages/seo/FoodBeverageUsa').then(module => ({ default: module.FoodBeverageUsa })));
 const ModaDesignUsa = lazy(() => import('./pages/seo/ModaDesignUsa').then(module => ({ default: module.ModaDesignUsa })));
 const AgenteVsDistributoreUsa = lazy(() => import('./pages/seo/AgenteVsDistributoreUsa').then(module => ({ default: module.AgenteVsDistributoreUsa })));
@@ -94,6 +95,15 @@ function EngagementTracker() {
           });
         }
       });
+
+      if (scrollPercent >= 75 && !thresholds.has('landing_scroll_75')) {
+        thresholds.add('landing_scroll_75');
+        trackSiteEvent('landing_scroll_75', {
+          depth_percent: 75,
+          page_path: trackedPath,
+          page_group: trackedPath.includes('usa') || trackedPath.includes('distributori') ? 'market_landing' : 'site',
+        });
+      }
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -141,6 +151,7 @@ function App() {
               <Route path="/us-retail-partnerships" element={<UsRetailPartnerships />} />
               <Route path="/vendere-prodotti-italiani-usa" element={<VendereProdottiItalianiUsa />} />
               <Route path="/temporary-export-manager-usa" element={<TemporaryExportManagerUsa />} />
+              <Route path="/buyer-readiness-usa" element={<BuyerReadinessUsa />} />
               <Route path="/food-beverage-usa" element={<FoodBeverageUsa />} />
               <Route path="/moda-design-usa" element={<ModaDesignUsa />} />
               <Route path="/agente-vs-distributore-usa" element={<AgenteVsDistributoreUsa />} />

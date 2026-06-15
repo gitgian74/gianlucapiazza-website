@@ -11,15 +11,15 @@ export const translations = {
     home: {
       title: 'GP & Partners',
       heroHeadline: 'GP & Partners',
-      heroClaim: 'Shaping tomorrow\nwith vision and action.',
-      heroTag: 'Strategy. Growth. Partnership.',
-      subtitle: 'USA Market Entry | Business Builder | Strategic Partner',
-      tagline: 'Apriamo le porte del mercato USA per le imprese italiane.',
-      taglineSub: 'Dalla strategia all\'esecuzione — con 18 anni di presenza diretta negli Stati Uniti.',
+      heroClaim: 'USA market entry\nfrom ambition to traction.',
+      heroTag: 'Readiness. Partners. Pipeline.',
+      subtitle: 'USA Market Entry Partner operativo',
+      tagline: 'Costruiamo pipeline commerciale reale negli Stati Uniti per aziende italiane ed europee.',
+      taglineSub: 'Readiness, distributori, buyer, retail partner, follow-up e presenza locale — con 18 anni di esperienza USA.',
       taglineUsa: 'Florida · Texas · California · Caraibi',
       futureTrading: 'The future of your trading',
-      intro: 'Con oltre 18 anni di esperienza nei mercati internazionali, supportiamo aziende italiane ed europee nella loro espansione globale, con focus su Florida, Texas, California, Boston, Chicago, Las Vegas e Caraibi.',
-      discoverServices: 'Scopri i Servizi',
+      intro: 'GP & Partners non vende report generici: trasforma un progetto USA in un percorso operativo fatto di canali, materiali buyer-ready, conversazioni qualificate, follow-up e decisioni misurabili.',
+      discoverServices: 'Scarica la checklist',
       learnMore: 'Scopri di più',
       contactMe: 'Contattaci',
       stats: {
@@ -32,9 +32,10 @@ export const translations = {
       },
       servicesTitle: 'Aree di Competenza',
       servicesSubtitle: 'Dal singolo professionista al team dedicato: servizi modulari per entrare e crescere nel mercato USA',
-      ctaTitle: 'Pronto ad entrare nel mercato USA?',
-      ctaText: 'GP & Partners ti affianca dalla strategia all\'esecuzione. Contattaci per una consulenza personalizzata.',
-      ctaButton: 'Richiedi una Consulenza'
+      ctaTitle: 'Prima di cercare buyer USA, rendi la tua azienda buyer-ready.',
+      ctaText: 'Partiamo da readiness, canale e materiali: poi costruiamo target list, conversazioni e follow-up commerciale.',
+      ctaButton: 'Prenota una Market Readiness Call',
+      downloadChecklist: 'Scarica la Buyer Readiness Checklist'
     },
     about: {
       title: 'Chi Siamo',
@@ -80,8 +81,8 @@ export const translations = {
         steps: ['Intervento mirato', 'Temporary manager', 'Unità specialistica', 'Team dedicato']
       },
       service1: {
-        title: 'Consulenza Internazionalizzazione',
-        description: 'Supporto strategico completo per l\'espansione internazionale della tua azienda. Dall\'analisi dei mercati target alla definizione della strategia di ingresso, fino all\'implementazione operativa e al consolidamento della presenza estera.',
+        title: 'USA Market Entry operativo',
+        description: 'Percorso operativo per entrare nel mercato USA: readiness, canali, materiali, distributori, buyer, partnership retail e follow-up commerciale.',
         includes: 'Cosa Include:',
         items: [
           'Analisi di mercato e opportunità',
@@ -296,11 +297,11 @@ export const translations = {
         company: 'Azienda',
         message: 'Messaggio',
         website: 'Sito web',
-        send: 'Invia Messaggio',
+        send: 'Richiedi una Market Readiness Call',
         sending: 'Invio in corso...',
         success: 'Messaggio inviato. Ti risponderò il prima possibile.',
         error: 'Non è stato possibile inviare il messaggio. Riprova o scrivi direttamente via email.',
-        nextStep: 'Riceverai una conferma via email se l’invio va a buon fine.'
+        nextStep: 'Descrivi prodotto, canale desiderato e stato attuale: la risposta qualifica priorità, rischi e prossimi passi.'
       },
       info: {
         title: 'Informazioni di Contatto',
@@ -329,7 +330,7 @@ export const translations = {
       disclaimer: "L'IA può commettere errori. Verifica le informazioni importanti e non inviare dati personali o confidenziali."
     },
     footer: {
-      about: 'USA Market Entry | Business Builder | Strategic Partner',
+      about: 'USA Market Entry Partner operativo per aziende italiane ed europee',
       contactTitle: 'Contatti',
       quickLinks: 'Link Rapidi',
       markets: 'Mercati USA',
@@ -464,13 +465,13 @@ export const translations = {
       heroHeadline: 'GP & Partners',
       heroClaim: 'Shaping tomorrow\nwith vision and action.',
       heroTag: 'Strategy. Growth. Partnership.',
-      subtitle: 'USA Market Entry | Business Builder | Strategic Partner',
-      tagline: 'We open the US market for Italian businesses.',
-      taglineSub: 'From strategy to execution — 18 years of direct presence across the United States.',
+      subtitle: 'Operating USA Market Entry Partner',
+      tagline: 'We build real US commercial pipeline for Italian and European companies.',
+      taglineSub: 'Readiness, distributors, buyers, retail partners, follow-up, and local presence — with 18 years of US experience.',
       taglineUsa: 'Florida · Texas · California · Caraibi',
       futureTrading: 'The future of your trading',
-      intro: 'With over 18 years of experience in international markets, we support Italian and European companies in their global expansion, with a focus on Florida, Texas, California, Boston, Chicago, Las Vegas and the Caribbean.',
-      discoverServices: 'Discover Services',
+      intro: 'GP & Partners does not sell generic reports: it turns a US market entry project into an operating path made of channels, buyer-ready materials, qualified conversations, follow-up, and measurable decisions.',
+      discoverServices: 'Download the checklist',
       learnMore: 'Learn more',
       contactMe: 'Contact Us',
       stats: {
@@ -483,9 +484,10 @@ export const translations = {
       },
       servicesTitle: 'Areas of Expertise',
       servicesSubtitle: 'From a single specialist to a dedicated team: modular services to enter and grow in the US market',
-      ctaTitle: 'Ready to enter the US market?',
-      ctaText: 'GP & Partners guides you from strategy to execution. Contact us for a personalized consultation.',
-      ctaButton: 'Request a Consultation'
+      ctaTitle: 'Before looking for US buyers, make the company buyer-ready.',
+      ctaText: 'We start from readiness, channel, and materials: then build target lists, conversations, and commercial follow-up.',
+      ctaButton: 'Book a Market Readiness Call',
+      downloadChecklist: 'Download the Buyer Readiness Checklist'
     },
     about: {
       title: 'About Us',
@@ -531,8 +533,8 @@ export const translations = {
         steps: ['Focused engagement', 'Temporary manager', 'Specialist unit', 'Dedicated team']
       },
       service1: {
-        title: 'Internationalization Consulting',
-        description: 'Complete strategic support for your company\'s international expansion. From target market analysis to entry strategy definition, to operational implementation and consolidation of foreign presence.',
+        title: 'Operating USA Market Entry',
+        description: 'An operating path into the US market: readiness, channels, materials, distributors, buyers, retail partnerships, and commercial follow-up.',
         includes: 'What\'s Included:',
         items: [
           'Market analysis and opportunities',
@@ -747,11 +749,11 @@ export const translations = {
         company: 'Company',
         message: 'Message',
         website: 'Website',
-        send: 'Send Message',
+        send: 'Request a Market Readiness Call',
         sending: 'Sending...',
         success: 'Message sent. I will get back to you as soon as possible.',
         error: 'The message could not be sent. Please try again or email me directly.',
-        nextStep: 'You will receive an email confirmation if the submission succeeds.'
+        nextStep: 'Share product, target channel, and current stage: the reply qualifies priorities, risks, and next steps.'
       },
       info: {
         title: 'Contact Information',

@@ -1,0 +1,106 @@
+{
+  "project": "GP & Partners / gianlucapiazza.com",
+  "purpose": "LinkedIn editorial queue ready for human review; no posts have been published or scheduled externally.",
+  "posts": [
+    {
+      "id": 1,
+      "title": "Errore USA della settimana",
+      "status": "ready_for_review",
+      "channel": "LinkedIn",
+      "landing": "/buyer-readiness-usa",
+      "hook": "Il primo errore quando un’azienda italiana cerca distributori USA non è scegliere il distributore sbagliato.",
+      "body": "È contattarlo troppo presto. Prima servono categoria, margini, pricing story, materiali buyer-ready e una risposta chiara alla domanda: perché questo prodotto dovrebbe entrare ora nel canale americano?",
+      "cta": "Scarica la checklist Buyer/Distributor Readiness."
+    },
+    {
+      "id": 2,
+      "title": "Agent vs Distributor",
+      "status": "ready_for_review",
+      "channel": "LinkedIn",
+      "landing": "/agente-vs-distributore-usa",
+      "hook": "Agente, distributore, importatore, broker: negli USA non sono sinonimi.",
+      "body": "Scegliere il canale sbagliato può bloccare margini, controllo del brand e velocità commerciale. La decisione va presa prima di firmare esclusiva o inviare listini.",
+      "cta": "Leggi la guida agente vs distributore USA."
+    },
+    {
+      "id": 3,
+      "title": "Buyer Readiness",
+      "status": "ready_for_review",
+      "channel": "LinkedIn",
+      "landing": "/buyer-readiness-usa",
+      "hook": "Il problema non è trovare un buyer USA. È arrivare pronto quando risponde.",
+      "body": "Un buyer non valuta solo prodotto e storia: guarda margini, MOQ, lead time, proof, sell-through, logistica, policy e follow-up. Se mancano, l’opportunità si raffredda.",
+      "cta": "Fai il readiness check."
+    },
+    {
+      "id": 4,
+      "title": "Made in Italy senza folklore",
+      "status": "ready_for_review",
+      "channel": "LinkedIn",
+      "landing": "/vendere-prodotti-italiani-usa",
+      "hook": "Il Made in Italy aiuta ad aprire attenzione. Non chiude accordi.",
+      "body": "Negli USA il buyer compra una proposta commerciale: differenza, margine, affidabilità, disponibilità, supporto e velocità. L’heritage serve solo se diventa motivo di acquisto.",
+      "cta": "Scopri il percorso per vendere prodotti italiani negli USA."
+    },
+    {
+      "id": 5,
+      "title": "Market Entry Reality Check",
+      "status": "ready_for_review",
+      "channel": "LinkedIn",
+      "landing": "/usa-market-entry-italian-companies",
+      "hook": "Entrare negli USA non significa “essere presenti”. Significa costruire trazione.",
+      "body": "La domanda vera: chi compra, perché ora, con quale canale, a che margine, con quale materiale e con quale follow-up? Senza queste risposte il mercato resta teoria.",
+      "cta": "Prenota una Market Readiness Call."
+    },
+    {
+      "id": 6,
+      "title": "Florida Opportunity Note",
+      "status": "ready_for_review",
+      "channel": "LinkedIn",
+      "landing": "/business-development-usa",
+      "hook": "La Florida non è solo Miami. È un laboratorio commerciale per hospitality, food, design, wellness e servizi B2B.",
+      "body": "Ma va trattata come mercato operativo: partner, canali, città, eventi, buyer e follow-up. Non come “porta generica” degli USA.",
+      "cta": "Parliamo del tuo canale USA prioritario."
+    },
+    {
+      "id": 7,
+      "title": "Distributor Search",
+      "status": "ready_for_review",
+      "channel": "LinkedIn",
+      "landing": "/ricerca-distributori-usa",
+      "hook": "Una lista di distributori USA non è una strategia commerciale.",
+      "body": "Il valore è nella qualifica: fit di categoria, territorio, portfolio, capacità promozionale, margini, interesse reale e prossima azione.",
+      "cta": "Richiedi un Distributor Readiness Check."
+    },
+    {
+      "id": 8,
+      "title": "Retail Buyer",
+      "status": "ready_for_review",
+      "channel": "LinkedIn",
+      "landing": "/us-retail-partnerships",
+      "hook": "Prima di parlare con un retail buyer USA, rendi il brand comprabile.",
+      "body": "Il deck deve dire: perché questa categoria, perché ora, quale margine, quale proof, quale logistica, quale rischio riduci per il buyer.",
+      "cta": "Valuta la tua retail readiness."
+    },
+    {
+      "id": 9,
+      "title": "Temporary Export Manager",
+      "status": "ready_for_review",
+      "channel": "LinkedIn",
+      "landing": "/temporary-export-manager-usa",
+      "hook": "Un Temporary Export Manager USA serve quando manca presidio operativo, non quando manca un altro report.",
+      "body": "Il lavoro è trasformare priorità in pipeline: ICP, account, messaggi, call, obiezioni, next step e decisioni di canale.",
+      "cta": "Valuta un presidio operativo USA."
+    },
+    {
+      "id": 10,
+      "title": "Prima della fiera",
+      "status": "ready_for_review",
+      "channel": "LinkedIn",
+      "landing": "/buyer-readiness-usa",
+      "hook": "La fiera non inizia il giorno dello stand. Inizia 30 giorni prima.",
+      "body": "Buyer list, email intro, deck, line sheet, domande, follow-up e criterio di qualifica devono essere pronti prima. Altrimenti raccogli biglietti da visita, non pipeline.",
+      "cta": "Scarica la checklist prima della prossima fiera."
+    }
+  ]
+}

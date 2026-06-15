@@ -87,25 +87,33 @@ export function Home() {
                                     <div className="flex flex-wrap gap-4">
                                         <Link
                                             to="/contact"
-                                            onClick={() => trackSiteEvent('cta_click', {
-                                                cta_id: 'home_hero_contact',
-                                                destination: '/contact',
-                                                placement: 'home_hero',
-                                            })}
+                                            onClick={() => {
+                                                trackSiteEvent('landing_cta_click', {
+                                                    cta_id: 'home_hero_market_readiness_call',
+                                                    destination: '/contact',
+                                                    placement: 'home_hero',
+                                                    offer: 'market_readiness_call',
+                                                });
+                                                trackSiteEvent('book_call', {
+                                                    cta_id: 'home_hero_market_readiness_call',
+                                                    destination: '/contact',
+                                                    placement: 'home_hero',
+                                                });
+                                            }}
                                             className="bg-white text-slate-950 px-8 py-3 rounded-lg font-medium hover:bg-gray-100 transition-colors"
                                         >
                                             {t.home.ctaButton}
                                         </Link>
                                         <Link
-                                            to="/services"
-                                            onClick={() => trackSiteEvent('cta_click', {
-                                                cta_id: 'home_hero_services',
-                                                destination: '/services',
+                                            to="/buyer-readiness-usa"
+                                            onClick={() => trackSiteEvent('landing_cta_click', {
+                                                cta_id: 'home_hero_checklist',
+                                                destination: '/buyer-readiness-usa',
                                                 placement: 'home_hero',
                                             })}
                                             className="liquid-glass border border-white/20 text-white px-8 py-3 rounded-lg font-medium hover:bg-white hover:text-slate-950 transition-colors"
                                         >
-                                            {t.home.discoverServices}
+                                            {t.home.downloadChecklist || t.home.discoverServices}
                                         </Link>
                                     </div>
                                 </FadeIn>
@@ -301,15 +309,36 @@ export function Home() {
                             </p>
                             <Link
                                 to="/contact"
-                                onClick={() => trackSiteEvent('cta_click', {
-                                    cta_id: 'home_bottom_contact',
-                                    destination: '/contact',
-                                    placement: 'home_bottom_cta',
-                                })}
+                                onClick={() => {
+                                    trackSiteEvent('landing_cta_click', {
+                                        cta_id: 'home_bottom_market_readiness_call',
+                                        destination: '/contact',
+                                        placement: 'home_bottom_cta',
+                                        offer: 'market_readiness_call',
+                                    });
+                                    trackSiteEvent('book_call', {
+                                        cta_id: 'home_bottom_market_readiness_call',
+                                        destination: '/contact',
+                                        placement: 'home_bottom_cta',
+                                    });
+                                }}
                                 className="inline-flex items-center gap-3 px-8 md:px-12 py-4 md:py-6 bg-background text-foreground rounded-full font-bold text-base md:text-xl hover:scale-105 transition-all shadow-xl"
                             >
                                 {t.home.ctaButton}
                                 <ArrowRight size={24} />
+                            </Link>
+                            <Link
+                                to="/buyer-readiness-usa"
+                                onClick={() => trackSiteEvent('landing_cta_click', {
+                                    cta_id: 'home_bottom_checklist',
+                                    destination: '/buyer-readiness-usa',
+                                    placement: 'home_bottom_cta',
+                                    offer: 'buyer_readiness_checklist',
+                                })}
+                                className="mt-4 inline-flex items-center gap-3 px-8 md:px-10 py-4 md:py-5 border border-primary-foreground/25 text-primary-foreground rounded-full font-semibold text-base md:text-lg hover:bg-primary-foreground hover:text-primary transition-all"
+                            >
+                                {t.home.downloadChecklist || t.home.discoverServices}
+                                <ArrowRight size={22} />
                             </Link>
                         </div>
                     </div>
