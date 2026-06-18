@@ -156,7 +156,7 @@ export const seoPages = {
       ],
       faqs: [
         ['La ricerca include importatori?', 'Si, se l\'importatore e il canale corretto per categoria e modello operativo. In alcuni casi servono agenti, broker o partner retail.'],
-        ['Posso chiedere distributori per uno Stato specifico?', 'Si. La segmentazione puo essere nazionale, regionale o focalizzata su aree come Midwest, East Coast, Florida, Texas o California.'],
+        ['Posso chiedere distributori per uno Stato specifico?', 'Si. La segmentazione puo essere nazionale, regionale o focalizzata su aree prioritarie come Florida, resto degli Stati Uniti e Caraibi quando il progetto lo richiede.'],
         ['Vengono garantiti contratti?', 'No. Il lavoro qualifica opportunita e conversazioni; i contratti dipendono da fit, condizioni, prodotto, readiness e negoziazione.'],
       ],
       cta: contactCta.it,
@@ -184,7 +184,7 @@ export const seoPages = {
       ],
       faqs: [
         ['Does the search include importers?', 'Yes, when an importer is the right channel for the category and operating model. In some cases agents, brokers, or retail partners are better.'],
-        ['Can I request distributors for a specific state?', 'Yes. Segmentation can be national, regional, or focused on areas such as the Midwest, East Coast, Florida, Texas, or California.'],
+        ['Can I request distributors for a specific state?', 'Yes. Segmentation can be national, regional, or focused on priority areas such as Florida, the wider United States, and the Caribbean when the project requires it.'],
         ['Are contracts guaranteed?', 'No. The work qualifies opportunities and conversations; contracts depend on fit, terms, product, readiness, and negotiation.'],
       ],
       cta: contactCta.en,
@@ -372,13 +372,13 @@ export const seoPages = {
   },
   foodBeverageUsa: {
     path: '/food-beverage-usa',
-    keywords: 'food beverage USA prodotti italiani, esportare food negli USA, distributori food USA, vendita alimentari italiani America',
+    keywords: 'food beverage wine USA prodotti italiani, esportare food negli USA, distributori food USA, vino italiano America, caffè italiano USA',
     it: {
-      title: 'Food & Beverage USA per Prodotti Italiani | Gianluca Piazza',
-      description: 'Supporto per aziende food & beverage italiane negli USA: canali, distributori, buyer readiness, foodservice, retail e posizionamento commerciale.',
-      hero: 'Food & Beverage USA per Prodotti Italiani',
-      subtitle: 'Portare prodotti alimentari italiani nel mercato americano con canali, materiali e partner coerenti.',
-      answer: 'Il food & beverage italiano negli USA richiede piu di qualita e origine: servono canale corretto, pricing sostenibile, materiali buyer-ready, chiarezza su importazione, logistica, margini e posizionamento. GP & Partners aiuta a leggere il mercato, qualificare distributori/importatori e preparare conversazioni commerciali credibili.',
+      title: 'Food, Beverage & Wine USA per Prodotti Italiani | Gianluca Piazza',
+      description: 'Supporto per aziende food, beverage e wine italiane negli USA: canali, distributori, buyer readiness, foodservice, retail e posizionamento commerciale. Il caffè viene trattato come categoria dedicata quando serve.',
+      hero: 'Food, Beverage & Wine USA per Prodotti Italiani',
+      subtitle: 'Portare food, beverage e wine italiani nel mercato americano con canali, materiali e partner coerenti — senza confondere categorie diverse come il caffè.',
+      answer: 'Il food, beverage e wine italiano negli USA richiede piu di qualita e origine: servono canale corretto, pricing sostenibile, materiali buyer-ready, chiarezza su importazione, logistica, margini e posizionamento. GP & Partners aiuta a leggere il mercato, qualificare distributori/importatori e preparare conversazioni commerciali credibili. Il caffè non viene infilato genericamente nel F&B: quando è rilevante, ha una traiettoria commerciale dedicata.',
       processTitle: 'Percorso consigliato',
       process: [
         'Analisi di categoria, shelf fit, prezzo, margini, certificazioni e vincoli logistici.',
@@ -396,17 +396,17 @@ export const seoPages = {
       ],
       faqs: [
         ['Serve gia un importatore USA?', 'Non sempre. Prima va capito se l\'importatore e davvero il primo canale giusto oppure se conviene partire da buyer, foodservice, hospitality o partner specializzati.'],
-        ['Il lavoro copre anche vino, olio e prodotti premium?', 'Si. Il metodo si applica a categorie food & beverage premium, ingredienti, prodotti confezionati, hospitality supply e specialita italiane.'],
+        ['Il lavoro copre anche vino, olio, caffè e prodotti premium?', 'Si. Il metodo si applica a categorie food, beverage e wine premium, ingredienti, prodotti confezionati, hospitality supply e specialita italiane. Il caffè viene trattato come categoria autonoma quando canale, buyer e posizionamento lo richiedono.'],
         ['Vengono gestite certificazioni FDA o legali?', 'No direttamente. Il lavoro commerciale puo coordinarsi con consulenti tecnici, doganali e legali quando servono verifiche specialistiche.'],
       ],
       cta: contactCta.it,
     },
     en: {
-      title: 'Food & Beverage USA for Italian Products | Gianluca Piazza',
-      description: 'Support for Italian food & beverage companies in the USA: channels, distributors, buyer readiness, foodservice, retail, and commercial positioning.',
-      hero: 'Food & Beverage USA for Italian Products',
-      subtitle: 'Bring Italian food products into the American market with the right channels, materials, and partners.',
-      answer: 'Italian food & beverage in the USA requires more than quality and origin: companies need the right channel, sustainable pricing, buyer-ready materials, clarity on import, logistics, margins, and positioning. GP & Partners helps read the market, qualify distributors/importers, and prepare credible commercial conversations.',
+      title: 'Food, Beverage & Wine USA for Italian Products | Gianluca Piazza',
+      description: 'Support for Italian food, beverage, and wine companies in the USA: channels, distributors, buyer readiness, foodservice, retail, and commercial positioning. Coffee is treated as a dedicated category when needed.',
+      hero: 'Food, Beverage & Wine USA for Italian Products',
+      subtitle: 'Bring Italian food, beverage, and wine products into the American market with the right channels, materials, and partners — without mixing different categories such as coffee.',
+      answer: 'Italian food, beverage, and wine in the USA require more than quality and origin: companies need the right channel, sustainable pricing, buyer-ready materials, clarity on import, logistics, margins, and positioning. GP & Partners helps read the market, qualify distributors/importers, and prepare credible commercial conversations. Coffee is not casually bundled into F&B: when relevant, it gets its own commercial path.',
       processTitle: 'Recommended path',
       process: [
         'Analysis of category, shelf fit, price, margins, certifications, and logistics constraints.',
@@ -424,7 +424,7 @@ export const seoPages = {
       ],
       faqs: [
         ['Do we already need a US importer?', 'Not always. First, it must be clear whether an importer is the right first channel or whether buyers, foodservice, hospitality, or specialized partners make more sense.'],
-        ['Does this cover wine, olive oil, and premium products?', 'Yes. The method applies to premium food & beverage, ingredients, packaged products, hospitality supply, and Italian specialties.'],
+        ['Does this cover wine, olive oil, coffee, and premium products?', 'Yes. The method applies to premium food, beverage, and wine categories, ingredients, packaged products, hospitality supply, and Italian specialties. Coffee is treated as its own category when channel, buyer, and positioning require it.'],
         ['Are FDA or legal certifications handled?', 'Not directly. The commercial work can coordinate with technical, customs, and legal advisors when specialist checks are needed.'],
       ],
       cta: contactCta.en,
