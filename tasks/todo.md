@@ -23,10 +23,22 @@
   AnimatedHeading per i titoli pagina, FadeIn per sezioni, glass card al posto di card piatte.
 
 ## Fase C — Verifica e staging — P0 / S
-- [ ] `pnpm build` verde → verify: exit 0
-- [ ] Screenshot home + 2-3 pagine interne → verify: visivo
-- [ ] Commit selettivi (NO file OpenClaw untracked) + push `staging` → verify: branch su GitHub
-- [ ] Vercel preview URL via MCP → verify: deployment READY
+- [x] `pnpm build` verde (+ static SEO HTML 9 pagine)
+- [x] Screenshot home + services + contact + market + seo → ok
+- [x] Commit e2fe3e99 su `feat/vex-redesign` (28 file) + push
+- [x] Vercel deploy dpl_Ljterrc33… READY — staging:
+      https://gianlucapiazza-website-git-feat-vex-c0e3df-gitgian74s-projects.vercel.app
+
+## Hero città (2026-06-11, richiesta GP)
+- [x] Curation 5 città (workflow 6 agent, cross-check tonale): NY 18679962, LA 10895071,
+      SF 18003955 (Bay Bridge night, runner-up — la prima scelta GGB bocciata: troppo chiara),
+      DC 3369102, Miami 19705160 — tutte Pexels free license, self-hosted 2000w in
+      public/images/heroes/ (~1MB totale)
+- [x] PageHeader → hero VEX alta bottom-left con bg full-bleed + gradiente; markets e SEO
+      tornati a PageHeader (era stato inlined per non toccare il condiviso)
+- [x] Mapping: About=NY, Services+Privacy=DC, Projects=LA, MarketResearch=SF, Contact=Miami,
+      SEO=rotazione 5 città per slug-hash, markets=foto della propria città
+- [x] Logo: navbar (già) + footer brand
 
 ## Decisioni intenzionali (review 2026-06-11)
 - Claim hero in inglese anche su locale IT: scelta brand esplicita di Gianluca ("mi piace il claim").
