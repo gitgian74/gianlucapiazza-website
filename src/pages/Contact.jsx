@@ -9,6 +9,9 @@ import { Button } from '../components/shared/Button';
 import { SocialLinks } from '../components/shared/SocialLinks';
 import { getLeadAttribution, trackSiteEvent } from '../components/shared/tracking';
 
+const messageLengthBucket = (message) =>
+    message.length < 250 ? 'short' : message.length < 1000 ? 'medium' : 'long';
+
 export function Contact() {
     const { t } = useLanguage();
     const [formData, setFormData] = React.useState({
@@ -42,7 +45,7 @@ export function Contact() {
             form_id: 'market_readiness_contact',
             form_name: 'Market Readiness Contact',
             has_company: Boolean(formData.company.trim()),
-            message_length_bucket: formData.message.length < 250 ? 'short' : formData.message.length < 1000 ? 'medium' : 'long',
+            message_length_bucket: messageLengthBucket(formData.message),
         };
         trackSiteEvent('form_submit', formTrackingPayload);
         trackSiteEvent('contact_form_submit', formTrackingPayload);
@@ -64,7 +67,7 @@ export function Contact() {
                 setFormData({ name: '', email: '', company: '', message: '', website: '' });
                 trackSiteEvent('contact_form_success', {
                     has_company: Boolean(formData.company.trim()),
-                    message_length_bucket: formData.message.length < 250 ? 'short' : formData.message.length < 1000 ? 'medium' : 'long',
+                    message_length_bucket: messageLengthBucket(formData.message),
                 }, {
                     metaEvent: 'Lead',
                 });
@@ -214,6 +217,8 @@ export function Contact() {
                                             value={formData.name}
                                             onChange={handleChange}
                                             required
+                                            minLength={2}
+                                            maxLength={120}
                                             className="w-full px-6 py-4 bg-input border border-input rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-white placeholder:text-muted-foreground/50"
                                             placeholder="John Doe"
                                         />
@@ -255,6 +260,8 @@ export function Contact() {
                                         value={formData.message}
                                         onChange={handleChange}
                                         required
+                                        minLength={10}
+                                        maxLength={3000}
                                         className="w-full px-6 py-4 bg-input border border-input rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all resize-none text-white placeholder:text-muted-foreground/50"
                                         placeholder="How can I help you?"
                                     ></textarea>

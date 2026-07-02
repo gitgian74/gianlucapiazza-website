@@ -5,7 +5,8 @@ import { seoPages } from '../../pages/seo/seoPageData';
 import { socialProfileUrls } from '../../lib/socialLinks';
 
 const SITE_URL = 'https://gianlucapiazza.com';
-const DEFAULT_IMAGE = `${SITE_URL}/logo.png`;
+const DEFAULT_IMAGE = `${SITE_URL}/images/og-default.jpg`;
+const LOGO_IMAGE = `${SITE_URL}/logo.png`;
 
 const SEO_LANDING_META = Object.values(seoPages).reduce((acc, page) => {
     acc[page.path] = {
@@ -162,7 +163,7 @@ export function Seo({ title, description, keywords, jsonLd } = {}) {
             '@id': `${SITE_URL}/about#person`,
             name: 'Gianluca Piazza',
             url: SITE_URL,
-            image: DEFAULT_IMAGE,
+            image: LOGO_IMAGE,
             jobTitle: 'USA Market Entry Partner operativo',
             sameAs: socialProfileUrls,
             knowsAbout: [
@@ -185,7 +186,7 @@ export function Seo({ title, description, keywords, jsonLd } = {}) {
             '@id': `${SITE_URL}/#organization`,
             name: 'GP & Partners',
             url: SITE_URL,
-            image: DEFAULT_IMAGE,
+            image: LOGO_IMAGE,
             founder: {
                 '@type': 'Person',
                 '@id': `${SITE_URL}/about#person`,
