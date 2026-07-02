@@ -1,3 +1,5 @@
+> **ARCHIVIO STORICO** — redesign VEX spedito a giugno 2026. Il workspace path citato sotto è obsoleto: il clone canonico è `~/Projects/gianlucapiazza-website` (vedi PROJECT.md).
+
 # Prompt per Claude Design — Mockup Home gianlucapiazza.com
 
 > **Come usarlo:** apri una nuova chat su [claude.ai](https://claude.ai) (o equivalente con artifact builder), incolla **tutto il blocco "PROMPT" sotto** in un unico messaggio e invia. Claude restituirà un artifact HTML/React renderizzabile direttamente. Per iterare, scrivi richieste tipo *"sostituisci la palette navy con un grafite più caldo"* o *"aggiungi una sezione testimonial sotto il metodo"*.

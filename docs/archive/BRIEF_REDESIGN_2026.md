@@ -1,3 +1,5 @@
+> **ARCHIVIO STORICO** — redesign VEX spedito a giugno 2026. Il workspace path citato sotto è obsoleto: il clone canonico è `~/Projects/gianlucapiazza-website` (vedi PROJECT.md).
+
 # MASTER BRIEF — Redesign gianlucapiazza.com 2026
 
 **Owner:** Gianluca Piazza
