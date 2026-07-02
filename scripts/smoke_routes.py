@@ -27,6 +27,7 @@ ROUTES = [
     "/us-retail-partnerships",
     "/vendere-prodotti-italiani-usa",
     "/temporary-export-manager-usa",
+    "/buyer-readiness-usa",
     "/food-beverage-usa",
     "/moda-design-usa",
     "/agente-vs-distributore-usa",

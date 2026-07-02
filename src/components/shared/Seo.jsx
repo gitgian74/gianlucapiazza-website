@@ -20,8 +20,9 @@ const SEO_LANDING_META = Object.values(seoPages).reduce((acc, page) => {
 
 const META_BY_PATH = {
     '/': {
-        title: 'GP & Partners | Internazionalizzazione e Business Development',
-        description: 'GP & Partners affianca aziende italiane ed europee in internazionalizzazione, business development e partnership strategiche per crescere sui mercati globali.',
+        title: 'GP & Partners | USA Market Entry Partner operativo',
+        description: 'GP & Partners costruisce pipeline commerciale reale per aziende italiane ed europee negli USA: readiness, distributori, buyer, retail partner e presenza locale.',
+        keywords: 'USA market entry partner operativo, ricerca distributori USA, buyer readiness USA, temporary export manager USA, GP & Partners',
     },
     '/services': {
         title: 'Servizi di Consulenza Internazionale | GP & Partners',
@@ -162,9 +163,11 @@ export function Seo({ title, description, keywords, jsonLd } = {}) {
             name: 'Gianluca Piazza',
             url: SITE_URL,
             image: DEFAULT_IMAGE,
-            jobTitle: 'Consulente Internazionalizzazione e Business Developer',
+            jobTitle: 'USA Market Entry Partner operativo',
             sameAs: socialProfileUrls,
             knowsAbout: [
+                'USA Market Entry Partner operativo',
+                'Buyer readiness USA',
                 'Internazionalizzazione',
                 'Business development',
                 'Partnership strategiche',

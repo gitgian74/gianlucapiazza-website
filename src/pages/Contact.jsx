@@ -38,10 +38,14 @@ export function Contact() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setStatus('sending');
-        trackSiteEvent('contact_form_submit', {
+        const formTrackingPayload = {
+            form_id: 'market_readiness_contact',
+            form_name: 'Market Readiness Contact',
             has_company: Boolean(formData.company.trim()),
             message_length_bucket: formData.message.length < 250 ? 'short' : formData.message.length < 1000 ? 'medium' : 'long',
-        });
+        };
+        trackSiteEvent('form_submit', formTrackingPayload);
+        trackSiteEvent('contact_form_submit', formTrackingPayload);
 
         try {
             const response = await fetch('/api/contact', {
@@ -122,7 +126,10 @@ export function Contact() {
                                         <h3 className="text-sm font-medium text-muted-foreground mb-1">Phone (Italy)</h3>
                                         <a
                                             href={`tel:${t.contact.info.phoneIT}`}
-                                            onClick={() => trackSiteEvent('contact_click', { method: 'phone_it', placement: 'contact_card' })}
+                                            onClick={() => {
+                                                trackSiteEvent('click_phone', { phone_region: 'it', placement: 'contact_card' });
+                                                trackSiteEvent('contact_click', { method: 'phone_it', placement: 'contact_card' });
+                                            }}
                                             className="text-lg font-medium text-white hover:text-green-400 transition-colors"
                                         >
                                             {t.contact.info.phoneIT}
@@ -139,7 +146,10 @@ export function Contact() {
                                         <h3 className="text-sm font-medium text-muted-foreground mb-1">Phone (USA)</h3>
                                         <a
                                             href={`tel:${t.contact.info.phoneUS}`}
-                                            onClick={() => trackSiteEvent('contact_click', { method: 'phone_us', placement: 'contact_card' })}
+                                            onClick={() => {
+                                                trackSiteEvent('click_phone', { phone_region: 'us', placement: 'contact_card' });
+                                                trackSiteEvent('contact_click', { method: 'phone_us', placement: 'contact_card' });
+                                            }}
                                             className="text-lg font-medium text-white hover:text-purple-400 transition-colors"
                                         >
                                             {t.contact.info.phoneUS}

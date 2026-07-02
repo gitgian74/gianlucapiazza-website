@@ -6,6 +6,22 @@ import { useLanguage } from '../hooks/use-language';
 import { CookieConsent } from './shared/CookieConsent';
 import { SocialLinks } from './shared/SocialLinks';
 import { trackSiteEvent } from './shared/tracking';
+import { seoPages } from '../pages/seo/seoPageData';
+
+const marketLinks = [
+    { path: '/mercati/miami', it: 'Miami', en: 'Miami' },
+    { path: '/mercati/new-york', it: 'New York', en: 'New York' },
+    { path: '/mercati/los-angeles', it: 'Los Angeles', en: 'Los Angeles' },
+    { path: '/mercati/san-diego', it: 'San Diego', en: 'San Diego' },
+    { path: '/mercati/silicon-valley', it: 'Silicon Valley', en: 'Silicon Valley' },
+    { path: '/mercati/dallas', it: 'Dallas', en: 'Dallas' },
+    { path: '/mercati/houston', it: 'Houston', en: 'Houston' },
+    { path: '/mercati/san-antonio', it: 'San Antonio', en: 'San Antonio' },
+    { path: '/mercati/chicago', it: 'Chicago', en: 'Chicago' },
+    { path: '/mercati/boston', it: 'Boston', en: 'Boston' },
+    { path: '/mercati/las-vegas', it: 'Las Vegas', en: 'Las Vegas' },
+    { path: '/mercati/caraibi', it: 'Caraibi', en: 'Caribbean' },
+];
 
 export function Layout({ children }) {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -185,8 +201,8 @@ export function Layout({ children }) {
                 <div className="absolute inset-x-0 top-0 h-px us-red-rule opacity-70"></div>
 
                 <div className="container mx-auto px-6 relative z-10">
-                    <div className="flex flex-col md:flex-row justify-between items-start gap-12 mb-16">
-                        <div className="max-w-md">
+                    <div className="grid gap-10 md:grid-cols-12 md:gap-12 mb-16">
+                        <div className="md:col-span-4 lg:col-span-3">
                             <Link
                                 to="/"
                                 onClick={() => trackSiteEvent('navigation_click', {
@@ -199,15 +215,17 @@ export function Layout({ children }) {
                                 <img src="/logo.svg" alt="" className="h-10 w-10 rounded-full ring-1 ring-white/15" />
                                 GP & Partners
                             </Link>
-                            <p className="text-muted-foreground text-lg leading-relaxed">
+                            <p className="text-muted-foreground leading-relaxed mb-6">
                                 {t.footer.about}
                             </p>
+                            <h4 className="font-semibold text-foreground mb-4 text-sm">{t.footer.followSocial}</h4>
+                            <SocialLinks showLabels className="max-w-sm" linkClassName="bg-card/60" />
                         </div>
 
-                        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 md:gap-12">
+                        <nav aria-label={t.footer.quickLinks} className="md:col-span-8 lg:col-span-9 grid grid-cols-2 gap-8 sm:grid-cols-3 md:gap-10">
                             <div>
-                                <h4 className="font-semibold text-foreground mb-6">{t.footer.quickLinks}</h4>
-                                <ul className="space-y-4">
+                                <h4 className="font-semibold text-foreground mb-5 text-sm">{t.footer.quickLinks}</h4>
+                                <ul className="space-y-3 text-sm">
                                     {quickLinks.map((link) => (
                                         <li key={link.path}>
                                             <Link
@@ -228,11 +246,49 @@ export function Layout({ children }) {
                                     ))}
                                 </ul>
                             </div>
+
                             <div>
-                                <h4 className="font-semibold text-foreground mb-6">{t.footer.followSocial}</h4>
-                                <SocialLinks showLabels className="max-w-sm" linkClassName="bg-card/60" />
+                                <h4 className="font-semibold text-foreground mb-5 text-sm">{t.footer.markets}</h4>
+                                <ul className="space-y-3 text-sm">
+                                    {marketLinks.map((link) => (
+                                        <li key={link.path}>
+                                            <Link
+                                                to={link.path}
+                                                onClick={() => trackSiteEvent('navigation_click', {
+                                                    destination: link.path,
+                                                    label: link[language] || link.en,
+                                                    placement: 'footer_sitemap',
+                                                })}
+                                                className="text-muted-foreground hover:text-[var(--us-red)] transition-colors"
+                                            >
+                                                {link[language] || link.en}
+                                            </Link>
+                                        </li>
+                                    ))}
+                                </ul>
                             </div>
-                        </div>
+
+                            <div>
+                                <h4 className="font-semibold text-foreground mb-5 text-sm">{t.footer.landings}</h4>
+                                <ul className="space-y-3 text-sm">
+                                    {Object.values(seoPages).map((page) => (
+                                        <li key={page.path}>
+                                            <Link
+                                                to={page.path}
+                                                onClick={() => trackSiteEvent('navigation_click', {
+                                                    destination: page.path,
+                                                    label: page.path,
+                                                    placement: 'footer_sitemap',
+                                                })}
+                                                className="text-muted-foreground hover:text-[var(--us-red)] transition-colors leading-snug block"
+                                            >
+                                                {(page[language] || page.en).hero}
+                                            </Link>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        </nav>
                     </div>
 
                     <div className="border-t border-border pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-muted-foreground text-sm">
