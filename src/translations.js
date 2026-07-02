@@ -32,9 +32,10 @@ export const translations = {
       },
       servicesTitle: 'Aree di Competenza',
       servicesSubtitle: 'Dal singolo professionista al team dedicato: servizi modulari per entrare e crescere nel mercato USA',
-      ctaTitle: 'Pronto ad entrare nel mercato USA?',
-      ctaText: 'GP & Partners ti affianca dalla strategia all\'esecuzione. Contattaci per una consulenza personalizzata.',
-      ctaButton: 'Richiedi una Consulenza'
+      ctaTitle: 'Prima di cercare buyer USA, rendi la tua azienda buyer-ready.',
+      ctaText: 'Partiamo da readiness, canale e materiali: poi costruiamo target list, conversazioni e follow-up commerciale.',
+      ctaButton: 'Prenota una Market Readiness Call',
+      downloadChecklist: 'Scarica la Buyer Readiness Checklist'
     },
     about: {
       title: 'Chi Siamo',
@@ -80,8 +81,8 @@ export const translations = {
         steps: ['Intervento mirato', 'Temporary manager', 'Unità specialistica', 'Team dedicato']
       },
       service1: {
-        title: 'Consulenza Internazionalizzazione',
-        description: 'Supporto strategico completo per l\'espansione internazionale della tua azienda. Dall\'analisi dei mercati target alla definizione della strategia di ingresso, fino all\'implementazione operativa e al consolidamento della presenza estera.',
+        title: 'USA Market Entry operativo',
+        description: 'Percorso operativo per entrare nel mercato USA: readiness, canali, materiali, distributori, buyer, partnership retail e follow-up commerciale.',
         includes: 'Cosa Include:',
         items: [
           'Analisi di mercato e opportunità',
@@ -296,11 +297,11 @@ export const translations = {
         company: 'Azienda',
         message: 'Messaggio',
         website: 'Sito web',
-        send: 'Invia Messaggio',
+        send: 'Richiedi una Market Readiness Call',
         sending: 'Invio in corso...',
         success: 'Messaggio inviato. Ti risponderò il prima possibile.',
         error: 'Non è stato possibile inviare il messaggio. Riprova o scrivi direttamente via email.',
-        nextStep: 'Riceverai una conferma via email se l’invio va a buon fine.'
+        nextStep: 'Descrivi prodotto, canale desiderato e stato attuale: la risposta qualifica priorità, rischi e prossimi passi.'
       },
       info: {
         title: 'Informazioni di Contatto',
@@ -329,9 +330,11 @@ export const translations = {
       disclaimer: "L'IA può commettere errori. Verifica le informazioni importanti e non inviare dati personali o confidenziali."
     },
     footer: {
-      about: 'USA Market Entry | Business Builder | Strategic Partner',
+      about: 'USA Market Entry Partner operativo per aziende italiane ed europee',
       contactTitle: 'Contatti',
       quickLinks: 'Link Rapidi',
+      markets: 'Mercati USA',
+      landings: 'Servizi & Landing USA',
       followSocial: 'Seguici sui social',
       rights: 'Tutti i diritti riservati.',
       privacy: 'Privacy Policy',
@@ -481,9 +484,10 @@ export const translations = {
       },
       servicesTitle: 'Areas of Expertise',
       servicesSubtitle: 'From a single specialist to a dedicated team: modular services to enter and grow in the US market',
-      ctaTitle: 'Ready to enter the US market?',
-      ctaText: 'GP & Partners guides you from strategy to execution. Contact us for a personalized consultation.',
-      ctaButton: 'Request a Consultation'
+      ctaTitle: 'Before looking for US buyers, make the company buyer-ready.',
+      ctaText: 'We start from readiness, channel, and materials: then build target lists, conversations, and commercial follow-up.',
+      ctaButton: 'Book a Market Readiness Call',
+      downloadChecklist: 'Download the Buyer Readiness Checklist'
     },
     about: {
       title: 'About Us',
@@ -529,8 +533,8 @@ export const translations = {
         steps: ['Focused engagement', 'Temporary manager', 'Specialist unit', 'Dedicated team']
       },
       service1: {
-        title: 'Internationalization Consulting',
-        description: 'Complete strategic support for your company\'s international expansion. From target market analysis to entry strategy definition, to operational implementation and consolidation of foreign presence.',
+        title: 'Operating USA Market Entry',
+        description: 'An operating path into the US market: readiness, channels, materials, distributors, buyers, retail partnerships, and commercial follow-up.',
         includes: 'What\'s Included:',
         items: [
           'Market analysis and opportunities',
@@ -745,11 +749,11 @@ export const translations = {
         company: 'Company',
         message: 'Message',
         website: 'Website',
-        send: 'Send Message',
+        send: 'Request a Market Readiness Call',
         sending: 'Sending...',
         success: 'Message sent. I will get back to you as soon as possible.',
         error: 'The message could not be sent. Please try again or email me directly.',
-        nextStep: 'You will receive an email confirmation if the submission succeeds.'
+        nextStep: 'Share product, target channel, and current stage: the reply qualifies priorities, risks, and next steps.'
       },
       info: {
         title: 'Contact Information',
@@ -781,6 +785,8 @@ export const translations = {
       about: 'USA Market Entry | Business Builder | Strategic Partner',
       contactTitle: 'Contact',
       quickLinks: 'Quick Links',
+      markets: 'US Markets',
+      landings: 'Services & US Landing',
       followSocial: 'Follow us on social',
       rights: 'All rights reserved.',
       privacy: 'Privacy Policy',

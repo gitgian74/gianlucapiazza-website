@@ -106,6 +106,9 @@ function renderFallback(page, content) {
       `<article><h3>${escapeHtml(question)}</h3><p>${escapeHtml(answer)}</p></article>`
     ))
     .join('');
+  const secondaryCta = page.downloadPath && content.secondaryCta
+    ? `<p><a href="${escapeAttr(page.downloadPath)}" download>${escapeHtml(content.secondaryCta)}</a></p>`
+    : '';
 
   return `
       <main class="seo-static-fallback">
@@ -120,6 +123,7 @@ function renderFallback(page, content) {
         <h2>FAQ</h2>
         ${faqs}
         <p><a href="/contact">${escapeHtml(content.cta.label)}</a></p>
+        ${secondaryCta}
       </main>
     `;
 }
