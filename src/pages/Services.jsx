@@ -77,7 +77,7 @@ export function Services() {
         },
         {
             to: '/food-beverage-usa',
-            label: language === 'it' ? 'Food & Beverage USA' : 'Food & Beverage USA',
+            label: language === 'it' ? 'Food, Beverage & Wine USA' : 'Food, Beverage & Wine USA',
         },
         {
             to: '/moda-design-usa',

@@ -56,8 +56,8 @@ const relatedPages = [
   },
   {
     path: '/food-beverage-usa',
-    it: 'Food & Beverage USA',
-    en: 'Food & Beverage USA',
+    it: 'Food, Beverage & Wine USA',
+    en: 'Food, Beverage & Wine USA',
   },
   {
     path: '/moda-design-usa',
