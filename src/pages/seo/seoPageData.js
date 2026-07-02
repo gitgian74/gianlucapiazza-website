@@ -162,11 +162,11 @@ export const seoPages = {
       cta: contactCta.it,
     },
     en: {
-      title: 'US Distributor Search for Italian Products | Gianluca Piazza',
-      description: 'Search and qualification of US distributors for Italian products: channels, criteria, first contact, and commercial fit assessment.',
+      title: 'US Distributor Search for Italian Companies | GP & Partners',
+      description: 'GP & Partners helps Italian and European companies identify, qualify, and activate US distributors through an operating process, not a list of generic contacts.',
       hero: 'US Distributor Search',
-      subtitle: 'Find American distributors aligned with category, margins, territory, and operating capability.',
-      answer: 'US distributor search works when it starts from precise criteria: category, channel, territory, positioning, logistics requirements, and commercial expectations. Gianluca Piazza helps Italian companies move from generic lists to qualified conversations with suitable counterparts.',
+      subtitle: 'Find US distributors who can actually take your product to market.',
+      answer: 'We do not pull names from bulk databases. We build a qualified short list, prepare the commercial message, open conversations, and filter for counterparts with real margin, channel, and interest.',
       processTitle: 'Qualification method',
       process: [
         'Definition of the ideal distributor profile and channels to avoid.',
@@ -222,11 +222,11 @@ export const seoPages = {
       cta: contactCta.it,
     },
     en: {
-      title: 'US Retail Partnerships for Italian Brands | Gianluca Piazza',
-      description: 'Support for Italian brands pursuing US retail partnerships: buyer readiness, commercial proposition, channels, and early negotiation.',
+      title: 'US Retail Partnerships for Italian Brands | GP & Partners',
+      description: 'We prepare Italian and European brands to talk to US buyers, retail partners, showrooms, hospitality, and premium channels with materials, positioning, and process.',
       hero: 'US Retail Partnerships',
-      subtitle: 'Prepare Italian brands for credible conversations with American retailers, buyers, and commercial partners.',
-      answer: 'US retail partnerships require more than an attractive product: positioning, buyer-ready materials, logistics, margins, commercial policies, and a clear retailer proposition matter. The work helps Italian brands understand where to show up, how to present, and what to fix before negotiation.',
+      subtitle: 'Before talking to a US buyer, make the brand buyable.',
+      answer: 'We help Italian brands turn product, story, and materials into a clear proposition for US retail buyers, showrooms, hospitality, foodservice, and commercial partners.',
       processTitle: 'From readiness to conversation',
       process: [
         'Assessment of product, packaging, price, MOQ, margins, and marketing support.',

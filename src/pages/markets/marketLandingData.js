@@ -341,7 +341,7 @@ export const marketLandingData = {
   "san-antonio": {
     "path": "/mercati/san-antonio",
     "image": "/images/heroes/san-antonio.jpg",
-    "keywords": "mercato San Antonio aziende italiane, San Antonio market entry, internazionalizzazione Texas, export Italia Texas, San Antonio Texas business, corridoio I-35 USMCA, nearshoring Messico Texas, Italy-America Chamber Texas, distributori San Antonio, made in Italy Texas, GP &amp; Partners San Antonio, San Antonio New Braunfels",
+    "keywords": "mercato San Antonio aziende italiane, San Antonio market entry, internazionalizzazione Texas, export Italia Texas, San Antonio Texas business, corridoio I-35 USMCA, nearshoring Messico Texas, Italy-America Chamber Texas, distributori San Antonio, made in Italy Texas, GP & Partners San Antonio, San Antonio New Braunfels",
     "it": {
       "seoTitle": "Mercato San Antonio per Aziende Italiane | GP & Partners",
       "seoDesc": "GP & Partners accompagna le aziende italiane a San Antonio (Texas): porta d'ingresso sul corridoio USMCA, military, sanità, automotive e nearshoring messicano.",
