@@ -8,7 +8,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.resolve(__dirname, '..');
 const distDir = path.join(rootDir, 'dist');
 const siteUrl = 'https://gianlucapiazza.com';
-const defaultImage = `${siteUrl}/logo.png`;
+const defaultImage = `${siteUrl}/images/og-default.jpg`;
 
 function escapeHtml(value) {
   return String(value)
