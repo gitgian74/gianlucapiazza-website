@@ -170,9 +170,6 @@ export default async function handler(req, res) {
                     'Best regards,',
                     'Gianluca Piazza',
                     'GP & Partners — USA Market Entry',
-                    '',
-                    'Your message:',
-                    textMessage,
                 ].join('\n'),
                 html: `
             <h1>Hello ${safeName},</h1>
@@ -180,9 +177,6 @@ export default async function handler(req, res) {
             <p>In the meantime, you'll find the <strong>Buyer/Distributor Readiness Checklist</strong> attached to this email.</p>
             <p>Best regards,</p>
             <p><strong>Gianluca Piazza</strong><br>GP &amp; Partners — USA Market Entry</p>
-            <hr>
-            <p style="color: #666; font-size: 12px;">Your message:</p>
-            <p style="color: #666; font-style: italic;">${safeMessage}</p>
           `,
             });
         } catch (confError) {
