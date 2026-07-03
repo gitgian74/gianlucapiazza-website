@@ -24,6 +24,8 @@ def main() -> None:
 
     assert_contains("src/lib/coreMeta.js", "USA Market Entry Partner operativo")
     assert_contains("index.html", "structured-data-site")
+    assert_contains("index.html", "classList.add('js')")
+    assert_contains("src/index.css", "html.js .seo-static-fallback")
     assert_contains("src/App.jsx", "/buyer-readiness-usa")
 
     robots = read("public/robots.txt")
