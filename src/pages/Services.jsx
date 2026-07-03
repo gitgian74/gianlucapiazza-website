@@ -114,7 +114,7 @@ export function Services() {
                         </div>
                         <div className="liquid-glass border border-white/20 rounded-3xl p-6 md:p-8">
                             <div className="mb-5 h-1 w-20 rounded-full us-red-rule"></div>
-                            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[var(--us-red)] mb-3">
+                            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-red-400 mb-3">
                                 {t.services.modular.eyebrow}
                             </p>
                             <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
@@ -201,7 +201,7 @@ export function Services() {
                 </div>
 
                 <div className="mt-16 border-y border-border/70 py-8">
-                    <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[var(--us-red)] mb-5">
+                    <p className="text-sm font-semibold uppercase tracking-[0.18em] text-red-400 mb-5">
                         {language === 'it' ? 'Percorsi USA' : 'US Paths'}
                     </p>
                     <div className="flex flex-wrap gap-3">
