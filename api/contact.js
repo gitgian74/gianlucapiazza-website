@@ -1,6 +1,34 @@
-import { Resend } from 'resend';
+import nodemailer from 'nodemailer';
 import { z } from 'zod';
 import { emailSchema, enforceJsonBody, escapeHtml, getClientId, isRateLimited, plainText } from './_security.js';
+
+const CHECKLIST_URL =
+    process.env.CHECKLIST_PDF_URL ||
+    'https://gianlucapiazza.com/lead-magnets/buyer-distributor-readiness-checklist.pdf';
+
+function missingMailEnv() {
+    return ['GMAIL_USER', 'GMAIL_CLIENT_ID', 'GMAIL_PRIVATE_KEY'].filter((k) => !process.env[k]);
+}
+
+function createTransport() {
+    return nodemailer.createTransport({
+        host: 'smtp.gmail.com',
+        port: 465,
+        secure: true,
+        auth: {
+            type: 'OAuth2',
+            user: process.env.GMAIL_USER,
+            serviceClient: process.env.GMAIL_CLIENT_ID,
+            privateKey: process.env.GMAIL_PRIVATE_KEY.replace(/\\n/g, '\n'),
+        },
+    });
+}
+
+async function fetchChecklist() {
+    const res = await fetch(CHECKLIST_URL);
+    if (!res.ok) throw new Error(`checklist fetch failed: ${res.status}`);
+    return Buffer.from(await res.arrayBuffer());
+}
 
 const contactSchema = z.object({
     name: z.string().trim().min(2).max(120),
@@ -53,9 +81,10 @@ export default async function handler(req, res) {
         return res.status(400).json({ error: 'Invalid contact request' });
     }
 
-    if (!process.env.RESEND_API_KEY) {
-        console.error('RESEND_API_KEY is missing');
-        return res.status(500).json({ error: 'Server configuration error: Missing API Key' });
+    const missingEnv = missingMailEnv();
+    if (missingEnv.length) {
+        console.error('Mail env missing:', missingEnv.join(', '));
+        return res.status(500).json({ error: 'Server configuration error: mail transport not configured' });
     }
 
     const { name, email, company, message, attribution } = parsed.data;
@@ -73,13 +102,18 @@ export default async function handler(req, res) {
         ? attributionEntries.map((entry) => escapeHtml(entry)).join('<br>')
         : 'N/A';
 
+    const sender = process.env.GMAIL_USER;
+    const ownerInbox = process.env.CONTACT_TO || sender;
+    const fromOwner = `GP & Partners Website <${sender}>`;
+    const fromUser = `Gianluca Piazza <${sender}>`;
+
     try {
-        const resend = new Resend(process.env.RESEND_API_KEY);
+        const transporter = createTransport();
 
         // 1. Send notification to owner (Critical)
-        await resend.emails.send({
-            from: 'Gianluca Piazza Website <noreply@gianlucapiazza.com>',
-            to: ['mail@gianlucapiazza.com'],
+        await transporter.sendMail({
+            from: fromOwner,
+            to: ownerInbox,
             replyTo: email,
             subject: `New Contact Form Submission from ${name}`,
             text: [
@@ -107,20 +141,35 @@ export default async function handler(req, res) {
       `,
         });
 
-        // 2. Send confirmation to user (Non-critical / Best Effort)
+        // 2. Send confirmation to user with the readiness checklist attached
+        //    (Non-critical / Best Effort — never fails the request)
         try {
-            await resend.emails.send({
-                from: 'Gianluca Piazza <noreply@gianlucapiazza.com>',
-                to: [email],
-                subject: 'Thank you for contacting me',
+            let attachments = [];
+            try {
+                attachments = [{
+                    filename: 'GP-Partners-Buyer-Distributor-Readiness-Checklist.pdf',
+                    content: await fetchChecklist(),
+                    contentType: 'application/pdf',
+                }];
+            } catch (pdfError) {
+                console.error('Checklist attachment skipped (Non-critical):', pdfError);
+            }
+
+            await transporter.sendMail({
+                from: fromUser,
+                to: email,
+                subject: 'Thank you for contacting me — your readiness checklist inside',
+                attachments,
                 text: [
                     `Hello ${name},`,
                     '',
                     'Thank you for reaching out. I have received your message and will get back to you as soon as possible.',
                     '',
+                    'In the meantime, you will find the Buyer/Distributor Readiness Checklist attached to this email.',
+                    '',
                     'Best regards,',
                     'Gianluca Piazza',
-                    'Internationalization Consultant',
+                    'GP & Partners — USA Market Entry',
                     '',
                     'Your message:',
                     textMessage,
@@ -128,8 +177,9 @@ export default async function handler(req, res) {
                 html: `
             <h1>Hello ${safeName},</h1>
             <p>Thank you for reaching out. I have received your message and will get back to you as soon as possible.</p>
+            <p>In the meantime, you'll find the <strong>Buyer/Distributor Readiness Checklist</strong> attached to this email.</p>
             <p>Best regards,</p>
-            <p><strong>Gianluca Piazza</strong><br>Internationalization Consultant</p>
+            <p><strong>Gianluca Piazza</strong><br>GP &amp; Partners — USA Market Entry</p>
             <hr>
             <p style="color: #666; font-size: 12px;">Your message:</p>
             <p style="color: #666; font-style: italic;">${safeMessage}</p>
@@ -142,7 +192,7 @@ export default async function handler(req, res) {
 
         return res.status(200).json({ success: true });
     } catch (error) {
-        console.error('Resend Error:', error);
-        return res.status(500).json({ error: 'Failed to send email', details: error.message, name: error.name });
+        console.error('Mail send error:', error);
+        return res.status(500).json({ error: 'Failed to send email' });
     }
 }
