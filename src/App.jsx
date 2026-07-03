@@ -9,6 +9,9 @@ import { MetaPixel } from './components/shared/MetaPixel';
 import { Seo } from './components/shared/Seo';
 import { CONSENT_EVENT, hasAnalyticsConsent } from './components/shared/analyticsConsent';
 import { rememberAttribution, trackSiteEvent } from './components/shared/tracking';
+import { ANALYTICS_EVENTS } from './components/shared/analyticsEvents';
+import { MARKETS_BASE, marketPath, marketRoutes } from './pages/markets/marketRoutes';
+import { seoPages } from './pages/seo/seoPageData';
 import './index.css';
 
 // Lazy load pages
@@ -20,10 +23,6 @@ const Contact = lazy(() => import('./pages/Contact').then(module => ({ default: 
 const MarketResearch = lazy(() => import('./pages/MarketResearch').then(module => ({ default: module.MarketResearch })));
 const Privacy = lazy(() => import('./pages/Privacy').then(module => ({ default: module.Privacy })));
 const NotFound = lazy(() => import('./pages/NotFound').then(module => ({ default: module.NotFound })));
-const Caribbean = lazy(() => import('./pages/markets/Caribbean').then(module => ({ default: module.Caribbean })));
-const Chicago = lazy(() => import('./pages/markets/Chicago').then(module => ({ default: module.Chicago })));
-const Boston = lazy(() => import('./pages/markets/Boston').then(module => ({ default: module.Boston })));
-const LasVegas = lazy(() => import('./pages/markets/LasVegas').then(module => ({ default: module.LasVegas })));
 const MarketLandingPage = lazy(() => import('./pages/markets/MarketLandingPage').then(module => ({ default: module.MarketLandingPage })));
 const UsaMarketEntryItalianCompanies = lazy(() => import('./pages/seo/UsaMarketEntryItalianCompanies').then(module => ({ default: module.UsaMarketEntryItalianCompanies })));
 const BusinessDevelopmentUsa = lazy(() => import('./pages/seo/BusinessDevelopmentUsa').then(module => ({ default: module.BusinessDevelopmentUsa })));
@@ -35,6 +34,13 @@ const BuyerReadinessUsa = lazy(() => import('./pages/seo/BuyerReadinessUsa').the
 const FoodBeverageUsa = lazy(() => import('./pages/seo/FoodBeverageUsa').then(module => ({ default: module.FoodBeverageUsa })));
 const ModaDesignUsa = lazy(() => import('./pages/seo/ModaDesignUsa').then(module => ({ default: module.ModaDesignUsa })));
 const AgenteVsDistributoreUsa = lazy(() => import('./pages/seo/AgenteVsDistributoreUsa').then(module => ({ default: module.AgenteVsDistributoreUsa })));
+
+const SEO_LANDING_PATHS = new Set(Object.values(seoPages).map((page) => page.path));
+
+const getPageGroup = (pathname) =>
+  pathname.startsWith(`${MARKETS_BASE}/`) || SEO_LANDING_PATHS.has(pathname)
+    ? 'market_landing'
+    : 'site';
 
 // Loading component
 const PageLoader = () => (
@@ -70,6 +76,7 @@ function VercelAnalyticsWithConsent() {
 function EngagementTracker() {
   const location = useLocation();
   const trackedPath = `${location.pathname}${location.search}`;
+  const pageGroup = getPageGroup(location.pathname);
 
   useEffect(() => {
     rememberAttribution();
@@ -89,19 +96,19 @@ function EngagementTracker() {
       [50, 90].forEach((threshold) => {
         if (scrollPercent >= threshold && !thresholds.has(threshold)) {
           thresholds.add(threshold);
-          trackSiteEvent('scroll_depth', {
+          trackSiteEvent(ANALYTICS_EVENTS.SCROLL_DEPTH, {
             depth_percent: threshold,
             page_path: trackedPath,
           });
         }
       });
 
-      if (scrollPercent >= 75 && !thresholds.has('landing_scroll_75')) {
-        thresholds.add('landing_scroll_75');
-        trackSiteEvent('landing_scroll_75', {
+      if (scrollPercent >= 75 && !thresholds.has(ANALYTICS_EVENTS.LANDING_SCROLL_75)) {
+        thresholds.add(ANALYTICS_EVENTS.LANDING_SCROLL_75);
+        trackSiteEvent(ANALYTICS_EVENTS.LANDING_SCROLL_75, {
           depth_percent: 75,
           page_path: trackedPath,
-          page_group: trackedPath.includes('usa') || trackedPath.includes('distributori') ? 'market_landing' : 'site',
+          page_group: pageGroup,
         });
       }
     };
@@ -112,7 +119,7 @@ function EngagementTracker() {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [trackedPath]);
+  }, [trackedPath, pageGroup]);
 
   return null;
 }
@@ -133,18 +140,9 @@ function App() {
               <Route path="/contact" element={<Contact />} />
               <Route path="/market-research" element={<MarketResearch />} />
               <Route path="/privacy" element={<Privacy />} />
-              <Route path="/mercati/caraibi" element={<Caribbean />} />
-              <Route path="/mercati/chicago" element={<Chicago />} />
-              <Route path="/mercati/boston" element={<Boston />} />
-              <Route path="/mercati/las-vegas" element={<LasVegas />} />
-              <Route path="/mercati/miami" element={<MarketLandingPage city="miami" />} />
-              <Route path="/mercati/dallas" element={<MarketLandingPage city="dallas" />} />
-              <Route path="/mercati/houston" element={<MarketLandingPage city="houston" />} />
-              <Route path="/mercati/san-antonio" element={<MarketLandingPage city="san-antonio" />} />
-              <Route path="/mercati/new-york" element={<MarketLandingPage city="new-york" />} />
-              <Route path="/mercati/los-angeles" element={<MarketLandingPage city="los-angeles" />} />
-              <Route path="/mercati/san-diego" element={<MarketLandingPage city="san-diego" />} />
-              <Route path="/mercati/silicon-valley" element={<MarketLandingPage city="silicon-valley" />} />
+              {marketRoutes.map(({ slug }) => (
+                <Route key={slug} path={marketPath(slug)} element={<MarketLandingPage city={slug} />} />
+              ))}
               <Route path="/usa-market-entry-italian-companies" element={<UsaMarketEntryItalianCompanies />} />
               <Route path="/business-development-usa" element={<BusinessDevelopmentUsa />} />
               <Route path="/ricerca-distributori-usa" element={<RicercaDistributoriUsa />} />

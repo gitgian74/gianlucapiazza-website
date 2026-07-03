@@ -7,6 +7,7 @@ import { Card } from '../components/shared/Card';
 import { Button } from '../components/shared/Button';
 import { useLanguage } from '../hooks/use-language';
 import { trackSiteEvent } from '../components/shared/tracking';
+import { ANALYTICS_EVENTS } from '../components/shared/analyticsEvents';
 
 const REQUEST_TIMEOUT_MS = 22_000;
 
@@ -74,7 +75,7 @@ export function MarketResearch() {
         setMessages(prev => [...prev, { role: 'user', content: userMessage }]);
         setIsLoading(true);
         setError(null);
-        trackSiteEvent('market_research_submit', {
+        trackSiteEvent(ANALYTICS_EVENTS.MARKET_RESEARCH_SUBMIT, {
             query_length_bucket: userMessage.length < 80 ? 'short' : userMessage.length < 240 ? 'medium' : 'long',
             message_count_before_submit: messages.length,
         });
@@ -92,13 +93,13 @@ export function MarketResearch() {
             }
 
             setMessages(prev => [...prev, { role: 'assistant', content: responseText }]);
-            trackSiteEvent('market_research_success', {
+            trackSiteEvent(ANALYTICS_EVENTS.MARKET_RESEARCH_SUCCESS, {
                 query_length_bucket: userMessage.length < 80 ? 'short' : userMessage.length < 240 ? 'medium' : 'long',
                 response_length_bucket: responseText.length < 500 ? 'short' : responseText.length < 1500 ? 'medium' : 'long',
             });
         } catch (err) {
             console.error('Chat error:', err);
-            trackSiteEvent('market_research_error', {
+            trackSiteEvent(ANALYTICS_EVENTS.MARKET_RESEARCH_ERROR, {
                 error_type: err.status === 429 ? 'rate_limit' : err.name === 'AbortError' || err.status === 504 ? 'timeout' : 'server',
             });
             // Fallback for local dev without API

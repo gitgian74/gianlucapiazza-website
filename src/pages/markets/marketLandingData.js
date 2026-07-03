@@ -1,6 +1,5 @@
 export const marketLandingData = {
   "miami": {
-    "path": "/mercati/miami",
     "image": "/images/heroes/miami.jpg",
     "keywords": "mercato Miami aziende italiane, espansione USA Miami, Made in Italy Florida, distributori Florida, Brickell business development, PortMiami logistica, Camera di Commercio Italo-Americana Miami, ingresso mercato americano, Italian companies Miami market entry, US expansion Florida, Latin America gateway, Italian export Miami",
     "it": {
@@ -113,7 +112,6 @@ export const marketLandingData = {
     }
   },
   "dallas": {
-    "path": "/mercati/dallas",
     "image": "/images/heroes/dallas.jpg",
     "keywords": "mercato Dallas aziende italiane, Dallas Fort Worth export Italia, ingresso mercato USA Texas, Dallas Market Center Made in Italy, business development Dallas, Italy-America Chamber Texas, internazionalizzazione Texas, Dallas Fort Worth Italian companies, US market entry Dallas, Texas distributors Italian brands, GP & Partners Dallas, AllianceTexas logistics",
     "it": {
@@ -226,7 +224,6 @@ export const marketLandingData = {
     }
   },
   "houston": {
-    "path": "/mercati/houston",
     "image": "/images/heroes/houston.jpg",
     "keywords": "mercato Houston aziende italiane, espansione USA Houston, internazionalizzazione Texas, Made in Italy Houston, distributori Houston Texas, Houston market entry Italian companies, US market expansion Houston, Texas business development, Port Houston import, Italy-America Chamber Texas, GP & Partners Houston, energy capital Houston Italy",
     "it": {
@@ -339,7 +336,6 @@ export const marketLandingData = {
     }
   },
   "san-antonio": {
-    "path": "/mercati/san-antonio",
     "image": "/images/heroes/san-antonio.jpg",
     "keywords": "mercato San Antonio aziende italiane, San Antonio market entry, internazionalizzazione Texas, export Italia Texas, San Antonio Texas business, corridoio I-35 USMCA, nearshoring Messico Texas, Italy-America Chamber Texas, distributori San Antonio, made in Italy Texas, GP & Partners San Antonio, San Antonio New Braunfels",
     "it": {
@@ -452,7 +448,6 @@ export const marketLandingData = {
     }
   },
   "new-york": {
-    "path": "/mercati/new-york",
     "image": "/images/heroes/new-york.jpg",
     "keywords": "mercato New York aziende italiane, ingresso mercato USA New York, export Italia New York, New York market entry Italian companies, business development New York, distributori USA New York, Made in Italy New York, Italy-America Chamber of Commerce, Port of New York New Jersey, Javits Center fiere, consulenza internazionalizzazione USA, GP & Partners",
     "it": {
@@ -565,7 +560,6 @@ export const marketLandingData = {
     }
   },
   "los-angeles": {
-    "path": "/mercati/los-angeles",
     "image": "/images/heroes/los-angeles.jpg",
     "keywords": "consulente Los Angeles azienda italiana, mercato Los Angeles italiani, business development Los Angeles, export Italia California, Italy America Chamber of Commerce West, distributori California USA, Los Angeles market entry Italian companies, GP Partners Los Angeles, Pacific Design Center, Port of Los Angeles import",
     "it": {
@@ -678,7 +672,6 @@ export const marketLandingData = {
     }
   },
   "san-diego": {
-    "path": "/mercati/san-diego",
     "image": "/images/heroes/san-diego.jpg",
     "keywords": "mercato San Diego aziende italiane, espansione USA San Diego, internazionalizzazione California, biotech San Diego, difesa San Diego, Cali-Baja Tijuana, Little Italy San Diego, export Italia California, distributori San Diego, business development San Diego, San Diego market entry Italian companies, San Diego biotech cluster, cross-border Tijuana",
     "it": {
@@ -791,7 +784,6 @@ export const marketLandingData = {
     }
   },
   "silicon-valley": {
-    "path": "/mercati/silicon-valley",
     "image": "/images/heroes/silicon-valley.jpg",
     "keywords": "mercato Silicon Valley aziende italiane, internazionalizzazione San Jose, export Italia California, distributori Bay Area, ingresso mercato USA Silicon Valley, Italian companies Silicon Valley, market entry Bay Area, Italy California business development, San Jose distributors, GP & Partners Silicon Valley",
     "it": {
@@ -900,6 +892,454 @@ export const marketLandingData = {
         "Ongoing business development: local presence, commercial follow-up and pipeline management after entry."
       ],
       "cta": "Enter the Silicon Valley market with GP & Partners.",
+      "ctaBtn": "Book a consultation"
+    }
+  },
+  "chicago": {
+    "image": "/images/heroes/chicago.jpg",
+    "keywords": "consulente Chicago azienda italiana, mercato Chicago italiani, business development Chicago, Midwest USA italiani, GP Partners",
+    "it": {
+      "seoTitle": "Consulente Mercato Chicago per Aziende Italiane | GP & Partners",
+      "seoDesc": "GP & Partners apre il mercato di Chicago per le PMI italiane. Business development, partnership e market entry nel Midwest USA — consulenza specializzata.",
+      "hero": "Mercato Chicago & Midwest",
+      "heroSub": "La porta d'ingresso al cuore economico degli Stati Uniti",
+      "intro": "Chicago è il terzo polo economico degli USA e il gateway naturale per il Midwest americano — una regione con 67 milioni di consumatori, forte manifattura, agroalimentare e servizi finanziari. Un mercato sottovalutato dai competitor italiani e ricco di opportunità per chi entra con la giusta strategia.",
+      "why": "Perché Chicago & Midwest",
+      "whyItems": [
+        "Terza area metropolitana USA per PIL — oltre $770 miliardi",
+        "Hub logistico centrale: 6 delle 7 principali ferrovie USA passano da Chicago",
+        "Camera di Commercio Italo-Americana (IACC) attiva — network consolidato",
+        "Forte comunità italiana: oltre 500.000 italo-americani nell'area metropolitana",
+        "Settori chiave: food & beverage, manifattura, tech, finanza, healthcare",
+        "Competitività più bassa rispetto a NY e LA — first-mover advantage reale"
+      ],
+      "markets": "Aree di Intervento",
+      "marketsList": [
+        {
+          "name": "Chicago Downtown & Loop",
+          "note": "Sede delle principali corporation, studi legali e finanziari"
+        },
+        {
+          "name": "Chicago Suburbs",
+          "note": "Area manifatturiera e distributiva — Naperville, Schaumburg, Aurora"
+        },
+        {
+          "name": "Milwaukee (WI)",
+          "note": "Hub manifatturiero, 90 min da Chicago, forte presenza tedesca e italiana"
+        },
+        {
+          "name": "Indianapolis (IN)",
+          "note": "Automotive, logistica, pharma — mercato in crescita"
+        },
+        {
+          "name": "Detroit (MI)",
+          "note": "Automotive & manufacturing — ritorno degli investimenti post-2008"
+        },
+        {
+          "name": "Minneapolis (MN)",
+          "note": "Tech, retail (Target, Best Buy HQ), agri-business"
+        }
+      ],
+      "services": "Cosa offriamo",
+      "servicesList": [
+        "Market entry strategy per il mercato di Chicago e Midwest",
+        "Identificazione distributori, buyer e partner locali qualificati",
+        "Accesso al network IACC-Chicago e associazioni di categoria",
+        "Strutturazione accordi commerciali e partnership",
+        "Supporto fiere di settore: McCormick Place (uno dei più grandi hub fieristici USA)",
+        "Business development continuativo con presidio nella regione"
+      ],
+      "cta": "Entra nel mercato di Chicago con GP & Partners",
+      "ctaBtn": "Prenota una consulenza"
+    },
+    "en": {
+      "seoTitle": "Chicago Market Consultant for Italian Companies | GP & Partners",
+      "seoDesc": "GP & Partners opens the Chicago and Midwest market for Italian SMEs. Business development, partnerships and market entry — specialized consulting.",
+      "hero": "Chicago & Midwest Market",
+      "heroSub": "The gateway to the economic heart of the United States",
+      "intro": "Chicago is the third largest economic hub in the USA and the natural gateway to the American Midwest — a region with 67 million consumers, strong manufacturing, agri-food and financial services. An undervalued market for Italian competitors, rich in opportunities for those entering with the right strategy.",
+      "why": "Why Chicago & Midwest",
+      "whyItems": [
+        "Third largest US metro area by GDP — over $770 billion",
+        "Central logistics hub: 6 of the 7 major US railways pass through Chicago",
+        "Active Italian-American Chamber of Commerce (IACC) — established network",
+        "Strong Italian community: over 500,000 Italian-Americans in the metro area",
+        "Key sectors: food & beverage, manufacturing, tech, finance, healthcare",
+        "Lower competition than NY and LA — real first-mover advantage"
+      ],
+      "markets": "Areas of Operation",
+      "marketsList": [
+        {
+          "name": "Chicago Downtown & Loop",
+          "note": "Headquarters of major corporations, law and finance firms"
+        },
+        {
+          "name": "Chicago Suburbs",
+          "note": "Manufacturing and distribution — Naperville, Schaumburg, Aurora"
+        },
+        {
+          "name": "Milwaukee (WI)",
+          "note": "Manufacturing hub, 90 min from Chicago, strong German and Italian presence"
+        },
+        {
+          "name": "Indianapolis (IN)",
+          "note": "Automotive, logistics, pharma — growing market"
+        },
+        {
+          "name": "Detroit (MI)",
+          "note": "Automotive & manufacturing — investment revival post-2008"
+        },
+        {
+          "name": "Minneapolis (MN)",
+          "note": "Tech, retail (Target, Best Buy HQ), agri-business"
+        }
+      ],
+      "services": "What We Offer",
+      "servicesList": [
+        "Market entry strategy for Chicago and the Midwest",
+        "Identification of qualified local distributors, buyers and partners",
+        "Access to IACC-Chicago network and trade associations",
+        "Structuring commercial agreements and partnerships",
+        "Trade show support: McCormick Place (one of the largest US trade venues)",
+        "Continuous business development with regional presence"
+      ],
+      "cta": "Enter the Chicago market with GP & Partners",
+      "ctaBtn": "Book a consultation"
+    }
+  },
+  "boston": {
+    "image": "/images/heroes/boston.jpg",
+    "keywords": "consulente Boston mercato americano italiani, business development Boston, azienda italiana Boston, New England mercato USA, GP Partners",
+    "it": {
+      "seoTitle": "Consulente Mercato Boston per Aziende Italiane | GP & Partners",
+      "seoDesc": "GP & Partners apre il mercato di Boston e New England per le PMI italiane. Tech, biotech, università, food — market entry e business development specializzato.",
+      "hero": "Mercato Boston & New England",
+      "heroSub": "Il polo tech, biotech e universitario degli USA — opportunità per le aziende italiane",
+      "intro": "Boston è il cuore del sistema universitario e dell'innovazione americana, con il più alto numero di università e centri di ricerca al mondo. È anche il gateway per il New England — un mercato da 15 milioni di consumatori con altissimo reddito pro-capite e fortissima propensione ai prodotti premium europei.",
+      "why": "Perché Boston & New England",
+      "whyItems": [
+        "Più alta concentrazione universitaria al mondo: MIT, Harvard, Tufts, BU, Northeastern",
+        "Hub biotech e life sciences globale — opportunità per tecnologie italiane avanzate",
+        "Reddito pro-capite tra i più alti degli USA — mercato premium ideale",
+        "Fortissima comunità italiana: Boston North End, la Little Italy più autentica d'America",
+        "Settori chiave: tech, biotech, finanza, food & beverage, luxury, education",
+        "Scarsa penetrazione competitor italiani — quasi nessun consulente specializzato"
+      ],
+      "markets": "Aree Coperte",
+      "marketsList": [
+        {
+          "name": "Boston Metro",
+          "note": "Hub tech, biotech, finanza e università — il core del mercato"
+        },
+        {
+          "name": "Cambridge",
+          "note": "MIT, Harvard, startup ecosystem — innovazione e R&D"
+        },
+        {
+          "name": "Providence (RI)",
+          "note": "Design, manifattura, turismo — mercato in crescita"
+        },
+        {
+          "name": "Hartford (CT)",
+          "note": "Finanza, insurance, manifattura — solido mercato B2B"
+        },
+        {
+          "name": "Portland (ME)",
+          "note": "Food, hospitality, turismo — mercato premium in forte espansione"
+        },
+        {
+          "name": "New Hampshire",
+          "note": "No income tax, business-friendly — sede di molte holding"
+        }
+      ],
+      "services": "Cosa offriamo",
+      "servicesList": [
+        "Market entry strategy per Boston e New England",
+        "Accesso a network universitari e centri di ricerca per partnership tecnologiche",
+        "Identificazione importatori, distributori e buyer nel food & beverage premium",
+        "Supporto per accordi di licensing e trasferimento tecnologico",
+        "Accesso alla comunità imprenditoriale italiana di Boston (North End network)",
+        "Business development nel settore luxury, design e hospitality"
+      ],
+      "cta": "Entra nel mercato di Boston con GP & Partners",
+      "ctaBtn": "Prenota una consulenza"
+    },
+    "en": {
+      "seoTitle": "Boston Market Consultant for Italian Companies | GP & Partners",
+      "seoDesc": "GP & Partners opens the Boston and New England market for Italian SMEs. Tech, biotech, universities, food — specialized market entry and business development.",
+      "hero": "Boston & New England Market",
+      "heroSub": "The US hub for tech, biotech and academia — opportunities for Italian companies",
+      "intro": "Boston is the heart of American university culture and innovation, with the highest concentration of universities and research centers in the world. It is also the gateway to New England — a market of 15 million consumers with very high per-capita income and strong preference for premium European products.",
+      "why": "Why Boston & New England",
+      "whyItems": [
+        "Highest university concentration in the world: MIT, Harvard, Tufts, BU, Northeastern",
+        "Global biotech and life sciences hub — opportunities for advanced Italian technologies",
+        "One of the highest per-capita incomes in the US — ideal premium market",
+        "Strong Italian community: Boston North End, the most authentic Little Italy in America",
+        "Key sectors: tech, biotech, finance, food & beverage, luxury, education",
+        "Low competitor penetration — almost no specialized Italian consultant present"
+      ],
+      "markets": "Areas Covered",
+      "marketsList": [
+        {
+          "name": "Boston Metro",
+          "note": "Tech, biotech, finance and university hub — the core market"
+        },
+        {
+          "name": "Cambridge",
+          "note": "MIT, Harvard, startup ecosystem — innovation and R&D"
+        },
+        {
+          "name": "Providence (RI)",
+          "note": "Design, manufacturing, tourism — growing market"
+        },
+        {
+          "name": "Hartford (CT)",
+          "note": "Finance, insurance, manufacturing — solid B2B market"
+        },
+        {
+          "name": "Portland (ME)",
+          "note": "Food, hospitality, tourism — premium market in strong expansion"
+        },
+        {
+          "name": "New Hampshire",
+          "note": "No income tax, business-friendly — home to many holding companies"
+        }
+      ],
+      "services": "What We Offer",
+      "servicesList": [
+        "Market entry strategy for Boston and New England",
+        "Access to university networks and research centers for technology partnerships",
+        "Identification of importers, distributors and buyers in premium food & beverage",
+        "Support for licensing agreements and technology transfer",
+        "Access to the Italian business community in Boston (North End network)",
+        "Business development in luxury, design and hospitality sectors"
+      ],
+      "cta": "Enter the Boston market with GP & Partners",
+      "ctaBtn": "Book a consultation"
+    }
+  },
+  "las-vegas": {
+    "image": "/images/heroes/las-vegas.jpg",
+    "keywords": "consulente Las Vegas italiani, business Las Vegas azienda italiana, mercato Nevada italiani, hospitality Las Vegas Made in Italy, GP Partners",
+    "it": {
+      "seoTitle": "Consulente Mercato Las Vegas per Aziende Italiane | GP & Partners",
+      "seoDesc": "GP & Partners apre il mercato di Las Vegas e Nevada per le PMI italiane. Hospitality, food & beverage, luxury, entertainment — business development specializzato.",
+      "hero": "Mercato Las Vegas & Nevada",
+      "heroSub": "Il polo globale dell'hospitality e dell'entertainment — opportunità uniche per il Made in Italy",
+      "intro": "Las Vegas non è solo entertainment: è uno dei mercati più concentrati al mondo per luxury hospitality, food & beverage premium, design e retail. Con 42 milioni di visitatori/anno e oltre 200 hotel di lusso, è una vetrina globale senza eguali per i brand italiani — e un mercato di acquisto reale per distributori e buyer del settore.",
+      "why": "Perché Las Vegas & Nevada",
+      "whyItems": [
+        "42 milioni di visitatori internazionali/anno — mercato captive premium",
+        "Oltre 200 hotel di lusso: MGM, Wynn, Bellagio, Caesars — acquirenti di prodotti Made in Italy",
+        "Nessun income tax in Nevada — vantaggi fiscali per strutture societarie",
+        "Hub per fiere di settore: CES, NAB Show, MAGIC, ConExpo — porta di accesso a tutto il mercato USA",
+        "Food & beverage: 15.000+ ristoranti, forte domanda di prodotti italiani premium",
+        "Mercato in forte crescita: Formula 1, grandi eventi sportivi, espansione resort"
+      ],
+      "markets": "Opportunità per Settore",
+      "marketsList": [
+        {
+          "name": "Hospitality & Hotel",
+          "note": "Fornitura F&B, amenities, design e arredi per i grandi resort del Strip"
+        },
+        {
+          "name": "Food & Beverage",
+          "note": "Import vini, olio, pasta, salumi — forte domanda dai ristoranti di lusso"
+        },
+        {
+          "name": "Luxury Retail",
+          "note": "The Strip: Hermès, Prada, Gucci — aperture punti vendita e distributori"
+        },
+        {
+          "name": "Fiere & Convention",
+          "note": "CES, NAB, MAGIC — accesso diretto a buyer da tutto il mercato USA"
+        },
+        {
+          "name": "Real Estate & Design",
+          "note": "Crescita residenziale intorno a Las Vegas — mercato arredamento premium"
+        },
+        {
+          "name": "Entertainment Tech",
+          "note": "Tecnologie per spettacolo, media, realtà virtuale — settore in espansione"
+        }
+      ],
+      "services": "Cosa offriamo",
+      "servicesList": [
+        "Market entry strategy per Las Vegas e mercato Nevada",
+        "Identificazione buyer e distributori nel settore hospitality e F&B",
+        "Supporto a fiere internazionali: CES, NAB Show, MAGIC Apparel",
+        "Strutturazione accordi di fornitura con hotel e resort del Strip",
+        "Accesso a network retail luxury e distributori premium",
+        "Supporto legale e fiscale per strutture societarie in Nevada"
+      ],
+      "cta": "Entra nel mercato di Las Vegas con GP & Partners",
+      "ctaBtn": "Prenota una consulenza"
+    },
+    "en": {
+      "seoTitle": "Las Vegas Market Consultant for Italian Companies | GP & Partners",
+      "seoDesc": "GP & Partners opens the Las Vegas and Nevada market for Italian SMEs. Hospitality, food & beverage, luxury, entertainment — specialized business development.",
+      "hero": "Las Vegas & Nevada Market",
+      "heroSub": "The global hub for hospitality and entertainment — unique opportunities for Made in Italy",
+      "intro": "Las Vegas is not just entertainment: it is one of the most concentrated markets in the world for luxury hospitality, premium food & beverage, design and retail. With 42 million visitors per year and over 200 luxury hotels, it is an unmatched global showcase for Italian brands — and a real purchasing market for distributors and buyers in the sector.",
+      "why": "Why Las Vegas & Nevada",
+      "whyItems": [
+        "42 million international visitors/year — captive premium market",
+        "Over 200 luxury hotels: MGM, Wynn, Bellagio, Caesars — buyers of Made in Italy products",
+        "No income tax in Nevada — tax advantages for corporate structures",
+        "Trade show hub: CES, NAB Show, MAGIC, ConExpo — gateway to the entire US market",
+        "Food & beverage: 15,000+ restaurants, strong demand for premium Italian products",
+        "Fast-growing market: Formula 1, major sporting events, resort expansion"
+      ],
+      "markets": "Opportunities by Sector",
+      "marketsList": [
+        {
+          "name": "Hospitality & Hotel",
+          "note": "F&B supply, amenities, design and furnishings for major Strip resorts"
+        },
+        {
+          "name": "Food & Beverage",
+          "note": "Wine, olive oil, pasta, cold cuts import — strong demand from luxury restaurants"
+        },
+        {
+          "name": "Luxury Retail",
+          "note": "The Strip: Hermès, Prada, Gucci — retail openings and distributors"
+        },
+        {
+          "name": "Trade Shows & Conventions",
+          "note": "CES, NAB, MAGIC — direct access to buyers from across the US"
+        },
+        {
+          "name": "Real Estate & Design",
+          "note": "Residential growth around Las Vegas — premium furnishing market"
+        },
+        {
+          "name": "Entertainment Tech",
+          "note": "Technologies for entertainment, media, virtual reality — expanding sector"
+        }
+      ],
+      "services": "What We Offer",
+      "servicesList": [
+        "Market entry strategy for Las Vegas and Nevada",
+        "Identification of buyers and distributors in hospitality and F&B",
+        "Support at international trade shows: CES, NAB Show, MAGIC Apparel",
+        "Structuring supply agreements with Strip hotels and resorts",
+        "Access to luxury retail networks and premium distributors",
+        "Legal and tax support for corporate structures in Nevada"
+      ],
+      "cta": "Enter the Las Vegas market with GP & Partners",
+      "ctaBtn": "Book a consultation"
+    }
+  },
+  "caraibi": {
+    "image": "/images/heroes/caraibi.jpg",
+    "keywords": "consulente caraibi italiani, business development caraibi, mercato caraibico aziende italiane, market entry caraibi, GP Partners",
+    "it": {
+      "seoTitle": "Consulente Business Development Caraibi per Aziende Italiane | GP & Partners",
+      "seoDesc": "GP & Partners apre il mercato caraibico per le PMI italiane. Business development, partnership commerciali e market entry nei Caraibi — dalla strategia all'esecuzione.",
+      "hero": "Mercato Caraibico",
+      "heroSub": "Il tuo partner strategico per il business development nei Caraibi",
+      "intro": "I Caraibi rappresentano una delle opportunità meno sfruttate per le aziende italiane: un mercato in forte crescita, affamato di prodotti e servizi di qualità europea, con una forte presenza di turismo internazionale e una crescente classe media locale.",
+      "why": "Perché i Caraibi",
+      "whyItems": [
+        "Mercato con forte domanda di prodotti Made in Italy (food, design, moda, hospitality)",
+        "Turismo internazionale da 35M+ visitatori/anno — canale privilegiato per i brand italiani",
+        "Bassa penetrazione competitiva rispetto a USA e Europa — first-mover advantage reale",
+        "Hub logistici strategici: Puerto Rico (USA territory), Trinidad, Panama",
+        "Crescente middle class locale con aspirazioni premium",
+        "Fiscalità favorevole in molte giurisdizioni (BVI, Cayman, Barbados)"
+      ],
+      "markets": "Mercati Chiave",
+      "marketsList": [
+        {
+          "name": "Puerto Rico",
+          "note": "Territorio USA — accesso diretto al mercato americano senza barriere doganali"
+        },
+        {
+          "name": "Repubblica Dominicana",
+          "note": "Mercato in forte crescita, hub turistico e commerciale regionale"
+        },
+        {
+          "name": "Trinidad & Tobago",
+          "note": "Gateway per il mercato anglofono caraibico, economia diversificata"
+        },
+        {
+          "name": "Bahamas & Bermuda",
+          "note": "Mercato premium, luxury hospitality, clientela ad alto reddito"
+        },
+        {
+          "name": "Barbados",
+          "note": "Hub finanziario regionale, sede di holding internazionali"
+        },
+        {
+          "name": "Martinica & Guadalupa",
+          "note": "Territorio francese — accesso diretto al mercato UE"
+        }
+      ],
+      "services": "Cosa offriamo",
+      "servicesList": [
+        "Analisi opportunità e market entry strategy per il mercato caraibico",
+        "Identificazione e qualifica distributori, partner e buyer locali",
+        "Strutturazione accordi commerciali e partnership internazionali",
+        "Supporto nella registrazione societaria nelle giurisdizioni caraibiche",
+        "Accompagnamento in fiere e missioni commerciali regionali",
+        "Business development continuativo con presidio locale"
+      ],
+      "cta": "Esplora il mercato caraibico con GP & Partners",
+      "ctaBtn": "Prenota una consulenza"
+    },
+    "en": {
+      "seoTitle": "Caribbean Business Development Consultant for Italian Companies | GP & Partners",
+      "seoDesc": "GP & Partners opens the Caribbean market for Italian SMEs. Business development, commercial partnerships and market entry across the Caribbean — from strategy to execution.",
+      "hero": "Caribbean Market",
+      "heroSub": "Your strategic partner for business development in the Caribbean",
+      "intro": "The Caribbean represents one of the most underutilized opportunities for Italian companies: a fast-growing market hungry for European-quality products and services, with strong international tourism and a rising local middle class.",
+      "why": "Why the Caribbean",
+      "whyItems": [
+        "Strong demand for Made in Italy products (food, design, fashion, hospitality)",
+        "International tourism with 35M+ visitors/year — premium channel for Italian brands",
+        "Low competitive penetration vs USA and Europe — real first-mover advantage",
+        "Strategic logistics hubs: Puerto Rico (US territory), Trinidad, Panama",
+        "Growing local middle class with premium aspirations",
+        "Favorable tax regimes in many jurisdictions (BVI, Cayman, Barbados)"
+      ],
+      "markets": "Key Markets",
+      "marketsList": [
+        {
+          "name": "Puerto Rico",
+          "note": "US Territory — direct access to the American market, no customs barriers"
+        },
+        {
+          "name": "Dominican Republic",
+          "note": "Fast-growing market, regional tourism and commercial hub"
+        },
+        {
+          "name": "Trinidad & Tobago",
+          "note": "Gateway to the anglophone Caribbean, diversified economy"
+        },
+        {
+          "name": "Bahamas & Bermuda",
+          "note": "Premium market, luxury hospitality, high-income clientele"
+        },
+        {
+          "name": "Barbados",
+          "note": "Regional financial hub, home to international holding companies"
+        },
+        {
+          "name": "Martinique & Guadeloupe",
+          "note": "French territory — direct EU market access"
+        }
+      ],
+      "services": "What We Offer",
+      "servicesList": [
+        "Opportunity analysis and market entry strategy for the Caribbean",
+        "Identification and qualification of local distributors, partners and buyers",
+        "Structuring commercial agreements and international partnerships",
+        "Support for company registration in Caribbean jurisdictions",
+        "Accompaniment to regional trade fairs and commercial missions",
+        "Continuous business development with local presence"
+      ],
+      "cta": "Explore the Caribbean market with GP & Partners",
       "ctaBtn": "Book a consultation"
     }
   }

@@ -6,22 +6,11 @@ import { useLanguage } from '../hooks/use-language';
 import { CookieConsent } from './shared/CookieConsent';
 import { SocialLinks } from './shared/SocialLinks';
 import { trackSiteEvent } from './shared/tracking';
+import { ANALYTICS_EVENTS } from './shared/analyticsEvents';
 import { seoPages } from '../pages/seo/seoPageData';
+import { marketPath, marketRoutes } from '../pages/markets/marketRoutes';
 
-const marketLinks = [
-    { path: '/mercati/miami', it: 'Miami', en: 'Miami' },
-    { path: '/mercati/new-york', it: 'New York', en: 'New York' },
-    { path: '/mercati/los-angeles', it: 'Los Angeles', en: 'Los Angeles' },
-    { path: '/mercati/san-diego', it: 'San Diego', en: 'San Diego' },
-    { path: '/mercati/silicon-valley', it: 'Silicon Valley', en: 'Silicon Valley' },
-    { path: '/mercati/dallas', it: 'Dallas', en: 'Dallas' },
-    { path: '/mercati/houston', it: 'Houston', en: 'Houston' },
-    { path: '/mercati/san-antonio', it: 'San Antonio', en: 'San Antonio' },
-    { path: '/mercati/chicago', it: 'Chicago', en: 'Chicago' },
-    { path: '/mercati/boston', it: 'Boston', en: 'Boston' },
-    { path: '/mercati/las-vegas', it: 'Las Vegas', en: 'Las Vegas' },
-    { path: '/mercati/caraibi', it: 'Caraibi', en: 'Caribbean' },
-];
+const marketLinks = marketRoutes.map(({ slug, it, en }) => ({ path: marketPath(slug), it, en }));
 
 export function Layout({ children }) {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -30,7 +19,7 @@ export function Layout({ children }) {
     const shouldReduceMotion = useReducedMotion();
 
     const toggleLanguage = () => {
-        trackSiteEvent('language_switch', {
+        trackSiteEvent(ANALYTICS_EVENTS.LANGUAGE_SWITCH, {
             from_language: language,
             to_language: language === 'it' ? 'en' : 'it',
             placement: 'header',
@@ -82,7 +71,7 @@ export function Layout({ children }) {
                             <Link
                                 key={link.path}
                                 to={link.path}
-                                onClick={() => trackSiteEvent('navigation_click', {
+                                onClick={() => trackSiteEvent(ANALYTICS_EVENTS.NAVIGATION_CLICK, {
                                     destination: link.path,
                                     label: link.label,
                                     placement: 'header_desktop',
@@ -110,7 +99,7 @@ export function Layout({ children }) {
 
                         <Link
                             to="/contact"
-                            onClick={() => trackSiteEvent('cta_click', {
+                            onClick={() => trackSiteEvent(ANALYTICS_EVENTS.CTA_CLICK, {
                                 cta_id: 'header_contact',
                                 destination: '/contact',
                                 placement: 'header_desktop',
@@ -151,7 +140,7 @@ export function Layout({ children }) {
                                     key={link.path}
                                     to={link.path}
                                     onClick={() => {
-                                        trackSiteEvent('navigation_click', {
+                                        trackSiteEvent(ANALYTICS_EVENTS.NAVIGATION_CLICK, {
                                             destination: link.path,
                                             label: link.label,
                                             placement: 'mobile_menu',
@@ -170,7 +159,7 @@ export function Layout({ children }) {
                             <Link
                                 to="/contact"
                                 onClick={() => {
-                                    trackSiteEvent('cta_click', {
+                                    trackSiteEvent(ANALYTICS_EVENTS.CTA_CLICK, {
                                         cta_id: 'mobile_menu_contact',
                                         destination: '/contact',
                                         placement: 'mobile_menu',
@@ -205,7 +194,7 @@ export function Layout({ children }) {
                         <div className="md:col-span-4 lg:col-span-3">
                             <Link
                                 to="/"
-                                onClick={() => trackSiteEvent('navigation_click', {
+                                onClick={() => trackSiteEvent(ANALYTICS_EVENTS.NAVIGATION_CLICK, {
                                     destination: '/',
                                     label: 'GP & Partners',
                                     placement: 'footer_brand',
@@ -230,7 +219,7 @@ export function Layout({ children }) {
                                         <li key={link.path}>
                                             <Link
                                                 to={link.path}
-                                                onClick={() => trackSiteEvent('navigation_click', {
+                                                onClick={() => trackSiteEvent(ANALYTICS_EVENTS.NAVIGATION_CLICK, {
                                                     destination: link.path,
                                                     label: link.label,
                                                     placement: 'footer',
@@ -254,7 +243,7 @@ export function Layout({ children }) {
                                         <li key={link.path}>
                                             <Link
                                                 to={link.path}
-                                                onClick={() => trackSiteEvent('navigation_click', {
+                                                onClick={() => trackSiteEvent(ANALYTICS_EVENTS.NAVIGATION_CLICK, {
                                                     destination: link.path,
                                                     label: link[language] || link.en,
                                                     placement: 'footer_sitemap',
@@ -275,7 +264,7 @@ export function Layout({ children }) {
                                         <li key={page.path}>
                                             <Link
                                                 to={page.path}
-                                                onClick={() => trackSiteEvent('navigation_click', {
+                                                onClick={() => trackSiteEvent(ANALYTICS_EVENTS.NAVIGATION_CLICK, {
                                                     destination: page.path,
                                                     label: page.path,
                                                     placement: 'footer_sitemap',
@@ -294,8 +283,8 @@ export function Layout({ children }) {
                     <div className="border-t border-border pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-muted-foreground text-sm">
                         <p>&copy; {new Date().getFullYear()} GP & Partners. {t.footer.rights}</p>
                         <div className="flex gap-6">
-                            <Link to="/privacy" onClick={() => trackSiteEvent('navigation_click', { destination: '/privacy', label: 'privacy', placement: 'footer_legal' })} className="hover:text-foreground transition-colors">{t.footer.privacy}</Link>
-                            <Link to="/privacy" onClick={() => trackSiteEvent('navigation_click', { destination: '/privacy', label: 'cookie', placement: 'footer_legal' })} className="hover:text-foreground transition-colors">{t.footer.cookie}</Link>
+                            <Link to="/privacy" onClick={() => trackSiteEvent(ANALYTICS_EVENTS.NAVIGATION_CLICK, { destination: '/privacy', label: 'privacy', placement: 'footer_legal' })} className="hover:text-foreground transition-colors">{t.footer.privacy}</Link>
+                            <Link to="/privacy" onClick={() => trackSiteEvent(ANALYTICS_EVENTS.NAVIGATION_CLICK, { destination: '/privacy', label: 'cookie', placement: 'footer_legal' })} className="hover:text-foreground transition-colors">{t.footer.cookie}</Link>
                         </div>
                     </div>
                 </div>

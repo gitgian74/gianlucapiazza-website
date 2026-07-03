@@ -1,66 +1,29 @@
-# Redesign VEX-style — staging branch
+# Consolidamento landing mercati (code review 2026-07-02) — COMPLETATO 2026-07-03
 
-> Obiettivo: portare lo stile hero VEX (video bg, liquid glass, animazione caratteri, claim
-> "Shaping tomorrow with vision and action.") su gianlucapiazza.com mantenendo dati,
-> struttura, i18n e palette brand (navy ink + US red #B22234). Staging = branch `staging`
-> + Vercel preview deploy automatico. Nessun deploy in produzione.
+> Branch worktree `claude/magical-ptolemy-653894`. Done: `pnpm lint` (0 err) + `pnpm build`
+> + `pnpm test:marketing` verdi, smoke esteso 30 route × 2 viewport verde su dev server del worktree.
 
-## Fase A — Fondamenta (main context) — P0 / M
-- [x] Branch `feat/vex-redesign` da main (NB: `staging` esistente lasciato intatto, ha lavoro divergente)
-- [x] Video Miami in `public/videos/miami-hero.mp4` (9.4MB)
-- [x] `.liquid-glass` CSS in `src/index.css` (base rgba(2,6,23,.4) = slate-950 brand)
-- [x] Componenti `src/components/vex/FadeIn.jsx` + `AnimatedHeading.jsx` (con reduced-motion)
-- [x] Navbar Layout.jsx → liquid-glass (funzionalità invariate)
-- [x] Hero Home.jsx → verificato screenshot 1920px su dev server :5198
-- [x] Claim `heroClaim` + `heroTag` in translations (IT+EN; il sito non ha ES)
-- [x] index.html: rimosso preload/preconnect Unsplash (hero image non più usata)
+## P0 — Architettura
+- [x] Hero locali per le 4 pagine legacy (pipeline ffmpeg hqdn3d + scale 1600 + cjpeg q50): chicago 238KB, boston 209KB, las-vegas 205KB, caraibi 99KB (crop landscape dal portrait). **Bonus fix**: la hero Boston in prod era ROTTA — la foto Unsplash `photo-1501979376754…` non esiste più (404); sostituita con Boston harbor dusk self-hosted
+- [x] `src/pages/markets/marketRoutes.js` — SSoT slug/label + `marketPath()` + `MARKETS_BASE`
+- [x] `marketLandingData.js`: +4 città (contenuti IT/EN invariati dalle pagine legacy), campo `path` rimosso (derivato da slug)
+- [x] `App.jsx`: route mercati mappate da `marketRoutes`, rimossi 4 lazy import legacy
+- [x] `Layout.jsx`: `marketLinks` derivato da `marketRoutes`
+- [x] Delete 4 pagine legacy + rimozione 4 entry META_BY_PATH in `Seo.jsx` (5° posto mantenuto a mano; le pagine passano meta via props come le altre 8)
+- [x] `generate_seo_html.mjs`: path da SSoT, guard slug↔data, sitemap generata in `dist/sitemap.xml` (`public/sitemap.xml` eliminata; lastmod espliciti preservati)
+- [x] Fix `page_group`: classificazione su pathname via `MARKETS_BASE` + set path seoPages (il vecchio substring-match escludeva /mercati/* E /us-retail-partnerships)
 
-## Fase B — Tutte le pagine (subagent paralleli) — P1 / L
-- [ ] Agent 1: About, Services, Projects, Contact, MarketResearch, Privacy, NotFound
-- [ ] Agent 2: markets/* (Caribbean, Chicago, Boston, LasVegas)
-- [ ] Agent 3: seo/* (9 pagine)
-- Regole: solo restyle classi/wrapper (surgical), zero modifiche a contenuti/i18n/route,
-  AnimatedHeading per i titoli pagina, FadeIn per sezioni, glass card al posto di card piatte.
+## P0 — Tracking & test
+- [x] `analyticsEvents.js` — 24 costanti GA4; literal sostituiti in 9 file; nomi evento invariati (continuità GA4); doppi schemi documentati nel modulo
+- [x] `validate_marketing_execution.py`: assert su analyticsEvents.js + uso costanti + coerenza marketRoutes/marketLandingData
+- [x] `smoke_routes.py`: route /mercati/* derivate da marketRoutes.js via node
+- [x] `SMOKE_PORT` env in smoke+guard — scoperto falso positivo: il guard riusava il vite del repo principale su :5173 e validava il codice sbagliato dal worktree
 
-## Fase C — Verifica e staging — P0 / S
-- [x] `pnpm build` verde (+ static SEO HTML 9 pagine)
-- [x] Screenshot home + services + contact + market + seo → ok
-- [x] Commit e2fe3e99 su `feat/vex-redesign` (28 file) + push
-- [x] Vercel deploy dpl_Ljterrc33… READY — staging:
-      https://gianlucapiazza-website-git-feat-vex-c0e3df-gitgian74s-projects.vercel.app
+## P1 — Micro-perf
+- [x] `viewport={{ once: true }}` sui 4 whileInView di MarketLandingPage
+- [x] miami/new-york già ricompresse in fb0cdd86 — skip
+- [x] Split per-città dati: NO (decisione). Chunk MarketLandingPage 82KB raw / 22.6KB gzip, lazy e condiviso+cacheato fra le 12 route; lo split imporrebbe dynamic import per città con loading state e più failure mode per ~15KB gzip su route secondarie già coperte da HTML statico SEO. Rivalutare sopra ~40KB gzip.
 
-## Hero città (2026-06-11, richiesta GP)
-- [x] Curation 5 città (workflow 6 agent, cross-check tonale): NY 18679962, LA 10895071,
-      SF 18003955 (Bay Bridge night, runner-up — la prima scelta GGB bocciata: troppo chiara),
-      DC 3369102, Miami 19705160 — tutte Pexels free license, self-hosted 2000w in
-      public/images/heroes/ (~1MB totale)
-- [x] PageHeader → hero VEX alta bottom-left con bg full-bleed + gradiente; markets e SEO
-      tornati a PageHeader (era stato inlined per non toccare il condiviso)
-- [x] Mapping: About=NY, Services+Privacy=DC, Projects=LA, MarketResearch=SF, Contact=Miami,
-      SEO=rotazione 5 città per slug-hash, markets=foto della propria città
-- [x] Logo: navbar (già) + footer brand
+---
 
-## Decisioni intenzionali (review 2026-06-11)
-- Claim hero in inglese anche su locale IT: scelta brand esplicita di Gianluca ("mi piace il claim").
-- Home hero: `t.home.subtitle` ('USA Market Entry | …') sostituito da `taglineSub` — la stringa
-  pipe-separated non regge il nuovo design; keyword SEO restano in meta/structured data.
-  `subtitle` resta in translations (usabile altrove).
-- Gradiente bottom 40% sul video hero (deroga al "no overlay" della spec VEX demo): serve
-  contrasto WCAG del testo bianco sul video chiaro.
-
-## Fix da review multi-agente (12 confermati, applicati)
-- [x] AnimatedHeading: offset riga cumulativo (era lineIndex*line.length)
-- [x] AnimatedHeading: aria-label sul tag + aria-hidden sugli span per-char
-- [x] FadeIn: inert finché invisibile (no CTA focusabili a opacity 0)
-- [x] Hero video: poster 150K + reduced-motion → immagine statica + aria-hidden
-- [x] Video re-encode CRF31: 9.4→5.0MB
-- [x] .liquid-glass: rimosso border:none (uccideva i border-white/20 Tailwind)
-- [x] Navbar: rimosso toggle shadow isScrolled morto (override da liquid-glass) + listener orfano
-- [x] Hero: height 100dvh inline con fallback h-screen (mobile browser chrome)
-- [x] index.html: ripristinato preconnect Unsplash (pagine interne lo usano ancora)
-- [x] Contrasto: gradiente bottom-third dietro al testo hero
-
-## Capability usage
-- Subagent: Explore (fatto, ricognizione), general-purpose x3 (Fase B)
-- MCP: Claude Preview (verifica visiva), Vercel MCP (deployment URL)
-- CLI: gh (verifiche GitHub), pnpm
+# [ARCHIVIO giu 2026] Redesign VEX-style — landed via feat/vex-redesign (e2fe3e99) + fasi 0/1 (PR #11-13); dettaglio nella history git di questo file

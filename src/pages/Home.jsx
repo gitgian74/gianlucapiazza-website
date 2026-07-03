@@ -4,6 +4,7 @@ import { useLanguage } from '../hooks/use-language';
 import { ArrowRight, Globe, TrendingUp, Users, Building2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { trackSiteEvent } from '../components/shared/tracking';
+import { ANALYTICS_EVENTS } from '../components/shared/analyticsEvents';
 import { AnimatedHeading } from '../components/vex/AnimatedHeading';
 import { FadeIn } from '../components/vex/FadeIn';
 
@@ -88,13 +89,13 @@ export function Home() {
                                         <Link
                                             to="/contact"
                                             onClick={() => {
-                                                trackSiteEvent('landing_cta_click', {
+                                                trackSiteEvent(ANALYTICS_EVENTS.LANDING_CTA_CLICK, {
                                                     cta_id: 'home_hero_market_readiness_call',
                                                     destination: '/contact',
                                                     placement: 'home_hero',
                                                     offer: 'market_readiness_call',
                                                 });
-                                                trackSiteEvent('book_call', {
+                                                trackSiteEvent(ANALYTICS_EVENTS.BOOK_CALL, {
                                                     cta_id: 'home_hero_market_readiness_call',
                                                     destination: '/contact',
                                                     placement: 'home_hero',
@@ -106,7 +107,7 @@ export function Home() {
                                         </Link>
                                         <Link
                                             to="/buyer-readiness-usa"
-                                            onClick={() => trackSiteEvent('landing_cta_click', {
+                                            onClick={() => trackSiteEvent(ANALYTICS_EVENTS.LANDING_CTA_CLICK, {
                                                 cta_id: 'home_hero_checklist',
                                                 destination: '/buyer-readiness-usa',
                                                 placement: 'home_hero',
@@ -205,7 +206,7 @@ export function Home() {
                     <div className="grid md:grid-cols-3 gap-6 md:gap-8">
                         <Link
                             to="/services"
-                            onClick={() => trackSiteEvent('service_card_click', {
+                            onClick={() => trackSiteEvent(ANALYTICS_EVENTS.SERVICE_CARD_CLICK, {
                                 service_id: 'internationalization',
                                 destination: '/services',
                                 placement: 'home_services_preview',
@@ -235,7 +236,7 @@ export function Home() {
 
                         <Link
                             to="/services"
-                            onClick={() => trackSiteEvent('service_card_click', {
+                            onClick={() => trackSiteEvent(ANALYTICS_EVENTS.SERVICE_CARD_CLICK, {
                                 service_id: 'business_development',
                                 destination: '/services',
                                 placement: 'home_services_preview',
@@ -263,7 +264,7 @@ export function Home() {
                         </Link>
                         <Link
                             to="/services"
-                            onClick={() => trackSiteEvent('service_card_click', {
+                            onClick={() => trackSiteEvent(ANALYTICS_EVENTS.SERVICE_CARD_CLICK, {
                                 service_id: 'specialist_team',
                                 destination: '/services',
                                 placement: 'home_services_preview',
@@ -310,13 +311,13 @@ export function Home() {
                             <Link
                                 to="/contact"
                                 onClick={() => {
-                                    trackSiteEvent('landing_cta_click', {
+                                    trackSiteEvent(ANALYTICS_EVENTS.LANDING_CTA_CLICK, {
                                         cta_id: 'home_bottom_market_readiness_call',
                                         destination: '/contact',
                                         placement: 'home_bottom_cta',
                                         offer: 'market_readiness_call',
                                     });
-                                    trackSiteEvent('book_call', {
+                                    trackSiteEvent(ANALYTICS_EVENTS.BOOK_CALL, {
                                         cta_id: 'home_bottom_market_readiness_call',
                                         destination: '/contact',
                                         placement: 'home_bottom_cta',
@@ -329,7 +330,7 @@ export function Home() {
                             </Link>
                             <Link
                                 to="/buyer-readiness-usa"
-                                onClick={() => trackSiteEvent('landing_cta_click', {
+                                onClick={() => trackSiteEvent(ANALYTICS_EVENTS.LANDING_CTA_CLICK, {
                                     cta_id: 'home_bottom_checklist',
                                     destination: '/buyer-readiness-usa',
                                     placement: 'home_bottom_cta',

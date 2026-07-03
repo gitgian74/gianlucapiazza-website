@@ -8,6 +8,7 @@ import { Card } from '../components/shared/Card';
 import { Button } from '../components/shared/Button';
 import { SocialLinks } from '../components/shared/SocialLinks';
 import { getLeadAttribution, trackSiteEvent } from '../components/shared/tracking';
+import { ANALYTICS_EVENTS } from '../components/shared/analyticsEvents';
 
 const messageLengthBucket = (message) =>
     message.length < 250 ? 'short' : message.length < 1000 ? 'medium' : 'long';
@@ -27,7 +28,7 @@ export function Contact() {
     const handleChange = (e) => {
         if (!hasTrackedFormStart.current && e.target.name !== 'website') {
             hasTrackedFormStart.current = true;
-            trackSiteEvent('contact_form_start', {
+            trackSiteEvent(ANALYTICS_EVENTS.CONTACT_FORM_START, {
                 field_name: e.target.name,
             });
         }
@@ -47,8 +48,8 @@ export function Contact() {
             has_company: Boolean(formData.company.trim()),
             message_length_bucket: messageLengthBucket(formData.message),
         };
-        trackSiteEvent('form_submit', formTrackingPayload);
-        trackSiteEvent('contact_form_submit', formTrackingPayload);
+        trackSiteEvent(ANALYTICS_EVENTS.FORM_SUBMIT, formTrackingPayload);
+        trackSiteEvent(ANALYTICS_EVENTS.CONTACT_FORM_SUBMIT, formTrackingPayload);
 
         try {
             const response = await fetch('/api/contact', {
@@ -65,13 +66,13 @@ export function Contact() {
             if (response.ok) {
                 setStatus('success');
                 setFormData({ name: '', email: '', company: '', message: '', website: '' });
-                trackSiteEvent('contact_form_success', {
+                trackSiteEvent(ANALYTICS_EVENTS.CONTACT_FORM_SUCCESS, {
                     has_company: Boolean(formData.company.trim()),
                     message_length_bucket: messageLengthBucket(formData.message),
                 }, {
                     metaEvent: 'Lead',
                 });
-                trackSiteEvent('generate_lead', {
+                trackSiteEvent(ANALYTICS_EVENTS.GENERATE_LEAD, {
                     source: 'contact_form',
                     has_company: Boolean(formData.company.trim()),
                 }, {
@@ -81,7 +82,7 @@ export function Contact() {
                 const data = await response.json();
                 console.error('Server Error:', data);
                 setStatus('error');
-                trackSiteEvent('contact_form_error', {
+                trackSiteEvent(ANALYTICS_EVENTS.CONTACT_FORM_ERROR, {
                     error_type: 'server',
                     status_code: response.status,
                 });
@@ -91,7 +92,7 @@ export function Contact() {
         } catch (error) {
             console.error('Error sending message:', error);
             setStatus('error');
-            trackSiteEvent('contact_form_error', {
+            trackSiteEvent(ANALYTICS_EVENTS.CONTACT_FORM_ERROR, {
                 error_type: 'network',
             });
         }
@@ -130,8 +131,8 @@ export function Contact() {
                                         <a
                                             href={`tel:${t.contact.info.phoneIT}`}
                                             onClick={() => {
-                                                trackSiteEvent('click_phone', { phone_region: 'it', placement: 'contact_card' });
-                                                trackSiteEvent('contact_click', { method: 'phone_it', placement: 'contact_card' });
+                                                trackSiteEvent(ANALYTICS_EVENTS.CLICK_PHONE, { phone_region: 'it', placement: 'contact_card' });
+                                                trackSiteEvent(ANALYTICS_EVENTS.CONTACT_CLICK, { method: 'phone_it', placement: 'contact_card' });
                                             }}
                                             className="text-lg font-medium text-white hover:text-green-400 transition-colors"
                                         >
@@ -150,8 +151,8 @@ export function Contact() {
                                         <a
                                             href={`tel:${t.contact.info.phoneUS}`}
                                             onClick={() => {
-                                                trackSiteEvent('click_phone', { phone_region: 'us', placement: 'contact_card' });
-                                                trackSiteEvent('contact_click', { method: 'phone_us', placement: 'contact_card' });
+                                                trackSiteEvent(ANALYTICS_EVENTS.CLICK_PHONE, { phone_region: 'us', placement: 'contact_card' });
+                                                trackSiteEvent(ANALYTICS_EVENTS.CONTACT_CLICK, { method: 'phone_us', placement: 'contact_card' });
                                             }}
                                             className="text-lg font-medium text-white hover:text-purple-400 transition-colors"
                                         >

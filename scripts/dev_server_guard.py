@@ -9,7 +9,7 @@ from pathlib import Path
 
 
 HOST = "127.0.0.1"
-PORT = 5173
+PORT = int(os.environ.get("SMOKE_PORT", "5173"))
 BASE_URL = f"http://{HOST}:{PORT}"
 ROOT = Path(__file__).resolve().parents[1]
 LOG_DIR = ROOT / ".openclaw"

@@ -8,6 +8,7 @@ import { Section } from '../components/shared/Section';
 import { Card } from '../components/shared/Card';
 import { Button } from '../components/shared/Button';
 import { trackSiteEvent } from '../components/shared/tracking';
+import { ANALYTICS_EVENTS } from '../components/shared/analyticsEvents';
 
 export function Services() {
     const { language, t } = useLanguage();
@@ -180,7 +181,7 @@ export function Services() {
                                         </ul>
                                         <Link
                                             to="/contact"
-                                            onClick={() => trackSiteEvent('cta_click', {
+                                            onClick={() => trackSiteEvent(ANALYTICS_EVENTS.CTA_CLICK, {
                                                 cta_id: 'service_card_contact',
                                                 service_id: service.id,
                                                 service_title: service.data.title,
@@ -208,7 +209,7 @@ export function Services() {
                             <Link
                                 key={path.to}
                                 to={path.to}
-                                onClick={() => trackSiteEvent('seo_path_click', {
+                                onClick={() => trackSiteEvent(ANALYTICS_EVENTS.SEO_PATH_CLICK, {
                                     destination: path.to,
                                     label: path.label,
                                     placement: 'services_us_paths',
@@ -239,7 +240,7 @@ export function Services() {
                         </p>
                         <Link
                             to="/contact"
-                            onClick={() => trackSiteEvent('cta_click', {
+                            onClick={() => trackSiteEvent(ANALYTICS_EVENTS.CTA_CLICK, {
                                 cta_id: 'services_bottom_contact',
                                 destination: '/contact',
                                 placement: 'services_bottom_cta',

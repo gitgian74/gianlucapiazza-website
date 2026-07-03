@@ -7,6 +7,7 @@ import { Seo } from '../../components/shared/Seo';
 import { PageHeader } from '../../components/shared/PageHeader';
 import { useLanguage } from '../../hooks/use-language';
 import { trackSiteEvent } from '../../components/shared/tracking';
+import { ANALYTICS_EVENTS } from '../../components/shared/analyticsEvents';
 
 const SITE_URL = 'https://gianlucapiazza.com';
 
@@ -185,13 +186,13 @@ export function SeoLandingPage({ page }) {
       offer: 'market_readiness_call',
     };
 
-    trackSiteEvent('landing_cta_click', eventPayload);
-    trackSiteEvent('book_call', eventPayload);
+    trackSiteEvent(ANALYTICS_EVENTS.LANDING_CTA_CLICK, eventPayload);
+    trackSiteEvent(ANALYTICS_EVENTS.BOOK_CALL, eventPayload);
     navigate('/contact');
   };
 
   const trackChecklistDownload = (placement) => {
-    trackSiteEvent('download_checklist', {
+    trackSiteEvent(ANALYTICS_EVENTS.DOWNLOAD_CHECKLIST, {
       asset_id: 'buyer_distributor_readiness_checklist',
       asset_path: page.downloadPath,
       source_page: page.path,
@@ -306,7 +307,7 @@ export function SeoLandingPage({ page }) {
                   <Link
                     key={relatedPage.path}
                     to={relatedPage.path}
-                    onClick={() => trackSiteEvent('seo_path_click', {
+                    onClick={() => trackSiteEvent(ANALYTICS_EVENTS.SEO_PATH_CLICK, {
                       destination: relatedPage.path,
                       source_page: page.path,
                       placement: 'seo_landing_related_paths',

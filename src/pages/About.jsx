@@ -5,6 +5,7 @@ import { ArrowRight, Award, Briefcase, CheckCircle2, MapPin, Target } from 'luci
 import { Link } from 'react-router-dom';
 import { Section } from '../components/shared/Section';
 import { trackSiteEvent } from '../components/shared/tracking';
+import { ANALYTICS_EVENTS } from '../components/shared/analyticsEvents';
 import { FadeIn } from '../components/vex/FadeIn';
 
 export function About() {
@@ -64,7 +65,7 @@ export function About() {
                             <FadeIn delay={1200} className="mt-10 flex flex-col gap-4 sm:flex-row">
                                 <Link
                                     to="/contact"
-                                    onClick={() => trackSiteEvent('cta_click', {
+                                    onClick={() => trackSiteEvent(ANALYTICS_EVENTS.CTA_CLICK, {
                                         cta_id: 'about_hero_contact',
                                         destination: '/contact',
                                         placement: 'about_hero',
@@ -76,7 +77,7 @@ export function About() {
                                 </Link>
                                 <Link
                                     to="/projects"
-                                    onClick={() => trackSiteEvent('cta_click', {
+                                    onClick={() => trackSiteEvent(ANALYTICS_EVENTS.CTA_CLICK, {
                                         cta_id: 'about_hero_projects',
                                         destination: '/projects',
                                         placement: 'about_hero',
