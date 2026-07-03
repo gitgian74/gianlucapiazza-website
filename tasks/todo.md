@@ -45,8 +45,8 @@
 - [ ] Managed robots.txt (Content Signals) → disattivare o allineare (causa anche l'errore Lighthouse "robots.txt is not valid")
 
 ## Roadmap GEO contenuti (da ricerca agenti, non implementata oggi)
-- [ ] Riscrittura landing answer-first + statistiche con fonte (paper Princeton: +30-40% citazioni)
-- [ ] FAQ 5-8 domande conversazionali per landing città (formato Q&A nel body + FAQPage schema)
+- [x] Intro answer-first sulle 12 landing città (IT+EN) — statistiche con fonte esterna (ISTAT/ICE) restano da aggiungere quando ci sono dati veri GP
+- [x] FAQ 5 domande conversazionali per landing città IT+EN (body + FAQPage JSON-LD + fallback statico)
 - [ ] 3-5 case study con numeri (progetti Poretti/Starbucks, AMI/Niagara già in /projects ora prerenderizzati)
 - [ ] Digital PR: IACC directory, testate export, LinkedIn long-form (85% citazioni AI da earned media — Muck Rack)
 - [ ] Panel 25-30 prompt "money" IT/EN + monitoraggio mensile (Otterly ~$29/mese) + segmento GA4 referral AI

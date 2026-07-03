@@ -64,6 +64,9 @@ def main() -> None:
     for slug in ("miami", "new-york", "chicago", "boston", "las-vegas", "caraibi"):
         assert f'"{slug}": {{' in market_data, f"marketLandingData must define: {slug}"
         assert f"slug: '{slug}'" in routes_module, f"marketRoutes must define: {slug}"
+    assert market_data.count('"faqs"') >= 24, "every market landing must have IT+EN faqs"
+    assert_contains("src/pages/markets/MarketLandingPage.jsx", "FAQ_TITLE")
+    assert_contains("scripts/generate_seo_html.mjs", "faqNode")
 
     lead_magnet = ROOT / "public/lead-magnets/buyer-distributor-readiness-checklist.md"
     assert lead_magnet.exists(), "lead magnet checklist must exist"
