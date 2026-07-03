@@ -9,6 +9,7 @@ import { Button } from '../components/shared/Button';
 import { SocialLinks } from '../components/shared/SocialLinks';
 import { getLeadAttribution, trackSiteEvent } from '../components/shared/tracking';
 import { ANALYTICS_EVENTS } from '../components/shared/analyticsEvents';
+import { BOOKING_URL, hasBooking } from '../lib/bookingLink';
 
 const messageLengthBucket = (message) =>
     message.length < 250 ? 'short' : message.length < 1000 ? 'medium' : 'long';
@@ -96,6 +97,18 @@ export function Contact() {
                 }, {
                     metaEvent: 'Lead',
                 });
+                // After the email is sent, start the call-booking flow.
+                if (hasBooking) {
+                    trackSiteEvent(ANALYTICS_EVENTS.BOOK_CALL, {
+                        cta_id: 'contact_form_success',
+                        placement: 'contact_form',
+                        destination: BOOKING_URL,
+                        offer: 'market_readiness_call',
+                    });
+                    // Best-effort auto-open; popup blockers may defer this to the
+                    // fallback button shown in the success message.
+                    window.open(BOOKING_URL, '_blank', 'noopener,noreferrer');
+                }
             } else {
                 const data = await response.json();
                 console.error('Server Error:', data);
@@ -279,7 +292,19 @@ export function Contact() {
 
                                 <div role="status" aria-live="polite">
                                     {status === 'success' && (
-                                        <p className="text-green-400 text-center font-medium">{t.contact.form.success}</p>
+                                        <div className="text-center">
+                                            <p className="text-green-400 font-medium">{t.contact.form.success}</p>
+                                            {hasBooking && (
+                                                <a
+                                                    href={BOOKING_URL}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="mt-4 inline-flex items-center gap-2 bg-white text-slate-950 px-6 py-3 rounded-lg font-medium hover:bg-gray-100 transition-colors"
+                                                >
+                                                    {t.home.ctaButton} →
+                                                </a>
+                                            )}
+                                        </div>
                                     )}
                                     {status === 'error' && (
                                         <p className="text-red-400 text-center font-medium">{t.contact.form.error}</p>
