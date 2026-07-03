@@ -50,4 +50,4 @@
 - [ ] 3-5 case study con numeri (progetti Poretti/Starbucks, AMI/Niagara già in /projects ora prerenderizzati)
 - [ ] Digital PR: IACC directory, testate export, LinkedIn long-form (85% citazioni AI da earned media — Muck Rack)
 - [ ] Panel 25-30 prompt "money" IT/EN + monitoraggio mensile (Otterly ~$29/mese) + segmento GA4 referral AI
-- [ ] LinkedIn personale Gianluca nel sameAs Person (serve URL)
+- [x] LinkedIn personale Gianluca nel sameAs Person (https://www.linkedin.com/in/gianlucapiazza/)
