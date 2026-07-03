@@ -305,14 +305,11 @@ export const translations = {
       },
       info: {
         title: 'Informazioni di Contatto',
-        phoneIT: '+39 337 303431',
-        phoneUS: '+1 (305) 548-0002',
         addressIT: 'Vicenza',
         addressUS: 'c/o 8Hz LLC, 4660 Arboretum Cir Unit 201, Naples FL 34112',
         linkedin: 'LinkedIn',
         followSocial: 'Seguici sui social',
-        companyIT: '',
-        companyUS: '8Hz LLC'
+        companyIT: ''
       }
     },
     marketResearch: {
@@ -366,7 +363,7 @@ export const translations = {
         text: 'Durante la navigazione e l\'utilizzo del sito, possono essere raccolti i seguenti dati:',
         list: [
           'Dati tecnici di navigazione trattati dall’infrastruttura di hosting Vercel (es. log di richiesta, orari, user agent, stato della risposta).',
-          'Dati forniti volontariamente dall\'utente (nome, email, azienda, telefono nel form di contatto)',
+          'Dati forniti volontariamente dall\'utente (nome, email, azienda e messaggio nel form di contatto)',
           'Prompt e messaggi inseriti volontariamente nello strumento AI Market Research, trattati tramite API Google Gemini per generare la risposta.',
           'Dati aggregati e anonimizzati di utilizzo tramite Vercel Web Analytics, senza cookie di terza parte.',
           'Preferenze tecniche salvate nel browser, come scelta lingua e preferenza cookie/analytics.',
@@ -757,14 +754,11 @@ export const translations = {
       },
       info: {
         title: 'Contact Information',
-        phoneIT: '+39 337 303431',
-        phoneUS: '+1 (305) 548-0002',
         addressIT: 'Vicenza',
         addressUS: 'c/o 8Hz LLC, 4660 Arboretum Cir Unit 201, Naples FL 34112',
         linkedin: 'LinkedIn',
         followSocial: 'Follow us on social',
-        companyIT: '',
-        companyUS: '8Hz LLC'
+        companyIT: ''
       }
     },
     marketResearch: {
@@ -818,7 +812,7 @@ export const translations = {
         text: 'During navigation and use of the site, the following data may be collected:',
         list: [
           'Technical navigation data processed by the Vercel hosting infrastructure (for example request logs, timestamps, user agent, response status).',
-          'Data voluntarily provided by the user (name, email, company, phone in the contact form)',
+          'Data voluntarily provided by the user (name, email, company and message in the contact form)',
           'Prompts and messages voluntarily entered in the AI Market Research tool, processed through the Google Gemini API to generate the answer.',
           'Aggregated and anonymized usage data through Vercel Web Analytics, without third-party cookies.',
           'Technical preferences stored in the browser, such as language and cookie/analytics preference.',

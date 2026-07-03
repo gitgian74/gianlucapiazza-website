@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../hooks/use-language';
-import { Phone, MapPin, Send, Building2 } from 'lucide-react';
+import { MapPin, Send, Building2 } from 'lucide-react';
 import { PageHeader } from '../components/shared/PageHeader';
 import { Section } from '../components/shared/Section';
 import { Card } from '../components/shared/Card';
@@ -121,46 +121,6 @@ export function Contact() {
                             <h2 className="text-2xl font-bold text-white mb-8">{t.contact.info.title}</h2>
 
                             <div className="space-y-8">
-                                {/* Phone IT */}
-                                <div className="flex items-start gap-4 group">
-                                    <div className="p-3 bg-green-900/20 text-green-400 rounded-xl group-hover:bg-green-600 group-hover:text-white transition-colors">
-                                        <Phone size={24} />
-                                    </div>
-                                    <div>
-                                        <h3 className="text-sm font-medium text-muted-foreground mb-1">Phone (Italy)</h3>
-                                        <a
-                                            href={`tel:${t.contact.info.phoneIT}`}
-                                            onClick={() => {
-                                                trackSiteEvent(ANALYTICS_EVENTS.CLICK_PHONE, { phone_region: 'it', placement: 'contact_card' });
-                                                trackSiteEvent(ANALYTICS_EVENTS.CONTACT_CLICK, { method: 'phone_it', placement: 'contact_card' });
-                                            }}
-                                            className="text-lg font-medium text-white hover:text-green-400 transition-colors"
-                                        >
-                                            {t.contact.info.phoneIT}
-                                        </a>
-                                    </div>
-                                </div>
-
-                                {/* Phone US */}
-                                <div className="flex items-start gap-4 group">
-                                    <div className="p-3 bg-purple-900/20 text-purple-400 rounded-xl group-hover:bg-purple-600 group-hover:text-white transition-colors">
-                                        <Phone size={24} />
-                                    </div>
-                                    <div>
-                                        <h3 className="text-sm font-medium text-muted-foreground mb-1">Phone (USA)</h3>
-                                        <a
-                                            href={`tel:${t.contact.info.phoneUS}`}
-                                            onClick={() => {
-                                                trackSiteEvent(ANALYTICS_EVENTS.CLICK_PHONE, { phone_region: 'us', placement: 'contact_card' });
-                                                trackSiteEvent(ANALYTICS_EVENTS.CONTACT_CLICK, { method: 'phone_us', placement: 'contact_card' });
-                                            }}
-                                            className="text-lg font-medium text-white hover:text-purple-400 transition-colors"
-                                        >
-                                            {t.contact.info.phoneUS}
-                                        </a>
-                                    </div>
-                                </div>
-
                                 {/* Address IT */}
                                 <div className="flex items-start gap-4 group">
                                     <div className="p-3 bg-orange-900/20 text-orange-400 rounded-xl group-hover:bg-orange-600 group-hover:text-white transition-colors">
@@ -182,9 +142,6 @@ export function Contact() {
                                     <div>
                                         <h3 className="text-sm font-medium text-muted-foreground mb-1">Office (USA)</h3>
                                         <p className="text-lg font-medium text-white">
-                                            {t.contact.info.companyUS}
-                                        </p>
-                                        <p className="text-muted-foreground">
                                             {t.contact.info.addressUS}
                                         </p>
                                     </div>

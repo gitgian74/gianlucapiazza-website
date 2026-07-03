@@ -400,8 +400,8 @@ function renderContactFallback() {
         <p>${escapeHtml(it.contact.subtitle)}</p>
         <h2>${escapeHtml(info.title)}</h2>
         <ul>
-          <li>Telefono (Italia): <a href="tel:${escapeAttr(info.phoneIT.replace(/\s+/g, ''))}">${escapeHtml(info.phoneIT)}</a> — ${escapeHtml(info.addressIT)}</li>
-          <li>Telefono (USA): <a href="tel:${escapeAttr(info.phoneUS.replace(/[\s()-]+/g, ''))}">${escapeHtml(info.phoneUS)}</a> — ${escapeHtml(info.addressUS)}</li>
+          <li>Sede (Italia): ${escapeHtml(info.addressIT)}</li>
+          <li>Sede (USA): ${escapeHtml(info.addressUS)}</li>
           <li><a href="https://www.linkedin.com/company/gp-and-partners/">LinkedIn — GP &amp; Partners</a></li>
         </ul>
         <p>${escapeHtml(it.contact.form.nextStep)}</p>

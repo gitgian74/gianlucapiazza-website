@@ -207,13 +207,13 @@ export function Layout({ children }) {
                             <p className="text-muted-foreground leading-relaxed mb-6">
                                 {t.footer.about}
                             </p>
-                            <h4 className="font-semibold text-foreground mb-4 text-sm">{t.footer.followSocial}</h4>
+                            <h2 className="font-semibold text-foreground mb-4 text-sm">{t.footer.followSocial}</h2>
                             <SocialLinks showLabels className="max-w-sm" linkClassName="bg-card/60" />
                         </div>
 
                         <nav aria-label={t.footer.quickLinks} className="md:col-span-8 lg:col-span-9 grid grid-cols-2 gap-8 sm:grid-cols-3 md:gap-10">
                             <div>
-                                <h4 className="font-semibold text-foreground mb-5 text-sm">{t.footer.quickLinks}</h4>
+                                <h2 className="font-semibold text-foreground mb-5 text-sm">{t.footer.quickLinks}</h2>
                                 <ul className="space-y-3 text-sm">
                                     {quickLinks.map((link) => (
                                         <li key={link.path}>
@@ -237,7 +237,7 @@ export function Layout({ children }) {
                             </div>
 
                             <div>
-                                <h4 className="font-semibold text-foreground mb-5 text-sm">{t.footer.markets}</h4>
+                                <h2 className="font-semibold text-foreground mb-5 text-sm">{t.footer.markets}</h2>
                                 <ul className="space-y-3 text-sm">
                                     {marketLinks.map((link) => (
                                         <li key={link.path}>
@@ -258,7 +258,7 @@ export function Layout({ children }) {
                             </div>
 
                             <div>
-                                <h4 className="font-semibold text-foreground mb-5 text-sm">{t.footer.landings}</h4>
+                                <h2 className="font-semibold text-foreground mb-5 text-sm">{t.footer.landings}</h2>
                                 <ul className="space-y-3 text-sm">
                                     {Object.values(seoPages).map((page) => (
                                         <li key={page.path}>

@@ -14,6 +14,7 @@ export function PageHeader({ title, subtitle, children, className, backgroundIma
                         alt=""
                         className="w-full h-full object-cover"
                         loading="eager"
+                        fetchPriority="high"
                         decoding="async"
                     />
                     <div className="absolute inset-x-0 bottom-0 h-3/5 bg-gradient-to-t from-background via-background/55 to-transparent"></div>

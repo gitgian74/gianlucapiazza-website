@@ -156,7 +156,7 @@ export function Home() {
                             <div className="w-10 h-10 md:w-14 md:h-14 bg-[var(--us-red)]/15 rounded-2xl flex items-center justify-center text-[var(--us-red)] mb-4">
                                 <Globe size={20} />
                             </div>
-                            <h3 className="text-2xl md:text-5xl font-bold text-white mb-1 md:mb-2">{t.home.stats.experienceValue}</h3>
+                            <div className="text-2xl md:text-5xl font-bold text-white mb-1 md:mb-2">{t.home.stats.experienceValue}</div>
                             <p className="text-muted-foreground font-medium text-xs md:text-lg">{t.home.stats.experience}</p>
                         </motion.div>
 
@@ -164,7 +164,7 @@ export function Home() {
                             <div className="w-10 h-10 md:w-14 md:h-14 bg-green-500/20 rounded-2xl flex items-center justify-center text-green-400 mb-4">
                                 <TrendingUp size={20} />
                             </div>
-                            <h3 className="text-2xl md:text-5xl font-bold text-white mb-1 md:mb-2">{t.home.stats.marketsValue}</h3>
+                            <div className="text-2xl md:text-5xl font-bold text-white mb-1 md:mb-2">{t.home.stats.marketsValue}</div>
                             <p className="text-muted-foreground font-medium text-xs md:text-lg">{t.home.stats.markets}</p>
                         </motion.div>
 
@@ -172,7 +172,7 @@ export function Home() {
                             <div className="w-10 h-10 md:w-14 md:h-14 bg-purple-500/20 rounded-2xl flex items-center justify-center text-purple-400 mb-4">
                                 <Building2 size={20} />
                             </div>
-                            <h3 className="text-2xl md:text-5xl font-bold text-white mb-1 md:mb-2">Global</h3>
+                            <div className="text-2xl md:text-5xl font-bold text-white mb-1 md:mb-2">Global</div>
                             <p className="text-muted-foreground font-medium text-xs md:text-lg">{t.home.stats.partnerships}</p>
                         </motion.div>
                     </motion.div>
@@ -228,7 +228,7 @@ export function Home() {
                                         {t.services.service1.description}
                                     </p>
                                 </div>
-                                <div className="mt-6 md:mt-10 flex items-center text-[var(--us-red)] font-bold text-sm md:text-lg">
+                                <div className="mt-6 md:mt-10 flex items-center text-red-400 font-bold text-sm md:text-lg">
                                     {t.home.learnMore} <ArrowRight size={20} className="ml-2 group-hover:translate-x-2 transition-transform" />
                                 </div>
                             </div>
@@ -257,7 +257,7 @@ export function Home() {
                                         {t.services.service2.description}
                                     </p>
                                 </div>
-                                <div className="mt-6 md:mt-10 flex items-center text-purple-500 font-bold text-sm md:text-lg">
+                                <div className="mt-6 md:mt-10 flex items-center text-purple-400 font-bold text-sm md:text-lg">
                                     {t.home.learnMore} <ArrowRight size={20} className="ml-2 group-hover:translate-x-2 transition-transform" />
                                 </div>
                             </div>
@@ -305,7 +305,7 @@ export function Home() {
                             <h2 className="text-2xl md:text-6xl font-bold text-primary-foreground mb-6 md:mb-8 tracking-tight">
                                 {t.home.ctaTitle}
                             </h2>
-                            <p className="text-base md:text-2xl text-primary-foreground/80 mb-8 max-w-3xl mx-auto font-light">
+                            <p className="text-base md:text-2xl text-primary-foreground mb-8 max-w-3xl mx-auto font-light">
                                 {t.home.ctaText}
                             </p>
                             <Link

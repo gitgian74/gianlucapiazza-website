@@ -64,12 +64,12 @@ export function CookieConsent() {
                             )}
                             <p className="text-slate-600 text-sm leading-relaxed">
                                 {t.cookieConsent.text}{' '}
-                                <Link to="/privacy" className="text-primary hover:text-primary/80 underline">
+                                <Link to="/privacy" className="text-red-700 hover:text-red-800 underline">
                                     {t.cookieConsent.learnMore}
                                 </Link>.
                             </p>
                             {t.cookieConsent.marketingText && (
-                                <p className="text-slate-500 text-xs leading-relaxed mt-2">
+                                <p className="text-slate-600 text-xs leading-relaxed mt-2">
                                     {t.cookieConsent.marketingText}
                                 </p>
                             )}

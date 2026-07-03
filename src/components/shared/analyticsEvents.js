@@ -6,8 +6,6 @@
 export const ANALYTICS_EVENTS = {
   BOOK_CALL: 'book_call',
   CLICK_LINKEDIN: 'click_linkedin',
-  CLICK_PHONE: 'click_phone',
-  CONTACT_CLICK: 'contact_click',
   CONTACT_FORM_ERROR: 'contact_form_error',
   CONTACT_FORM_START: 'contact_form_start',
   CONTACT_FORM_SUBMIT: 'contact_form_submit',
