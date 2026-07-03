@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8" />
+<title>Buyer/Distributor Readiness Checklist — GP & Partners</title>
+<style>
+  :root {
+    --navy: #0f172a;
+    --slate: #475569;
+    --slate-light: #94a3b8;
+    --red: #E30613;
+    --border: #e2e8f0;
+    --panel: #f8fafc;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif; color: var(--navy); font-size: 10.5pt; line-height: 1.5; }
+  .page { padding: 0 15mm; }
+
+  .band {
+    background: var(--navy);
+    color: #f8fafc;
+    padding: 10mm 15mm;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    -webkit-print-color-adjust: exact;
+  }
+  .band .brand { display: flex; align-items: center; gap: 5mm; }
+  .band .brand svg { width: 13mm; height: 13mm; }
+  .band .name { font-size: 15pt; font-weight: 700; letter-spacing: -0.02em; }
+  .band .tag { font-size: 8pt; color: #cbd5e1; letter-spacing: 0.14em; text-transform: uppercase; margin-top: 1mm; }
+  .band .site { font-size: 9pt; color: #cbd5e1; }
+
+  .titleblock { padding: 12mm 15mm 6mm; }
+  .eyebrow { font-size: 8pt; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--red); margin-bottom: 3mm; }
+  h1 { font-size: 24pt; font-weight: 700; letter-spacing: -0.03em; line-height: 1.15; margin-bottom: 4mm; }
+  .lede { font-size: 11pt; color: var(--slate); max-width: 150mm; }
+
+  .legend { display: flex; gap: 4mm; padding: 5mm 15mm 8mm; }
+  .legend .chip { flex: 1; border: 1px solid var(--border); border-radius: 3mm; padding: 3.5mm 4mm; background: var(--panel); -webkit-print-color-adjust: exact; }
+  .legend .score { font-size: 13pt; font-weight: 700; color: var(--red); }
+  .legend .desc { font-size: 8.5pt; color: var(--slate); margin-top: 1mm; }
+
+  .section { padding: 0 15mm; margin-bottom: 7mm; break-inside: avoid; }
+  .section-head { display: flex; align-items: baseline; justify-content: space-between; border-bottom: 2px solid var(--navy); padding-bottom: 2mm; margin-bottom: 3mm; }
+  .section-head h2 { font-size: 13pt; font-weight: 700; letter-spacing: -0.02em; }
+  .section-head h2 .num { color: var(--red); margin-right: 2mm; }
+  .section-head .subtotal { font-size: 8.5pt; color: var(--slate-light); }
+  .section-head .subtotal .line { display: inline-block; width: 10mm; border-bottom: 1px solid var(--slate-light); }
+
+  .q { display: flex; align-items: flex-start; gap: 3mm; padding: 2.4mm 0; border-bottom: 1px solid var(--border); break-inside: avoid; }
+  .q:last-child { border-bottom: none; }
+  .q .n { font-size: 8.5pt; font-weight: 700; color: var(--red); min-width: 6mm; padding-top: 0.4mm; }
+  .q .t { flex: 1; font-size: 10pt; }
+  .q .boxes { display: flex; gap: 2mm; padding-top: 0.4mm; }
+  .q .box { width: 6.5mm; height: 6.5mm; border: 1.2px solid var(--slate-light); border-radius: 1.5mm; display: flex; align-items: center; justify-content: center; font-size: 7.5pt; color: var(--slate-light); font-weight: 600; }
+
+  .total { margin: 4mm 15mm 8mm; border: 2px solid var(--navy); border-radius: 3mm; padding: 4.5mm 6mm; display: flex; justify-content: space-between; align-items: center; break-inside: avoid; }
+  .total .label { font-size: 12pt; font-weight: 700; letter-spacing: -0.02em; }
+  .total .value { font-size: 12pt; font-weight: 700; color: var(--red); }
+
+  .tiers { padding: 0 15mm; margin-bottom: 8mm; break-inside: avoid; }
+  .tiers h2 { font-size: 13pt; font-weight: 700; margin-bottom: 3mm; letter-spacing: -0.02em; }
+  .tier { display: flex; gap: 5mm; border-left: 1.2mm solid var(--red); background: var(--panel); border-radius: 0 3mm 3mm 0; padding: 3.5mm 5mm; margin-bottom: 2.5mm; -webkit-print-color-adjust: exact; break-inside: avoid; }
+  .tier .range { font-size: 11pt; font-weight: 700; min-width: 24mm; }
+  .tier .what { font-size: 9.5pt; color: var(--slate); }
+  .tier.mid { border-left-color: var(--slate-light); }
+  .tier.top { border-left-color: var(--navy); }
+
+  .cta { margin: 0 15mm; background: var(--navy); color: #f8fafc; border-radius: 4mm; padding: 7mm 8mm; -webkit-print-color-adjust: exact; break-inside: avoid; }
+  .cta h2 { font-size: 14pt; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 2.5mm; }
+  .cta p { font-size: 9.5pt; color: #cbd5e1; margin-bottom: 3mm; }
+  .cta ul { list-style: none; display: flex; flex-wrap: wrap; gap: 2mm 3mm; margin-bottom: 5mm; }
+  .cta li { font-size: 8.5pt; border: 1px solid rgba(248,250,252,0.35); border-radius: 10mm; padding: 1.2mm 3.5mm; color: #e2e8f0; }
+  .cta .btn { display: inline-block; background: var(--red); color: #fff; font-size: 10.5pt; font-weight: 600; padding: 3mm 7mm; border-radius: 10mm; }
+  .cta .link { font-size: 9pt; color: #cbd5e1; margin-left: 4mm; margin-bottom: 0; display: inline; }
+</style>
+</head>
+<body>
+
+<div class="band">
+  <div class="brand">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="GP & Partners">
+      <rect width="120" height="120" rx="28" fill="#E30613"></rect>
+      <g transform="translate(18 18) scale(0.7)" fill="none" stroke="#FFFFFF" stroke-width="13" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M 78 38 A 34 34 0 1 0 78 86"></path>
+        <path d="M 84 61 L 63 61"></path>
+        <path d="M 90 26 L 90 100"></path>
+        <path d="M 90 26 A 21 21 0 0 1 90 68"></path>
+      </g>
+    </svg>
+    <div>
+      <div class="name">GP &amp; Partners</div>
+      <div class="tag">USA Market Entry Partner operativo</div>
+    </div>
+  </div>
+  <div class="site">gianlucapiazza.com</div>
+</div>
+
+<div class="titleblock">
+  <div class="eyebrow">Strumento operativo</div>
+  <h1>Buyer/Distributor<br />Readiness Checklist</h1>
+  <p class="lede">Una checklist operativa per capire se la tua azienda è pronta a parlare con buyer, distributori e partner USA senza bruciare opportunità. Assegna un punteggio a ogni domanda e somma il totale.</p>
+</div>
+
+<div class="legend">
+  <div class="chip"><span class="score">0</span><div class="desc">Assente / non chiaro</div></div>
+  <div class="chip"><span class="score">1</span><div class="desc">Presente ma migliorabile</div></div>
+  <div class="chip"><span class="score">2</span><div class="desc">Pronto, documentato e utilizzabile in conversazione commerciale</div></div>
+</div>
+
+<div class="section">
+  <div class="section-head"><h2><span class="num">01</span>Prodotto e categoria</h2><div class="subtotal">Punteggio <span class="line"></span>&thinsp;/ 8</div></div>
+  <div class="q"><div class="n">1</div><div class="t">Sai spiegare in 20 secondi perché il prodotto è rilevante per il mercato USA?</div><div class="boxes"><div class="box">0</div><div class="box">1</div><div class="box">2</div></div></div>
+  <div class="q"><div class="n">2</div><div class="t">Hai definito categoria, fascia prezzo e buyer ideale?</div><div class="boxes"><div class="box">0</div><div class="box">1</div><div class="box">2</div></div></div>
+  <div class="q"><div class="n">3</div><div class="t">Sai quali alternative USA il buyer sta già acquistando?</div><div class="boxes"><div class="box">0</div><div class="box">1</div><div class="box">2</div></div></div>
+  <div class="q"><div class="n">4</div><div class="t">Hai prove commerciali: vendite, sell-through, riordini, clienti o casi d'uso?</div><div class="boxes"><div class="box">0</div><div class="box">1</div><div class="box">2</div></div></div>
+</div>
+
+<div class="section">
+  <div class="section-head"><h2><span class="num">02</span>Canale e partner</h2><div class="subtotal">Punteggio <span class="line"></span>&thinsp;/ 8</div></div>
+  <div class="q"><div class="n">5</div><div class="t">Sai se cercare importatore, distributore, agente, broker, showroom, retail buyer o partner B2B?</div><div class="boxes"><div class="box">0</div><div class="box">1</div><div class="box">2</div></div></div>
+  <div class="q"><div class="n">6</div><div class="t">Hai criteri chiari per dire sì/no a un potenziale partner?</div><div class="boxes"><div class="box">0</div><div class="box">1</div><div class="box">2</div></div></div>
+  <div class="q"><div class="n">7</div><div class="t">Hai definito territori, esclusiva, KPI e responsabilità promozionali minime?</div><div class="boxes"><div class="box">0</div><div class="box">1</div><div class="box">2</div></div></div>
+  <div class="q"><div class="n">8</div><div class="t">Hai una lista corta di canali prioritari, non una lista generica di contatti?</div><div class="boxes"><div class="box">0</div><div class="box">1</div><div class="box">2</div></div></div>
+</div>
+
+<div class="section">
+  <div class="section-head"><h2><span class="num">03</span>Prezzo, margini e operatività</h2><div class="subtotal">Punteggio <span class="line"></span>&thinsp;/ 8</div></div>
+  <div class="q"><div class="n">9</div><div class="t">Il pricing regge margini USA, trasporto, duty, promozione e markup di canale?</div><div class="boxes"><div class="box">0</div><div class="box">1</div><div class="box">2</div></div></div>
+  <div class="q"><div class="n">10</div><div class="t">Sai rispondere a MOQ, lead time, samples, incoterms, payment terms e resi?</div><div class="boxes"><div class="box">0</div><div class="box">1</div><div class="box">2</div></div></div>
+  <div class="q"><div class="n">11</div><div class="t">Hai chiarito compliance, certificazioni, assicurazioni e documentazione richiesta?</div><div class="boxes"><div class="box">0</div><div class="box">1</div><div class="box">2</div></div></div>
+  <div class="q"><div class="n">12</div><div class="t">Hai una posizione su stock, fulfillment, importazione e supporto post-vendita?</div><div class="boxes"><div class="box">0</div><div class="box">1</div><div class="box">2</div></div></div>
+</div>
+
+<div class="section">
+  <div class="section-head"><h2><span class="num">04</span>Materiali buyer-ready</h2><div class="subtotal">Punteggio <span class="line"></span>&thinsp;/ 8</div></div>
+  <div class="q"><div class="n">13</div><div class="t">Hai un buyer deck in inglese, non solo una brochure istituzionale?</div><div class="boxes"><div class="box">0</div><div class="box">1</div><div class="box">2</div></div></div>
+  <div class="q"><div class="n">14</div><div class="t">Hai line sheet/catalogo con prezzo, formati, MOQ, immagini e argomenti commerciali?</div><div class="boxes"><div class="box">0</div><div class="box">1</div><div class="box">2</div></div></div>
+  <div class="q"><div class="n">15</div><div class="t">Hai una email intro breve e orientata al ruolo del buyer/distributore?</div><div class="boxes"><div class="box">0</div><div class="box">1</div><div class="box">2</div></div></div>
+  <div class="q"><div class="n">16</div><div class="t">Hai FAQ pronte per obiezioni su prezzo, logistica, supply e differenziazione?</div><div class="boxes"><div class="box">0</div><div class="box">1</div><div class="box">2</div></div></div>
+</div>
+
+<div class="section">
+  <div class="section-head"><h2><span class="num">05</span>Follow-up e misurazione</h2><div class="subtotal">Punteggio <span class="line"></span>&thinsp;/ 8</div></div>
+  <div class="q"><div class="n">17</div><div class="t">Hai una sequenza di follow-up per 7, 14 e 30 giorni?</div><div class="boxes"><div class="box">0</div><div class="box">1</div><div class="box">2</div></div></div>
+  <div class="q"><div class="n">18</div><div class="t">Usi un CRM o almeno una pipeline leggibile con stato, next step e owner?</div><div class="boxes"><div class="box">0</div><div class="box">1</div><div class="box">2</div></div></div>
+  <div class="q"><div class="n">19</div><div class="t">Sai quali segnali indicano interesse reale vs curiosità generica?</div><div class="boxes"><div class="box">0</div><div class="box">1</div><div class="box">2</div></div></div>
+  <div class="q"><div class="n">20</div><div class="t">Hai definito quando fermare, correggere o scalare il mercato USA?</div><div class="boxes"><div class="box">0</div><div class="box">1</div><div class="box">2</div></div></div>
+</div>
+
+<div class="total"><div class="label">Totale</div><div class="value">______ / 40</div></div>
+
+<div class="tiers">
+  <h2>Come leggere il tuo punteggio</h2>
+  <div class="tier"><div class="range">0–18</div><div class="what"><strong>Non iniziare outreach.</strong> Prima serve un readiness sprint: contattare buyer adesso brucerebbe opportunità difficili da recuperare.</div></div>
+  <div class="tier mid"><div class="range">19–30</div><div class="what"><strong>Puoi testare conversazioni selezionate</strong>, ma correggi i gap critici prima di allargare l'outreach.</div></div>
+  <div class="tier top"><div class="range">31–40</div><div class="what"><strong>Sei vicino alla buyer readiness.</strong> Puoi pianificare outreach o fiera con follow-up strutturato.</div></div>
+</div>
+
+<div class="cta">
+  <h2>Trasforma il tuo score in un piano operativo</h2>
+  <p>Prima della call, prepara:</p>
+  <ul>
+    <li>Sito aziendale</li>
+    <li>Deck / catalogo</li>
+    <li>Prezzi o range indicativi</li>
+    <li>Canale USA desiderato</li>
+    <li>Storia dei contatti USA già avuti</li>
+  </ul>
+  <span class="btn">Prenota una Market Readiness Call</span><p class="link">gianlucapiazza.com/contact</p>
+</div>
+
+</body>
+</html>

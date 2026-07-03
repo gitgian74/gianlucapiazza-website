@@ -51,3 +51,40 @@
 - [ ] Digital PR: IACC directory, testate export, LinkedIn long-form (85% citazioni AI da earned media — Muck Rack)
 - [ ] Panel 25-30 prompt "money" IT/EN + monitoraggio mensile (Otterly ~$29/mese) + segmento GA4 referral AI
 - [x] LinkedIn personale Gianluca nel sameAs Person (https://www.linkedin.com/in/gianlucapiazza/)
+
+---
+
+# Piano: booking calendario + rimozione telefoni (2026-07-03, in attesa decisioni GP)
+
+> Done quando: nessun numero di telefono su sito/HTML statico, CTA "Prenota una call"
+> aprono il calendario, eventi GA4 booking_click tracciati, build+test+smoke verdi.
+
+## Decisioni da GP (bloccanti)
+- [ ] D1: strumento calendario + URL evento (Calendly consigliato / Cal.com / Google Calendar appointments)
+- [ ] D2: UX — CTA dirette al calendario + embed su /contact (consigliato) oppure solo link esterno
+- Assunzione dichiarata: si rimuovono SOLO i telefoni; gli indirizzi (Vicenza / Naples FL) e LinkedIn restano.
+
+## Fase A — Rimozione telefoni — P0 / S
+- [ ] `src/translations.js`: rimuovere phoneIT/phoneUS (IT righe ~308-309, EN ~760-761)
+- [ ] `src/pages/Contact.jsx`: rimuovere le 2 card telefono (tel: + eventi click_phone/contact_click method phone_*)
+- [ ] `scripts/generate_seo_html.mjs`: fallback statico /contact senza telefoni (righe ~403-404)
+- [ ] `analyticsEvents.js`: rimuovere CLICK_PHONE (+ assert nel validator) — nessun altro uso
+- [ ] Ricontrollo finale: grep numeri su dist/ dopo build (0 occorrenze)
+
+## Fase B — Booking calendario — P0 / M
+- [ ] `src/lib/bookingLink.js`: SSoT URL prenotazione + helper evento GA4 `booking_click` (nuova costante)
+- [ ] CTA collegate (target="_blank" rel="noopener", evento booking_click con placement):
+      Home (ctaButton "Prenota una Market Readiness Call"), SeoLandingPage (CTA primaria book_call),
+      MarketLandingPage (ctaBtn), Contact (bottone "Prenota direttamente" sopra il form)
+- [ ] Il form contatti resta come canale alternativo ("preferisci scrivere?")
+- [ ] PDF lead magnet: CTA finale → URL calendario (rigenerare con scripts/generate_lead_magnet_pdf.py)
+- [ ] JSON-LD ContactPoint + llms.txt: aggiungere booking URL
+- [ ] (Se D2=embed) /contact: widget inline caricato SOLO al click (no script terzi al load — coerente col consent attuale)
+
+## Verifica
+- [ ] pnpm lint/build/test:marketing + smoke; click-test CTA su preview; grep telefoni su dist = 0
+- [ ] Nota GDPR: link esterno = zero cookie terzi; embed = script Calendly solo dopo azione utente
+
+## Correlati ancora aperti
+- PR #18 (PDF checklist) in attesa di merge — se D-calendario arriva subito, aggiorno il PDF PRIMA del merge così va live già col link giusto
+- RESEND_API_KEY ancora mancante su Vercel (form contatti 500) — attesa chiave da GP

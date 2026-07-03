@@ -69,10 +69,15 @@ def main() -> None:
     assert_contains("scripts/generate_seo_html.mjs", "faqNode")
 
     lead_magnet = ROOT / "public/lead-magnets/buyer-distributor-readiness-checklist.md"
-    assert lead_magnet.exists(), "lead magnet checklist must exist"
+    assert lead_magnet.exists(), "lead magnet checklist source must exist"
     checklist = lead_magnet.read_text(encoding="utf-8")
     assert "Scoring" in checklist
     assert "Buyer/Distributor Readiness" in checklist
+
+    lead_magnet_pdf = ROOT / "public/lead-magnets/buyer-distributor-readiness-checklist.pdf"
+    assert lead_magnet_pdf.exists(), "branded lead magnet PDF must exist (scripts/generate_lead_magnet_pdf.py)"
+    assert lead_magnet_pdf.stat().st_size > 50_000, "lead magnet PDF looks truncated"
+    assert_contains("src/pages/seo/seoPageData.js", "buyer-distributor-readiness-checklist.pdf")
 
     queue_path = ROOT / "content/editorial/gp-partners-linkedin-queue.json"
     assert queue_path.exists(), "LinkedIn editorial queue must exist"
