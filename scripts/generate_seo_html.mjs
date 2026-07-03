@@ -174,10 +174,25 @@ function buildPageHtml(template, page) {
 
 function buildMarketJsonLd(page, content, pagePath) {
   const pageUrl = `${siteUrl}${pagePath}`;
+  const faqNode = content.faqs?.length
+    ? [{
+        '@type': 'FAQPage',
+        '@id': `${pageUrl}#faq`,
+        mainEntity: content.faqs.map(([question, answer]) => ({
+          '@type': 'Question',
+          name: question,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: answer,
+          },
+        })),
+      }]
+    : [];
 
   return {
     '@context': 'https://schema.org',
     '@graph': [
+      ...faqNode,
       {
         '@type': 'Service',
         '@id': `${pageUrl}#service`,
@@ -235,6 +250,10 @@ function renderMarketFallback(content) {
     .map((area) => `<article><h3>${escapeHtml(area.name)}</h3><p>${escapeHtml(area.note)}</p></article>`)
     .join('');
   const services = content.servicesList.map((item) => `<li>${escapeHtml(item)}</li>`).join('');
+  const faqs = (content.faqs || [])
+    .map(([question, answer]) => `<article><h3>${escapeHtml(question)}</h3><p>${escapeHtml(answer)}</p></article>`)
+    .join('');
+  const faqSection = faqs ? `<h2>FAQ</h2>\n        ${faqs}` : '';
 
   return `
       <main class="seo-static-fallback">
@@ -250,6 +269,7 @@ function renderMarketFallback(content) {
         ${areas}
         <h2>${escapeHtml(content.services)}</h2>
         <ul>${services}</ul>
+        ${faqSection}
         <p><a href="/contact">${escapeHtml(content.ctaBtn)}</a></p>
       </main>
     `;
