@@ -41,6 +41,9 @@ export function About() {
                         src="/images/heroes/new-york.jpg"
                         alt="New York Skyline"
                         className="h-full w-full object-cover object-[58%_center]"
+                        loading="eager"
+                        fetchPriority="high"
+                        decoding="async"
                     />
                     <div className="absolute inset-0 bg-gradient-to-br from-slate-950/88 via-slate-950/62 to-slate-950/25"></div>
                     <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent"></div>

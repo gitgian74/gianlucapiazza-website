@@ -142,9 +142,6 @@ export function Contact() {
                                     <div>
                                         <h3 className="text-sm font-medium text-muted-foreground mb-1">Office (USA)</h3>
                                         <p className="text-lg font-medium text-white">
-                                            {t.contact.info.companyUS}
-                                        </p>
-                                        <p className="text-muted-foreground">
                                             {t.contact.info.addressUS}
                                         </p>
                                     </div>

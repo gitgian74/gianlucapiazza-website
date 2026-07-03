@@ -309,8 +309,7 @@ export const translations = {
         addressUS: 'c/o 8Hz LLC, 4660 Arboretum Cir Unit 201, Naples FL 34112',
         linkedin: 'LinkedIn',
         followSocial: 'Seguici sui social',
-        companyIT: '',
-        companyUS: '8Hz LLC'
+        companyIT: ''
       }
     },
     marketResearch: {
@@ -759,8 +758,7 @@ export const translations = {
         addressUS: 'c/o 8Hz LLC, 4660 Arboretum Cir Unit 201, Naples FL 34112',
         linkedin: 'LinkedIn',
         followSocial: 'Follow us on social',
-        companyIT: '',
-        companyUS: '8Hz LLC'
+        companyIT: ''
       }
     },
     marketResearch: {

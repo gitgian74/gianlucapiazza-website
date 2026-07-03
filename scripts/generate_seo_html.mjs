@@ -401,7 +401,7 @@ function renderContactFallback() {
         <h2>${escapeHtml(info.title)}</h2>
         <ul>
           <li>Sede (Italia): ${escapeHtml(info.addressIT)}</li>
-          <li>Sede (USA): ${escapeHtml(info.companyUS)}, ${escapeHtml(info.addressUS)}</li>
+          <li>Sede (USA): ${escapeHtml(info.addressUS)}</li>
           <li><a href="https://www.linkedin.com/company/gp-and-partners/">LinkedIn — GP &amp; Partners</a></li>
         </ul>
         <p>${escapeHtml(it.contact.form.nextStep)}</p>

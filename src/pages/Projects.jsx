@@ -22,11 +22,11 @@ export function Projects() {
     ];
 
     const projectImages = [
-        "https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&q=80", // Coffee/Starbucks vibe
+        "https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&q=80&w=800", // Coffee/Starbucks vibe
         "/images/project-acque-minerali.jpg", // Sorgente sulfurea di Guiglia photo
-        "https://images.unsplash.com/photo-1578916171728-46686eac8d58?auto=format&fit=crop&q=80", // Logistics/Warehouse
-        "https://images.unsplash.com/photo-1568689595552-ae5eb971f704?auto=format&fit=crop&q=80", // Colorful pasta assortment (Judy Doherty / Unsplash)
-        "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80", // Tech/IoT
+        "https://images.unsplash.com/photo-1578916171728-46686eac8d58?auto=format&fit=crop&q=80&w=800", // Logistics/Warehouse
+        "https://images.unsplash.com/photo-1568689595552-ae5eb971f704?auto=format&fit=crop&q=80&w=800", // Colorful pasta assortment (Judy Doherty / Unsplash)
+        "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800", // Tech/IoT
         "/images/project-teslasuit.png", // Teslasuit full suit image
         "/images/project-rfi-surveillance.jpg", // Railway construction cranes photo
     ];

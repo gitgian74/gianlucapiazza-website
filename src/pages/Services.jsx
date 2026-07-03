@@ -18,35 +18,35 @@ export function Services() {
             id: 'service1',
             icon: <Globe size={32} className="text-[var(--us-red)]" />,
             iconWrapClass: 'bg-[var(--us-red)]/10 text-[var(--us-red)]',
-            image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80",
+            image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=800",
             data: t.services.service1
         },
         {
             id: 'service2',
             icon: <TrendingUp size={32} className="text-purple-600" />,
             iconWrapClass: 'bg-purple-500/10 text-purple-400',
-            image: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&q=80",
+            image: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&q=80&w=800",
             data: t.services.service2
         },
         {
             id: 'service3',
             icon: <Handshake size={32} className="text-green-600" />,
             iconWrapClass: 'bg-green-500/10 text-green-400',
-            image: "https://images.unsplash.com/photo-1664575602554-2087b04935a5?auto=format&fit=crop&q=80",
+            image: "https://images.unsplash.com/photo-1664575602554-2087b04935a5?auto=format&fit=crop&q=80&w=800",
             data: t.services.service3
         },
         {
             id: 'service4',
             icon: <Scale size={32} className="text-orange-600" />,
             iconWrapClass: 'bg-orange-500/10 text-orange-400',
-            image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&q=80",
+            image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&q=80&w=800",
             data: t.services.service4
         },
         {
             id: 'service5',
             icon: <Building2 size={32} className="text-emerald-600" />,
             iconWrapClass: 'bg-emerald-500/10 text-emerald-400',
-            image: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80",
+            image: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=800",
             data: t.services.service5
         }
     ];

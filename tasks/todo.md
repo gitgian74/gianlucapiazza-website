@@ -1,3 +1,45 @@
+# Lighthouse 100 + fix code review (2026-07-03, in corso)
+
+> Obiettivo: Lighthouse 100 su Performance / Accessibility / Best Practices / SEO su tutte le route.
+> Gate: nessun push in prod senza conferma esplicita.
+
+## Nota di verifica (corregge il piano iniziale)
+Le `<img>` sono quasi tutte `absolute inset-0` / `h-full w-full object-cover` in container ad altezza fissa
+(`h-64`, `h-48`, `min-h-[55vh]`, `h-screen`) o con `aspect-[16/9]`. Spazio già riservato → **niente CLS reale**,
+e l'audit `unsized-images` esenta `position:absolute` + width/height CSS. → Abbandonato "width/height ovunque".
+Focus sui leve veri: **peso immagini + LCP + header**.
+
+## P0 — Fix code review + quick wins (S) ✅
+- [x] `Contact.jsx:145` — render solo `addressUS` (rimuove doppio "8Hz LLC").
+- [x] `generate_seo_html.mjs:404` — fallback SEO: solo `addressUS`. Verificato in dist: "Sede (USA): c/o 8Hz LLC, ..." (una volta).
+- [x] `translations.js:313,763` — rimosse chiavi `companyUS` orfane (IT+EN).
+- [x] `validate_marketing_execution.py:58` — hoist `phone_haystack` fuori dal loop.
+
+## P1 — Peso immagini & LCP (M) — parziale
+- [x] Unsplash `&w=800` su `Projects.jsx` (4) + `Services.jsx` (5).
+- [x] `PageHeader.jsx` hero img: `fetchPriority="high"` (camelCase → no console warning).
+- [x] `About.jsx:40` hero img: `fetchPriority="high"` + `loading="eager"` + `decoding="async"`.
+- [ ] **[tooling, dopo misura]** Re-encode JPG pesanti → AVIF/WebP + resize + `<picture>`.
+- [ ] **[tooling, dopo misura]** Video hero 1.48MB → compressione / strategia LCP.
+
+## P2 — Best Practices headers & hygiene (S) ✅
+- [x] `vercel.json`: -`X-XSS-Protection`; +`Referrer-Policy`/`HSTS`(no preload)/`Permissions-Policy`; cache `/assets/*`.
+- [x] Dead deps: `pnpm remove three @react-three/fiber @react-three/drei` (0 import). Build verde senza.
+- [x] Rimuovere `public/fonts/helvetiker_bold.typeface.json` (three.js inutilizzato).
+- [ ] **[gate]** HSTS `includeSubDomains; preload` — solo dopo conferma subdomain HTTPS.
+- [ ] **[follow-up]** CSP (rischiosa con GA/Meta Pixel/Vercel/Unsplash → report-only prima).
+- [ ] **[follow-up]** `recharts` + `ui/chart.jsx` (scaffold morto).
+
+## P3 — Accessibility polish (M, dopo misura)
+- [ ] Contrasto `text-white/70` hero; heading order / `AnimatedHeading` screen reader; `/privacy` prerender.
+
+## Verifica finale
+- [ ] `pnpm build` + `pnpm test:marketing` + `pnpm lint` verdi.
+- [ ] Lighthouse su preview Vercel (Chrome MCP) → taratura P1/P3.
+- [ ] Gate umano prima del push in prod.
+
+---
+
 # Consolidamento landing mercati (code review 2026-07-02) — COMPLETATO 2026-07-03
 
 > Branch worktree `claude/magical-ptolemy-653894`. Done: `pnpm lint` (0 err) + `pnpm build`
