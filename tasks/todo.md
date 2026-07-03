@@ -27,3 +27,27 @@
 ---
 
 # [ARCHIVIO giu 2026] Redesign VEX-style — landed via feat/vex-redesign (e2fe3e99) + fasi 0/1 (PR #11-13); dettaglio nella history git di questo file
+
+---
+
+# GEO foundation (2026-07-03, mandato "vai live con tutto")
+
+## Fatto (repo)
+- [x] Prerender core pages: home 50→2549 char visibili ai bot no-JS, about/services/projects/contact prerenderizzate con meta+canonical corretti (prima: shell vuota con canonical `/` duplicato)
+- [x] JSON-LD @graph statico (ProfessionalService+Person+WebSite) in index.html, id `structured-data-site`; rimosse iniezioni client duplicate da Seo.jsx
+- [x] `coreMeta.js` SSoT meta core pages (Seo.jsx + build script)
+- [x] robots.txt: policy "AI welcome" — Allow espliciti per search bot, user fetcher e training bot (neutralizzano i Disallow del managed robots.txt Cloudflare per RFC 9309)
+- [x] llms.txt completo: +8 città mancanti, +Buyer Readiness, dedup contatti (nota: evidenza 2026 dice basso valore — costo zero, non investirci oltre)
+- [x] validate_marketing_execution esteso (robots AI-allow, llms città, prerender marker)
+
+## BLOCCANTE lato Cloudflare (dashboard, non nel repo)
+- [ ] **AI Crawl Control: 403 su TUTTI i bot AI** (GPTBot/ClaudeBot/PerplexityBot/OAI-SearchBot → 403; Googlebot 200). Finché attivo, nessun motore AI legge il sito. Fix: dashboard CF → gianlucapiazza.com → AI Crawl Control / Security→Bots → Allow. Verifica: curl -A "...OAI-SearchBot..." → 200
+- [ ] Managed robots.txt (Content Signals) → disattivare o allineare (causa anche l'errore Lighthouse "robots.txt is not valid")
+
+## Roadmap GEO contenuti (da ricerca agenti, non implementata oggi)
+- [ ] Riscrittura landing answer-first + statistiche con fonte (paper Princeton: +30-40% citazioni)
+- [ ] FAQ 5-8 domande conversazionali per landing città (formato Q&A nel body + FAQPage schema)
+- [ ] 3-5 case study con numeri (progetti Poretti/Starbucks, AMI/Niagara già in /projects ora prerenderizzati)
+- [ ] Digital PR: IACC directory, testate export, LinkedIn long-form (85% citazioni AI da earned media — Muck Rack)
+- [ ] Panel 25-30 prompt "money" IT/EN + monitoraggio mensile (Otterly ~$29/mese) + segmento GA4 referral AI
+- [ ] LinkedIn personale Gianluca nel sameAs Person (serve URL)
