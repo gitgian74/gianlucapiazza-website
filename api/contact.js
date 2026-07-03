@@ -30,12 +30,34 @@ async function fetchChecklist() {
     return Buffer.from(await res.arrayBuffer());
 }
 
+// Cloudflare Turnstile. Fail-closed once TURNSTILE_SECRET is configured;
+// inert (returns true) before the secret is set so rollout doesn't break the form.
+async function verifyTurnstile(token, ip) {
+    const secret = process.env.TURNSTILE_SECRET;
+    if (!secret) return true;
+    if (!token) return false;
+    const body = new URLSearchParams({ secret, response: token });
+    if (ip) body.append('remoteip', ip);
+    try {
+        const res = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body,
+        });
+        const data = await res.json();
+        return data.success === true;
+    } catch {
+        return false;
+    }
+}
+
 const contactSchema = z.object({
     name: z.string().trim().min(2).max(120),
     email: emailSchema,
     company: z.string().trim().max(160).optional().default(''),
     message: z.string().trim().min(10).max(3_000),
     website: z.string().trim().max(0).optional().default(''),
+    turnstileToken: z.string().max(4_096).optional().default(''),
     attribution: z.object({
         utm_source: z.string().max(200).optional(),
         utm_medium: z.string().max(200).optional(),
@@ -79,6 +101,11 @@ export default async function handler(req, res) {
     const parsed = contactSchema.safeParse(body);
     if (!parsed.success) {
         return res.status(400).json({ error: 'Invalid contact request' });
+    }
+
+    const humanVerified = await verifyTurnstile(parsed.data.turnstileToken, getClientId(req));
+    if (!humanVerified) {
+        return res.status(403).json({ error: 'Human verification failed. Please retry.' });
     }
 
     const missingEnv = missingMailEnv();
