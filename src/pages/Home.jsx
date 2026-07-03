@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 import { useLanguage } from '../hooks/use-language';
 import { ArrowRight, Globe, TrendingUp, Users, Building2 } from 'lucide-react';
@@ -14,6 +14,20 @@ const HERO_POSTER = '/videos/miami-hero-poster.jpg';
 export function Home() {
     const { t } = useLanguage();
     const shouldReduceMotion = useReducedMotion();
+
+    // Defer the hero video until after first paint so the poster is the LCP and
+    // the video download doesn't inflate Speed Index / block the initial render.
+    const [showVideo, setShowVideo] = useState(false);
+    useEffect(() => {
+        if (shouldReduceMotion) return;
+        const start = () => setShowVideo(true);
+        if (document.readyState === 'complete') {
+            const id = setTimeout(start, 600);
+            return () => clearTimeout(id);
+        }
+        window.addEventListener('load', start, { once: true });
+        return () => window.removeEventListener('load', start);
+    }, [shouldReduceMotion]);
 
     // Scroll-linked veil: the locked hero dims gradually as the content
     // scrolls over it, fully solid after ~1.2 viewport heights.
@@ -48,11 +62,13 @@ export function Home() {
                 100dvh inline style wins where supported; h-screen is the fallback. */}
             <section className="sticky top-0 z-0 h-screen overflow-hidden" style={{ height: '100dvh' }}>
                 <div className="absolute inset-0" aria-hidden="true">
-                    {shouldReduceMotion ? (
+                    {(shouldReduceMotion || !showVideo) ? (
                         <img
                             className="w-full h-full object-cover"
                             src={HERO_POSTER}
                             alt=""
+                            fetchPriority="high"
+                            decoding="async"
                         />
                     ) : (
                         <video
