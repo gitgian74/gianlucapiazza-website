@@ -13,6 +13,9 @@ import { ANALYTICS_EVENTS } from '../components/shared/analyticsEvents';
 const messageLengthBucket = (message) =>
     message.length < 250 ? 'short' : message.length < 1000 ? 'medium' : 'long';
 
+const TURNSTILE_SITEKEY = import.meta.env.VITE_TURNSTILE_SITEKEY;
+const TURNSTILE_SRC = 'https://challenges.cloudflare.com/turnstile/v0/api.js';
+
 export function Contact() {
     const { t } = useLanguage();
     const [formData, setFormData] = React.useState({
@@ -24,6 +27,17 @@ export function Contact() {
     });
     const [status, setStatus] = React.useState('idle'); // idle, sending, success, error
     const hasTrackedFormStart = React.useRef(false);
+
+    // Load the Cloudflare Turnstile script only on this page (keeps the
+    // third-party script off every other route for performance).
+    React.useEffect(() => {
+        if (!TURNSTILE_SITEKEY || document.querySelector(`script[src="${TURNSTILE_SRC}"]`)) return;
+        const script = document.createElement('script');
+        script.src = TURNSTILE_SRC;
+        script.async = true;
+        script.defer = true;
+        document.head.appendChild(script);
+    }, []);
 
     const handleChange = (e) => {
         if (!hasTrackedFormStart.current && e.target.name !== 'website') {
@@ -41,6 +55,9 @@ export function Contact() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        const turnstileToken = TURNSTILE_SITEKEY
+            ? String(new FormData(e.currentTarget).get('cf-turnstile-response') || '')
+            : '';
         setStatus('sending');
         const formTrackingPayload = {
             form_id: 'market_readiness_contact',
@@ -59,6 +76,7 @@ export function Contact() {
                 },
                 body: JSON.stringify({
                     ...formData,
+                    turnstileToken,
                     attribution: getLeadAttribution(),
                 }),
             });
@@ -95,6 +113,8 @@ export function Contact() {
             trackSiteEvent(ANALYTICS_EVENTS.CONTACT_FORM_ERROR, {
                 error_type: 'network',
             });
+        } finally {
+            if (TURNSTILE_SITEKEY && window.turnstile) window.turnstile.reset();
         }
     };
 
@@ -237,6 +257,14 @@ export function Contact() {
                                         autoComplete="off"
                                     />
                                 </div>
+
+                                {TURNSTILE_SITEKEY && (
+                                    <div
+                                        className="cf-turnstile flex justify-center"
+                                        data-sitekey={TURNSTILE_SITEKEY}
+                                        data-theme="dark"
+                                    ></div>
+                                )}
 
                                 <Button
                                     type="submit"

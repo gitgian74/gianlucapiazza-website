@@ -5,6 +5,19 @@ const buckets = new Map();
 export const emailSchema = z.string().trim().email().max(254).toLowerCase();
 
 export function getClientId(req) {
+    // Traffic is fronted by Cloudflare, which sets cf-connecting-ip to the real
+    // client IP and overwrites any client-supplied value — trustworthy.
+    const cfIp = req.headers['cf-connecting-ip'];
+    if (typeof cfIp === 'string' && cfIp.trim()) {
+        return cfIp.trim();
+    }
+
+    // Vercel sets x-real-ip to the connecting IP (not client-forgeable).
+    const realIp = req.headers['x-real-ip'];
+    if (typeof realIp === 'string' && realIp.trim()) {
+        return realIp.trim();
+    }
+
     const forwardedFor = req.headers['x-forwarded-for'];
     if (typeof forwardedFor === 'string' && forwardedFor.trim()) {
         return forwardedFor.split(',')[0].trim();

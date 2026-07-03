@@ -136,6 +136,14 @@ function setTag(html, pattern, replacement) {
   return html.replace(pattern, replacement);
 }
 
+function escapeJsonLd(s) {
+  return String(s)
+    .replace(/</g, '\\u003c')
+    .replace(/>/g, '\\u003e')
+    .replace(/\u2028/g, '\\u2028')
+    .replace(/\u2029/g, '\\u2029');
+}
+
 function applyMeta(template, { title, description, pageUrl, image, jsonLd, fallback }) {
   let html = template;
   html = html.replace(/<html lang="[^"]*">/, '<html lang="it">');
@@ -151,7 +159,7 @@ function applyMeta(template, { title, description, pageUrl, image, jsonLd, fallb
   html = setTag(html, /<meta name="twitter:image" content="[^"]*" \/>/, `<meta name="twitter:image" content="${image}" />`);
   html = html.replace(
     '</head>',
-    `    <script type="application/ld+json" id="structured-data-page">${jsonLd}</script>\n  </head>`,
+    `    <script type="application/ld+json" id="structured-data-page">${escapeJsonLd(jsonLd)}</script>\n  </head>`,
   );
   html = html.replace('<div id="root"></div>', `<div id="root">${fallback}</div>`);
 
