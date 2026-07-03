@@ -21,7 +21,7 @@ export function SocialLinks({ showLabels = false, className = '', linkClassName 
                         href={profile.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        aria-label={`Follow GP & Partners on ${profile.label}`}
+                        aria-label={showLabels ? undefined : `Follow GP & Partners on ${profile.label}`}
                         onClick={() => {
                             const placement = showLabels ? 'labeled_social_links' : 'icon_social_links';
                             if (profile.id === 'linkedin') {
