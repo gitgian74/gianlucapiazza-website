@@ -235,3 +235,9 @@ html {
   flex-direction: column;
   gap: 0.5rem;
 }
+
+/* JS-capable browsers hide the crawler fallback instantly (the class is set
+   by an inline script in <head>); no-JS agents keep reading the full HTML. */
+html.js .seo-static-fallback {
+  display: none;
+}

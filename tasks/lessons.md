@@ -12,3 +12,10 @@
 **Regola**: niente URL di CDN di terzi per asset critici di pagina (hero/OG image) — self-hostare con la pipeline heroes (ffmpeg hqdn3d + scale 1600 + cjpeg q50).
 **Esempio**: ❌ `backgroundImage="https://images.unsplash.com/…"` · ✅ `/images/heroes/boston.jpg`
 **Perché**: gli asset esterni sono dipendenze runtime invisibili a build e CI; falliscono solo davanti all'utente.
+
+### 2026-07-03 · Fallback prerender senza sipario JS = flash di testo grezzo
+**Pattern**: il fallback statico per crawler dentro `#root` (GEO) restava visibile a ogni reload finché React non montava — "pagina scura con testo" segnalata dall'utente su home e chi-siamo.
+**Regola**: ogni contenuto fallback pre-hydration nasce già con il sipario: script inline in `<head>` che aggiunge `html.js` + CSS `html.js .fallback{display:none}`. HTML identico per tutti (no cloaking), i browser non lo dipingono mai.
+**Esempio**: ❌ fallback nudo in #root · ✅ `classList.add('js')` prima del primo paint
+**Perché**: i crawler AI leggono il markup, non il rendering; gli umani vedono solo il paint — le due audience si separano con la classe, non con HTML diverso.
+**Hook candidate**: no — assert di regressione già in validate_marketing_execution.py.
