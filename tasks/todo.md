@@ -1,3 +1,25 @@
+# Email via Google Workspace + allegato PDF + DDoS (2026-07-03)
+
+> Done quando: form contatti invia via Workspace (mail@gianlucapiazza.com), la email di
+> conferma al richiedente allega il PDF checklist, build/lint verdi, deploy prod ok.
+> Gate: segreti mai nel codice; DWD (Admin console) e secret Vercel = passaggi utente.
+
+## Task A — Email via Workspace (OAuth2 Service Account + DWD)
+- [ ] `api/contact.js`: sostituire Resend con `nodemailer` OAuth2 service-account (SMTP smtp.gmail.com, impersona GMAIL_USER). Mantenere zod/rate-limit/honeypot/escaping.
+- [ ] `package.json`: rimuovere `resend`, aggiungere `nodemailer`.
+- [ ] GCP (progetto Website `website-1691676442302`): enable Gmail API, creare service account `contact-form-mailer`, generare key JSON, estrarre client_id.
+- [ ] **[utente, Super Admin]** Admin console → Security → API controls → Domain-wide delegation: autorizzare il client_id con scope `https://mail.google.com/`.
+- [ ] **[utente/guidato]** Vercel env: `GMAIL_USER`, `GMAIL_CLIENT_ID`, `GMAIL_PRIVATE_KEY`, `CONTACT_TO`.
+
+## Task B — Allegare PDF alla email di conferma
+- [ ] Confirmation email (al richiedente) allega `public/lead-magnets/buyer-distributor-readiness-checklist.pdf` (fetch da URL pubblico a runtime, best-effort). Notifica owner senza allegato.
+- [ ] Nota: il form contatti è oggi l'unico canale "richiedi call"; futuri flussi call → riusare stesso endpoint.
+
+## Task C — Protezione DDoS (dopo A/B)
+- [ ] Cloudflare (ho API access): rate limiting rules, security level, challenge su /api/*, bot fight mode. + rate-limit già presente in `_security.js` lato app.
+
+---
+
 # Lighthouse 100 + fix code review (2026-07-03, in corso)
 
 > Obiettivo: Lighthouse 100 su Performance / Accessibility / Best Practices / SEO su tutte le route.
