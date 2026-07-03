@@ -49,26 +49,6 @@ const META_BY_PATH = {
         title: 'Privacy & Cookie Policy | GP & Partners',
         description: 'Informativa privacy e cookie policy del sito gianlucapiazza.com.',
     },
-    '/mercati/chicago': {
-        title: 'Consulente Mercato Chicago per Aziende Italiane | GP & Partners',
-        description: 'GP & Partners apre il mercato di Chicago e Midwest per PMI italiane: business development, partnership, distributori e market entry USA.',
-        keywords: 'consulente Chicago azienda italiana, mercato Chicago italiani, business development Chicago, Midwest USA italiani, GP Partners',
-    },
-    '/mercati/boston': {
-        title: 'Consulente Mercato Boston per Aziende Italiane | GP & Partners',
-        description: 'GP & Partners apre il mercato di Boston e New England per PMI italiane: tech, biotech, universita, food e business development USA.',
-        keywords: 'consulente Boston mercato americano italiani, business development Boston, azienda italiana Boston, New England mercato USA, GP Partners',
-    },
-    '/mercati/las-vegas': {
-        title: 'Consulente Mercato Las Vegas per Aziende Italiane | GP & Partners',
-        description: 'GP & Partners apre il mercato di Las Vegas e Nevada per PMI italiane: hospitality, food and beverage, luxury, retail e fiere USA.',
-        keywords: 'consulente Las Vegas italiani, business Las Vegas azienda italiana, mercato Nevada italiani, hospitality Las Vegas Made in Italy, GP Partners',
-    },
-    '/mercati/caraibi': {
-        title: 'Consulente Mercato Caraibi per Aziende Italiane | GP & Partners',
-        description: 'GP & Partners apre il mercato caraibico per PMI italiane: business development, partnership commerciali, distributori e market entry nei Caraibi.',
-        keywords: 'consulente caraibi italiani, business development caraibi, mercato caraibico aziende italiane, market entry caraibi, GP Partners',
-    },
     ...SEO_LANDING_META,
 };
 

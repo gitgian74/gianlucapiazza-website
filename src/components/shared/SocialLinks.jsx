@@ -1,6 +1,7 @@
 import { Facebook, Instagram, Linkedin } from 'lucide-react';
 import { socialProfiles } from '../../lib/socialLinks';
 import { trackSiteEvent } from './tracking';
+import { ANALYTICS_EVENTS } from './analyticsEvents';
 
 const icons = {
     facebook: Facebook,
@@ -24,13 +25,13 @@ export function SocialLinks({ showLabels = false, className = '', linkClassName 
                         onClick={() => {
                             const placement = showLabels ? 'labeled_social_links' : 'icon_social_links';
                             if (profile.id === 'linkedin') {
-                                trackSiteEvent('click_linkedin', {
+                                trackSiteEvent(ANALYTICS_EVENTS.CLICK_LINKEDIN, {
                                     platform: profile.id,
                                     placement,
                                     destination: profile.url,
                                 });
                             }
-                            trackSiteEvent('social_click', {
+                            trackSiteEvent(ANALYTICS_EVENTS.SOCIAL_CLICK, {
                                 platform: profile.id,
                                 placement,
                             });

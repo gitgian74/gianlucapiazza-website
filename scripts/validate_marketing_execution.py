@@ -29,13 +29,28 @@ def main() -> None:
     assert_contains("src/pages/seo/seoPageData.js", "Ricerca distributori USA per aziende italiane | GP & Partners")
     assert_contains("src/pages/seo/seoPageData.js", "Retail Partnerships USA per brand italiani | GP & Partners")
     assert_contains("src/pages/seo/seoPageData.js", "Temporary Export Manager USA per PMI italiane | GP & Partners")
-    assert_contains("src/pages/seo/SeoLandingPage.jsx", "download_checklist")
-    assert_contains("src/pages/seo/SeoLandingPage.jsx", "book_call")
-    assert_contains("src/pages/seo/SeoLandingPage.jsx", "landing_cta_click")
-    assert_contains("src/App.jsx", "landing_scroll_75")
-    assert_contains("src/pages/Contact.jsx", "form_submit")
-    assert_contains("src/pages/Contact.jsx", "click_phone")
-    assert_contains("src/components/shared/SocialLinks.jsx", "click_linkedin")
+    assert_contains("src/components/shared/analyticsEvents.js", "'download_checklist'")
+    assert_contains("src/components/shared/analyticsEvents.js", "'book_call'")
+    assert_contains("src/components/shared/analyticsEvents.js", "'landing_cta_click'")
+    assert_contains("src/components/shared/analyticsEvents.js", "'landing_scroll_75'")
+    assert_contains("src/components/shared/analyticsEvents.js", "'form_submit'")
+    assert_contains("src/components/shared/analyticsEvents.js", "'click_phone'")
+    assert_contains("src/components/shared/analyticsEvents.js", "'click_linkedin'")
+    assert_contains("src/pages/seo/SeoLandingPage.jsx", "ANALYTICS_EVENTS.DOWNLOAD_CHECKLIST")
+    assert_contains("src/pages/seo/SeoLandingPage.jsx", "ANALYTICS_EVENTS.BOOK_CALL")
+    assert_contains("src/pages/seo/SeoLandingPage.jsx", "ANALYTICS_EVENTS.LANDING_CTA_CLICK")
+    assert_contains("src/App.jsx", "ANALYTICS_EVENTS.LANDING_SCROLL_75")
+    assert_contains("src/pages/Contact.jsx", "ANALYTICS_EVENTS.FORM_SUBMIT")
+    assert_contains("src/pages/Contact.jsx", "ANALYTICS_EVENTS.CLICK_PHONE")
+    assert_contains("src/components/shared/SocialLinks.jsx", "ANALYTICS_EVENTS.CLICK_LINKEDIN")
+
+    for module in ("src/App.jsx", "src/components/Layout.jsx", "scripts/generate_seo_html.mjs"):
+        assert_contains(module, "marketRoutes")
+    market_data = read("src/pages/markets/marketLandingData.js")
+    routes_module = read("src/pages/markets/marketRoutes.js")
+    for slug in ("miami", "new-york", "chicago", "boston", "las-vegas", "caraibi"):
+        assert f'"{slug}": {{' in market_data, f"marketLandingData must define: {slug}"
+        assert f"slug: '{slug}'" in routes_module, f"marketRoutes must define: {slug}"
 
     lead_magnet = ROOT / "public/lead-magnets/buyer-distributor-readiness-checklist.md"
     assert lead_magnet.exists(), "lead magnet checklist must exist"
