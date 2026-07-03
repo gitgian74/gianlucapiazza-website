@@ -254,7 +254,7 @@ export const seoPages = {
   buyerReadinessUsa: {
     path: '/buyer-readiness-usa',
     keywords: 'buyer readiness USA, distributor readiness USA, checklist buyer USA, preparare buyer deck USA, readiness mercato americano',
-    downloadPath: '/lead-magnets/buyer-distributor-readiness-checklist.md',
+    downloadPath: '/lead-magnets/buyer-distributor-readiness-checklist.pdf',
     it: {
       title: 'Buyer Readiness USA: prepara azienda e materiali | GP & Partners',
       description: 'Checklist e sprint operativo per capire se la tua azienda è pronta a parlare con buyer, distributori e partner USA senza bruciare opportunità.',
