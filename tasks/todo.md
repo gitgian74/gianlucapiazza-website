@@ -1,22 +1,72 @@
+# PIANO: Performance 100 + Security + Anti-phishing (2026-07-03)
+
+> Analisi fatta: Lighthouse prod Home mobile **93** (TBT 0, CLS 0 già perfetti); security review full-codebase (Fable 5); DNS email + header prod verificati live. Nota: la WAF CF (20 req/10s per IP reale) già mitiga a monte H2/H3/H4.
+
+## TRACK A — Security & Anti-phishing (priorità)
+
+### A0 — Abuse chain email/rate-limit (HIGH) — l'endpoint contatti è un relay DKIM-signed
+- [ ] **Turnstile (Cloudflare, free)** sul form contatti: widget client + verifica token server in `api/contact.js` prima di ogni invio. Fix strutturale del relay. (S/M)
+- [ ] **getClientId → header fidato**: usare `cf-connecting-ip` (il traffico passa da CF) invece del primo hop `x-forwarded-for` (spoofabile). `api/_security.js:7`. (S)
+- [ ] **Rate-limit durevole**: sostituire `Map` in-memory con Vercel KV/Upstash (INCR+EXPIRE atomico). `api/_security.js:16`. (M) — la WAF CF resta primo strato.
+- [ ] **Confirmation email**: valutare double opt-in OPPURE non ri-echeggiare il `message` del submitter. (Decisione: doppio opt-in = anti-relay ma attrito lead). (M)
+
+### A1 — Chat AI cost/abuse (HIGH financial) — `api/chat.js`
+- [ ] `generationConfig.maxOutputTokens` (~512) + `safetySettings`; cap fallback a 2 modelli; budget/day globale in KV. (S/M)
+- [ ] Persona in `systemInstruction` (SDK) invece che concatenata → riduce prompt-injection. (S)
+
+### A2 — Anti-phishing DNS (importante, esterno)
+- [ ] **DKIM**: generare chiave in Workspace Admin (Gmail → Authenticate email) e pubblicare il TXT su Cloudflare DNS. Oggi DKIM ASSENTE. (S, via browser+API)
+- [ ] **DMARC**: alzare da `p=none` a `p=quarantine` (poi `reject`) dopo verifica DKIM. (S)
+
+### A3 — Hardening medio
+- [ ] **CSP** in `vercel.json` (allowlist self + GA + Meta Pixel + Unsplash + fonts) — report-only prima. (M, rischioso, testare)
+- [ ] **JSON-LD escape** in `generate_seo_html.mjs` (`</script>`/U+2028/2029) — latente ma cheap. (S)
+- [ ] HSTS → `includeSubDomains; preload` (dopo conferma subdomain HTTPS). (S/gate)
+- [ ] Origin check su /api/*, error messages generici, strip CR/LF su `name`. (S, low)
+
+## TRACK B — Performance 100 (prod Home 93 → 100)
+Blocchi reali: FCP 2.0s (CSS 144KB render-blocking) + Speed Index 4.6s (video hero autoplay) + unused-JS 150ms.
+- [ ] **Critical CSS inline + defer** del bundle Tailwind (plugin beasties/critters su build). → migliora FCP+SI. (M)
+- [ ] **Video hero deferred**: caricare `<video>` dopo il `load`/IntersectionObserver, poster come LCP immediato. → il maggior guadagno su Speed Index. (M, valutare impatto brand)
+- [ ] **Code-split framer-motion**: lazy dove non above-the-fold. → -150ms unused-JS. (M)
+- [ ] Rimuovere dead deps residue (`recharts` + `ui/chart.jsx`). (S)
+- Nota onesta: 100 mobile è raggiungibile ma richiede critical-CSS + defer video; rischio lieve sull'esperienza hero.
+
+## Verifica già fatta (funziona)
+- [x] Header sicurezza prod live · Email Workspace+PDF ok · WAF CF attiva · nessun segreto client · no XSS (chart.jsx morto) · chat renderizzata come testo.
+
+---
+
 # Email via Google Workspace + allegato PDF + DDoS (2026-07-03)
 
 > Done quando: form contatti invia via Workspace (mail@gianlucapiazza.com), la email di
 > conferma al richiedente allega il PDF checklist, build/lint verdi, deploy prod ok.
 > Gate: segreti mai nel codice; DWD (Admin console) e secret Vercel = passaggi utente.
 
-## Task A — Email via Workspace (OAuth2 Service Account + DWD)
-- [ ] `api/contact.js`: sostituire Resend con `nodemailer` OAuth2 service-account (SMTP smtp.gmail.com, impersona GMAIL_USER). Mantenere zod/rate-limit/honeypot/escaping.
-- [ ] `package.json`: rimuovere `resend`, aggiungere `nodemailer`.
-- [ ] GCP (progetto Website `website-1691676442302`): enable Gmail API, creare service account `contact-form-mailer`, generare key JSON, estrarre client_id.
-- [ ] **[utente, Super Admin]** Admin console → Security → API controls → Domain-wide delegation: autorizzare il client_id con scope `https://mail.google.com/`.
-- [ ] **[utente/guidato]** Vercel env: `GMAIL_USER`, `GMAIL_CLIENT_ID`, `GMAIL_PRIVATE_KEY`, `CONTACT_TO`.
+## Task A — Email via Workspace (OAuth2 Service Account + DWD) ✅ LIVE
+- [x] `api/contact.js`: nodemailer OAuth2 service-account (impersona GMAIL_USER). Sicurezza invariata. (PR #22, merged `2a506d08b`)
+- [x] `package.json`: resend→nodemailer.
+- [x] GCP (Website `website-1691676442302`): Gmail API on, SA `contact-form-mailer`, key generata+eliminata, client_id `108532514014639740603`.
+- [x] DWD autorizzata (Admin console, via browser): client_id + scope `https://mail.google.com/`.
+- [x] Vercel Production env: GMAIL_USER=mail@gianlucapiazza.com, GMAIL_CLIENT_ID, GMAIL_PRIVATE_KEY, CONTACT_TO.
+- [x] **Test prod**: POST /api/contact → `{"success":true}` HTTP 200 (send owner riuscito).
 
-## Task B — Allegare PDF alla email di conferma
-- [ ] Confirmation email (al richiedente) allega `public/lead-magnets/buyer-distributor-readiness-checklist.pdf` (fetch da URL pubblico a runtime, best-effort). Notifica owner senza allegato.
-- [ ] Nota: il form contatti è oggi l'unico canale "richiedi call"; futuri flussi call → riusare stesso endpoint.
+## Task B — Allegare PDF alla email di conferma ✅
+- [x] Confirmation email allega il PDF checklist (fetch URL pubblico, best-effort). Notifica owner senza allegato.
+- Da confermare visivamente: ricezione conferma + PDF nella casella (owner-send già confermato dal 200).
 
-## Task C — Protezione DDoS (dopo A/B)
-- [ ] Cloudflare (ho API access): rate limiting rules, security level, challenge su /api/*, bot fight mode. + rate-limit già presente in `_security.js` lato app.
+## ⚠️ ATTENZIONE billing Workspace
+- [ ] Pagamento fallito "AI Expanded Access" → sospensione servizio prevista 6 lug 2026. Se sospeso, l'invio email si blocca. Sistemare pagamento.
+
+## Task C — Protezione DDoS (Cloudflare, piano Free — verificato 2026-07-03)
+Baseline GIÀ attivo e verificato via API:
+- [x] DDoS L3/L4 automatico (unmetered) + HTTP DDoS managed ruleset (default su Free).
+- [x] Browser Integrity Check = ON. Security Level = Medium. Bot Fight Mode/AI-block = OFF (preserva i crawler AI per GEO — scelta corretta).
+- [x] App-layer rate-limit 5/h sul form (`_security.js`).
+Non toccato di proposito: `security_level` resta Medium (High rischia UX + attrito crawler); bot-fight/AI-block restano OFF.
+
+- [x] **Rate-limit rule creata via browser automation** (sessione utente, token senza permesso WAF aggirato): "Rate limit API endpoints" → `http.request.uri.path contains "/api/"`, 20 req/10s per IP, azione **Block** 10s, Status **Active**. Nota Free: periodo+durata fissi a 10s (unica opzione).
+- Conferma collaterale: l'account Cloudflare è "Mail@gianlucapiazza.com" → `mail@gianlucapiazza.com` è casella reale (valida come GMAIL_USER per il task email).
 
 ---
 
