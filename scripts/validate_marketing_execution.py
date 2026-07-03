@@ -49,14 +49,14 @@ def main() -> None:
     assert_contains("src/components/shared/analyticsEvents.js", "'landing_cta_click'")
     assert_contains("src/components/shared/analyticsEvents.js", "'landing_scroll_75'")
     assert_contains("src/components/shared/analyticsEvents.js", "'form_submit'")
-    assert_contains("src/components/shared/analyticsEvents.js", "'click_phone'")
     assert_contains("src/components/shared/analyticsEvents.js", "'click_linkedin'")
     assert_contains("src/pages/seo/SeoLandingPage.jsx", "ANALYTICS_EVENTS.DOWNLOAD_CHECKLIST")
     assert_contains("src/pages/seo/SeoLandingPage.jsx", "ANALYTICS_EVENTS.BOOK_CALL")
     assert_contains("src/pages/seo/SeoLandingPage.jsx", "ANALYTICS_EVENTS.LANDING_CTA_CLICK")
     assert_contains("src/App.jsx", "ANALYTICS_EVENTS.LANDING_SCROLL_75")
     assert_contains("src/pages/Contact.jsx", "ANALYTICS_EVENTS.FORM_SUBMIT")
-    assert_contains("src/pages/Contact.jsx", "ANALYTICS_EVENTS.CLICK_PHONE")
+    for phone in ("337 303431", "548-0002", "tel:"):
+        assert phone not in read("src/translations.js") + read("src/pages/Contact.jsx") + read("scripts/generate_seo_html.mjs"), f"phone reference must stay removed: {phone}"
     assert_contains("src/components/shared/SocialLinks.jsx", "ANALYTICS_EVENTS.CLICK_LINKEDIN")
 
     for module in ("src/App.jsx", "src/components/Layout.jsx", "scripts/generate_seo_html.mjs"):
