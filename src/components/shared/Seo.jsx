@@ -2,11 +2,10 @@ import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useLanguage } from '../../hooks/use-language';
 import { seoPages } from '../../pages/seo/seoPageData';
-import { socialProfileUrls } from '../../lib/socialLinks';
+import { coreMeta } from '../../lib/coreMeta';
 
 const SITE_URL = 'https://gianlucapiazza.com';
 const DEFAULT_IMAGE = `${SITE_URL}/images/og-default.jpg`;
-const LOGO_IMAGE = `${SITE_URL}/logo.png`;
 
 const SEO_LANDING_META = Object.values(seoPages).reduce((acc, page) => {
     acc[page.path] = {
@@ -20,35 +19,7 @@ const SEO_LANDING_META = Object.values(seoPages).reduce((acc, page) => {
 }, {});
 
 const META_BY_PATH = {
-    '/': {
-        title: 'GP & Partners | USA Market Entry Partner operativo',
-        description: 'GP & Partners costruisce pipeline commerciale reale per aziende italiane ed europee negli USA: readiness, distributori, buyer, retail partner e presenza locale.',
-        keywords: 'USA market entry partner operativo, ricerca distributori USA, buyer readiness USA, temporary export manager USA, GP & Partners',
-    },
-    '/services': {
-        title: 'Servizi di Consulenza Internazionale | GP & Partners',
-        description: 'Servizi GP & Partners per espansione internazionale, business development, partnership commerciali e risoluzione di dispute nei mercati esteri.',
-    },
-    '/projects': {
-        title: 'Progetti e Case Study Internazionali | GP & Partners',
-        description: 'Case study GP & Partners di internazionalizzazione, partnership retail, distribuzione, business intelligence e trasformazione digitale.',
-    },
-    '/about': {
-        title: 'Chi Siamo | GP & Partners',
-        description: 'Profilo operativo di GP & Partners: team per internazionalizzazione, business development, partnership strategiche e mercato USA.',
-    },
-    '/contact': {
-        title: 'Contatti | GP & Partners',
-        description: 'Contatta GP & Partners per progetti di internazionalizzazione, sviluppo commerciale, partnership strategiche e ingresso in nuovi mercati.',
-    },
-    '/market-research': {
-        title: 'AI Market Research | GP & Partners',
-        description: 'Assistente AI per ricerche di mercato, trend internazionali e valutazioni preliminari di opportunita di espansione.',
-    },
-    '/privacy': {
-        title: 'Privacy & Cookie Policy | GP & Partners',
-        description: 'Informativa privacy e cookie policy del sito gianlucapiazza.com.',
-    },
+    ...coreMeta,
     ...SEO_LANDING_META,
 };
 
@@ -137,56 +108,9 @@ export function Seo({ title, description, keywords, jsonLd } = {}) {
         upsertMeta('meta[name="twitter:image"]', { name: 'twitter:image', content: DEFAULT_IMAGE });
         upsertLink('canonical', canonical);
 
-        upsertJsonLd('structured-data-person', {
-            '@context': 'https://schema.org',
-            '@type': 'Person',
-            '@id': `${SITE_URL}/about#person`,
-            name: 'Gianluca Piazza',
-            url: SITE_URL,
-            image: LOGO_IMAGE,
-            jobTitle: 'USA Market Entry Partner operativo',
-            sameAs: socialProfileUrls,
-            knowsAbout: [
-                'USA Market Entry Partner operativo',
-                'Buyer readiness USA',
-                'Internazionalizzazione',
-                'Business development',
-                'Partnership strategiche',
-                'Market entry',
-                'Export',
-                'USA market entry',
-                'Retail negotiation',
-                'Distribution channels',
-            ],
-        });
-
-        upsertJsonLd('structured-data-professional-service', {
-            '@context': 'https://schema.org',
-            '@type': 'ProfessionalService',
-            '@id': `${SITE_URL}/#organization`,
-            name: 'GP & Partners',
-            url: SITE_URL,
-            image: LOGO_IMAGE,
-            founder: {
-                '@type': 'Person',
-                '@id': `${SITE_URL}/about#person`,
-                name: 'Gianluca Piazza',
-            },
-            areaServed: ['United States', 'Italy', 'Europe'],
-            serviceType: [
-                'USA Market Entry',
-                'International Business Development',
-                'Retail Partnership Strategy',
-                'Distribution Channel Development',
-            ],
-            knowsAbout: [
-                'USA market entry for Italian companies',
-                'Business development USA',
-                'US retail partnerships',
-                'Distributor search USA',
-            ],
-        });
-
+        // Organization/Person/WebSite JSON-LD is static in index.html
+        // (structured-data-site) so no-JS crawlers see it; only the
+        // route-dependent blocks are managed client-side.
         upsertJsonLd('structured-data-breadcrumbs', {
             '@context': 'https://schema.org',
             '@type': 'BreadcrumbList',

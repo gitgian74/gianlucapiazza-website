@@ -4,6 +4,8 @@ import { fileURLToPath } from 'node:url';
 import { seoPages } from '../src/pages/seo/seoPageData.js';
 import { marketLandingData } from '../src/pages/markets/marketLandingData.js';
 import { marketPath, marketRoutes } from '../src/pages/markets/marketRoutes.js';
+import { translations } from '../src/translations.js';
+import { coreMeta } from '../src/lib/coreMeta.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.resolve(__dirname, '..');
@@ -267,6 +269,162 @@ function buildMarketPageHtml(template, page, pagePath) {
   });
 }
 
+// Core pages are prerendered too: AI crawlers (GPTBot, ClaudeBot,
+// PerplexityBot, OAI-SearchBot) do not execute JavaScript, so without a
+// static fallback they see an empty <div id="root"> on the most important
+// pages of the site.
+const it = translations.it;
+
+function listItems(items) {
+  return (items || []).map((item) => `<li>${escapeHtml(item)}</li>`).join('');
+}
+
+function coreServices() {
+  return Object.keys(it.services)
+    .filter((key) => /^service\d+$/.test(key))
+    .map((key) => it.services[key]);
+}
+
+function renderHomeFallback() {
+  const services = coreServices()
+    .map((s) => `<li><strong>${escapeHtml(s.title)}</strong>: ${escapeHtml(s.description)}</li>`)
+    .join('');
+  const landingLinks = [
+    ...Object.values(seoPages).map((page) => `<li><a href="${escapeAttr(page.path)}">${escapeHtml(page.it.hero)}</a></li>`),
+    ...marketRoutes.map(({ slug }) => `<li><a href="${escapeAttr(marketPath(slug))}">${escapeHtml(marketLandingData[slug].it.hero)}</a></li>`),
+  ].join('');
+
+  return `
+      <main class="seo-static-fallback">
+        <h1>GP &amp; Partners — USA Market Entry Partner operativo</h1>
+        <p>${escapeHtml(it.home.tagline)}</p>
+        <p>${escapeHtml(it.home.taglineSub)}</p>
+        <p>${escapeHtml(it.home.intro)}</p>
+        <h2>${escapeHtml(it.home.servicesTitle)}</h2>
+        <ul>${services}</ul>
+        <h2>${escapeHtml(it.home.ctaTitle)}</h2>
+        <p>${escapeHtml(it.home.ctaText)}</p>
+        <p><a href="/contact">${escapeHtml(it.home.ctaButton)}</a></p>
+        <h2>Servizi e mercati USA</h2>
+        <ul>${landingLinks}</ul>
+      </main>
+    `;
+}
+
+function renderAboutFallback() {
+  return `
+      <main class="seo-static-fallback">
+        <nav aria-label="Breadcrumb"><a href="/">Home</a> / <span>${escapeHtml(it.about.title)}</span></nav>
+        <h1>${escapeHtml(it.about.heroHeadline)}</h1>
+        <p>${escapeHtml(it.about.intro)}</p>
+        <h2>${escapeHtml(it.about.experienceTitle)}</h2>
+        <p>${escapeHtml(it.about.experience1)}</p>
+        <p>${escapeHtml(it.about.experience2)}</p>
+        <h2>${escapeHtml(it.about.projectsTitle)}</h2>
+        <p>${escapeHtml(it.about.projects)}</p>
+        <h2>${escapeHtml(it.about.backgroundTitle)}</h2>
+        <p>${escapeHtml(it.about.background)}</p>
+        <h2>${escapeHtml(it.about.principlesTitle)}</h2>
+        <ul>${listItems(it.about.principles)}</ul>
+        <h2>${escapeHtml(it.about.skillsTitle)}</h2>
+        <ul>${listItems(it.about.skills)}</ul>
+        <p><a href="/contact">${escapeHtml(it.about.primaryCta)}</a></p>
+      </main>
+    `;
+}
+
+function renderServicesFallback() {
+  const services = coreServices()
+    .map((s) => `<article><h2>${escapeHtml(s.title)}</h2><p>${escapeHtml(s.description)}</p><ul>${listItems(s.items)}</ul></article>`)
+    .join('');
+
+  return `
+      <main class="seo-static-fallback">
+        <nav aria-label="Breadcrumb"><a href="/">Home</a> / <span>${escapeHtml(it.services.title)}</span></nav>
+        <h1>${escapeHtml(it.services.title)}</h1>
+        <p>${escapeHtml(it.services.subtitle)}</p>
+        <p>${escapeHtml(it.services.intro)}</p>
+        <h2>${escapeHtml(it.services.modular.title)}</h2>
+        <p>${escapeHtml(it.services.modular.text)}</p>
+        ${services}
+        <p><a href="/contact">${escapeHtml(it.home.ctaButton)}</a></p>
+      </main>
+    `;
+}
+
+function renderProjectsFallback() {
+  const projects = Object.keys(it.projects)
+    .filter((key) => /^project\d+$/.test(key))
+    .map((key) => it.projects[key])
+    .map((p) => `<article><h2>${escapeHtml(p.title)}</h2><p>${escapeHtml(p.objectiveText)} (${escapeHtml(p.marketName)})</p><ul>${listItems(p.resultsList)}</ul></article>`)
+    .join('');
+
+  return `
+      <main class="seo-static-fallback">
+        <nav aria-label="Breadcrumb"><a href="/">Home</a> / <span>${escapeHtml(it.projects.title)}</span></nav>
+        <h1>${escapeHtml(it.projects.title)}</h1>
+        <p>${escapeHtml(it.projects.subtitle)}</p>
+        ${projects}
+        <p><a href="/contact">${escapeHtml(it.home.contactMe)}</a></p>
+      </main>
+    `;
+}
+
+function renderContactFallback() {
+  const info = it.contact.info;
+
+  return `
+      <main class="seo-static-fallback">
+        <nav aria-label="Breadcrumb"><a href="/">Home</a> / <span>${escapeHtml(it.contact.title)}</span></nav>
+        <h1>${escapeHtml(it.contact.title)}</h1>
+        <p>${escapeHtml(it.contact.subtitle)}</p>
+        <h2>${escapeHtml(info.title)}</h2>
+        <ul>
+          <li>Telefono (Italia): <a href="tel:${escapeAttr(info.phoneIT.replace(/\s+/g, ''))}">${escapeHtml(info.phoneIT)}</a> — ${escapeHtml(info.addressIT)}</li>
+          <li>Telefono (USA): <a href="tel:${escapeAttr(info.phoneUS.replace(/[\s()-]+/g, ''))}">${escapeHtml(info.phoneUS)}</a> — ${escapeHtml(info.addressUS)}</li>
+          <li><a href="https://www.linkedin.com/company/gp-and-partners/">LinkedIn — GP &amp; Partners</a></li>
+        </ul>
+        <p>${escapeHtml(it.contact.form.nextStep)}</p>
+      </main>
+    `;
+}
+
+const CORE_FALLBACKS = {
+  '/about': renderAboutFallback,
+  '/services': renderServicesFallback,
+  '/projects': renderProjectsFallback,
+  '/contact': renderContactFallback,
+};
+
+function buildCorePageHtml(template, pagePath) {
+  const meta = coreMeta[pagePath];
+  const pageUrl = `${siteUrl}${pagePath}`;
+
+  return applyMeta(template, {
+    title: escapeAttr(meta.title),
+    description: escapeAttr(meta.description),
+    pageUrl,
+    image: defaultImage,
+    jsonLd: JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'WebPage',
+      '@id': pageUrl,
+      name: meta.title,
+      description: meta.description,
+      url: pageUrl,
+      isPartOf: { '@id': `${siteUrl}/#organization` },
+    }),
+    fallback: CORE_FALLBACKS[pagePath](),
+  });
+}
+
+// Site-level JSON-LD (Organization/Person/WebSite) lives statically in
+// index.html and is inherited by every prerendered page; here the home only
+// needs its fallback content.
+function buildHomeHtml(template) {
+  return template.replace('<div id="root"></div>', `<div id="root">${renderHomeFallback()}</div>`);
+}
+
 // Sitemap is generated here (dist/sitemap.xml) so market and SEO landing
 // routes can never drift from marketRoutes.js / seoPageData.js. Bump the
 // lastmod constants when the related content changes.
@@ -338,7 +496,14 @@ await Promise.all([
     await mkdir(outputDir, { recursive: true });
     await writeFile(path.join(outputDir, 'index.html'), buildMarketPageHtml(template, marketLandingData[slug], pagePath));
   }),
+  ...Object.keys(CORE_FALLBACKS).map(async (pagePath) => {
+    const outputDir = path.join(distDir, pagePath.slice(1));
+    await mkdir(outputDir, { recursive: true });
+    await writeFile(path.join(outputDir, 'index.html'), buildCorePageHtml(template, pagePath));
+  }),
+  writeFile(path.join(distDir, 'index.html'), buildHomeHtml(template)),
   writeFile(path.join(distDir, 'sitemap.xml'), renderSitemap()),
 ]);
 
-console.log(`Generated static SEO HTML for ${Object.keys(seoPages).length + marketRoutes.length} pages + sitemap.xml.`);
+const pageCount = Object.keys(seoPages).length + marketRoutes.length + Object.keys(CORE_FALLBACKS).length + 1;
+console.log(`Generated static SEO HTML for ${pageCount} pages + sitemap.xml.`);

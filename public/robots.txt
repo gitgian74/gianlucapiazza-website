@@ -1,32 +1,81 @@
+# gianlucapiazza.com — GP & Partners
+#
+# Policy (2026-07-03): AI crawlers are explicitly WELCOME. This is public
+# marketing content and the business goal is to be read, cited and
+# recommended by search and answer engines (ChatGPT, Claude, Perplexity,
+# Gemini, Copilot) — including model training, which drives long-term brand
+# presence in LLM answers. To opt a bot out, change its group to Disallow.
+#
+# The explicit per-bot Allow groups below are intentional: an upstream
+# managed robots.txt (e.g. Cloudflare Content Signals) may prepend Disallow
+# rules for the same user-agents; per RFC 9309 the groups merge and Allow
+# wins at equal path specificity. NOTE: robots.txt is not enough on its own —
+# the Cloudflare "AI Crawl Control" / bot blocking must also permit these
+# bots, otherwise they receive HTTP 403 before ever reading this file.
+
+# Classic search
 User-agent: Googlebot
 Allow: /
 
 User-agent: Bingbot
 Allow: /
 
+# AI search / citation indexes
 User-agent: OAI-SearchBot
 Allow: /
 
-User-agent: ChatGPT-User
+User-agent: Claude-SearchBot
 Allow: /
 
 User-agent: PerplexityBot
 Allow: /
 
-User-agent: GPTBot
-Disallow: /
+# AI on-demand user fetchers (a real user asked about this site)
+User-agent: ChatGPT-User
+Allow: /
 
-User-agent: Google-Extended
-Disallow: /
+User-agent: Claude-User
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: MistralAI-User
+Allow: /
+
+User-agent: DuckAssistBot
+Allow: /
+
+# AI training / grounding
+User-agent: GPTBot
+Allow: /
 
 User-agent: ClaudeBot
-Disallow: /
+Allow: /
 
 User-agent: anthropic-ai
-Disallow: /
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: meta-externalagent
+Allow: /
 
 User-agent: CCBot
-Disallow: /
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: Bytespider
+Allow: /
 
 User-agent: *
 Allow: /

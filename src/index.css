@@ -211,3 +211,27 @@ html {
     pointer-events: none;
   }
 }
+
+/* Static prerender fallback (crawler-visible content before hydration) */
+.seo-static-fallback {
+  max-width: 52rem;
+  margin: 0 auto;
+  padding: 7rem 1.5rem 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  line-height: 1.65;
+}
+
+.seo-static-fallback a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.seo-static-fallback ul {
+  list-style: disc;
+  padding-left: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}

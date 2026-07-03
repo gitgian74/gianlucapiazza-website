@@ -22,8 +22,21 @@ def main() -> None:
     assert_contains("index.html", "GP & Partners - USA Market Entry Partner operativo")
     assert_contains("index.html", "pipeline commerciale reale")
 
-    assert_contains("src/components/shared/Seo.jsx", "USA Market Entry Partner operativo")
+    assert_contains("src/lib/coreMeta.js", "USA Market Entry Partner operativo")
+    assert_contains("index.html", "structured-data-site")
     assert_contains("src/App.jsx", "/buyer-readiness-usa")
+
+    robots = read("public/robots.txt")
+    for agent in ("GPTBot", "OAI-SearchBot", "ClaudeBot", "Claude-User", "PerplexityBot", "Perplexity-User"):
+        assert f"User-agent: {agent}\nAllow: /" in robots, f"robots.txt must allow AI crawler: {agent}"
+    assert "Disallow: /" not in robots, "robots.txt must not disallow any crawler (GEO policy 2026-07-03)"
+
+    llms = read("public/llms.txt")
+    for slug in ("miami", "new-york", "chicago", "caraibi", "silicon-valley"):
+        assert f"https://gianlucapiazza.com/mercati/{slug}" in llms, f"llms.txt must list market page: {slug}"
+
+    for needle in ("renderHomeFallback", "buildCorePageHtml"):
+        assert_contains("scripts/generate_seo_html.mjs", needle)
     assert_contains("src/pages/seo/seoPageData.js", "buyerReadinessUsa")
     assert_contains("src/pages/seo/seoPageData.js", "Il problema non è trovare un buyer. È arrivare pronto quando risponde.")
     assert_contains("src/pages/seo/seoPageData.js", "Ricerca distributori USA per aziende italiane | GP & Partners")
