@@ -28,16 +28,46 @@ export function Contact() {
     });
     const [status, setStatus] = React.useState('idle'); // idle, sending, success, error
     const hasTrackedFormStart = React.useRef(false);
+    const turnstileRef = React.useRef(null);
+    const widgetIdRef = React.useRef(null);
 
-    // Load the Cloudflare Turnstile script only on this page (keeps the
-    // third-party script off every other route for performance).
+    // Load Turnstile only on this page (keeps the third-party script off every
+    // other route) and render it EXPLICITLY, so the widget re-appears on every
+    // SPA re-navigation to /contact (implicit rendering only scans the DOM once
+    // at script load, leaving a re-mounted container empty).
     React.useEffect(() => {
-        if (!TURNSTILE_SITEKEY || document.querySelector(`script[src="${TURNSTILE_SRC}"]`)) return;
-        const script = document.createElement('script');
-        script.src = TURNSTILE_SRC;
-        script.async = true;
-        script.defer = true;
-        document.head.appendChild(script);
+        if (!TURNSTILE_SITEKEY) return;
+        let cancelled = false;
+
+        const render = () => {
+            if (cancelled || !window.turnstile || !turnstileRef.current || widgetIdRef.current !== null) return;
+            widgetIdRef.current = window.turnstile.render(turnstileRef.current, {
+                sitekey: TURNSTILE_SITEKEY,
+                theme: 'dark',
+            });
+        };
+
+        if (!document.querySelector(`script[src="${TURNSTILE_SRC}"]`)) {
+            const script = document.createElement('script');
+            script.src = TURNSTILE_SRC;
+            script.async = true;
+            script.defer = true;
+            script.onload = render;
+            document.head.appendChild(script);
+        }
+        // Covers the case where the script is already present (later visits).
+        const timer = setInterval(() => {
+            if (window.turnstile) { render(); clearInterval(timer); }
+        }, 150);
+
+        return () => {
+            cancelled = true;
+            clearInterval(timer);
+            if (widgetIdRef.current !== null && window.turnstile) {
+                try { window.turnstile.remove(widgetIdRef.current); } catch { /* noop */ }
+            }
+            widgetIdRef.current = null;
+        };
     }, []);
 
     const handleChange = (e) => {
@@ -127,7 +157,9 @@ export function Contact() {
                 error_type: 'network',
             });
         } finally {
-            if (TURNSTILE_SITEKEY && window.turnstile) window.turnstile.reset();
+            if (TURNSTILE_SITEKEY && window.turnstile && widgetIdRef.current !== null) {
+                window.turnstile.reset(widgetIdRef.current);
+            }
         }
     };
 
@@ -272,11 +304,7 @@ export function Contact() {
                                 </div>
 
                                 {TURNSTILE_SITEKEY && (
-                                    <div
-                                        className="cf-turnstile flex justify-center"
-                                        data-sitekey={TURNSTILE_SITEKEY}
-                                        data-theme="dark"
-                                    ></div>
+                                    <div ref={turnstileRef} className="flex justify-center"></div>
                                 )}
 
                                 <Button

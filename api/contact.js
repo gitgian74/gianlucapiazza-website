@@ -25,7 +25,7 @@ function createTransport() {
 }
 
 async function fetchChecklist() {
-    const res = await fetch(CHECKLIST_URL);
+    const res = await fetch(CHECKLIST_URL, { signal: AbortSignal.timeout(8000) });
     if (!res.ok) throw new Error(`checklist fetch failed: ${res.status}`);
     return Buffer.from(await res.arrayBuffer());
 }
@@ -35,7 +35,12 @@ async function fetchChecklist() {
 async function verifyTurnstile(token, ip) {
     const secret = process.env.TURNSTILE_SECRET;
     if (!secret) return true;
-    if (!token) return false;
+    if (!token) {
+        // Empty token while enforcing = a bot, OR a misconfig where the
+        // frontend has no VITE_TURNSTILE_SITEKEY (build) to produce one.
+        console.error('Turnstile: empty token with secret set (bot, or missing VITE_TURNSTILE_SITEKEY at build time)');
+        return false;
+    }
     const body = new URLSearchParams({ secret, response: token });
     if (ip) body.append('remoteip', ip);
     try {
@@ -43,10 +48,12 @@ async function verifyTurnstile(token, ip) {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             body,
+            signal: AbortSignal.timeout(8000),
         });
         const data = await res.json();
         return data.success === true;
-    } catch {
+    } catch (err) {
+        console.error('Turnstile siteverify failed:', err?.name || err);
         return false;
     }
 }
@@ -93,7 +100,7 @@ export default async function handler(req, res) {
         return res.status(429).json({ error: 'Too many requests. Please try again later.' });
     }
 
-    const { body, error } = enforceJsonBody(req, 8_000);
+    const { body, error } = enforceJsonBody(req, 16_000);
     if (error) {
         return res.status(error.status).json({ error: error.message });
     }
