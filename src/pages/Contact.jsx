@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../hooks/use-language';
-import { MapPin, Send, Building2 } from 'lucide-react';
+import { Send, Building2 } from 'lucide-react';
 import { PageHeader } from '../components/shared/PageHeader';
 import { Section } from '../components/shared/Section';
 import { Card } from '../components/shared/Card';
@@ -188,18 +188,6 @@ export function Contact() {
 
                             <div className="space-y-8">
                                 {/* Address IT */}
-                                <div className="flex items-start gap-4 group">
-                                    <div className="p-3 bg-orange-900/20 text-orange-400 rounded-xl group-hover:bg-orange-600 group-hover:text-white transition-colors">
-                                        <MapPin size={24} />
-                                    </div>
-                                    <div>
-                                        <h3 className="text-sm font-medium text-muted-foreground mb-1">Office (Italy)</h3>
-                                        <p className="text-lg font-medium text-white">
-                                            {t.contact.info.addressIT}
-                                        </p>
-                                    </div>
-                                </div>
-
                                 {/* Address US */}
                                 <div className="flex items-start gap-4 group">
                                     <div className="p-3 bg-indigo-900/20 text-indigo-400 rounded-xl group-hover:bg-indigo-600 group-hover:text-white transition-colors">

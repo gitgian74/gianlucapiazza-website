@@ -307,11 +307,9 @@ export const translations = {
       },
       info: {
         title: 'Informazioni di Contatto',
-        addressIT: 'Vicenza',
         addressUS: 'c/o 8Hz LLC, 4660 Arboretum Cir Unit 201, Naples FL 34112',
         linkedin: 'LinkedIn',
-        followSocial: 'Seguici sui social',
-        companyIT: ''
+        followSocial: 'Seguici sui social'
       }
     },
     marketResearch: {
@@ -357,7 +355,7 @@ export const translations = {
           title: 'Titolare del Trattamento',
           text: 'Il Titolare del trattamento è identificato attraverso il sito e il brand operativo:',
           name: 'GP & Partners / gianlucapiazza.com',
-          address: 'Italia / Unione Europea',
+          address: '4660 Arboretum Cir Unit 201, Naples FL 34112, Stati Uniti',
           vat: '',
           email: 'privacy@gianlucapiazza.com'
         },
@@ -759,11 +757,9 @@ export const translations = {
       },
       info: {
         title: 'Contact Information',
-        addressIT: 'Vicenza',
         addressUS: 'c/o 8Hz LLC, 4660 Arboretum Cir Unit 201, Naples FL 34112',
         linkedin: 'LinkedIn',
-        followSocial: 'Follow us on social',
-        companyIT: ''
+        followSocial: 'Follow us on social'
       }
     },
     marketResearch: {
@@ -809,7 +805,7 @@ export const translations = {
           title: 'Data Controller',
           text: 'The Data Controller is identified through the website and operating brand:',
           name: 'GP & Partners / gianlucapiazza.com',
-          address: 'Italy / European Union',
+          address: '4660 Arboretum Cir Unit 201, Naples FL 34112, United States',
           vat: '',
           email: 'privacy@gianlucapiazza.com'
         },
