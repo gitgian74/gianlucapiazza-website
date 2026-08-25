@@ -16,6 +16,10 @@ const messageLengthBucket = (message) =>
     message.length < 250 ? 'short' : message.length < 1000 ? 'medium' : 'long';
 
 const TURNSTILE_SITEKEY = import.meta.env.VITE_TURNSTILE_SITEKEY;
+// Canale di riserva quando l'invio fallisce: senza, un errore fa sparire il
+// contatto e basta. Reso opzionale di proposito, cosi' l'indirizzo lo decidi
+// tu e non finisce nel codice per svista.
+const FALLBACK_EMAIL = import.meta.env.VITE_CONTACT_FALLBACK_EMAIL;
 const TURNSTILE_SRC = 'https://challenges.cloudflare.com/turnstile/v0/api.js';
 
 export function Contact() {
@@ -141,12 +145,16 @@ export function Contact() {
                     window.open(BOOKING_URL, '_blank', 'noopener,noreferrer');
                 }
             } else {
-                const data = await response.json();
+                const data = await response.json().catch(() => ({}));
                 console.error('Server Error:', data);
                 setStatus('error');
                 trackSiteEvent(ANALYTICS_EVENTS.CONTACT_FORM_ERROR, {
                     error_type: 'server',
                     status_code: response.status,
+                    // Il codice applicativo distingue un rifiuto Turnstile da un
+                    // limite di frequenza da un guasto del trasporto mail: senza
+                    // questo restiamo a indovinare come e' successo finora.
+                    error_code: typeof data?.error === 'string' ? data.error.slice(0, 60) : 'unknown',
                 });
                 // Optional: Set a specific error message state to display to the user
                 // setErrorMessage(data.details || 'Failed to send message');
@@ -334,7 +342,20 @@ export function Contact() {
                                         </div>
                                     )}
                                     {status === 'error' && (
-                                        <p className="text-red-400 text-center font-medium">{t.contact.form.error}</p>
+                                        <div className="text-center">
+                                            <p className="text-red-400 font-medium">{t.contact.form.error}</p>
+                                            {FALLBACK_EMAIL && (
+                                                <p className="mt-2 text-sm">
+                                                    <a
+                                                        className="text-white underline underline-offset-2"
+                                                        href={`mailto:${FALLBACK_EMAIL}?subject=${encodeURIComponent(t.contact.form.fallbackSubject)}&body=${encodeURIComponent(`${formData.message}\n\n---\n${formData.name}${formData.company ? ` — ${formData.company}` : ''}\n${formData.email}`)}`}
+                                                        onClick={() => trackSiteEvent(ANALYTICS_EVENTS.CONTACT_FORM_ERROR, { error_type: 'fallback_mailto_used' })}
+                                                    >
+                                                        {t.contact.form.fallbackLink}
+                                                    </a>
+                                                </p>
+                                            )}
+                                        </div>
                                     )}
                                 </div>
                             </form>

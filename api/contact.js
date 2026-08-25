@@ -141,11 +141,25 @@ export default async function handler(req, res) {
     const fromOwner = `GP & Partners Website <${sender}>`;
     const fromUser = `Gianluca Piazza <${sender}>`;
 
+    // Un fallimento SMTP e' quasi sempre transitorio (timeout, throttling di
+    // Gmail, token OAuth rinnovato male). Un solo tentativo in piu', distanziato,
+    // recupera la maggior parte dei casi senza rendere l'endpoint una via per
+    // amplificare traffico verso il provider.
+    const sendWithRetry = async (transporter, mail) => {
+        try {
+            return await transporter.sendMail(mail);
+        } catch (firstError) {
+            console.error('Mail send failed, retrying once:', firstError?.code || firstError?.message);
+            await new Promise((resolve) => setTimeout(resolve, 1_200));
+            return transporter.sendMail(mail);
+        }
+    };
+
     try {
         const transporter = createTransport();
 
         // 1. Send notification to owner (Critical)
-        await transporter.sendMail({
+        await sendWithRetry(transporter, {
             from: fromOwner,
             to: ownerInbox,
             replyTo: email,
@@ -220,7 +234,15 @@ export default async function handler(req, res) {
 
         return res.status(200).json({ success: true });
     } catch (error) {
-        console.error('Mail send error:', error);
-        return res.status(500).json({ error: 'Failed to send email' });
+        // Volutamente NON registriamo il contenuto del modulo: sarebbe un
+        // archivio di dati personali dentro i log. Registriamo solo cosa e'
+        // andato storto, che e' quello che serve per intervenire.
+        console.error('Mail send error after retry:', {
+            code: error?.code,
+            command: error?.command,
+            responseCode: error?.responseCode,
+            message: error?.message,
+        });
+        return res.status(502).json({ error: 'mail_transport_failed' });
     }
 }
