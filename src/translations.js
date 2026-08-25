@@ -303,6 +303,8 @@ export const translations = {
         sending: 'Invio in corso...',
         success: 'Messaggio inviato. Ti risponderò il prima possibile.',
         error: 'Non è stato possibile inviare il messaggio. Riprova o scrivi direttamente via email.',
+        fallbackLink: 'Invialo con un clic dalla tua email',
+        fallbackSubject: 'Richiesta dal sito gianlucapiazza.com',
         nextStep: 'Descrivi prodotto, canale desiderato e stato attuale: la risposta qualifica priorità, rischi e prossimi passi.'
       },
       info: {
@@ -753,6 +755,8 @@ export const translations = {
         sending: 'Sending...',
         success: 'Message sent. I will get back to you as soon as possible.',
         error: 'The message could not be sent. Please try again or email me directly.',
+        fallbackLink: 'Send it in one click from your email',
+        fallbackSubject: 'Enquiry from gianlucapiazza.com',
         nextStep: 'Share product, target channel, and current stage: the reply qualifies priorities, risks, and next steps.'
       },
       info: {
