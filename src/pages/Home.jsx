@@ -8,8 +8,8 @@ import { ANALYTICS_EVENTS } from '../components/shared/analyticsEvents';
 import { AnimatedHeading } from '../components/vex/AnimatedHeading';
 import { FadeIn } from '../components/vex/FadeIn';
 
-const HERO_VIDEO = '/videos/miami-hero-night.mp4';
-const HERO_POSTER = '/videos/miami-hero-night-poster.jpg';
+const HERO_VIDEO = '/videos/miami-downtown-night.mp4';
+const HERO_POSTER = '/videos/miami-downtown-night-poster.jpg';
 
 export function Home() {
     const { t } = useLanguage();
