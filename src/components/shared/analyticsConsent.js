@@ -1,4 +1,8 @@
 export const CONSENT_EVENT = 'site-consent-changed';
+// Riapre il banner su richiesta dell'utente. Serve a rendere la revoca del
+// consenso facile quanto prestarlo (art. 7 par. 3 GDPR): senza questo, una
+// volta scelto non c'era piu' modo di cambiare idea dall'interfaccia.
+export const CONSENT_REOPEN_EVENT = 'site-consent-reopen';
 export const CONSENT_STORAGE_KEY = 'cookieConsent';
 export const CONSENT_VERSION = 2;
 
@@ -89,4 +93,12 @@ export function hasAnalyticsConsent() {
 export function hasMarketingConsent() {
     const consent = getStoredConsent();
     return consent.version === CONSENT_VERSION && consent.marketing;
+}
+
+export function openConsentPreferences() {
+    if (typeof window === 'undefined') {
+        return;
+    }
+
+    window.dispatchEvent(new Event(CONSENT_REOPEN_EVENT));
 }

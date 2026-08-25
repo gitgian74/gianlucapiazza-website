@@ -7,6 +7,7 @@ import { GoogleAnalytics } from './components/shared/GoogleAnalytics';
 import { ScrollToTop } from './components/shared/ScrollToTop';
 import { MetaPixel } from './components/shared/MetaPixel';
 import { Seo } from './components/shared/Seo';
+import { ErrorBoundary } from './components/shared/ErrorBoundary';
 import { CONSENT_EVENT, hasAnalyticsConsent } from './components/shared/analyticsConsent';
 import { rememberAttribution, trackSiteEvent } from './components/shared/tracking';
 import { ANALYTICS_EVENTS } from './components/shared/analyticsEvents';
@@ -131,6 +132,7 @@ function App() {
         <ScrollToTop />
         <Seo />
         <Layout>
+          <ErrorBoundary>
           <Suspense fallback={<PageLoader />}>
             <Routes>
               <Route path="/" element={<Home />} />
@@ -156,6 +158,7 @@ function App() {
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>
+          </ErrorBoundary>
         </Layout>
         <EngagementTracker />
         <VercelAnalyticsWithConsent />
