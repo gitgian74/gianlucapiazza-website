@@ -17,7 +17,7 @@ buyer-readiness con lead magnet.
   client-side via localStorage — l'EN non ha URL propri, decisione aperta)
 - SEO statica: `scripts/generate_seo_html.mjs` genera `dist/<path>/index.html` per le
   landing (18 pagine) dopo `vite build`
-- API serverless in `api/`: `contact.js` (Resend, form lead), `chat.js` (Gemini)
+- API serverless in `api/`: `contact.js` (form lead, invio via SMTP di Resend), `chat.js` (Gemini)
 - Deploy: **Vercel** via GitHub integration, produzione = `main` (vedi
   [docs/RUNBOOK.md](docs/RUNBOOK.md) — regole deploy/rollback obbligatorie)
 - CI: `.github/workflows/ci.yml` (lint + build + test:marketing su ogni PR)
