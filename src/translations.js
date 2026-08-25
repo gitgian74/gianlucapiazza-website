@@ -298,6 +298,8 @@ export const translations = {
         message: 'Messaggio',
         website: 'Sito web',
         send: 'Richiedi una Market Readiness Call',
+        privacyNoticePre: "Inviando il modulo accetti il trattamento dei tuoi dati come descritto nell'",
+        privacyNoticeLink: 'Informativa privacy',
         sending: 'Invio in corso...',
         success: 'Messaggio inviato. Ti risponderò il prima possibile.',
         error: 'Non è stato possibile inviare il messaggio. Riprova o scrivi direttamente via email.',
@@ -335,7 +337,8 @@ export const translations = {
       followSocial: 'Seguici sui social',
       rights: 'Tutti i diritti riservati.',
       privacy: 'Privacy Policy',
-      cookie: 'Cookie Policy'
+      cookie: 'Cookie Policy',
+      cookiePrefs: 'Preferenze cookie'
     },
     cookieConsent: {
       title: 'Preferenze privacy',
@@ -747,6 +750,8 @@ export const translations = {
         message: 'Message',
         website: 'Website',
         send: 'Request a Market Readiness Call',
+        privacyNoticePre: "By submitting this form you accept the processing of your data as described in the ",
+        privacyNoticeLink: 'Privacy Policy',
         sending: 'Sending...',
         success: 'Message sent. I will get back to you as soon as possible.',
         error: 'The message could not be sent. Please try again or email me directly.',
@@ -784,7 +789,8 @@ export const translations = {
       followSocial: 'Follow us on social',
       rights: 'All rights reserved.',
       privacy: 'Privacy Policy',
-      cookie: 'Cookie Policy'
+      cookie: 'Cookie Policy',
+      cookiePrefs: 'Cookie preferences'
     },
     cookieConsent: {
       title: 'Privacy preferences',

@@ -14,11 +14,21 @@ function setupGoogleAnalytics() {
         window.dataLayer.push(arguments);
     };
 
+    // Il default e' negato su tutti i segnali. Questa funzione gira soltanto
+    // dopo il consenso analytics, ma partire da 'granted' rendeva la conformita'
+    // dipendente da *dove* viene chiamata: bastava anticiparla per avere
+    // tracking prima del consenso. Con default negato + update esplicito il
+    // comportamento resta corretto ovunque la si sposti.
     window.gtag('consent', 'default', {
-        analytics_storage: 'granted',
+        analytics_storage: 'denied',
         ad_storage: 'denied',
         ad_user_data: 'denied',
         ad_personalization: 'denied',
+    });
+    // I segnali pubblicitari restano negati anche con consenso marketing:
+    // il marketing sul sito passa dal Meta Pixel, non da Google.
+    window.gtag('consent', 'update', {
+        analytics_storage: 'granted',
     });
     window.gtag('js', new Date());
     window.gtag('config', GA_MEASUREMENT_ID, {

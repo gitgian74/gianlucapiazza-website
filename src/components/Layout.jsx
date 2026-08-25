@@ -4,6 +4,7 @@ import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { Menu, X, ChevronRight } from 'lucide-react';
 import { useLanguage } from '../hooks/use-language';
 import { CookieConsent } from './shared/CookieConsent';
+import { openConsentPreferences } from './shared/analyticsConsent';
 import { SocialLinks } from './shared/SocialLinks';
 import { trackSiteEvent } from './shared/tracking';
 import { ANALYTICS_EVENTS } from './shared/analyticsEvents';
@@ -285,6 +286,13 @@ export function Layout({ children }) {
                         <div className="flex gap-6">
                             <Link to="/privacy" onClick={() => trackSiteEvent(ANALYTICS_EVENTS.NAVIGATION_CLICK, { destination: '/privacy', label: 'privacy', placement: 'footer_legal' })} className="hover:text-foreground transition-colors">{t.footer.privacy}</Link>
                             <Link to="/privacy" onClick={() => trackSiteEvent(ANALYTICS_EVENTS.NAVIGATION_CLICK, { destination: '/privacy', label: 'cookie', placement: 'footer_legal' })} className="hover:text-foreground transition-colors">{t.footer.cookie}</Link>
+                            <button
+                                type="button"
+                                onClick={openConsentPreferences}
+                                className="hover:text-foreground transition-colors underline-offset-2 hover:underline"
+                            >
+                                {t.footer.cookiePrefs}
+                            </button>
                         </div>
                     </div>
                 </div>

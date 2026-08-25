@@ -61,7 +61,10 @@ export default async function handler(req, res) {
     }
 
     if (!process.env.GEMINI_API_KEY) {
-        return res.status(500).json({ error: 'GEMINI_API_KEY not configured' });
+        // Il dettaglio resta nei log del server: al client non diciamo quale
+        // variabile manca, per non rivelare la configurazione.
+        console.error('[chat] GEMINI_API_KEY not configured');
+        return res.status(500).json({ error: 'Server configuration error' });
     }
 
     try {

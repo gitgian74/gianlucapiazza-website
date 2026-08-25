@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { useLanguage } from '../hooks/use-language';
 import { MapPin, Send, Building2 } from 'lucide-react';
 import { PageHeader } from '../components/shared/PageHeader';
@@ -317,6 +318,16 @@ export function Contact() {
                                 </Button>
 
                                 <p className="text-center text-sm text-muted-foreground">{t.contact.form.nextStep}</p>
+
+                                {/* Informativa al punto di raccolta (art. 13 GDPR): fino a ora
+                                    l'unico link all'informativa era nel footer. */}
+                                <p className="text-center text-xs text-muted-foreground">
+                                    {t.contact.form.privacyNoticePre}
+                                    <Link to="/privacy" className="underline underline-offset-2 hover:text-foreground">
+                                        {t.contact.form.privacyNoticeLink}
+                                    </Link>
+                                    .
+                                </p>
 
                                 <div role="status" aria-live="polite">
                                     {status === 'success' && (

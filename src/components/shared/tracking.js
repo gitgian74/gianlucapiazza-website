@@ -54,8 +54,30 @@ function getSessionId() {
     return nextId;
 }
 
+export function clearStoredAttribution() {
+    if (typeof window === 'undefined') {
+        return;
+    }
+
+    try {
+        window.localStorage.removeItem(ATTRIBUTION_STORAGE_KEY);
+        window.sessionStorage.removeItem(SESSION_STORAGE_KEY);
+    } catch {
+        // Storage non disponibile (modalita' privata, quota esaurita): nulla da fare.
+    }
+}
+
 export function rememberAttribution() {
     if (typeof window === 'undefined') {
+        return null;
+    }
+
+    // L'attribution non e' un identificatore tecnico necessario: contiene UTM,
+    // storico dei referrer e un session id persistente. L'art. 122 del Codice
+    // Privacy la assimila ai cookie non tecnici, quindi senza consenso analytics
+    // non va scritta — e se il consenso viene revocato, va rimossa.
+    if (!hasAnalyticsConsent()) {
+        clearStoredAttribution();
         return null;
     }
 

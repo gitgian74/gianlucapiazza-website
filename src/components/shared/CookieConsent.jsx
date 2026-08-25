@@ -3,7 +3,7 @@ import { motion as Motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '../../hooks/use-language';
 import { Button } from './Button';
 import { Link } from 'react-router-dom';
-import { isConsentCurrent, setStoredConsent } from './analyticsConsent';
+import { CONSENT_REOPEN_EVENT, isConsentCurrent, setStoredConsent } from './analyticsConsent';
 
 export function CookieConsent() {
     const { t } = useLanguage();
@@ -15,6 +15,12 @@ export function CookieConsent() {
             const timer = setTimeout(() => setIsVisible(true), 1000);
             return () => clearTimeout(timer);
         }
+    }, []);
+
+    useEffect(() => {
+        const reopen = () => setIsVisible(true);
+        window.addEventListener(CONSENT_REOPEN_EVENT, reopen);
+        return () => window.removeEventListener(CONSENT_REOPEN_EVENT, reopen);
     }, []);
 
     const handleDecline = () => {
