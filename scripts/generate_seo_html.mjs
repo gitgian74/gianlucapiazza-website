@@ -612,8 +612,8 @@ const writePage = async (pagePath, lang, html) => {
   llmsEntries.push({
     url: `${siteUrl}${urlPath === '/' ? '/' : urlPath}`,
     lang,
-    title: (html.match(/<title>([^<]*)<\/title>/) || [])[1]?.replace(/&amp;/g, '&') ?? urlPath,
-    description: (html.match(/<meta name="description" content="([^"]*)"/) || [])[1]?.replace(/&amp;/g, '&') ?? '',
+    title: decodeEntities((html.match(/<title>([^<]*)<\/title>/) || [])[1]) || urlPath,
+    description: decodeEntities((html.match(/<meta name="description" content="([^"]*)"/) || [])[1]),
     text: fallbackToText(html),
   });
   await mkdir(outputDir, { recursive: true });
@@ -624,6 +624,12 @@ const writePage = async (pagePath, lang, html) => {
 // che vogliono leggere il sito senza scansionarlo pagina per pagina.
 // Il contenuto e' ricavato dagli stessi fallback statici che serviamo ai
 // crawler, quindi non puo' divergere da cio' che e' davvero in pagina.
+function decodeEntities(value) {
+  return (value || '')
+    .replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&nbsp;/g, ' ');
+}
+
 function fallbackToText(html) {
   const root = html.match(/<div id="root">([\s\S]*?)<\/div>\s*<script/) || html.match(/<div id="root">([\s\S]*)<\/div>/);
   let body = root ? root[1] : '';
@@ -631,8 +637,7 @@ function fallbackToText(html) {
     .replace(/<\/(h1|h2|h3|p|li|nav|main)>/gi, '\n')
     .replace(/<li>/gi, '- ')
     .replace(/<[^>]+>/g, ' ')
-    .replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>')
-    .replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&nbsp;/g, ' ');
+  body = decodeEntities(body);
   return body
     .split('\n')
     .map((line) => line.replace(/[ \t]+/g, ' ').trim())
@@ -645,11 +650,16 @@ function renderLlmsFull(entries) {
     '# gianlucapiazza.com — full text',
     '',
     '> GP & Partners helps Italian and European companies enter and grow in the US market.',
-    '> This file contains the readable text of every page, in both languages, so an agent',
-    '> can read the whole site in one request. Generated at build time from the same',
-    '> static fallbacks served to crawlers, so it cannot drift from the live pages.',
+    '> This file contains the static summary text of every page, in both languages, so',
+    '> an agent can read the whole site in one request. It is generated at build time',
+    '> from the same server-rendered fallbacks served to crawlers, so it always matches',
+    '> what a non-JavaScript client sees. Interactive pages render additional copy in',
+    '> the browser that is not reproduced here.',
     '',
     `> Pages: ${entries.length}. Site: ${siteUrl}`,
+    '',
+    // Riga vuota anche qui: senza, il primo --- verrebbe letto come titolo
+    // setext della riga precedente invece che come separatore.
     '',
   ].join('\n');
 
@@ -662,14 +672,14 @@ function renderLlmsFull(entries) {
       '',
       `URL: ${e.url}`,
       `Language: ${e.lang}`,
-      e.description ? `Summary: ${e.description}` : '',
+      e.description ? `Summary: ${e.description}` : null,
       '',
       e.text,
       '',
-    ].filter((l) => l !== '').join('\n'))
+    ].filter((l) => l !== null).join('\n'))
     .join('\n');
 
-  return `${header}${body}`;
+  return `${header}${body}\n`;
 }
 
 // Pagina 404 vera. Vercel la serve con stato 404 per i percorsi che non

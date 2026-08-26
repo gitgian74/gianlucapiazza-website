@@ -4,9 +4,10 @@
 
 ## Full text
 
-- [llms-full.txt](https://gianlucapiazza.com/llms-full.txt): the readable text of every page,
-  both languages, in one file. Generated at build time from the same static markup served to
-  crawlers, so it never drifts from the live site.
+- [llms-full.txt](https://gianlucapiazza.com/llms-full.txt): the static summary text of every
+  page, both languages, in one file. Generated at build time from the same server-rendered
+  markup served to crawlers, so it always matches what a non-JavaScript client sees.
+  Interactive pages render additional copy in the browser that is not reproduced there.
 
 ## Languages
 
