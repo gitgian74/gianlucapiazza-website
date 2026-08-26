@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { LangLink as Link } from '../components/shared/LangLink';
 import { ArrowLeft } from 'lucide-react';
 import { useLanguage } from '../hooks/use-language';
 import { PageHeader } from '../components/shared/PageHeader';

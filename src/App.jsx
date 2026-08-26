@@ -13,6 +13,7 @@ import { rememberAttribution, trackSiteEvent } from './components/shared/trackin
 import { ANALYTICS_EVENTS } from './components/shared/analyticsEvents';
 import { MARKETS_BASE, marketPath, marketRoutes } from './pages/markets/marketRoutes';
 import { seoPages } from './pages/seo/seoPageData';
+import { langPath } from './lib/locale';
 import './index.css';
 
 // Lazy load pages
@@ -125,36 +126,50 @@ function EngagementTracker() {
   return null;
 }
 
+// Elenco unico delle pagine. Serve a emettere ogni route due volte, una per
+// lingua, senza duplicare a mano quaranta righe di JSX.
+const PAGES = [
+  { path: '/', element: <Home /> },
+  { path: '/about', element: <About /> },
+  { path: '/services', element: <Services /> },
+  { path: '/projects', element: <Projects /> },
+  { path: '/contact', element: <Contact /> },
+  { path: '/market-research', element: <MarketResearch /> },
+  { path: '/privacy', element: <Privacy /> },
+  ...marketRoutes.map(({ slug }) => ({
+    path: marketPath(slug),
+    element: <MarketLandingPage city={slug} />,
+  })),
+  { path: '/usa-market-entry-italian-companies', element: <UsaMarketEntryItalianCompanies /> },
+  { path: '/business-development-usa', element: <BusinessDevelopmentUsa /> },
+  { path: '/ricerca-distributori-usa', element: <RicercaDistributoriUsa /> },
+  { path: '/us-retail-partnerships', element: <UsRetailPartnerships /> },
+  { path: '/vendere-prodotti-italiani-usa', element: <VendereProdottiItalianiUsa /> },
+  { path: '/temporary-export-manager-usa', element: <TemporaryExportManagerUsa /> },
+  { path: '/buyer-readiness-usa', element: <BuyerReadinessUsa /> },
+  { path: '/food-beverage-usa', element: <FoodBeverageUsa /> },
+  { path: '/moda-design-usa', element: <ModaDesignUsa /> },
+  { path: '/agente-vs-distributore-usa', element: <AgenteVsDistributoreUsa /> },
+];
+
 function App() {
   return (
-    <LanguageProvider>
-      <Router>
+    <Router>
+      <LanguageProvider>
         <ScrollToTop />
         <Seo />
         <Layout>
           <ErrorBoundary>
           <Suspense fallback={<PageLoader />}>
             <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/services" element={<Services />} />
-              <Route path="/projects" element={<Projects />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/market-research" element={<MarketResearch />} />
-              <Route path="/privacy" element={<Privacy />} />
-              {marketRoutes.map(({ slug }) => (
-                <Route key={slug} path={marketPath(slug)} element={<MarketLandingPage city={slug} />} />
-              ))}
-              <Route path="/usa-market-entry-italian-companies" element={<UsaMarketEntryItalianCompanies />} />
-              <Route path="/business-development-usa" element={<BusinessDevelopmentUsa />} />
-              <Route path="/ricerca-distributori-usa" element={<RicercaDistributoriUsa />} />
-              <Route path="/us-retail-partnerships" element={<UsRetailPartnerships />} />
-              <Route path="/vendere-prodotti-italiani-usa" element={<VendereProdottiItalianiUsa />} />
-              <Route path="/temporary-export-manager-usa" element={<TemporaryExportManagerUsa />} />
-              <Route path="/buyer-readiness-usa" element={<BuyerReadinessUsa />} />
-              <Route path="/food-beverage-usa" element={<FoodBeverageUsa />} />
-              <Route path="/moda-design-usa" element={<ModaDesignUsa />} />
-              <Route path="/agente-vs-distributore-usa" element={<AgenteVsDistributoreUsa />} />
+              {/* Ogni pagina esiste due volte: alla radice in italiano e sotto
+                  /en in inglese. Prima erano URL sole italiane e i contenuti
+                  inglesi non avevano indirizzo, quindi nessun motore poteva
+                  vederli. */}
+              {PAGES.flatMap(({ path, element }) => [
+                <Route key={path} path={path} element={element} />,
+                <Route key={`en${path}`} path={langPath(path, 'en')} element={element} />,
+              ])}
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>
@@ -164,8 +179,8 @@ function App() {
         <VercelAnalyticsWithConsent />
         <GoogleAnalytics />
         <MetaPixel />
-      </Router>
-    </LanguageProvider>
+      </LanguageProvider>
+    </Router>
   );
 }
 

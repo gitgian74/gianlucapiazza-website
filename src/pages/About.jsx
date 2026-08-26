@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../hooks/use-language';
 import { ArrowRight, Award, Briefcase, CheckCircle2, MapPin, Target } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { LangLink as Link } from '../components/shared/LangLink';
 import { Section } from '../components/shared/Section';
 import { trackSiteEvent } from '../components/shared/tracking';
 import { ANALYTICS_EVENTS } from '../components/shared/analyticsEvents';

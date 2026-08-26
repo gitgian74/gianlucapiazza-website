@@ -2,15 +2,16 @@ import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useLanguage } from '../../hooks/use-language';
 import { seoPages } from '../../pages/seo/seoPageData';
-import { coreMeta } from '../../lib/coreMeta';
+import { coreMetaByLang } from '../../lib/coreMeta';
+import { langPath, splitLangPath } from '../../lib/locale';
 
 const SITE_URL = 'https://gianlucapiazza.com';
 const DEFAULT_IMAGE = `${SITE_URL}/images/og-default.jpg`;
 
-const SEO_LANDING_META = Object.values(seoPages).reduce((acc, page) => {
+const seoLandingMeta = (lang) => Object.values(seoPages).reduce((acc, page) => {
     acc[page.path] = {
-        title: page.it.title,
-        description: page.it.description,
+        title: page[lang].title,
+        description: page[lang].description,
         keywords: page.keywords,
         hasPageJsonLd: true,
     };
@@ -18,9 +19,11 @@ const SEO_LANDING_META = Object.values(seoPages).reduce((acc, page) => {
     return acc;
 }, {});
 
+// Le pagine core hanno meta solo in italiano: in inglese si ricade su quelle,
+// meglio di una descrizione mancante. Le landing invece sono gia' bilingui.
 const META_BY_PATH = {
-    ...coreMeta,
-    ...SEO_LANDING_META,
+    it: { ...coreMetaByLang.it, ...seoLandingMeta('it') },
+    en: { ...coreMetaByLang.en, ...seoLandingMeta('en') },
 };
 
 function upsertMeta(selector, attributes) {
@@ -63,6 +66,18 @@ function removeElementById(id) {
     }
 }
 
+function upsertAlternate(hreflang, href) {
+    const selector = `link[rel="alternate"][hreflang="${hreflang}"]`;
+    let element = document.head.querySelector(selector);
+    if (!element) {
+        element = document.createElement('link');
+        element.setAttribute('rel', 'alternate');
+        element.setAttribute('hreflang', hreflang);
+        document.head.appendChild(element);
+    }
+    element.setAttribute('href', href);
+}
+
 function removeHeadElement(selector) {
     const element = document.head.querySelector(selector);
     if (element) {
@@ -75,15 +90,20 @@ export function Seo({ title, description, keywords, jsonLd } = {}) {
     const { language } = useLanguage();
 
     useEffect(() => {
-        const pathname = location.pathname === '/' ? '/' : location.pathname.replace(/\/$/, '');
-        const pathMeta = META_BY_PATH[pathname];
+        const raw = location.pathname === '/' ? '/' : location.pathname.replace(/\/$/, '');
+        const { path: pathname } = splitLangPath(raw);
+        const pathMeta = META_BY_PATH[language][pathname];
         const meta = {
-            ...(pathMeta || META_BY_PATH['/']),
+            ...(pathMeta || META_BY_PATH[language]['/']),
             ...(title ? { title } : {}),
             ...(description ? { description } : {}),
             ...(keywords ? { keywords } : {}),
         };
-        const canonical = `${SITE_URL}${pathname === '/' ? '/' : pathname}`;
+        // Il canonical punta all'URL della lingua corrente, non alla radice:
+        // altrimenti le pagine /en si dichiarerebbero duplicati di quelle
+        // italiane e non verrebbero indicizzate.
+        const selfPath = langPath(pathname, language);
+        const canonical = `${SITE_URL}${selfPath === '/' ? '/' : selfPath}`;
         const isKnownPath = Boolean(pathMeta || title || description);
 
         document.documentElement.lang = language;
@@ -108,6 +128,14 @@ export function Seo({ title, description, keywords, jsonLd } = {}) {
         upsertMeta('meta[name="twitter:image"]', { name: 'twitter:image', content: DEFAULT_IMAGE });
         upsertLink('canonical', canonical);
 
+        // Ogni pagina dichiara la propria controparte nell'altra lingua.
+        // x-default va all'italiano, che vive alla radice.
+        const itHref = `${SITE_URL}${pathname === '/' ? '/' : pathname}`;
+        const enHref = `${SITE_URL}${langPath(pathname, 'en')}`;
+        upsertAlternate('it', itHref);
+        upsertAlternate('en', enHref);
+        upsertAlternate('x-default', itHref);
+
         // Organization/Person/WebSite JSON-LD is static in index.html
         // (structured-data-site) so no-JS crawlers see it; only the
         // route-dependent blocks are managed client-side.
@@ -119,7 +147,7 @@ export function Seo({ title, description, keywords, jsonLd } = {}) {
                     '@type': 'ListItem',
                     position: 1,
                     name: 'Home',
-                    item: `${SITE_URL}/`,
+                    item: `${SITE_URL}${language === 'en' ? '/en' : '/'}`,
                 },
                 ...(pathname === '/'
                     ? []

@@ -1,29 +1,35 @@
-import { useState, createContext, useContext, useEffect } from 'react';
+import { createContext, useContext, useEffect, useMemo } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { translations } from '../translations';
+import { alternatePath, splitLangPath } from '../lib/locale';
 
 const LanguageContext = createContext();
 
 export function LanguageProvider({ children }) {
-    const [language, setLanguage] = useState(() => {
-        if (typeof window === 'undefined') {
-            return 'it';
-        }
+    const location = useLocation();
+    const navigate = useNavigate();
 
-        const savedLanguage = window.localStorage.getItem('siteLanguage');
-        return savedLanguage === 'en' ? 'en' : 'it';
-    });
+    // La lingua viene dall'URL, non da una preferenza salvata: cosi' lo stesso
+    // indirizzo mostra sempre lo stesso contenuto, a chiunque lo apra — persona
+    // o crawler. E' il presupposto perche' l'inglese sia indicizzabile.
+    const { lang: language } = splitLangPath(location.pathname);
 
     useEffect(() => {
-        window.localStorage.setItem('siteLanguage', language);
+        document.documentElement.lang = language;
     }, [language]);
 
-    const t = translations[language];
-
-    const value = {
+    const value = useMemo(() => ({
         language,
-        setLanguage,
-        t
-    };
+        t: translations[language],
+        // Cambiare lingua e' una navigazione, non un cambio di stato: porta
+        // alla stessa pagina nell'altra lingua, con un URL condivisibile.
+        setLanguage: (next) => {
+            const target = typeof next === 'function' ? next(language) : next;
+            if (target !== language) {
+                navigate(alternatePath(location.pathname, target) + location.search + location.hash);
+            }
+        },
+    }), [language, location.pathname, location.search, location.hash, navigate]);
 
     return (
         <LanguageContext.Provider value={value}>
