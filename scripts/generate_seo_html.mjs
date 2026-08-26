@@ -432,11 +432,52 @@ function renderContactFallback(t) {
     `;
 }
 
+function renderMarketResearchFallback(t) {
+  const mr = t.marketResearch;
+
+  return `
+      <main class="seo-static-fallback">
+        <nav aria-label="Breadcrumb"><a href="/">Home</a> / <span>${escapeHtml(mr.title)}</span></nav>
+        <h1>${escapeHtml(mr.title)}</h1>
+        <p>${escapeHtml(mr.subtitle)}</p>
+        <p>${escapeHtml(mr.disclaimer)}</p>
+      </main>
+    `;
+}
+
+// L'informativa e' l'unica pagina legale del sito ed e' in sitemap: senza
+// fallback un crawler ne vedeva il contenuto vuoto.
+function renderPrivacyFallback(t) {
+  const p = t.privacy;
+  const section = (s) => s
+    ? `<h2>${escapeHtml(s.title)}</h2>${s.text ? `<p>${escapeHtml(s.text)}</p>` : ''}${
+        (s.list || s.types) ? `<ul>${listItems(s.list || s.types)}</ul>` : ''}`
+    : '';
+
+  return `
+      <main class="seo-static-fallback">
+        <nav aria-label="Breadcrumb"><a href="/">Home</a> / <span>${escapeHtml(p.title)}</span></nav>
+        <h1>${escapeHtml(p.title)}</h1>
+        <p>${escapeHtml(p.intro)}</p>
+        <h2>${escapeHtml(p.controller.title)}</h2>
+        <p>${escapeHtml(p.controller.text)} ${escapeHtml(p.controller.name)}, ${escapeHtml(p.controller.address)} — ${escapeHtml(p.controller.email)}</p>
+        ${section(p.collection)}
+        ${section(p.cookies)}
+        ${section(p.sharing)}
+        ${section(p.retention)}
+        <h2>${escapeHtml(p.rights.title)}</h2>
+        <p>${escapeHtml(p.rights.text)}</p>
+      </main>
+    `;
+}
+
 const CORE_FALLBACKS = {
   '/about': renderAboutFallback,
   '/services': renderServicesFallback,
   '/projects': renderProjectsFallback,
   '/contact': renderContactFallback,
+  '/market-research': renderMarketResearchFallback,
+  '/privacy': renderPrivacyFallback,
 };
 
 function buildCorePageHtml(template, pagePath, lang) {
@@ -570,6 +611,32 @@ const writePage = async (pagePath, lang, html) => {
   await writeFile(path.join(outputDir, 'index.html'), html);
 };
 
+// Pagina 404 vera. Vercel la serve con stato 404 per i percorsi che non
+// corrispondono ad alcun file, ora che il rewrite catch-all e' stato rimosso.
+// Prima ogni indirizzo sbagliato restituiva 200 con la homepage: per Google
+// erano soft 404, contenuto duplicato e budget di scansione sprecato.
+function build404Html(template) {
+  const t = translations.it;
+  const en = translations.en;
+  let html = template;
+  html = html.replace(/<html lang="[^"]*">/, '<html lang="it">');
+  html = html.replace(/<title>.*?<\/title>/, `<title>${escapeAttr(t.notFound.title)} | GP &amp; Partners</title>`);
+  html = setTag(html, /<meta name="robots" content="[^"]*" \/>/, '<meta name="robots" content="noindex, follow" />');
+  html = setTag(html, /<link rel="canonical" href="[^"]*" \/>/, '');
+  html = html.replace('<div id="root"></div>', `<div id="root">
+      <main class="seo-static-fallback">
+        <h1>${escapeHtml(t.notFound.title)}</h1>
+        <p>${escapeHtml(t.notFound.subtitle)}</p>
+        <p><a href="/">${escapeHtml(t.notFound.cta)}</a></p>
+        <hr />
+        <h2>${escapeHtml(en.notFound.title)}</h2>
+        <p>${escapeHtml(en.notFound.subtitle)}</p>
+        <p><a href="/en">${escapeHtml(en.notFound.cta)}</a></p>
+      </main>
+    </div>`);
+  return html;
+}
+
 await Promise.all(LANGS.flatMap((lang) => [
   ...Object.values(seoPages).map((page) =>
     writePage(page.path, lang, buildPageHtml(template, page, lang))),
@@ -580,6 +647,7 @@ await Promise.all(LANGS.flatMap((lang) => [
   writePage('/', lang, buildHomeHtml(template, lang)),
 ]).concat([
   writeFile(path.join(distDir, 'sitemap.xml'), renderSitemap()),
+  writeFile(path.join(distDir, '404.html'), build404Html(template)),
 ]));
 
 const perLang = Object.keys(seoPages).length + marketRoutes.length + Object.keys(CORE_FALLBACKS).length + 1;
