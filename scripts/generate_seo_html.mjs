@@ -604,12 +604,73 @@ if (missingData.length > 0) {
 // Ogni pagina viene scritta due volte: alla radice in italiano e sotto /en in
 // inglese. Il percorso su disco rispecchia l'URL, cosi' il rewrite della SPA
 // serve il file giusto senza configurazione aggiuntiva.
+const llmsEntries = [];
+
 const writePage = async (pagePath, lang, html) => {
   const urlPath = langPath(pagePath, lang);
   const outputDir = urlPath === '/' ? distDir : path.join(distDir, urlPath.slice(1));
+  llmsEntries.push({
+    url: `${siteUrl}${urlPath === '/' ? '/' : urlPath}`,
+    lang,
+    title: (html.match(/<title>([^<]*)<\/title>/) || [])[1]?.replace(/&amp;/g, '&') ?? urlPath,
+    description: (html.match(/<meta name="description" content="([^"]*)"/) || [])[1]?.replace(/&amp;/g, '&') ?? '',
+    text: fallbackToText(html),
+  });
   await mkdir(outputDir, { recursive: true });
   await writeFile(path.join(outputDir, 'index.html'), html);
 };
+
+// llms-full.txt: il testo di tutte le pagine in un unico file, per gli agenti
+// che vogliono leggere il sito senza scansionarlo pagina per pagina.
+// Il contenuto e' ricavato dagli stessi fallback statici che serviamo ai
+// crawler, quindi non puo' divergere da cio' che e' davvero in pagina.
+function fallbackToText(html) {
+  const root = html.match(/<div id="root">([\s\S]*?)<\/div>\s*<script/) || html.match(/<div id="root">([\s\S]*)<\/div>/);
+  let body = root ? root[1] : '';
+  body = body
+    .replace(/<\/(h1|h2|h3|p|li|nav|main)>/gi, '\n')
+    .replace(/<li>/gi, '- ')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&nbsp;/g, ' ');
+  return body
+    .split('\n')
+    .map((line) => line.replace(/[ \t]+/g, ' ').trim())
+    .filter(Boolean)
+    .join('\n');
+}
+
+function renderLlmsFull(entries) {
+  const header = [
+    '# gianlucapiazza.com — full text',
+    '',
+    '> GP & Partners helps Italian and European companies enter and grow in the US market.',
+    '> This file contains the readable text of every page, in both languages, so an agent',
+    '> can read the whole site in one request. Generated at build time from the same',
+    '> static fallbacks served to crawlers, so it cannot drift from the live pages.',
+    '',
+    `> Pages: ${entries.length}. Site: ${siteUrl}`,
+    '',
+  ].join('\n');
+
+  const body = entries
+    .sort((a, b) => (a.lang === b.lang ? a.url.localeCompare(b.url) : a.lang.localeCompare(b.lang)))
+    .map((e) => [
+      '---',
+      '',
+      `## ${e.title}`,
+      '',
+      `URL: ${e.url}`,
+      `Language: ${e.lang}`,
+      e.description ? `Summary: ${e.description}` : '',
+      '',
+      e.text,
+      '',
+    ].filter((l) => l !== '').join('\n'))
+    .join('\n');
+
+  return `${header}${body}`;
+}
 
 // Pagina 404 vera. Vercel la serve con stato 404 per i percorsi che non
 // corrispondono ad alcun file, ora che il rewrite catch-all e' stato rimosso.
@@ -649,6 +710,8 @@ await Promise.all(LANGS.flatMap((lang) => [
   writeFile(path.join(distDir, 'sitemap.xml'), renderSitemap()),
   writeFile(path.join(distDir, '404.html'), build404Html(template)),
 ]));
+
+await writeFile(path.join(distDir, 'llms-full.txt'), renderLlmsFull(llmsEntries));
 
 const perLang = Object.keys(seoPages).length + marketRoutes.length + Object.keys(CORE_FALLBACKS).length + 1;
 const pageCount = perLang * LANGS.length;

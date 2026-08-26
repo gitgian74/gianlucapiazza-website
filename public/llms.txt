@@ -2,6 +2,19 @@
 
 > GP & Partners helps Italian and European companies enter and grow in the US market through market entry strategy, business development, distribution channel development, retail partnerships, and local operating support. Boutique operating partner led by Gianluca Piazza.
 
+## Full text
+
+- [llms-full.txt](https://gianlucapiazza.com/llms-full.txt): the readable text of every page,
+  both languages, in one file. Generated at build time from the same static markup served to
+  crawlers, so it never drifts from the live site.
+
+## Languages
+
+Italian is served at the root; English lives under /en with the same paths — for example
+https://gianlucapiazza.com/services and https://gianlucapiazza.com/en/services. Every page
+declares reciprocal hreflang and both are listed in the sitemap. The URLs below are the
+Italian ones; prefix any of them with /en for the English version.
+
 ## Core Pages
 
 - [Home](https://gianlucapiazza.com/): positioning for USA market entry, business development, and strategic partnerships.
