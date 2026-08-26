@@ -365,12 +365,13 @@ export const translations = {
         title: 'Tipologia di Dati Raccolti',
         text: 'Durante la navigazione e l\'utilizzo del sito, possono essere raccolti i seguenti dati:',
         list: [
-          'Dati tecnici di navigazione trattati dall’infrastruttura di hosting Vercel (es. log di richiesta, orari, user agent, stato della risposta).',
-          'Dati forniti volontariamente dall\'utente (nome, email, azienda e messaggio nel form di contatto)',
-          'Prompt e messaggi inseriti volontariamente nello strumento AI Market Research, trattati tramite API Google Gemini per generare la risposta.',
-          'Dati aggregati e anonimizzati di utilizzo tramite Vercel Web Analytics, senza cookie di terza parte.',
-          'Preferenze tecniche salvate nel browser, come scelta lingua e preferenza cookie/analytics.',
-          'Dati di navigazione per misurazione marketing tramite Meta Pixel, solo se l’utente presta consenso marketing e il Pixel è configurato: pagine visitate, referrer, browser, dispositivo e interazioni tecniche essenziali alla misurazione.'
+          "Dati tecnici di navigazione trattati dall’infrastruttura di hosting Vercel e dal proxy Cloudflare (es. indirizzo IP, log di richiesta, orari, user agent, stato della risposta).",
+          "Dati forniti volontariamente dall’utente: nome, email, azienda e messaggio nel modulo di contatto.",
+          "Dati di provenienza del contatto, allegati alla richiesta inviata dal modulo: parametri UTM, referrer, pagine di ingresso e un identificativo di sessione. Raccolti solo previo consenso analytics.",
+          "Prompt e messaggi inseriti volontariamente nello strumento AI Market Research, trattati tramite API Google Gemini per generare la risposta.",
+          "Dati aggregati di utilizzo tramite Vercel Web Analytics, previo consenso analytics e senza cookie di terza parte.",
+          "Preferenze tecniche salvate nel browser, come scelta della lingua ed esito del banner cookie.",
+          "Dati di navigazione per misurazione marketing tramite Meta Pixel, solo previo consenso marketing: pagine visitate, referrer, browser, dispositivo e interazioni tecniche essenziali alla misurazione."
         ]
       },
       purpose: {
@@ -400,21 +401,25 @@ export const translations = {
         title: 'Cookie Policy',
         text: 'Il sito separa preferenze tecniche, analytics e marketing. Nello specifico:',
         types: [
-          'Preferenze tecniche/local storage: usate per ricordare lingua e scelta cookie/analytics sul dispositivo dell’utente.',
-          'Vercel Web Analytics e GA4: attivati solo dopo accettazione del banner analytics; misurano pagine visitate, referrer, browser, sistema operativo, paese e device.',
-          'Meta Pixel: caricato solo dopo consenso marketing separato e solo se configurato con un Pixel ID valido; può misurare pagine visitate, referrer, browser e dispositivo per attribuzione e campagne.',
-          'Google Ads e TikTok Pixel: non attivi. Eventuali tag futuri saranno attivati solo dopo aggiornamento informativa e consenso preventivo.'
+          "Preferenze tecniche salvate nel browser, non cookie: siteLanguage (lingua scelta) e cookieConsent (esito del banner). Restano finché non vengono cancellate dal browser e non richiedono consenso.",
+          "Cloudflare Turnstile: caricato sulla sola pagina di contatto per distinguere le persone dai bot. È una misura tecnica di sicurezza necessaria al funzionamento del modulo e non richiede consenso preventivo.",
+          "Vercel Web Analytics: attivato solo dopo consenso analytics. Misura pagine visitate, referrer, browser, sistema operativo, paese e tipo di dispositivo, senza cookie di terza parte.",
+          "Google Analytics 4: attivato solo dopo consenso analytics. Imposta i cookie _ga e _ga_7DW4MMZWP3, entrambi con durata di 2 anni, usati per distinguere gli utenti e mantenere lo stato della sessione. L’indirizzo IP è anonimizzato.",
+          "Meta Pixel: caricato solo dopo consenso marketing separato e solo se configurato con un Pixel ID valido. Imposta il cookie _fbp, durata 3 mesi, usato per l’attribuzione delle campagne.",
+          "Dati di provenienza del contatto: siteAttribution nel local storage e siteSession nella sessione del browser, contenenti parametri UTM, referrer e un identificativo di sessione. Salvati solo con consenso analytics e rimossi automaticamente se il consenso manca o viene revocato.",
+          "Google Ads e TikTok Pixel: non attivi. Eventuali tag futuri saranno attivati solo dopo aggiornamento dell’informativa e consenso preventivo."
         ],
-        management: 'L’utente può rifiutare analytics e marketing dal banner o cancellare le preferenze salvate dal browser. I cookie e lo storage possono essere gestiti anche dalle impostazioni del browser. Se il browser invia un segnale Global Privacy Control, il sito lo tratta come opt-out dal marketing measurement.'
+        management: 'Le scelte possono essere modificate in qualsiasi momento dal link «Preferenze cookie» presente nel footer di ogni pagina, che riapre il banner: revocare il consenso è tanto semplice quanto prestarlo. In alternativa i cookie e lo storage possono essere gestiti dalle impostazioni del browser. Se il browser invia un segnale Global Privacy Control, il sito lo tratta come opposizione al marketing.'
       },
       sharing: {
         title: 'Fornitori, destinatari e trasferimenti',
         text: 'I dati possono essere trattati da fornitori tecnici necessari al funzionamento del sito e dei servizi collegati:',
         list: [
-          'Vercel per hosting, deploy, sicurezza, log tecnici e analytics aggregati.',
-          'Google per GA4 e API Gemini, solo nelle funzionalità in cui tali servizi sono attivati o usati dall’utente.',
-          'Meta per il Pixel, solo previo consenso marketing e solo se il Pixel ID è configurato.',
-          'Provider email e strumenti operativi usati per ricevere e gestire richieste inviate volontariamente.'
+          "Vercel Inc. (Stati Uniti) per hosting, deploy, sicurezza, log tecnici e Web Analytics.",
+          "Cloudflare, Inc. (Stati Uniti) come CDN e proxy dell’intero dominio: tratta indirizzo IP e dati tecnici di ogni visita, e fornisce il servizio antibot Turnstile sul modulo di contatto.",
+          "Google LLC (Stati Uniti) per Google Analytics 4 e per le API Gemini utilizzate dallo strumento AI Market Research.",
+          "Meta Platforms, Inc. (Stati Uniti) per il Pixel, solo previo consenso marketing e solo se il Pixel ID è configurato.",
+          "Resend (Stati Uniti) per il recapito delle email generate dal modulo di contatto, incluse la notifica al Titolare e la conferma inviata all’utente."
         ],
         transfer: 'Alcuni fornitori possono trattare dati fuori da UE/SEE o dal paese dell’utente. Quando richiesto, il trasferimento avviene sulla base di garanzie appropriate, come clausole contrattuali standard, decisioni di adeguatezza, Data Privacy Framework o misure equivalenti disponibili.'
       },
@@ -422,10 +427,10 @@ export const translations = {
         title: 'Conservazione',
         text: 'I dati sono conservati solo per il tempo necessario alle finalità indicate:',
         list: [
-          'Richieste di contatto e corrispondenza: per il tempo necessario a gestire la richiesta e gli eventuali rapporti successivi, salvo obblighi legali o tutela di diritti.',
-          'Log tecnici e sicurezza: per periodi limitati definiti dai fornitori infrastrutturali e dalle esigenze di sicurezza.',
-          'Preferenze consenso: fino a modifica, cancellazione browser o aggiornamento della versione del consenso.',
-          'Dati analytics/marketing: secondo le impostazioni di conservazione dei relativi strumenti, nel rispetto del consenso prestato.'
+          "Richieste di contatto e corrispondenza: fino a 24 mesi dall’ultimo scambio, salvo obblighi legali o necessità di accertare o difendere un diritto.",
+          "Log tecnici e di sicurezza: per periodi limitati definiti dai fornitori infrastrutturali. I log applicativi di Vercel sono conservati circa 24 ore.",
+          "Preferenze di consenso: fino a modifica, cancellazione dei dati del browser o aggiornamento della versione del consenso.",
+          "Dati analytics e marketing: secondo le impostazioni di conservazione dei relativi strumenti, nel rispetto del consenso prestato."
         ]
       },
       ai: {
@@ -434,7 +439,7 @@ export const translations = {
       },
       rights: {
         title: 'Diritti degli Interessati',
-        text: 'Gli utenti nell’UE/SEE, Regno Unito e giurisdizioni analoghe possono chiedere accesso, rettifica, cancellazione, limitazione, portabilità, opposizione al trattamento e revoca del consenso. Hanno inoltre diritto di proporre reclamo all’autorità di controllo competente.'
+        text: 'Gli utenti nell’UE/SEE, Regno Unito e giurisdizioni analoghe possono chiedere accesso, rettifica, cancellazione, limitazione, portabilità, opposizione al trattamento e revoca del consenso. Hanno inoltre diritto di proporre reclamo all’autorità di controllo competente: per l’Italia è il Garante per la protezione dei dati personali (www.garanteprivacy.it).'
       },
       usPrivacy: {
         title: 'Utenti USA e mercati internazionali',
@@ -817,12 +822,13 @@ export const translations = {
         title: 'Types of Data Collected',
         text: 'During navigation and use of the site, the following data may be collected:',
         list: [
-          'Technical navigation data processed by the Vercel hosting infrastructure (for example request logs, timestamps, user agent, response status).',
-          'Data voluntarily provided by the user (name, email, company and message in the contact form)',
-          'Prompts and messages voluntarily entered in the AI Market Research tool, processed through the Google Gemini API to generate the answer.',
-          'Aggregated and anonymized usage data through Vercel Web Analytics, without third-party cookies.',
-          'Technical preferences stored in the browser, such as language and cookie/analytics preference.',
-          'Navigation data for marketing measurement through Meta Pixel, only if the user gives marketing consent and the Pixel is configured: visited pages, referrers, browser, device and technical interactions needed for measurement.'
+          "Technical navigation data processed by the Vercel hosting infrastructure and the Cloudflare proxy (for example IP address, request logs, timestamps, user agent, response status).",
+          "Data voluntarily provided by the user: name, email, company and message in the contact form.",
+          "Contact attribution data attached to the request sent through the form: UTM parameters, referrer, landing pages and a session identifier. Collected only after analytics consent.",
+          "Prompts and messages voluntarily entered in the AI Market Research tool, processed through the Google Gemini APIs to generate the answer.",
+          "Aggregated usage data through Vercel Web Analytics, after analytics consent and without third-party cookies.",
+          "Technical preferences stored in the browser, such as the chosen language and the cookie banner outcome.",
+          "Navigation data for marketing measurement through the Meta Pixel, only after marketing consent: visited pages, referrer, browser, device and technical interactions essential to measurement."
         ]
       },
       purpose: {
@@ -852,21 +858,25 @@ export const translations = {
         title: 'Cookie Policy',
         text: 'The website separates technical preferences, analytics and marketing. Specifically:',
         types: [
-          'Technical preferences/local storage: used to remember language and cookie/analytics choices on the user device.',
-          'Vercel Web Analytics and GA4: activated only after accepting the analytics banner; they measure visited pages, referrers, browser, operating system, country and device.',
-          'Meta Pixel: loaded only after separate marketing consent and only if configured with a valid Pixel ID; it may measure visited pages, referrers, browser and device for attribution and campaigns.',
-          'Google Ads and TikTok Pixel: not active. Any future tags will only be enabled after updating this notice and collecting prior consent.'
+          "Technical preferences stored in the browser, not cookies: siteLanguage (chosen language) and cookieConsent (banner outcome). They persist until cleared from the browser and require no consent.",
+          "Cloudflare Turnstile: loaded on the contact page only, to tell people from bots. It is a technical security measure necessary for the form to work and requires no prior consent.",
+          "Vercel Web Analytics: enabled only after analytics consent. It measures visited pages, referrer, browser, operating system, country and device type, without third-party cookies.",
+          "Google Analytics 4: enabled only after analytics consent. It sets the cookies _ga and _ga_7DW4MMZWP3, both lasting 2 years, used to distinguish users and keep session state. The IP address is anonymised.",
+          "Meta Pixel: loaded only after separate marketing consent and only if configured with a valid Pixel ID. It sets the _fbp cookie, lasting 3 months, used for campaign attribution.",
+          "Contact attribution data: siteAttribution in local storage and siteSession in session storage, holding UTM parameters, referrer and a session identifier. Stored only with analytics consent and removed automatically if consent is absent or withdrawn.",
+          "Google Ads and TikTok Pixel: not active. Any future tags will be enabled only after updating this policy and obtaining prior consent."
         ],
-        management: 'Users can reject analytics and marketing from the banner or clear saved preferences from their browser. Cookies and storage can also be managed from browser settings. If the browser sends a Global Privacy Control signal, the website treats it as an opt-out from marketing measurement.'
+        management: 'Choices can be changed at any time through the «Cookie preferences» link in the footer of every page, which reopens the banner: withdrawing consent is as easy as giving it. Cookies and storage can also be managed from the browser settings. If the browser sends a Global Privacy Control signal, the site treats it as an objection to marketing.'
       },
       sharing: {
         title: 'Providers, Recipients and Transfers',
         text: 'Data may be processed by technical providers needed to operate the website and connected services:',
         list: [
-          'Vercel for hosting, deployment, security, technical logs and aggregated analytics.',
-          'Google for GA4 and Gemini API, only where those services are enabled or used by the user.',
-          'Meta for the Pixel, only after marketing consent and only if the Pixel ID is configured.',
-          'Email providers and operating tools used to receive and manage voluntarily submitted requests.'
+          "Vercel Inc. (United States) for hosting, deployment, security, technical logs and Web Analytics.",
+          "Cloudflare, Inc. (United States) as CDN and proxy for the whole domain: it processes the IP address and technical data of every visit, and provides the Turnstile anti-bot service on the contact form.",
+          "Google LLC (United States) for Google Analytics 4 and for the Gemini APIs used by the AI Market Research tool.",
+          "Meta Platforms, Inc. (United States) for the Pixel, only after marketing consent and only if the Pixel ID is configured.",
+          "Resend (United States) for delivering the emails generated by the contact form, including the notification to the Controller and the confirmation sent to the user."
         ],
         transfer: 'Some providers may process data outside the EU/EEA or the user’s country. Where required, transfers rely on appropriate safeguards such as standard contractual clauses, adequacy decisions, the Data Privacy Framework or equivalent available measures.'
       },
@@ -874,10 +884,10 @@ export const translations = {
         title: 'Retention',
         text: 'Data is kept only for as long as necessary for the purposes described:',
         list: [
-          'Contact requests and correspondence: for the time needed to handle the request and any following relationship, unless legal obligations or rights protection require longer retention.',
-          'Technical and security logs: for limited periods set by infrastructure providers and security needs.',
-          'Consent preferences: until changed, cleared from the browser or superseded by a new consent version.',
-          'Analytics/marketing data: according to the retention settings of the relevant tools and the consent provided.'
+          "Contact requests and correspondence: up to 24 months from the last exchange, unless legal obligations apply or a right must be established or defended.",
+          "Technical and security logs: for limited periods defined by the infrastructure providers. Vercel application logs are retained for about 24 hours.",
+          "Consent preferences: until changed, cleared from the browser or superseded by a new consent version.",
+          "Analytics and marketing data: according to the retention settings of the respective tools, in line with the consent given."
         ]
       },
       ai: {
@@ -886,7 +896,7 @@ export const translations = {
       },
       rights: {
         title: 'Rights of Data Subjects',
-        text: 'Users in the EU/EEA, United Kingdom and similar jurisdictions may request access, correction, deletion, restriction, portability, objection to processing and withdrawal of consent. They may also lodge a complaint with the competent supervisory authority.'
+        text: 'Users in the EU/EEA, United Kingdom and similar jurisdictions may request access, correction, deletion, restriction, portability, objection to processing and withdrawal of consent. They may also lodge a complaint with the competent supervisory authority: in Italy this is the Garante per la protezione dei dati personali (www.garanteprivacy.it).'
       },
       usPrivacy: {
         title: 'US Users and International Markets',
