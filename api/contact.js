@@ -6,20 +6,33 @@ const CHECKLIST_URL =
     process.env.CHECKLIST_PDF_URL ||
     'https://gianlucapiazza.com/lead-magnets/buyer-distributor-readiness-checklist.pdf';
 
-function missingMailEnv() {
-    return ['GMAIL_USER', 'GMAIL_CLIENT_ID', 'GMAIL_PRIVATE_KEY'].filter((k) => !process.env[k]);
+// L'indirizzo mittente deve appartenere a un dominio verificato su Resend.
+// MAIL_FROM lo rende esplicito; GMAIL_USER resta come ripiego per non rompere
+// nulla finche' le vecchie variabili non vengono rimosse.
+function senderAddress() {
+    return process.env.MAIL_FROM || process.env.GMAIL_USER;
 }
 
+function missingMailEnv() {
+    const missing = ['RESEND_API_KEY'].filter((k) => !process.env[k]);
+    if (!senderAddress()) {
+        missing.push('MAIL_FROM');
+    }
+    return missing;
+}
+
+// Trasporto SMTP di Resend. Sostituisce Gmail con OAuth2, che si e' rivelato
+// fragile: il client OAuth e' stato cancellato lato Google e da quel momento
+// ogni invio falliva con EAUTH / deleted_client, senza che nulla lo segnalasse.
+// Una chiave API non ha quel tipo di dipendenza.
 function createTransport() {
     return nodemailer.createTransport({
-        host: 'smtp.gmail.com',
+        host: 'smtp.resend.com',
         port: 465,
         secure: true,
         auth: {
-            type: 'OAuth2',
-            user: process.env.GMAIL_USER,
-            serviceClient: process.env.GMAIL_CLIENT_ID,
-            privateKey: process.env.GMAIL_PRIVATE_KEY.replace(/\\n/g, '\n'),
+            user: 'resend',
+            pass: process.env.RESEND_API_KEY,
         },
     });
 }
@@ -136,7 +149,7 @@ export default async function handler(req, res) {
         ? attributionEntries.map((entry) => escapeHtml(entry)).join('<br>')
         : 'N/A';
 
-    const sender = process.env.GMAIL_USER;
+    const sender = senderAddress();
     const ownerInbox = process.env.CONTACT_TO || sender;
     const fromOwner = `GP & Partners Website <${sender}>`;
     const fromUser = `Gianluca Piazza <${sender}>`;
