@@ -15,6 +15,8 @@ export const translations = {
       heroTag: 'Strategy. Growth. Partnership.',
       subtitle: 'USA Market Entry | Business Builder | Strategic Partner',
       tagline: 'Apriamo le porte del mercato USA per le imprese italiane.',
+      fallbackHeading: "GP & Partners — USA Market Entry Partner operativo",
+      landingSectionTitle: 'Servizi e mercati USA',
       taglineSub: 'Dalla strategia all\'esecuzione — Florida come porta d\'ingresso, Stati Uniti e Caraibi come traiettoria.',
       taglineUsa: 'Florida · USA · Caraibi',
       futureTrading: 'The future of your trading',
@@ -309,6 +311,7 @@ export const translations = {
       },
       info: {
         title: 'Informazioni di Contatto',
+        addressLabel: 'Sede',
         addressUS: '8Hz LLC, 4660 Arboretum Cir Unit 201, Naples FL 34112',
         linkedin: 'LinkedIn',
         followSocial: 'Seguici sui social'
@@ -472,6 +475,8 @@ export const translations = {
       heroTag: 'Strategy. Growth. Partnership.',
       subtitle: 'USA Market Entry | Business Builder | Strategic Partner',
       tagline: 'We open the US market for Italian businesses.',
+      fallbackHeading: "GP & Partners — Hands-on USA Market Entry Partner",
+      landingSectionTitle: 'US services and markets',
       taglineSub: 'From strategy to execution — Florida as the entry point, the United States and the Caribbean as the growth path.',
       taglineUsa: 'Florida · USA · Caribbean',
       futureTrading: 'The future of your trading',
@@ -766,6 +771,7 @@ export const translations = {
       },
       info: {
         title: 'Contact Information',
+        addressLabel: 'Office',
         addressUS: '8Hz LLC, 4660 Arboretum Cir Unit 201, Naples FL 34112',
         linkedin: 'LinkedIn',
         followSocial: 'Follow us on social'

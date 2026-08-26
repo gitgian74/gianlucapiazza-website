@@ -27,8 +27,13 @@ function escapeAttr(value) {
   return escapeHtml(value).replaceAll('\n', ' ');
 }
 
-function buildJsonLd(page, content) {
-  const pageUrl = `${siteUrl}${page.path}`;
+function buildJsonLd(page, content, lang) {
+  // Deve concordare con il canonical della stessa pagina: dichiarare l'URL
+  // italiano su una pagina /en la farebbe consolidare sulla controparte
+  // italiana, annullando l'indicizzazione separata.
+  const pageUrl = `${siteUrl}${langPath(page.path, lang)}`;
+  const homeUrl = `${siteUrl}${langPath('/', lang)}`;
+  const servicesUrl = `${siteUrl}${langPath('/services', lang)}`;
 
   return {
     '@context': 'https://schema.org',
@@ -82,13 +87,13 @@ function buildJsonLd(page, content) {
             '@type': 'ListItem',
             position: 1,
             name: 'Home',
-            item: `${siteUrl}/`,
+            item: homeUrl,
           },
           {
             '@type': 'ListItem',
             position: 2,
             name: 'Services',
-            item: `${siteUrl}/services`,
+            item: servicesUrl,
           },
           {
             '@type': 'ListItem',
@@ -102,7 +107,7 @@ function buildJsonLd(page, content) {
   };
 }
 
-function renderFallback(page, content) {
+function renderFallback(page, content, lang) {
   const bullets = [...content.process, ...content.proof]
     .map((item) => `<li>${escapeHtml(item)}</li>`)
     .join('');
@@ -118,7 +123,7 @@ function renderFallback(page, content) {
   return `
       <main class="seo-static-fallback">
         <nav aria-label="Breadcrumb">
-          <a href="/">Home</a> / <a href="/services">Services</a> / <span>${escapeHtml(content.hero)}</span>
+          <a href="${escapeAttr(langPath('/', lang))}">Home</a> / <a href="${escapeAttr(langPath('/services', lang))}">Services</a> / <span>${escapeHtml(content.hero)}</span>
         </nav>
         <h1>${escapeHtml(content.hero)}</h1>
         <p>${escapeHtml(content.subtitle)}</p>
@@ -127,7 +132,7 @@ function renderFallback(page, content) {
         <ul>${bullets}</ul>
         <h2>FAQ</h2>
         ${faqs}
-        <p><a href="/contact">${escapeHtml(content.cta.label)}</a></p>
+        <p><a href="${escapeAttr(langPath('/contact', lang))}">${escapeHtml(content.cta.label)}</a></p>
         ${secondaryCta}
       </main>
     `;
@@ -186,15 +191,16 @@ function buildPageHtml(template, page, lang) {
     description: escapeAttr(content.description),
     pageUrl,
     image: defaultImage,
-    jsonLd: JSON.stringify(buildJsonLd(page, content)),
-    fallback: renderFallback(page, content),
+    jsonLd: JSON.stringify(buildJsonLd(page, content, lang)),
+    fallback: renderFallback(page, content, lang),
     lang,
     basePath: page.path,
   });
 }
 
-function buildMarketJsonLd(page, content, pagePath) {
-  const pageUrl = `${siteUrl}${pagePath}`;
+function buildMarketJsonLd(page, content, pagePath, lang) {
+  const pageUrl = `${siteUrl}${langPath(pagePath, lang)}`;
+  const homeUrl = `${siteUrl}${langPath('/', lang)}`;
   const faqNode = content.faqs?.length
     ? [{
         '@type': 'FAQPage',
@@ -251,7 +257,7 @@ function buildMarketJsonLd(page, content, pagePath) {
             '@type': 'ListItem',
             position: 1,
             name: 'Home',
-            item: `${siteUrl}/`,
+            item: homeUrl,
           },
           {
             '@type': 'ListItem',
@@ -265,7 +271,7 @@ function buildMarketJsonLd(page, content, pagePath) {
   };
 }
 
-function renderMarketFallback(content) {
+function renderMarketFallback(content, lang) {
   const why = content.whyItems.map((item) => `<li>${escapeHtml(item)}</li>`).join('');
   const areas = content.marketsList
     .map((area) => `<article><h3>${escapeHtml(area.name)}</h3><p>${escapeHtml(area.note)}</p></article>`)
@@ -279,7 +285,7 @@ function renderMarketFallback(content) {
   return `
       <main class="seo-static-fallback">
         <nav aria-label="Breadcrumb">
-          <a href="/">Home</a> / <span>${escapeHtml(content.hero)}</span>
+          <a href="${escapeAttr(langPath('/', lang))}">Home</a> / <span>${escapeHtml(content.hero)}</span>
         </nav>
         <h1>${escapeHtml(content.hero)}</h1>
         <p>${escapeHtml(content.heroSub)}</p>
@@ -291,7 +297,7 @@ function renderMarketFallback(content) {
         <h2>${escapeHtml(content.services)}</h2>
         <ul>${services}</ul>
         ${faqSection}
-        <p><a href="/contact">${escapeHtml(content.ctaBtn)}</a></p>
+        <p><a href="${escapeAttr(langPath('/contact', lang))}">${escapeHtml(content.ctaBtn)}</a></p>
       </main>
     `;
 }
@@ -305,8 +311,8 @@ function buildMarketPageHtml(template, page, pagePath, lang) {
     description: escapeAttr(content.seoDesc),
     pageUrl,
     image: `${siteUrl}${page.image}`,
-    jsonLd: JSON.stringify(buildMarketJsonLd(page, content, pagePath)),
-    fallback: renderMarketFallback(content),
+    jsonLd: JSON.stringify(buildMarketJsonLd(page, content, pagePath, lang)),
+    fallback: renderMarketFallback(content, lang),
     lang,
     basePath: pagePath,
   });
@@ -340,7 +346,7 @@ function renderHomeFallback(t, lang) {
 
   return `
       <main class="seo-static-fallback">
-        <h1>GP &amp; Partners — USA Market Entry Partner operativo</h1>
+        <h1>${escapeHtml(t.home.fallbackHeading)}</h1>
         <p>${escapeHtml(t.home.tagline)}</p>
         <p>${escapeHtml(t.home.taglineSub)}</p>
         <p>${escapeHtml(t.home.intro)}</p>
@@ -348,17 +354,17 @@ function renderHomeFallback(t, lang) {
         <ul>${services}</ul>
         <h2>${escapeHtml(t.home.ctaTitle)}</h2>
         <p>${escapeHtml(t.home.ctaText)}</p>
-        <p><a href="/contact">${escapeHtml(t.home.ctaButton)}</a></p>
-        <h2>Servizi e mercati USA</h2>
+        <p><a href="${escapeAttr(langPath('/contact', lang))}">${escapeHtml(t.home.ctaButton)}</a></p>
+        <h2>${escapeHtml(t.home.landingSectionTitle)}</h2>
         <ul>${landingLinks}</ul>
       </main>
     `;
 }
 
-function renderAboutFallback(t) {
+function renderAboutFallback(t, lang) {
   return `
       <main class="seo-static-fallback">
-        <nav aria-label="Breadcrumb"><a href="/">Home</a> / <span>${escapeHtml(t.about.title)}</span></nav>
+        <nav aria-label="Breadcrumb"><a href="${escapeAttr(langPath('/', lang))}">Home</a> / <span>${escapeHtml(t.about.title)}</span></nav>
         <h1>${escapeHtml(t.about.heroHeadline)}</h1>
         <p>${escapeHtml(t.about.intro)}</p>
         <h2>${escapeHtml(t.about.experienceTitle)}</h2>
@@ -372,31 +378,31 @@ function renderAboutFallback(t) {
         <ul>${listItems(t.about.principles)}</ul>
         <h2>${escapeHtml(t.about.skillsTitle)}</h2>
         <ul>${listItems(t.about.skills)}</ul>
-        <p><a href="/contact">${escapeHtml(t.about.primaryCta)}</a></p>
+        <p><a href="${escapeAttr(langPath('/contact', lang))}">${escapeHtml(t.about.primaryCta)}</a></p>
       </main>
     `;
 }
 
-function renderServicesFallback(t) {
+function renderServicesFallback(t, lang) {
   const services = coreServices(t)
     .map((s) => `<article><h2>${escapeHtml(s.title)}</h2><p>${escapeHtml(s.description)}</p><ul>${listItems(s.items)}</ul></article>`)
     .join('');
 
   return `
       <main class="seo-static-fallback">
-        <nav aria-label="Breadcrumb"><a href="/">Home</a> / <span>${escapeHtml(t.services.title)}</span></nav>
+        <nav aria-label="Breadcrumb"><a href="${escapeAttr(langPath('/', lang))}">Home</a> / <span>${escapeHtml(t.services.title)}</span></nav>
         <h1>${escapeHtml(t.services.title)}</h1>
         <p>${escapeHtml(t.services.subtitle)}</p>
         <p>${escapeHtml(t.services.intro)}</p>
         <h2>${escapeHtml(t.services.modular.title)}</h2>
         <p>${escapeHtml(t.services.modular.text)}</p>
         ${services}
-        <p><a href="/contact">${escapeHtml(t.home.ctaButton)}</a></p>
+        <p><a href="${escapeAttr(langPath('/contact', lang))}">${escapeHtml(t.home.ctaButton)}</a></p>
       </main>
     `;
 }
 
-function renderProjectsFallback(t) {
+function renderProjectsFallback(t, lang) {
   const projects = Object.keys(t.projects)
     .filter((key) => /^project\d+$/.test(key))
     .map((key) => t.projects[key])
@@ -405,26 +411,26 @@ function renderProjectsFallback(t) {
 
   return `
       <main class="seo-static-fallback">
-        <nav aria-label="Breadcrumb"><a href="/">Home</a> / <span>${escapeHtml(t.projects.title)}</span></nav>
+        <nav aria-label="Breadcrumb"><a href="${escapeAttr(langPath('/', lang))}">Home</a> / <span>${escapeHtml(t.projects.title)}</span></nav>
         <h1>${escapeHtml(t.projects.title)}</h1>
         <p>${escapeHtml(t.projects.subtitle)}</p>
         ${projects}
-        <p><a href="/contact">${escapeHtml(t.home.contactMe)}</a></p>
+        <p><a href="${escapeAttr(langPath('/contact', lang))}">${escapeHtml(t.home.contactMe)}</a></p>
       </main>
     `;
 }
 
-function renderContactFallback(t) {
+function renderContactFallback(t, lang) {
   const info = t.contact.info;
 
   return `
       <main class="seo-static-fallback">
-        <nav aria-label="Breadcrumb"><a href="/">Home</a> / <span>${escapeHtml(t.contact.title)}</span></nav>
+        <nav aria-label="Breadcrumb"><a href="${escapeAttr(langPath('/', lang))}">Home</a> / <span>${escapeHtml(t.contact.title)}</span></nav>
         <h1>${escapeHtml(t.contact.title)}</h1>
         <p>${escapeHtml(t.contact.subtitle)}</p>
         <h2>${escapeHtml(info.title)}</h2>
         <ul>
-          <li>Sede: ${escapeHtml(info.addressUS)}</li>
+          <li>${escapeHtml(info.addressLabel)}: ${escapeHtml(info.addressUS)}</li>
           <li><a href="https://www.linkedin.com/company/gp-and-partners/">LinkedIn — GP &amp; Partners</a></li>
         </ul>
         <p>${escapeHtml(t.contact.form.nextStep)}</p>
@@ -432,12 +438,12 @@ function renderContactFallback(t) {
     `;
 }
 
-function renderMarketResearchFallback(t) {
+function renderMarketResearchFallback(t, lang) {
   const mr = t.marketResearch;
 
   return `
       <main class="seo-static-fallback">
-        <nav aria-label="Breadcrumb"><a href="/">Home</a> / <span>${escapeHtml(mr.title)}</span></nav>
+        <nav aria-label="Breadcrumb"><a href="${escapeAttr(langPath('/', lang))}">Home</a> / <span>${escapeHtml(mr.title)}</span></nav>
         <h1>${escapeHtml(mr.title)}</h1>
         <p>${escapeHtml(mr.subtitle)}</p>
         <p>${escapeHtml(mr.disclaimer)}</p>
@@ -447,7 +453,7 @@ function renderMarketResearchFallback(t) {
 
 // L'informativa e' l'unica pagina legale del sito ed e' in sitemap: senza
 // fallback un crawler ne vedeva il contenuto vuoto.
-function renderPrivacyFallback(t) {
+function renderPrivacyFallback(t, lang) {
   const p = t.privacy;
   const section = (s) => s
     ? `<h2>${escapeHtml(s.title)}</h2>${s.text ? `<p>${escapeHtml(s.text)}</p>` : ''}${
@@ -456,7 +462,7 @@ function renderPrivacyFallback(t) {
 
   return `
       <main class="seo-static-fallback">
-        <nav aria-label="Breadcrumb"><a href="/">Home</a> / <span>${escapeHtml(p.title)}</span></nav>
+        <nav aria-label="Breadcrumb"><a href="${escapeAttr(langPath('/', lang))}">Home</a> / <span>${escapeHtml(p.title)}</span></nav>
         <h1>${escapeHtml(p.title)}</h1>
         <p>${escapeHtml(p.intro)}</p>
         <h2>${escapeHtml(p.controller.title)}</h2>
@@ -498,7 +504,7 @@ function buildCorePageHtml(template, pagePath, lang) {
       url: pageUrl,
       isPartOf: { '@id': `${siteUrl}/#organization` },
     }),
-    fallback: CORE_FALLBACKS[pagePath](translations[lang]),
+    fallback: CORE_FALLBACKS[pagePath](translations[lang], lang),
     lang,
     basePath: pagePath,
   });
