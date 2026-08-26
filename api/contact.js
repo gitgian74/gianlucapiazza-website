@@ -7,10 +7,8 @@ const CHECKLIST_URL =
     'https://gianlucapiazza.com/lead-magnets/buyer-distributor-readiness-checklist.pdf';
 
 // L'indirizzo mittente deve appartenere a un dominio verificato su Resend.
-// MAIL_FROM lo rende esplicito; GMAIL_USER resta come ripiego per non rompere
-// nulla finche' le vecchie variabili non vengono rimosse.
 function senderAddress() {
-    return process.env.MAIL_FROM || process.env.GMAIL_USER;
+    return process.env.MAIL_FROM;
 }
 
 function missingMailEnv() {
