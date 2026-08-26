@@ -309,7 +309,7 @@ export const translations = {
       },
       info: {
         title: 'Informazioni di Contatto',
-        addressUS: 'c/o 8Hz LLC, 4660 Arboretum Cir Unit 201, Naples FL 34112',
+        addressUS: '8Hz LLC, 4660 Arboretum Cir Unit 201, Naples FL 34112',
         linkedin: 'LinkedIn',
         followSocial: 'Seguici sui social'
       }
@@ -355,8 +355,8 @@ export const translations = {
         intro: 'Questa Informativa descrive come il sito gianlucapiazza.com tratta i dati personali degli utenti che lo consultano o usano i moduli e gli strumenti presenti. È redatta in ottica GDPR/UK GDPR, ePrivacy/cookie, principi FTC statunitensi e principali diritti privacy applicabili nei mercati internazionali, incluse le leggi privacy statali USA quando applicabili.',
         controller: {
           title: 'Titolare del Trattamento',
-          text: 'Il Titolare del trattamento è identificato attraverso il sito e il brand operativo:',
-          name: 'GP & Partners / gianlucapiazza.com',
+          text: 'Il Titolare del trattamento dei dati raccolti tramite questo sito, operativo con il brand GP & Partners, è:',
+          name: '8Hz LLC',
           address: '4660 Arboretum Cir Unit 201, Naples FL 34112, Stati Uniti',
           vat: '',
           email: 'privacy@gianlucapiazza.com'
@@ -766,7 +766,7 @@ export const translations = {
       },
       info: {
         title: 'Contact Information',
-        addressUS: 'c/o 8Hz LLC, 4660 Arboretum Cir Unit 201, Naples FL 34112',
+        addressUS: '8Hz LLC, 4660 Arboretum Cir Unit 201, Naples FL 34112',
         linkedin: 'LinkedIn',
         followSocial: 'Follow us on social'
       }
@@ -812,8 +812,8 @@ export const translations = {
         intro: 'This notice explains how gianlucapiazza.com processes personal data when users browse the site or use its forms and tools. It is drafted with GDPR/UK GDPR, ePrivacy/cookie rules, US FTC privacy principles and major international privacy rights in mind, including US state privacy laws where applicable.',
         controller: {
           title: 'Data Controller',
-          text: 'The Data Controller is identified through the website and operating brand:',
-          name: 'GP & Partners / gianlucapiazza.com',
+          text: 'The Controller of the data collected through this website, which operates under the GP & Partners brand, is:',
+          name: '8Hz LLC',
           address: '4660 Arboretum Cir Unit 201, Naples FL 34112, United States',
           vat: '',
           email: 'privacy@gianlucapiazza.com'
