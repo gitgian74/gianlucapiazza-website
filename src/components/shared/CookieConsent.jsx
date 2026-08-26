@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion as Motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '../../hooks/use-language';
 import { Button } from './Button';
-import { Link } from 'react-router-dom';
+import { LangLink as Link } from './LangLink';
 import { CONSENT_REOPEN_EVENT, isConsentCurrent, setStoredConsent } from './analyticsConsent';
 
 export function CookieConsent() {

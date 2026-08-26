@@ -1,5 +1,6 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { LangLink as Link } from '../../components/shared/LangLink';
 import { motion, useReducedMotion } from 'framer-motion';
 import { ArrowRight, CheckCircle2, MessageSquareText, SearchCheck } from 'lucide-react';
 import { Section } from '../../components/shared/Section';

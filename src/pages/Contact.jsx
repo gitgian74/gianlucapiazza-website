@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { LangLink as Link } from '../components/shared/LangLink';
 import { useLanguage } from '../hooks/use-language';
 import { Send, Building2 } from 'lucide-react';
 import { PageHeader } from '../components/shared/PageHeader';

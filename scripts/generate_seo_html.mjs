@@ -5,7 +5,8 @@ import { seoPages } from '../src/pages/seo/seoPageData.js';
 import { marketLandingData } from '../src/pages/markets/marketLandingData.js';
 import { marketPath, marketRoutes } from '../src/pages/markets/marketRoutes.js';
 import { translations } from '../src/translations.js';
-import { coreMeta } from '../src/lib/coreMeta.js';
+import { coreMetaByLang } from '../src/lib/coreMeta.js';
+import { langPath, LANGS } from '../src/lib/locale.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.resolve(__dirname, '..');
@@ -144,9 +145,19 @@ function escapeJsonLd(s) {
     .replace(/\u2029/g, '\\u2029');
 }
 
-function applyMeta(template, { title, description, pageUrl, image, jsonLd, fallback }) {
+function applyMeta(template, { title, description, pageUrl, image, jsonLd, fallback, lang, basePath }) {
   let html = template;
-  html = html.replace(/<html lang="[^"]*">/, '<html lang="it">');
+  html = html.replace(/<html lang="[^"]*">/, `<html lang="${lang}">`);
+  // hreflang reciproci: senza questi le due lingue si fanno concorrenza
+  // invece di dichiararsi l'una l'alternativa dell'altra.
+  const itHref = `${siteUrl}${basePath === '/' ? '/' : basePath}`;
+  const enHref = `${siteUrl}${langPath(basePath, 'en')}`;
+  html = html.replace('</head>', [
+    `    <link rel="alternate" hreflang="it" href="${itHref}" />`,
+    `    <link rel="alternate" hreflang="en" href="${enHref}" />`,
+    `    <link rel="alternate" hreflang="x-default" href="${itHref}" />`,
+    '  </head>',
+  ].join('\n'));
   html = html.replace(/<title>.*?<\/title>/, `<title>${title}</title>`);
   html = setTag(html, /<meta name="description" content="[^"]*" \/>/, `<meta name="description" content="${description}" />`);
   html = setTag(html, /<link rel="canonical" href="[^"]*" \/>/, `<link rel="canonical" href="${pageUrl}" />`);
@@ -166,9 +177,9 @@ function applyMeta(template, { title, description, pageUrl, image, jsonLd, fallb
   return html;
 }
 
-function buildPageHtml(template, page) {
-  const content = page.it;
-  const pageUrl = `${siteUrl}${page.path}`;
+function buildPageHtml(template, page, lang) {
+  const content = page[lang];
+  const pageUrl = `${siteUrl}${langPath(page.path, lang)}`;
 
   return applyMeta(template, {
     title: escapeAttr(content.title),
@@ -177,6 +188,8 @@ function buildPageHtml(template, page) {
     image: defaultImage,
     jsonLd: JSON.stringify(buildJsonLd(page, content)),
     fallback: renderFallback(page, content),
+    lang,
+    basePath: page.path,
   });
 }
 
@@ -283,9 +296,9 @@ function renderMarketFallback(content) {
     `;
 }
 
-function buildMarketPageHtml(template, page, pagePath) {
-  const content = page.it;
-  const pageUrl = `${siteUrl}${pagePath}`;
+function buildMarketPageHtml(template, page, pagePath, lang) {
+  const content = page[lang];
+  const pageUrl = `${siteUrl}${langPath(pagePath, lang)}`;
 
   return applyMeta(template, {
     title: escapeAttr(content.seoTitle),
@@ -294,6 +307,8 @@ function buildMarketPageHtml(template, page, pagePath) {
     image: `${siteUrl}${page.image}`,
     jsonLd: JSON.stringify(buildMarketJsonLd(page, content, pagePath)),
     fallback: renderMarketFallback(content),
+    lang,
+    basePath: pagePath,
   });
 }
 
@@ -301,117 +316,118 @@ function buildMarketPageHtml(template, page, pagePath) {
 // PerplexityBot, OAI-SearchBot) do not execute JavaScript, so without a
 // static fallback they see an empty <div id="root"> on the most important
 // pages of the site.
-const it = translations.it;
+// I fallback core sono ora bilingui: ogni renderer riceve il dizionario
+// della lingua richiesta invece di leggere sempre translations.it.
 
 function listItems(items) {
   return (items || []).map((item) => `<li>${escapeHtml(item)}</li>`).join('');
 }
 
-function coreServices() {
-  return Object.keys(it.services)
+function coreServices(t) {
+  return Object.keys(t.services)
     .filter((key) => /^service\d+$/.test(key))
-    .map((key) => it.services[key]);
+    .map((key) => t.services[key]);
 }
 
-function renderHomeFallback() {
-  const services = coreServices()
+function renderHomeFallback(t, lang) {
+  const services = coreServices(t)
     .map((s) => `<li><strong>${escapeHtml(s.title)}</strong>: ${escapeHtml(s.description)}</li>`)
     .join('');
   const landingLinks = [
-    ...Object.values(seoPages).map((page) => `<li><a href="${escapeAttr(page.path)}">${escapeHtml(page.it.hero)}</a></li>`),
-    ...marketRoutes.map(({ slug }) => `<li><a href="${escapeAttr(marketPath(slug))}">${escapeHtml(marketLandingData[slug].it.hero)}</a></li>`),
+    ...Object.values(seoPages).map((page) => `<li><a href="${escapeAttr(langPath(page.path, lang))}">${escapeHtml(page[lang].hero)}</a></li>`),
+    ...marketRoutes.map(({ slug }) => `<li><a href="${escapeAttr(langPath(marketPath(slug), lang))}">${escapeHtml(marketLandingData[slug][lang].hero)}</a></li>`),
   ].join('');
 
   return `
       <main class="seo-static-fallback">
         <h1>GP &amp; Partners — USA Market Entry Partner operativo</h1>
-        <p>${escapeHtml(it.home.tagline)}</p>
-        <p>${escapeHtml(it.home.taglineSub)}</p>
-        <p>${escapeHtml(it.home.intro)}</p>
-        <h2>${escapeHtml(it.home.servicesTitle)}</h2>
+        <p>${escapeHtml(t.home.tagline)}</p>
+        <p>${escapeHtml(t.home.taglineSub)}</p>
+        <p>${escapeHtml(t.home.intro)}</p>
+        <h2>${escapeHtml(t.home.servicesTitle)}</h2>
         <ul>${services}</ul>
-        <h2>${escapeHtml(it.home.ctaTitle)}</h2>
-        <p>${escapeHtml(it.home.ctaText)}</p>
-        <p><a href="/contact">${escapeHtml(it.home.ctaButton)}</a></p>
+        <h2>${escapeHtml(t.home.ctaTitle)}</h2>
+        <p>${escapeHtml(t.home.ctaText)}</p>
+        <p><a href="/contact">${escapeHtml(t.home.ctaButton)}</a></p>
         <h2>Servizi e mercati USA</h2>
         <ul>${landingLinks}</ul>
       </main>
     `;
 }
 
-function renderAboutFallback() {
+function renderAboutFallback(t) {
   return `
       <main class="seo-static-fallback">
-        <nav aria-label="Breadcrumb"><a href="/">Home</a> / <span>${escapeHtml(it.about.title)}</span></nav>
-        <h1>${escapeHtml(it.about.heroHeadline)}</h1>
-        <p>${escapeHtml(it.about.intro)}</p>
-        <h2>${escapeHtml(it.about.experienceTitle)}</h2>
-        <p>${escapeHtml(it.about.experience1)}</p>
-        <p>${escapeHtml(it.about.experience2)}</p>
-        <h2>${escapeHtml(it.about.projectsTitle)}</h2>
-        <p>${escapeHtml(it.about.projects)}</p>
-        <h2>${escapeHtml(it.about.backgroundTitle)}</h2>
-        <p>${escapeHtml(it.about.background)}</p>
-        <h2>${escapeHtml(it.about.principlesTitle)}</h2>
-        <ul>${listItems(it.about.principles)}</ul>
-        <h2>${escapeHtml(it.about.skillsTitle)}</h2>
-        <ul>${listItems(it.about.skills)}</ul>
-        <p><a href="/contact">${escapeHtml(it.about.primaryCta)}</a></p>
+        <nav aria-label="Breadcrumb"><a href="/">Home</a> / <span>${escapeHtml(t.about.title)}</span></nav>
+        <h1>${escapeHtml(t.about.heroHeadline)}</h1>
+        <p>${escapeHtml(t.about.intro)}</p>
+        <h2>${escapeHtml(t.about.experienceTitle)}</h2>
+        <p>${escapeHtml(t.about.experience1)}</p>
+        <p>${escapeHtml(t.about.experience2)}</p>
+        <h2>${escapeHtml(t.about.projectsTitle)}</h2>
+        <p>${escapeHtml(t.about.projects)}</p>
+        <h2>${escapeHtml(t.about.backgroundTitle)}</h2>
+        <p>${escapeHtml(t.about.background)}</p>
+        <h2>${escapeHtml(t.about.principlesTitle)}</h2>
+        <ul>${listItems(t.about.principles)}</ul>
+        <h2>${escapeHtml(t.about.skillsTitle)}</h2>
+        <ul>${listItems(t.about.skills)}</ul>
+        <p><a href="/contact">${escapeHtml(t.about.primaryCta)}</a></p>
       </main>
     `;
 }
 
-function renderServicesFallback() {
-  const services = coreServices()
+function renderServicesFallback(t) {
+  const services = coreServices(t)
     .map((s) => `<article><h2>${escapeHtml(s.title)}</h2><p>${escapeHtml(s.description)}</p><ul>${listItems(s.items)}</ul></article>`)
     .join('');
 
   return `
       <main class="seo-static-fallback">
-        <nav aria-label="Breadcrumb"><a href="/">Home</a> / <span>${escapeHtml(it.services.title)}</span></nav>
-        <h1>${escapeHtml(it.services.title)}</h1>
-        <p>${escapeHtml(it.services.subtitle)}</p>
-        <p>${escapeHtml(it.services.intro)}</p>
-        <h2>${escapeHtml(it.services.modular.title)}</h2>
-        <p>${escapeHtml(it.services.modular.text)}</p>
+        <nav aria-label="Breadcrumb"><a href="/">Home</a> / <span>${escapeHtml(t.services.title)}</span></nav>
+        <h1>${escapeHtml(t.services.title)}</h1>
+        <p>${escapeHtml(t.services.subtitle)}</p>
+        <p>${escapeHtml(t.services.intro)}</p>
+        <h2>${escapeHtml(t.services.modular.title)}</h2>
+        <p>${escapeHtml(t.services.modular.text)}</p>
         ${services}
-        <p><a href="/contact">${escapeHtml(it.home.ctaButton)}</a></p>
+        <p><a href="/contact">${escapeHtml(t.home.ctaButton)}</a></p>
       </main>
     `;
 }
 
-function renderProjectsFallback() {
-  const projects = Object.keys(it.projects)
+function renderProjectsFallback(t) {
+  const projects = Object.keys(t.projects)
     .filter((key) => /^project\d+$/.test(key))
-    .map((key) => it.projects[key])
+    .map((key) => t.projects[key])
     .map((p) => `<article><h2>${escapeHtml(p.title)}</h2><p>${escapeHtml(p.objectiveText)} (${escapeHtml(p.marketName)})</p><ul>${listItems(p.resultsList)}</ul></article>`)
     .join('');
 
   return `
       <main class="seo-static-fallback">
-        <nav aria-label="Breadcrumb"><a href="/">Home</a> / <span>${escapeHtml(it.projects.title)}</span></nav>
-        <h1>${escapeHtml(it.projects.title)}</h1>
-        <p>${escapeHtml(it.projects.subtitle)}</p>
+        <nav aria-label="Breadcrumb"><a href="/">Home</a> / <span>${escapeHtml(t.projects.title)}</span></nav>
+        <h1>${escapeHtml(t.projects.title)}</h1>
+        <p>${escapeHtml(t.projects.subtitle)}</p>
         ${projects}
-        <p><a href="/contact">${escapeHtml(it.home.contactMe)}</a></p>
+        <p><a href="/contact">${escapeHtml(t.home.contactMe)}</a></p>
       </main>
     `;
 }
 
-function renderContactFallback() {
-  const info = it.contact.info;
+function renderContactFallback(t) {
+  const info = t.contact.info;
 
   return `
       <main class="seo-static-fallback">
-        <nav aria-label="Breadcrumb"><a href="/">Home</a> / <span>${escapeHtml(it.contact.title)}</span></nav>
-        <h1>${escapeHtml(it.contact.title)}</h1>
-        <p>${escapeHtml(it.contact.subtitle)}</p>
+        <nav aria-label="Breadcrumb"><a href="/">Home</a> / <span>${escapeHtml(t.contact.title)}</span></nav>
+        <h1>${escapeHtml(t.contact.title)}</h1>
+        <p>${escapeHtml(t.contact.subtitle)}</p>
         <h2>${escapeHtml(info.title)}</h2>
         <ul>
           <li>Sede: ${escapeHtml(info.addressUS)}</li>
           <li><a href="https://www.linkedin.com/company/gp-and-partners/">LinkedIn — GP &amp; Partners</a></li>
         </ul>
-        <p>${escapeHtml(it.contact.form.nextStep)}</p>
+        <p>${escapeHtml(t.contact.form.nextStep)}</p>
       </main>
     `;
 }
@@ -423,9 +439,9 @@ const CORE_FALLBACKS = {
   '/contact': renderContactFallback,
 };
 
-function buildCorePageHtml(template, pagePath) {
-  const meta = coreMeta[pagePath];
-  const pageUrl = `${siteUrl}${pagePath}`;
+function buildCorePageHtml(template, pagePath, lang) {
+  const meta = coreMetaByLang[lang][pagePath];
+  const pageUrl = `${siteUrl}${langPath(pagePath, lang)}`;
 
   return applyMeta(template, {
     title: escapeAttr(meta.title),
@@ -441,15 +457,38 @@ function buildCorePageHtml(template, pagePath) {
       url: pageUrl,
       isPartOf: { '@id': `${siteUrl}/#organization` },
     }),
-    fallback: CORE_FALLBACKS[pagePath](),
+    fallback: CORE_FALLBACKS[pagePath](translations[lang]),
+    lang,
+    basePath: pagePath,
   });
 }
 
 // Site-level JSON-LD (Organization/Person/WebSite) lives statically in
 // index.html and is inherited by every prerendered page; here the home only
 // needs its fallback content.
-function buildHomeHtml(template) {
-  return template.replace('<div id="root"></div>', `<div id="root">${renderHomeFallback()}</div>`);
+function buildHomeHtml(template, lang) {
+  const meta = coreMetaByLang[lang]['/'];
+  const pageUrl = `${siteUrl}${langPath('/', lang)}`;
+
+  return applyMeta(template, {
+    title: escapeAttr(meta.title),
+    description: escapeAttr(meta.description),
+    pageUrl,
+    image: defaultImage,
+    jsonLd: JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'WebPage',
+      '@id': pageUrl,
+      name: meta.title,
+      description: meta.description,
+      url: pageUrl,
+      inLanguage: lang,
+      isPartOf: { '@id': `${siteUrl}/#organization` },
+    }),
+    fallback: renderHomeFallback(translations[lang], lang),
+    lang,
+    basePath: '/',
+  });
 }
 
 // Sitemap is generated here (dist/sitemap.xml) so market and SEO landing
@@ -490,18 +529,28 @@ function renderSitemap() {
     { path: '/privacy', lastmod: '2026-06-03', changefreq: 'yearly', priority: '0.2' },
   ];
 
+  // Ogni pagina compare due volte, una per lingua, e ciascuna dichiara
+  // l'altra con xhtml:link. Prima la sitemap conteneva solo l'italiano e
+  // l'inglese era invisibile ai motori.
   const entries = urls
-    .map((url) => [
-      '  <url>',
-      `    <loc>${siteUrl}${url.path === '/' ? '/' : url.path}</loc>`,
-      `    <lastmod>${url.lastmod}</lastmod>`,
-      `    <changefreq>${url.changefreq}</changefreq>`,
-      `    <priority>${url.priority}</priority>`,
-      '  </url>',
-    ].join('\n'))
+    .flatMap((url) => LANGS.map((lang) => {
+      const loc = `${siteUrl}${langPath(url.path, lang) || '/'}`;
+      const alternates = LANGS.map((other) =>
+        `    <xhtml:link rel="alternate" hreflang="${other}" href="${siteUrl}${langPath(url.path, other) || '/'}" />`);
+      return [
+        '  <url>',
+        `    <loc>${loc}</loc>`,
+        ...alternates,
+        `    <xhtml:link rel="alternate" hreflang="x-default" href="${siteUrl}${url.path === '/' ? '/' : url.path}" />`,
+        `    <lastmod>${url.lastmod}</lastmod>`,
+        `    <changefreq>${url.changefreq}</changefreq>`,
+        `    <priority>${lang === 'it' ? url.priority : (Number(url.priority) * 0.9).toFixed(1)}</priority>`,
+        '  </url>',
+      ].join('\n');
+    }))
     .join('\n');
 
-  return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${entries}\n</urlset>\n`;
+  return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${entries}\n</urlset>\n`;
 }
 
 const template = await readFile(path.join(distDir, 'index.html'), 'utf8');
@@ -511,26 +560,28 @@ if (missingData.length > 0) {
   throw new Error(`marketRoutes slugs without marketLandingData entry: ${missingData.map((r) => r.slug).join(', ')}`);
 }
 
-await Promise.all([
-  ...Object.values(seoPages).map(async (page) => {
-    const outputDir = path.join(distDir, page.path.slice(1));
-    await mkdir(outputDir, { recursive: true });
-    await writeFile(path.join(outputDir, 'index.html'), buildPageHtml(template, page));
-  }),
-  ...marketRoutes.map(async ({ slug }) => {
-    const pagePath = marketPath(slug);
-    const outputDir = path.join(distDir, pagePath.slice(1));
-    await mkdir(outputDir, { recursive: true });
-    await writeFile(path.join(outputDir, 'index.html'), buildMarketPageHtml(template, marketLandingData[slug], pagePath));
-  }),
-  ...Object.keys(CORE_FALLBACKS).map(async (pagePath) => {
-    const outputDir = path.join(distDir, pagePath.slice(1));
-    await mkdir(outputDir, { recursive: true });
-    await writeFile(path.join(outputDir, 'index.html'), buildCorePageHtml(template, pagePath));
-  }),
-  writeFile(path.join(distDir, 'index.html'), buildHomeHtml(template)),
-  writeFile(path.join(distDir, 'sitemap.xml'), renderSitemap()),
-]);
+// Ogni pagina viene scritta due volte: alla radice in italiano e sotto /en in
+// inglese. Il percorso su disco rispecchia l'URL, cosi' il rewrite della SPA
+// serve il file giusto senza configurazione aggiuntiva.
+const writePage = async (pagePath, lang, html) => {
+  const urlPath = langPath(pagePath, lang);
+  const outputDir = urlPath === '/' ? distDir : path.join(distDir, urlPath.slice(1));
+  await mkdir(outputDir, { recursive: true });
+  await writeFile(path.join(outputDir, 'index.html'), html);
+};
 
-const pageCount = Object.keys(seoPages).length + marketRoutes.length + Object.keys(CORE_FALLBACKS).length + 1;
-console.log(`Generated static SEO HTML for ${pageCount} pages + sitemap.xml.`);
+await Promise.all(LANGS.flatMap((lang) => [
+  ...Object.values(seoPages).map((page) =>
+    writePage(page.path, lang, buildPageHtml(template, page, lang))),
+  ...marketRoutes.map(({ slug }) =>
+    writePage(marketPath(slug), lang, buildMarketPageHtml(template, marketLandingData[slug], marketPath(slug), lang))),
+  ...Object.keys(CORE_FALLBACKS).map((pagePath) =>
+    writePage(pagePath, lang, buildCorePageHtml(template, pagePath, lang))),
+  writePage('/', lang, buildHomeHtml(template, lang)),
+]).concat([
+  writeFile(path.join(distDir, 'sitemap.xml'), renderSitemap()),
+]));
+
+const perLang = Object.keys(seoPages).length + marketRoutes.length + Object.keys(CORE_FALLBACKS).length + 1;
+const pageCount = perLang * LANGS.length;
+console.log(`Generated static SEO HTML for ${pageCount} pages (${perLang} x ${LANGS.length} lingue) + sitemap.xml.`);

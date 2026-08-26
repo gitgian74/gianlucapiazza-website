@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../hooks/use-language';
 import { Globe, TrendingUp, Handshake, Scale, Building2, ArrowRight } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { LangLink as Link } from '../components/shared/LangLink';
 import { PageHeader } from '../components/shared/PageHeader';
 import { Section } from '../components/shared/Section';
 import { Card } from '../components/shared/Card';

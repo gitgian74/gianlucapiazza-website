@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 import { useLanguage } from '../hooks/use-language';
 import { ArrowRight, Globe, TrendingUp, Users, Building2 } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { LangLink as Link } from '../components/shared/LangLink';
 import { trackSiteEvent } from '../components/shared/tracking';
 import { ANALYTICS_EVENTS } from '../components/shared/analyticsEvents';
 import { AnimatedHeading } from '../components/vex/AnimatedHeading';

@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../../hooks/use-language';
 import { ArrowRight, MapPin, CheckCircle } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { LangLink as Link } from '../../components/shared/LangLink';
 import { Seo } from '../../components/shared/Seo';
 import { PageHeader } from '../../components/shared/PageHeader';
 import { marketLandingData } from './marketLandingData';
