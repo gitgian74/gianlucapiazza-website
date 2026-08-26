@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { LangLink as Link } from '../../components/shared/LangLink';
+import { langPath } from '../../lib/locale';
 import { motion, useReducedMotion } from 'framer-motion';
 import { ArrowRight, CheckCircle2, MessageSquareText, SearchCheck } from 'lucide-react';
 import { Section } from '../../components/shared/Section';
@@ -189,7 +190,9 @@ export function SeoLandingPage({ page }) {
 
     trackSiteEvent(ANALYTICS_EVENTS.LANDING_CTA_CLICK, eventPayload);
     trackSiteEvent(ANALYTICS_EVENTS.BOOK_CALL, eventPayload);
-    navigate('/contact');
+    // LangLink copre solo i link dichiarativi: navigate() lo aggira e
+        // riportava chi era in inglese sulla pagina contatti italiana.
+        navigate(langPath('/contact', language));
   };
 
   const trackChecklistDownload = (placement) => {

@@ -6,6 +6,7 @@ import { Menu, X, ChevronRight } from 'lucide-react';
 import { useLanguage } from '../hooks/use-language';
 import { CookieConsent } from './shared/CookieConsent';
 import { openConsentPreferences } from './shared/analyticsConsent';
+import { splitLangPath } from '../lib/locale';
 import { SocialLinks } from './shared/SocialLinks';
 import { trackSiteEvent } from './shared/tracking';
 import { ANALYTICS_EVENTS } from './shared/analyticsEvents';
@@ -29,7 +30,10 @@ export function Layout({ children }) {
         setLanguage(prev => prev === 'it' ? 'en' : 'it');
     };
 
-    const isActive = (path) => location.pathname === path;
+    // I link puntano a /en/... in inglese, mentre navLinks resta senza
+    // prefisso: senza normalizzare, nessuna voce risultava mai attiva.
+    const currentPath = splitLangPath(location.pathname).path;
+    const isActive = (path) => currentPath === path;
     const navLinks = [
         { path: '/', label: t.nav.home },
         { path: '/about', label: t.nav.about },

@@ -13,7 +13,7 @@ import { rememberAttribution, trackSiteEvent } from './components/shared/trackin
 import { ANALYTICS_EVENTS } from './components/shared/analyticsEvents';
 import { MARKETS_BASE, marketPath, marketRoutes } from './pages/markets/marketRoutes';
 import { seoPages } from './pages/seo/seoPageData';
-import { langPath } from './lib/locale';
+import { langPath, splitLangPath } from './lib/locale';
 import './index.css';
 
 // Lazy load pages
@@ -39,10 +39,14 @@ const AgenteVsDistributoreUsa = lazy(() => import('./pages/seo/AgenteVsDistribut
 
 const SEO_LANDING_PATHS = new Set(Object.values(seoPages).map((page) => page.path));
 
-const getPageGroup = (pathname) =>
-  pathname.startsWith(`${MARKETS_BASE}/`) || SEO_LANDING_PATHS.has(pathname)
+// Il confronto va fatto sul percorso senza prefisso di lingua, altrimenti
+// ogni landing sotto /en verrebbe classificata come 'site'.
+const getPageGroup = (pathname) => {
+  const { path } = splitLangPath(pathname);
+  return path.startsWith(`${MARKETS_BASE}/`) || SEO_LANDING_PATHS.has(path)
     ? 'market_landing'
     : 'site';
+};
 
 // Loading component
 const PageLoader = () => (
