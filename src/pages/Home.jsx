@@ -20,6 +20,12 @@ export function Home() {
     const [showVideo, setShowVideo] = useState(false);
     useEffect(() => {
         if (shouldReduceMotion) return;
+        // Il video hero pesa oltre 5 MB. Chi ha attivato il risparmio dati sta
+        // chiedendo esplicitamente di non scaricare contenuti non essenziali:
+        // in quel caso resta il poster, che pesa 136 KB e mostra la stessa
+        // immagine. L'API non esiste su Safari, quindi in assenza di segnale il
+        // video viene caricato come prima.
+        if (navigator.connection?.saveData === true) return;
         const start = () => setShowVideo(true);
         if (document.readyState === 'complete') {
             const id = setTimeout(start, 600);
