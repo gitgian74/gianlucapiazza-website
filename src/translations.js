@@ -27,8 +27,8 @@ export const translations = {
       stats: {
         experience: 'Anni di Esperienza',
         experienceValue: '18+',
-        markets: 'Mercati Presidiati',
-        marketsValue: '12',
+        markets: 'Aree di Copertura',
+        marketsValue: '3',
         partnerships: 'Partnership Strategiche',
         ceo: 'Global Consultant'
       },
@@ -487,8 +487,8 @@ export const translations = {
       stats: {
         experience: 'Years of Experience',
         experienceValue: '18+',
-        markets: 'Markets Covered',
-        marketsValue: '12',
+        markets: 'Coverage Areas',
+        marketsValue: '3',
         partnerships: 'Strategic Partnerships',
         ceo: 'Global Consultant'
       },
