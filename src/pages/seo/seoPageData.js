@@ -156,7 +156,7 @@ export const seoPages = {
       ],
       faqs: [
         ['La ricerca include importatori?', 'Si, se l\'importatore e il canale corretto per categoria e modello operativo. In alcuni casi servono agenti, broker o partner retail.'],
-        ['Posso chiedere distributori per uno Stato specifico?', 'Si. La segmentazione puo essere nazionale, regionale o focalizzata su aree prioritarie come Florida, resto degli Stati Uniti e Caraibi quando il progetto lo richiede.'],
+        ['Posso chiedere distributori per uno Stato specifico?', 'Si. La segmentazione puo essere nazionale, per singolo Stato o focalizzata sui mercati che presidiamo negli Stati Uniti e nei Caraibi, a seconda di cosa richiede il progetto.'],
         ['Vengono garantiti contratti?', 'No. Il lavoro qualifica opportunita e conversazioni; i contratti dipendono da fit, condizioni, prodotto, readiness e negoziazione.'],
       ],
       cta: contactCta.it,
@@ -184,7 +184,7 @@ export const seoPages = {
       ],
       faqs: [
         ['Does the search include importers?', 'Yes, when an importer is the right channel for the category and operating model. In some cases agents, brokers, or retail partners are better.'],
-        ['Can I request distributors for a specific state?', 'Yes. Segmentation can be national, regional, or focused on priority areas such as Florida, the wider United States, and the Caribbean when the project requires it.'],
+        ['Can I request distributors for a specific state?', 'Yes. Segmentation can be nationwide, state by state, or focused on the markets we cover across the United States and the Caribbean, depending on what the project requires.'],
         ['Are contracts guaranteed?', 'No. The work qualifies opportunities and conversations; contracts depend on fit, terms, product, readiness, and negotiation.'],
       ],
       cta: contactCta.en,
