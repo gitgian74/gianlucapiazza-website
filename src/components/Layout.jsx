@@ -62,9 +62,9 @@ export function Layout({ children }) {
                         className="mr-1 flex h-9 items-center gap-2 rounded-full pr-1.5 text-white transition-transform hover:scale-[1.02] md:mr-2 md:h-10 md:pr-3"
                     >
                         <img
-                            src="/logo.svg"
+                            src="/logo-v6-icon.png"
                             alt=""
-                            className="h-9 w-9 rounded-full ring-1 ring-white/15 md:h-10 md:w-10"
+                            className="h-9 w-9 rounded-lg object-contain ring-1 ring-white/15 md:h-10 md:w-10"
                         />
                         <span className="hidden text-sm font-semibold tracking-normal text-white md:inline">
                             GP &amp; Partners
@@ -207,7 +207,7 @@ export function Layout({ children }) {
                                 })}
                                 className="mb-6 flex items-center gap-3 text-2xl font-bold tracking-tight"
                             >
-                                <img src="/logo.svg" alt="" className="h-10 w-10 rounded-full ring-1 ring-white/15" />
+                                <img src="/logo-v6-icon.png" alt="" className="h-10 w-10 rounded-lg object-contain ring-1 ring-white/15" />
                                 GP & Partners
                             </Link>
                             <p className="text-muted-foreground leading-relaxed mb-6">
