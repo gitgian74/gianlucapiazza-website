@@ -8,8 +8,8 @@ export const socialProfiles = [
     {
         id: 'instagram',
         label: 'Instagram',
-        handle: 'instagpandpartners',
-        url: 'https://www.instagram.com/instagpandpartners/',
+        handle: 'gpandpartners',
+        url: 'https://www.instagram.com/gpandpartners/',
     },
     {
         id: 'facebook',
