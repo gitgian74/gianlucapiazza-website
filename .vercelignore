@@ -11,3 +11,6 @@ TOOLS.md
 USER.md
 .openclaw-screens
 tasks
+
+# sotto-progetti: hanno un proprio deploy, non entrano in questo bundle
+projects

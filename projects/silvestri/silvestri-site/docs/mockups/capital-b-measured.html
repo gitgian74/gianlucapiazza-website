@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mockup B — Capital Measured</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Raleway:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#002949; --navy-deep:#001b31;
+    --ink:#20262c; --grey:#5d666e; --line:#ced3d8;
+    --blue-mid:#104C6E; --blue-soft:#3F6B90; --blue-light:#B7DEFF;
+    --paper:#f4f5f6;
+    --serif:"Playfair Display",Georgia,serif;
+    --sans:"Raleway",system-ui,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--sans);color:var(--ink);background:#fff;-webkit-font-smoothing:antialiased}
+  .label{background:#2b2b2b;color:#fff;font:400 12px/1.5 var(--sans);letter-spacing:.06em;padding:9px 20px;text-align:center}
+  .label b{font-weight:700}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 40px}
+
+  /* ---------- header ---------- */
+  header{background:#fff;border-bottom:2px solid var(--navy)}
+  header .wrap{display:flex;align-items:center;justify-content:space-between;height:86px;gap:40px}
+  .brand .name{font-family:var(--serif);font-size:21px;letter-spacing:.11em;text-transform:uppercase;color:var(--navy)}
+  .brand .sub{font-size:9.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--blue-soft);font-weight:600;margin-top:5px}
+  nav ul{list-style:none;display:flex;gap:28px;align-items:center}
+  nav a{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--grey);text-decoration:none;padding:6px 0}
+  nav a.on{color:var(--navy);border-bottom:2px solid var(--blue-soft)}
+  .navcta{font-size:11.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#fff;background:var(--navy);padding:13px 22px;text-decoration:none}
+
+  /* ---------- hero ---------- */
+  .hero{background:var(--paper);padding:78px 0 82px}
+  .hero .grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+  .kicker{font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--blue-soft);font-weight:700}
+  .hero h1{margin-top:20px;font-size:52px;line-height:1.1;letter-spacing:-.01em;font-weight:800;color:var(--navy)}
+  .hero h1 em{display:block;font-family:var(--serif);font-style:normal;font-weight:400;color:var(--blue-mid)}
+  .hero p{margin-top:24px;font-size:16px;line-height:1.75;font-weight:400;color:var(--grey);max-width:30em}
+  .btns{display:flex;gap:12px;margin-top:32px;flex-wrap:wrap}
+  .btn{font-size:11.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;padding:15px 26px}
+  .btn-a{background:var(--navy);color:#fff}
+  .btn-b{border:2px solid var(--navy);color:var(--navy)}
+  .shot{border:2px solid var(--navy);padding:9px;background:#fff}
+  .shot img{display:block;width:100%;height:362px;object-fit:cover}
+  .shot .cap{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--grey);padding:11px 2px 1px;font-weight:600}
+
+  /* ---------- scope strip ---------- */
+  .scope{background:var(--navy);color:#fff;padding:46px 0}
+  .scope .grid{display:grid;grid-template-columns:1fr 1fr;gap:48px}
+  .scope .cell{border-left:3px solid var(--blue-light);padding-left:22px}
+  .scope h3{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--blue-light);font-weight:800}
+  .scope p{margin-top:11px;font-size:14px;line-height:1.75;font-weight:300;color:rgba(255,255,255,.88)}
+
+  /* ---------- sections ---------- */
+  section.band{padding:84px 0}
+  .head{display:grid;grid-template-columns:260px 1fr;gap:44px;align-items:baseline;border-top:2px solid var(--navy);padding-top:26px}
+  .h2{font-family:var(--serif);font-size:34px;font-weight:400;color:var(--navy);line-height:1.2}
+  .head p{font-size:15.5px;line-height:1.8;color:var(--grey);font-weight:400}
+
+  .figures ul{list-style:none;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);margin-top:44px;border:1px solid var(--line)}
+  .figures li{background:#fff;padding:28px 22px}
+  .figures .n{font-family:var(--serif);font-size:46px;color:var(--navy);line-height:1}
+  .figures .t{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--grey);margin-top:12px;font-weight:600;line-height:1.7}
+
+  .practice{background:var(--paper)}
+  .practice ol{list-style:none;margin-top:40px}
+  .practice li{display:grid;grid-template-columns:70px 250px 1fr;gap:24px;align-items:baseline;
+    border-top:1px solid var(--line);padding:20px 0}
+  .practice li:last-child{border-bottom:1px solid var(--line)}
+  .practice .num{font-family:var(--serif);font-size:15px;color:var(--blue-soft)}
+  .practice .nm{font-size:17px;font-weight:700;color:var(--navy)}
+  .practice .ds{font-size:14px;line-height:1.75;color:var(--grey);font-weight:400}
+
+  /* ---------- cta + footer ---------- */
+  .cta{background:var(--navy);padding:74px 0}
+  .cta .grid{display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center}
+  .cta h2{font-family:var(--serif);font-size:38px;font-weight:400;color:#fff;line-height:1.2;max-width:14em}
+  .cta h2 em{font-style:normal;color:var(--blue-light)}
+  .cta a{font-size:11.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--navy);background:var(--blue-light);padding:17px 30px;text-decoration:none;white-space:nowrap}
+
+  footer{background:var(--navy-deep);color:rgba(255,255,255,.74);padding:60px 0 46px}
+  footer .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:40px}
+  footer .cell{border-top:2px solid var(--blue-soft);padding-top:18px}
+  footer h4{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#fff;font-weight:800}
+  footer .clock{font-family:var(--serif);font-size:26px;color:var(--blue-light);margin:10px 0 10px}
+  footer address{font-style:normal;font-size:13px;font-weight:300;line-height:1.85}
+  .fbase{border-top:1px solid rgba(255,255,255,.14);margin-top:48px;padding-top:24px;font-size:11.5px;font-weight:300;line-height:1.9;color:rgba(255,255,255,.55);max-width:62em}
+  @media(max-width:900px){
+    .hero .grid,.scope .grid,.head,.cta .grid{grid-template-columns:1fr;gap:28px}
+    .figures ul,footer .grid{grid-template-columns:repeat(2,1fr)}
+    .practice li{grid-template-columns:44px 1fr;gap:12px}
+    .practice .ds{grid-column:2}
+    header .wrap{height:auto;padding-top:16px;padding-bottom:16px;flex-wrap:wrap;gap:16px}
+    nav ul{gap:16px;flex-wrap:wrap}
+    .hero h1{font-size:34px}.h2{font-size:26px}.cta h2{font-size:27px}
+  }
+</style>
+</head>
+<body>
+<div class="label"><b>MOCKUP B — “Capital Measured”.</b> Non è il sito. Foto di riferimento Unsplash, licenza non verificata. Nessun badge, logo o disclosure finanziaria.</div>
+
+<header><div class="wrap">
+  <div class="brand"><div class="name">Silvestri International</div><div class="sub">Studio Legale Internazionale</div></div>
+  <nav><ul>
+    <li><a class="on" href="#">Home</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Practice</a></li>
+    <li><a href="#">Professionals</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul></nav>
+  <a class="navcta" href="#">Talk to us</a>
+</div></header>
+
+<section class="hero"><div class="wrap"><div class="grid">
+  <div>
+    <div class="kicker">Miami · Rome · Montevideo</div>
+    <h1>Two jurisdictions.<em>One firm that reads both</em></h1>
+    <p>An Italian law firm and foreign legal consulting company in Italian law in Florida. We take the whole file — the Italian side, the US side, and the part in the middle where deals usually stall.</p>
+    <div class="btns"><a class="btn btn-a" href="#">Speak to the firm</a><a class="btn btn-b" href="#">See what we handle</a></div>
+  </div>
+  <div class="shot">
+    <img src="https://images.unsplash.com/photo-1566805068958-92c5648061e6?auto=format&fit=crop&w=1400&q=80" alt="Aerial view of Brickell, Miami's financial district, at sunset">
+    <div class="cap">Brickell, Miami — reference image, licence unverified</div>
+  </div>
+</div></div></section>
+
+<section class="scope"><div class="wrap"><div class="grid">
+  <div class="cell">
+    <h3>Handled by the firm</h3>
+    <p>Italian law — corporate, commercial, civil, family, estate, intellectual property and tax — advised on directly, in Italian, English, Spanish or French.</p>
+  </div>
+  <div class="cell">
+    <h3>Handled with licensed local counsel</h3>
+    <p>Florida-law matters, court proceedings and immigration filings are run with affiliated Florida-licensed firms. Lorenzo Silvestri is not admitted to practise law in Florida.</p>
+  </div>
+</div></div></section>
+
+<section class="band figures"><div class="wrap">
+  <div class="head"><div class="h2">The firm in four numbers</div>
+    <p>Two legal systems, one team that answers for both — without a switchboard between you and the person running the file.</p></div>
+  <ul>
+    <li><div class="n">2</div><div class="t">Jurisdictions,<br>one team</div></li>
+    <li><div class="n">3</div><div class="t">Offices: Miami,<br>Rome, Montevideo</div></li>
+    <li><div class="n">7</div><div class="t">Practice areas<br>under one roof</div></li>
+    <li><div class="n">4</div><div class="t">Working languages<br>IT · EN · ES · FR</div></li>
+  </ul>
+</div></section>
+
+<section class="band practice"><div class="wrap">
+  <div class="head"><div class="h2">Everything a file needs, on both sides</div>
+    <p>Seven areas, one point of contact — and a clear line between what the firm does directly and what it coordinates with licensed local professionals.</p></div>
+  <ol>
+    <li><div class="num">01</div><div class="nm">Corporate</div><div class="ds">Company formation, corporate books, local officer and manager roles.</div></li>
+    <li><div class="num">02</div><div class="nm">Commercial</div><div class="ds">Distribution, agency and supply contracts across the two systems.</div></li>
+    <li><div class="num">03</div><div class="nm">M&amp;A</div><div class="ds">Acquisitions and disposals with Italian and US counterparties.</div></li>
+    <li><div class="num">04</div><div class="nm">Real estate</div><div class="ds">Cross-border purchases, title, and the Italian reporting that follows.</div></li>
+    <li><div class="num">05</div><div class="nm">Tax</div><div class="ds">Italian tax planning for people and companies operating in Florida.</div></li>
+    <li><div class="num">06</div><div class="nm">Immigration</div><div class="ds">Filings run with affiliated Florida-licensed counsel.</div></li>
+    <li><div class="num">07</div><div class="nm">Litigation</div><div class="ds">Transnational disputes, coordinated with local admitted firms.</div></li>
+  </ol>
+</div></section>
+
+<section class="cta"><div class="wrap"><div class="grid">
+  <h2>Tell us what you are trying to do. <em>We will tell you what it takes.</em></h2>
+  <a href="#">Speak to the firm</a>
+</div></div></section>
+
+<footer><div class="wrap">
+  <div class="grid">
+    <div class="cell"><h4>Miami</h4><div class="clock" data-clock="miami">--:--</div><address>1200 Brickell Ave, Suite 310<br>Miami, FL 33131<br>+1 786 502 3615</address></div>
+    <div class="cell"><h4>Rome</h4><div class="clock" data-clock="rome">--:--</div><address>Piazza della Libertà 20<br>00192 Rome, Italy<br>+39 06 3218783</address></div>
+    <div class="cell"><h4>Montevideo</h4><div class="clock" data-clock="montevideo">--:--</div><address>Víctor Soliño 349, 1710<br>Montevideo 11300, Uruguay<br>+598 94 733 513</address></div>
+  </div>
+  <div class="fbase">Silvestri International — Studio Legale Internazionale. Lorenzo Silvestri is an Italian attorney and Certified Foreign Legal Consultant in Italian law; he is not admitted to practise law in Florida.</div>
+</div></footer>
+
+<script>
+(function () {
+  var ZONE = { miami: 'America/New_York', rome: 'Europe/Rome', montevideo: 'America/Montevideo' };
+  function tick() {
+    var now = new Date();
+    for (var k in ZONE) {
+      var el = document.querySelector('[data-clock="' + k + '"]');
+      if (!el) continue;
+      try {
+        el.textContent = new Intl.DateTimeFormat('en-GB', {
+          hour: '2-digit', minute: '2-digit', hour12: false, timeZone: ZONE[k]
+        }).format(now);
+      } catch (e) { el.textContent = '--:--'; }
+    }
+  }
+  tick();
+  setInterval(tick, 30000);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Silvestri International — due direzioni</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Raleway:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#002949; --navy-b:#0b2a44; --ink:#141b21; --grey:#5a6670;
+    --line:#ccd2d8; --paper:#f5f6f7; --blue:#B7DEFF;
+    --serif:"Playfair Display",Georgia,serif; --sans:"Raleway",system-ui,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.7;
+       display:flex;flex-direction:column;min-height:100vh}
+  .bar{background:#2b2b2b;color:#fff;font-size:12px;letter-spacing:.05em;padding:9px 20px;text-align:center}
+  .bar b{font-weight:700}
+  main{flex:1;max-width:1000px;margin:0 auto;padding:clamp(40px,7vw,80px) clamp(20px,5vw,40px)}
+  .eyebrow{font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--navy);font-weight:700}
+  h1{font-family:var(--serif);font-weight:400;font-size:clamp(30px,5vw,50px);line-height:1.15;margin-top:16px;color:var(--navy)}
+  .sub{margin-top:18px;max-width:60ch;color:var(--grey);font-weight:400}
+  .sub .it{display:block}
+  .sub .en{display:block;margin-top:10px;font-style:italic;color:#73808a}
+  .cards{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:clamp(32px,5vw,52px)}
+  .card{background:#fff;border:2px solid var(--navy);display:flex;flex-direction:column}
+  .card--b{border-color:var(--navy-b)}
+  .card__top{padding:26px 26px 20px}
+  .card__tag{font-size:10.5px;letter-spacing:.26em;text-transform:uppercase;font-weight:800;color:var(--navy)}
+  .card h2{font-family:var(--serif);font-weight:400;font-size:26px;margin-top:10px;color:var(--navy);line-height:1.2}
+  .card p{font-size:14.5px;line-height:1.7;color:var(--grey);margin-top:12px}
+  .card__links{margin-top:auto;border-top:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr}
+  .card__links a{display:block;text-align:center;padding:16px 10px;text-decoration:none;
+    font-size:11.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--navy)}
+  .card__links a+a{border-left:1px solid var(--line)}
+  .card__links a:hover{background:var(--navy);color:#fff}
+  .card--b .card__links a{color:var(--navy-b)}
+  .card--b .card__links a:hover{background:var(--navy-b);color:#fff}
+  .note{margin-top:clamp(32px,5vw,48px);padding-top:22px;border-top:1px solid var(--line);
+    font-size:13px;line-height:1.75;color:var(--grey);max-width:76ch}
+  .note b{color:var(--ink)}
+  footer{background:var(--navy);color:rgba(255,255,255,.8);font-size:12.5px;padding:20px;text-align:center}
+  @media(max-width:720px){.cards{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="bar"><b>Anteprima interna · noindex · non per la pubblicazione.</b> Internal preview, not for publication.</div>
+
+<main>
+  <div class="eyebrow">Silvestri International</div>
+  <h1>Due direzioni, due siti completi.</h1>
+  <p class="sub">
+    <span class="it">Stessi contenuti, stessa architettura, stesse undici pagine per lingua. Cambia il disegno. Scegli una direzione e il sito si chiude su quella.</span>
+    <span class="en">Same content, same architecture, same eleven pages per language. The design is what differs. Pick a direction and the site settles on it.</span>
+  </p>
+
+  <div class="cards">
+    <div class="card">
+      <div class="card__top">
+        <div class="card__tag">Direzione A</div>
+        <h2>Capital Close</h2>
+        <p>Composizione centrata e simmetrica, testata navy con il nome al centro, navigazione serif, hero a pieno campo con il titolo a due voci. La lettura più vicina alla pagina di riferimento.</p>
+      </div>
+      <div class="card__links">
+        <a href="./a/it/">Italiano&nbsp;→</a>
+        <a href="./a/">English&nbsp;→</a>
+      </div>
+    </div>
+
+    <div class="card card--b">
+      <div class="card__top">
+        <div class="card__tag">Direzione B</div>
+        <h2>Capital Measured</h2>
+        <p>Stessa parentela — navy, voce serif — ma struttura editoriale: allineata a sinistra, rigata, carta bianca, display più grande, etichette in maiuscoletto. L'altra risposta alla stessa domanda.</p>
+      </div>
+      <div class="card__links">
+        <a href="./b/it/">Italiano&nbsp;→</a>
+        <a href="./b/">English&nbsp;→</a>
+      </div>
+    </div>
+  </div>
+
+  <p class="note">
+    <b>Da sciogliere prima di qualsiasi pubblicazione reale:</b> privacy policy e cookie policy mancano in entrambi i siti,
+    le fotografie sono di riferimento con licenza non verificata, e restano aperte le voci di <code>docs/OPEN-DATA.md</code>.
+    Nessun badge, disclosure finanziaria o marchio di terzi è presente.
+  </p>
+</main>
+
+<footer>Silvestri International — Studio Legale Internazionale · anteprima di lavoro</footer>
+</body>
+</html>

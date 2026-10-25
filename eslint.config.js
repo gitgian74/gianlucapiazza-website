@@ -4,7 +4,8 @@ import reactHooks from 'eslint-plugin-react-hooks'
 import reactRefresh from 'eslint-plugin-react-refresh'
 
 export default [
-  { ignores: ['dist'] },
+  // projects/* sono sotto-progetti con la propria toolchain e il proprio lint
+  { ignores: ['dist', 'projects/**'] },
   {
     files: ['**/*.{js,jsx}'],
     languageOptions: {
