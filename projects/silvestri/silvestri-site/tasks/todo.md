@@ -9,7 +9,7 @@ Niente si chiude senza prova (build, URL, misura).
 |---|---|---|
 | 1 | "licenzia e ospita le foto per chiudere le origini terze, poi costruisci le pagine legali bilingui con struttura e parti verificabili" | fatto e pubblicato |
 | 2 | "oggi devo presentare tutti e tre o quattro differenti mockup di siti" | i link pubblicati devono essere aggiornati e funzionanti **oggi** |
-| 3 | quarto mockup "con una hero che spacca … modelli 3D, la bilancia, simboli della legge americana e italiana" | **sostituito** dall'istruzione 5 (non ripreso dal committente). Da riproporre a fine lavoro, non dimenticare |
+| 3 | quarto mockup "con una hero che spacca … modelli 3D, la bilancia, simboli della legge americana e italiana" | **aperto**: non realizzato. La variante blu non annulla la richiesta 3D; chiarimento del committente del 25 ottobre |
 | 4 | "questo in locale sulla 3212 con i pulsanti in arancio spacca … il doppio video … devi tenerlo assolutamente così" | Modernist arancione: **design congelato** |
 | 5 | "anche i due blu terrai assolutamente così" | Capital A e Capital B: **design congelati** |
 | 6 | "una seconda versione di questo [arancione] con i bottoni blu, prendendo la tinta di blu dal sito che ti ho incollato" (Brickell 21 Capital, navy `#002949`) | fatto e pubblicato su `/modernist-blue` |
@@ -48,7 +48,7 @@ Niente si chiude senza prova (build, URL, misura).
 
 ## Aperti da riproporre al committente
 
-- Hero 3D (istruzione 3): non fatta, superata dal blu. Chiedere se la vuole ancora come quinta/sesta direzione.
+- Hero 3D (istruzione 3): non realizzata e non pubblicata. La richiesta resta aperta; non considerarla sostituita dalla variante blu.
 - `silvestri-mockup-capital` superato: cancellabile, mai risposto.
 - `docs/mockups/*.html` (pubblicati su `silvestri-mockup-capital`): ancora Unsplash. Superati, non aggiornati di proposito.
 - Il server di anteprima del pannello parte dalla copia su Google Drive, non dal repo: la config in `projects/silvestri/.claude/launch.json` va controllata.
