@@ -1178,3 +1178,44 @@ a:hover { color: var(--color-accent-600); }
   letter-spacing: -0.005em;
   line-height: 1.1;
 }
+
+/* ── comandi del video nella hero ───────────────────────────────────────────
+   Giorno/notte più riproduzione. La barra ha un fondo scuro proprio: il
+   contrasto del testo non può dipendere da quale fotogramma sta passando
+   sotto, che con un cielo di giorno sarebbe chiarissimo. */
+.hero__controls {
+  position: absolute;
+  right: var(--gutter);
+  bottom: 16px;
+  z-index: 3;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+.hero__views { display: flex; }
+.hero__view {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #fff;
+  background: rgba(8, 12, 18, 0.85);
+  border: var(--rule-hairline) solid rgba(255, 255, 255, 0.5);
+  min-height: 44px;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+.hero__views .hero__view + .hero__view { border-left: 0; }
+.hero__view:hover { background: rgba(8, 12, 18, 0.95); border-color: #fff; }
+.hero__view[aria-pressed="true"] {
+  background: #fff;
+  color: #11161d;
+  border-color: #fff;
+}
+.hero__view--toggle { margin-left: 4px; }
+@media (max-width: 560px) {
+  .hero__controls { right: auto; left: var(--gutter); bottom: 12px; }
+  .hero__view { font-size: 11px; padding: 8px 12px; }
+}

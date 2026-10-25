@@ -1,4 +1,5 @@
-# I due alberi sono export statici rigenerabili con scripts/build-capital.sh.
+# I tre alberi sono export statici rigenerabili con scripts/build-capital.sh.
 # In git restano solo la pagina di scelta e la configurazione, scritte a mano.
 a/
 b/
+atto/

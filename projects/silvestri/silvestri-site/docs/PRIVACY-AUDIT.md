@@ -23,7 +23,7 @@ e gli storage del browser a pagina caricata.
 | Analytics / tag manager | **assenti** |
 | Font | self-hosted da `next/font`, **nessuna chiamata a Google Fonts** |
 | Mappe | click-to-load: **nessuna richiesta a Google** finché il visitatore non la chiede |
-| Origini terze contattate al caricamento | `videos.pexels.com`, `images.pexels.com`, `images.unsplash.com` |
+| Origini terze contattate al caricamento | **`images.unsplash.com`** soltanto (era anche Pexels, video e poster) |
 
 ### La conseguenza, che è l'opposto di quella che ci si aspetta
 
@@ -31,19 +31,25 @@ e gli storage del browser a pagina caricata.
 terminale dell'utente: l'art. 5(3) ePrivacy si attiva sulla memorizzazione o
 sull'accesso a informazioni sul dispositivo, e qui non avviene.
 
-**Serve però risolvere le tre origini terze.** Scaricare il video e le foto da
-Pexels e Unsplash trasmette a quei server l'**indirizzo IP** del visitatore e lo
-user-agent, prima di qualsiasi consenso e verso gli Stati Uniti. L'IP è dato
-personale: serve una base giuridica e la trasparenza sul trasferimento. È lo
-stesso schema su cui in Germania sono state emesse condanne per Google Fonts
-caricati da remoto.
+**Le origini terze erano tre, ora è una.** I due filmati della hero sono stati
+scaricati, ricodificati e messi in `public/video/`: licenza Pexels verificata
+(uso commerciale libero, attribuzione non richiesta, modifica consentita), e
+soprattutto nessuna chiamata a `videos.pexels.com` o `images.pexels.com`.
 
-**La soluzione pulita è architetturale, non legale.** Acquisite le licenze, i
-file si ospitano insieme al sito. A quel punto le richieste a terzi scendono a
-**zero** e il sito non trasferisce nulla a nessuno finché il visitatore non
-scrive. Per uno studio legale è una posizione difendibile e anche un argomento
-commerciale. Oggi il flag `NEXT_PUBLIC_REFERENCE_MEDIA=false` già toglie quelle
-chiamate, al prezzo dei placeholder al posto delle immagini.
+**Resta `images.unsplash.com`**, due richieste per le fotografie di riferimento
+della sezione "il ponte". Scaricarle trasmette a quel server l'**indirizzo IP**
+del visitatore e lo user-agent, prima di qualsiasi consenso e verso gli Stati
+Uniti. L'IP è dato personale: serve una base giuridica e la trasparenza sul
+trasferimento. È lo stesso schema su cui in Germania sono state emesse condanne
+per Google Fonts caricati da remoto.
+
+**La soluzione è architetturale, non legale, ed è già stata applicata ai video.**
+Stesso trattamento per le fotografie — licenza, download, hosting locale — e le
+richieste a terzi scendono a **zero**: il sito non trasferirebbe nulla a nessuno
+finché il visitatore non scrive. Per uno studio legale è una posizione
+difendibile e anche un argomento commerciale. Nel frattempo
+`NEXT_PUBLIC_REFERENCE_MEDIA=false` toglie quelle due chiamate, al prezzo dei
+placeholder al posto delle immagini.
 
 ## Cosa manca e va prodotto, in entrambe le lingue
 

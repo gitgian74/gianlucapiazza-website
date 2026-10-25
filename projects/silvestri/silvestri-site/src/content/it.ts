@@ -86,6 +86,13 @@ const it: Dict = {
         { label: "Cosa seguiamo", page: "practice" },
       ],
       clocksLabel: "Ora locale nelle tre sedi",
+      media: {
+        pause: "Pausa",
+        play: "Riproduci",
+        viewLabel: "Vista di sfondo",
+        day: "Giorno",
+        night: "Notte",
+      },
     },
     figures: [
       { value: "2", label: "Giurisdizioni, un solo team" },

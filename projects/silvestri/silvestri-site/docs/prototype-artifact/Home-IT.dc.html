@@ -8,8 +8,8 @@
 <body>
 <x-dc>
 <helmet>
-  <meta name="ext-resource-dependency" content="https://images.pexels.com/videos/19109601/florida-miami-miami-drone-miami-florida-19109601.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1920" data-resource-id="heroPoster">
-  <meta name="ext-resource-dependency" content="https://videos.pexels.com/video-files/19109601/19109601-hd_1920_1080_24fps.mp4" data-resource-id="heroVideo">
+  <meta name="ext-resource-dependency" content="video/miami-day.jpg" data-resource-id="heroPoster">
+  <meta name="ext-resource-dependency" content="video/miami-day.mp4" data-resource-id="heroVideo">
   <template id="__bundler_thumbnail" data-bg-color="#f3f2f2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#f3f2f2"></rect><text x="30" y="66" font-family="Archivo, Arial, sans-serif" font-weight="800" font-size="44" fill="#201e1d">S</text><rect x="58" y="58" width="8" height="8" fill="#ec3013"></rect></svg></template>
   <title>Studio legale italiano a Miami, Roma e Montevideo | Silvestri International</title>
   <meta name="description" content="Silvestri International è uno studio legale italiano e foreign legal consulting company in diritto italiano in Florida. Sedi a Miami, Roma e Montevideo per diritto societario, contrattualistica, M&amp;A, immobiliare, fiscale, immigrazione e contenzioso tra Italia e Stati Uniti.">
@@ -156,9 +156,10 @@
   </nav>
 
   <header style="position:relative;isolation:isolate;background:#0b0d12;min-height:clamp(560px,80vh,860px);display:flex;align-items:flex-end;overflow:hidden">
-    <div aria-hidden="true" style="position:absolute;inset:0;z-index:0;background:#0b0d12 center/cover no-repeat url('https://images.pexels.com/videos/19109601/florida-miami-miami-drone-miami-florida-19109601.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1920')">{{ heroMedia }}</div>
+    <div aria-hidden="true" style="position:absolute;inset:0;z-index:0;background:#0b0d12 center/cover no-repeat url('video/miami-day.jpg')">{{ heroMedia }}</div>
     <div aria-hidden="true" style="position:absolute;inset:0;z-index:1;background:linear-gradient(100deg,rgba(9,11,15,0.94) 0%,rgba(9,11,15,0.86) 32%,rgba(9,11,15,0.52) 62%,rgba(9,11,15,0.28) 100%)"></div>
     <div aria-hidden="true" style="position:absolute;left:0;right:0;bottom:0;height:180px;z-index:1;background:linear-gradient(to top,rgba(9,11,15,0.85),rgba(9,11,15,0))"></div>
+    {{ heroControls }}
 
     <div style="position:relative;z-index:2;width:100%;max-width:1200px;margin:0 auto;padding:clamp(72px,11vw,132px) clamp(20px,5vw,72px) clamp(40px,5vw,64px);color:#f7f6f5">
       <p style="display:flex;align-items:center;gap:14px;font-size:13px;line-height:14px;letter-spacing:0.1em;text-transform:uppercase;color:#f7f6f5;margin:0 0 32px">
@@ -445,7 +446,7 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;showFigures&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Home sections&quot;},&quot;showFaq&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Home sections&quot;}}">
 class Component extends DCLogic {
-  state = { now: new Date() };
+  state = { now: new Date(), view: 'day' };
   heroVideo = React.createRef();
   componentDidMount() {
     this.timer = setInterval(() => this.setState({ now: new Date() }), 30000);
@@ -478,9 +479,21 @@ class Component extends DCLogic {
     document.addEventListener('visibilitychange', this.heroResume);
     window.addEventListener('pointerdown', this.heroResume);
   };
+  CLIPS = {
+    day:   { src: 'video/miami-day.mp4',   poster: 'video/miami-day.jpg' },
+    night: { src: 'video/miami-night.mp4', poster: 'video/miami-night.jpg' }
+  };
+  chooseView = (v) => {
+    if (v === this.state.view) return;
+    if (this.heroWatch) clearInterval(this.heroWatch);
+    this.heroEl = null;
+    this.setState({ view: v });
+  };
   buildHero() {
     const reduce = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const clip = this.CLIPS[this.state.view] || this.CLIPS.day;
     return React.createElement('video', {
+      key: this.state.view,
       ref: reduce ? undefined : this.mountHero,
       autoPlay: !reduce,
       muted: true,
@@ -488,13 +501,33 @@ class Component extends DCLogic {
       playsInline: true,
       controls: false,
       preload: 'auto',
-      poster: (window.__resources && window.__resources.heroPoster) || 'https://images.pexels.com/videos/19109601/florida-miami-miami-drone-miami-florida-19109601.jpeg?auto=compress&cs=tinysrgb&w=1920',
+      poster: clip.poster,
       'aria-hidden': 'true',
       tabIndex: -1,
       style: { position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', filter: 'saturate(1.18) contrast(1.06)' }
     },
-      React.createElement('source', { key: 'hd', src: (window.__resources && window.__resources.heroVideo) || 'https://videos.pexels.com/video-files/19109601/19109601-hd_1920_1080_24fps.mp4', type: 'video/mp4' })
+      React.createElement('source', { key: this.state.view, src: clip.src, type: 'video/mp4' })
     );
+  }
+  buildHeroControls() {
+    const base = {
+      fontFamily: 'var(--font-heading)', fontWeight: 700, fontSize: '12px',
+      letterSpacing: '0.1em', textTransform: 'uppercase', minHeight: '44px',
+      padding: '8px 16px', cursor: 'pointer', border: '1px solid rgba(255,255,255,0.5)'
+    };
+    const mk = (v, label, extra) => React.createElement('button', {
+      key: v, type: 'button',
+      onClick: () => this.chooseView(v),
+      'aria-pressed': this.state.view === v,
+      style: Object.assign({}, base, extra, this.state.view === v
+        ? { background: '#fff', color: '#11161d', borderColor: '#fff' }
+        : { background: 'rgba(8,12,18,0.85)', color: '#fff' })
+    }, label);
+    return React.createElement('div', {
+      role: 'group',
+      'aria-label': 'Vista di sfondo',
+      style: { position: 'absolute', right: 'clamp(20px,5vw,72px)', bottom: '16px', zIndex: 3, display: 'flex' }
+    }, [mk('day', 'Giorno', {}), mk('night', 'Notte', { borderLeft: 0 })]);
   }
   componentWillUnmount() {
     clearInterval(this.timer);
@@ -510,6 +543,7 @@ class Component extends DCLogic {
   renderVals() {
     return {
       heroMedia: this.buildHero(),
+      heroControls: this.buildHeroControls(),
       timeMiami: this.fmt('America/New_York'),
       timeRome: this.fmt('Europe/Rome'),
       timeMontevideo: this.fmt('America/Montevideo'),

@@ -11,7 +11,7 @@ import { CtaBanner, CtaLinks, Kicker, Rule, ScopeStrip } from "@/components/Sect
 import { dict } from "@/content";
 import { graphFor } from "@/lib/jsonld";
 import { PATHS, type Locale } from "@/lib/routes";
-import { CLAIM_FIRST_FIRM, REFERENCE_MEDIA } from "@/lib/site";
+import { CLAIM_FIRST_FIRM } from "@/lib/site";
 
 export function HomeView({ locale }: { locale: Locale }) {
   const d = dict(locale);
@@ -25,9 +25,10 @@ export function HomeView({ locale }: { locale: Locale }) {
 
       <main id="main">
         <header className="hero">
-          {REFERENCE_MEDIA ? (
-            <HeroMedia pauseLabel={locale === "it" ? "Pausa" : "Pause"} playLabel={locale === "it" ? "Riproduci" : "Play"} />
-          ) : null}
+          {/* I filmati sono ospitati dal sito con licenza Pexels verificata, quindi
+              non dipendono dal flag dei media di riferimento, che resta per le
+              sole fotografie Unsplash non ancora licenziate. */}
+          <HeroMedia labels={hero.media} />
           <div className="hero__scrim" aria-hidden="true" />
           <div className="hero__grid" aria-hidden="true" />
 

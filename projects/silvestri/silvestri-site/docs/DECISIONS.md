@@ -430,3 +430,121 @@ rotto niente senza averlo provato.
 
 **Niente è stato committato.** Quel branch ha modifiche di altro lavoro in corso
 e non le mescolo con questo spostamento.
+
+## 22. Atto pubblicato, dentro il progetto che c'era già
+
+Atto era l'unica delle quattro direzioni mai messa online: esisteva solo come
+blocco di token. Su richiesta è stato pubblicato **senza creare un quinto
+progetto Vercel**, come terzo ramo di `silvestri-capital`:
+
+| | |
+|---|---|
+| `/a` | Capital Close |
+| `/b` | Capital Measured |
+| `/atto` | Atto |
+
+`scripts/build-capital.sh` costruisce ora tre export invece di due, la pagina di
+scelta ha tre schede e `docs/capital-sites/.gitignore` tiene fuori da git anche
+`atto/`, che è generato come gli altri.
+
+**Verificato sul pubblico con gli stili calcolati dal browser**, non con un grep
+sul CSS: tutti i temi stanno nello stesso foglio, quindi cercare `--color-accent`
+nel sorgente restituisce il primo blocco, cioè Modernist. Il valore che conta è
+quello risolto a pagina caricata.
+
+| | risolto su `/atto/` |
+|---|---|
+| `data-theme` | `institutional` |
+| `--color-accent` | `#b8371d` |
+| `--color-bg` | `#f3f1ea` |
+| titoli | Libre Franklin |
+| corpo | Source Serif 4 |
+
+Otto percorsi provati fra le tre direzioni, tutti 200, `lang` corretto in
+entrambe le lingue, `X-Robots-Tag: noindex` attivo.
+
+**Dettaglio tipografico.** In Atto il titolo italiano *"Uno studio che le legge
+entrambe."* sta su **due righe**, non tre: la scala di Atto arriva a 60px contro
+gli 88px di Modernist, quindi la riga ci entra. Lo scarto IT/EN discusso in §18
+è un problema del solo Modernist, non del contenuto.
+
+## 23. Video di giorno e selettore giorno/notte
+
+### Il filmato
+
+Cercato su Pexels con il vincolo dato: colorato, soleggiato, luce viva, e che
+dica *finanza*, quindi Brickell. Scartati nell'ordine: una periferia con
+autostrada e parcheggio, uno skyline con cantieri e scalo ferroviario in primo
+piano, uno grigio e coperto, uno in controluce con la città in silhouette.
+
+**Scelto Pexels 6345015** — skyline di Brickell dalla baia, acqua turchese,
+cielo pulito, 1920×1080.
+
+**Un candidato è stato scartato per la forma, non per il contenuto.** Quello che
+piaceva di più a prima vista (30679246, Brickell Key sull'acqua) è **verticale,
+1080×1920**: in una hero a tutta larghezza se ne vedrebbe una fetta stretta.
+Resta buono per un eventuale hero mobile, dove il formato è invece ideale.
+Verificato l'orientamento di tutti e dieci i candidati prima di decidere.
+
+### Ospitati dal sito, non più da Pexels
+
+Scaricati, tagliati e ricodificati in `public/video/`: 4,2 MB il giorno (da 15),
+2,5 MB la notte (da 11), con il fotogramma di copertina estratto.
+
+Conseguenza misurata sul pubblicato: le origini terze contattate al caricamento
+passano da **tre a una**. Spariscono `videos.pexels.com` e `images.pexels.com`;
+resta `images.unsplash.com` per le due fotografie della sezione "il ponte".
+Cookie e storage restano a zero.
+
+Licenza Pexels letta, non data per buona: uso commerciale libero, attribuzione
+non richiesta, modifica consentita. Dettaglio in `docs/ASSET-REGISTRY.md`.
+
+Per questo i filmati **non sono più dietro `NEXT_PUBLIC_REFERENCE_MEDIA`**: quel
+flag esisteva per i media a licenza non verificata, e questi ora una licenza ce
+l'hanno. Resta attivo per le sole fotografie.
+
+### Il selettore
+
+Tre bottoni in basso a destra nella hero: Giorno · Notte · Pausa. Le etichette
+sono passate dal dizionario in entrambe le lingue — prima erano scritte in linea
+in `HomeView.tsx` con un ternario sul locale, fuori dall'architettura del resto
+del sito.
+
+- `role="group"` con `aria-label`, `aria-pressed` su giorno e notte.
+- 44px di altezza, contrasto 18:1 e 19:1 misurato sui colori calcolati.
+- La barra ha un fondo scuro proprio: il contrasto non può dipendere da quale
+  fotogramma passa sotto, che di giorno è un cielo chiarissimo.
+- Chi arriva con `prefers-reduced-motion` resta sul fotogramma fisso, anche
+  cambiando vista.
+- **La scelta non viene memorizzata**: niente cookie, niente storage, così
+  l'audit privacy resta vero.
+- Default: **giorno**. Si cambia con una riga, `DEFAULT_VIEW` in `HeroMedia.tsx`.
+
+**Difetto trovato provando, non leggendo.** Alla prima stesura il cambio vista
+fermava il video: il `key` sul `<video>` ne forza il rimontaggio, quindi il
+`play()` chiamato dentro il gestore del click agiva sull'elemento vecchio.
+Spostato in un `useEffect` legato alla vista, che gira dopo il commit di React.
+Verificato in entrambe le direzioni: la riproduzione continua e l'etichetta
+resta "Pausa".
+
+Vale per tutti e quattro i temi, perché il componente è uno solo: Modernist,
+Capital A, Capital B e Atto.
+
+### Anche sul prototipo artifact
+
+Portato pure lì, su richiesta, riscrivendo `buildHero()` nel componente React
+del runtime Claude Design e aggiungendo uno slot `{{ heroControls }}` nel
+template della hero, in entrambe le lingue. Stesso comportamento, stesse
+etichette, stesso `aria-pressed`. Niente bottone pausa: il prototipo non ne ha
+mai avuto uno.
+
+I video del prototipo sono ora locali come sugli altri siti, e con essi sono
+spariti gli ultimi tre riferimenti a Pexels, compreso lo sfondo CSS del
+contenitore e i `meta` delle risorse esterne.
+
+**Misura che vale la pena registrare.** Senza più Pexels, il prototipo contatta
+comunque `unpkg.com` (React, caricato dal runtime Claude Design) e
+`fonts.googleapis.com` (Archivo da remoto), oltre a `images.unsplash.com`. Il
+sito Next.js non fa né l'una né l'altra cosa: React è nel bundle e i font sono
+self-hosted. È una ragione concreta, misurata, per cui il brief diceva di non
+portare quel runtime in produzione.

@@ -91,6 +91,14 @@ export interface Dict {
       leadClaim: string;
       ctas: CtaLink[];
       clocksLabel: string;
+      /** Comandi del video di sfondo: riproduzione e scelta fra giorno e notte. */
+      media: {
+        pause: string;
+        play: string;
+        viewLabel: string;
+        day: string;
+        night: string;
+      };
     };
     figures: { value: string; label: string }[];
     bridge: {

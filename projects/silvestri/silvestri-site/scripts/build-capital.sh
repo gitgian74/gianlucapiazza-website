@@ -1,7 +1,7 @@
 #!/bin/zsh
-# Costruisce le due direzioni Capital come export statici e le unisce in
+# Costruisce le tre direzioni come export statici e le unisce in
 # docs/capital-sites/, che è la cartella pubblicata sul progetto Vercel
-# "silvestri-capital": un link solo, due siti bilingue dentro.
+# "silvestri-capital": un link solo, tre siti bilingue dentro.
 #
 #   ./scripts/build-capital.sh
 #
@@ -33,7 +33,8 @@ build_one () { # $1=tema  $2=basePath  $3=cartella di uscita
   echo "OK  $1 -> docs/capital-sites/$3"
 }
 
-build_one capital-a /a a
-build_one capital-b /b b
+build_one capital-a     /a    a
+build_one capital-b     /b    b
+build_one institutional /atto atto
 rm -rf .next
 echo "Fatto. Pubblica con:  cd docs/capital-sites && vercel deploy --prod"

@@ -2,29 +2,61 @@
 
 import { useEffect, useRef, useState } from "react";
 
-const POSTER =
-  "https://images.pexels.com/videos/19109601/florida-miami-miami-drone-miami-florida-19109601.jpeg?auto=compress&cs=tinysrgb&w=1920";
-const SOURCE = "https://videos.pexels.com/video-files/19109601/19109601-hd_1920_1080_24fps.mp4";
+type View = "day" | "night";
 
 /**
- * Only rendered when NEXT_PUBLIC_REFERENCE_MEDIA is on: the Pexels clip is an
- * unlicensed art-direction reference. The poster carries the first paint, the
- * clip never blocks it, and reduced-motion visitors keep the still frame.
+ * Entrambi i filmati sono serviti dal sito, non da Pexels: nessuna richiesta a
+ * terzi al caricamento, quindi nessun indirizzo IP del visitatore trasmesso
+ * prima del consenso (docs/PRIVACY-AUDIT.md). Licenza Pexels: uso commerciale
+ * libero, attribuzione non richiesta.
  */
-export function HeroMedia({ pauseLabel, playLabel }: { pauseLabel: string; playLabel: string }) {
+const CLIPS: Record<View, { src: string; poster: string }> = {
+  day: { src: "/video/miami-day.mp4", poster: "/video/miami-day.jpg" },
+  night: { src: "/video/miami-night.mp4", poster: "/video/miami-night.jpg" },
+};
+
+/** La scelta non viene memorizzata: nessun cookie, nessuno storage. */
+const DEFAULT_VIEW: View = "day";
+
+export interface HeroMediaLabels {
+  pause: string;
+  play: string;
+  viewLabel: string;
+  day: string;
+  night: string;
+}
+
+export function HeroMedia({ labels }: { labels: HeroMediaLabels }) {
   const video = useRef<HTMLVideoElement>(null);
   const [playing, setPlaying] = useState(false);
+  const [view, setView] = useState<View>(DEFAULT_VIEW);
+  /** Chi arriva con reduced-motion resta sul fotogramma fisso, anche cambiando vista. */
+  const motionAllowed = useRef(true);
 
+  /**
+   * Gira al montaggio e ogni volta che cambia vista. Deve stare in un effetto:
+   * il `key` sul <video> lo fa rimontare, quindi chiamare play() dentro il
+   * gestore del click agirebbe sull'elemento vecchio e il filmato resterebbe
+   * fermo sul fotogramma di copertina.
+   */
   useEffect(() => {
+    motionAllowed.current = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (!motionAllowed.current) {
+      setPlaying(false);
+      return;
+    }
+
     const element = video.current;
     if (!element) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-
     element.play().then(
       () => setPlaying(true),
       () => setPlaying(false),
     );
-  }, []);
+  }, [view]);
+
+  const choose = (next: View) => {
+    if (next !== view) setView(next);
+  };
 
   const toggle = () => {
     const element = video.current;
@@ -38,21 +70,29 @@ export function HeroMedia({ pauseLabel, playLabel }: { pauseLabel: string; playL
     }
   };
 
+  const clip = CLIPS[view];
+
   return (
     <>
       <div className="hero__media" aria-hidden="true">
-        <video ref={video} poster={POSTER} muted loop playsInline preload="none">
-          <source src={SOURCE} type="video/mp4" />
+        <video ref={video} key={view} poster={clip.poster} muted loop playsInline preload="none">
+          <source src={clip.src} type="video/mp4" />
         </video>
       </div>
-      <button
-        type="button"
-        onClick={toggle}
-        className="btn btn--ghost-ink"
-        style={{ position: "absolute", right: "var(--gutter)", bottom: "16px", zIndex: 3, minHeight: "40px", padding: "8px 14px" }}
-      >
-        {playing ? pauseLabel : playLabel}
-      </button>
+
+      <div className="hero__controls">
+        <div className="hero__views" role="group" aria-label={labels.viewLabel}>
+          <button type="button" onClick={() => choose("day")} aria-pressed={view === "day"} className="hero__view">
+            {labels.day}
+          </button>
+          <button type="button" onClick={() => choose("night")} aria-pressed={view === "night"} className="hero__view">
+            {labels.night}
+          </button>
+        </div>
+        <button type="button" onClick={toggle} className="hero__view hero__view--toggle">
+          {playing ? labels.pause : labels.play}
+        </button>
+      </div>
     </>
   );
 }

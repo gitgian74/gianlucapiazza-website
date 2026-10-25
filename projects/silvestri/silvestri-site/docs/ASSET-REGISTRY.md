@@ -53,3 +53,24 @@ d'oro — reggono molto meglio.
 |---|---|
 | Archivo (Google Fonts) | scaricato e self-hosted al build da `next/font`. Nessuna richiesta a Google a runtime |
 | Google Maps (3 embed) | caricata solo dopo clic esplicito, con avviso su IP e cookie. Il pin di Miami nell'URL contiene `1200 Brickell Ave # 310-B` mentre il testo dice Suite 310: da riconciliare |
+
+
+## Video della hero — licenziati e ospitati dal sito (24 ottobre 2026)
+
+Entrambi in `public/video/`, serviti dal sito: nessuna richiesta a Pexels al
+caricamento. Ritagliati e ricodificati (h264, senza audio, `+faststart`).
+
+| | File | Origine | Peso |
+|---|---|---|---|
+| Giorno | `miami-day.mp4` + `.jpg` | Pexels 6345015 — skyline di Brickell dalla baia, 1920×1080 | 4,2 MB (da 15) |
+| Notte | `miami-night.mp4` + `.jpg` | Pexels 19109601 — lo stesso già in uso, 1280×720 | 2,5 MB (da 11) |
+
+**Licenza Pexels**, letta il 24 ottobre 2026 su `pexels.com/license`: uso
+gratuito anche commerciale, attribuzione non richiesta, modifica consentita.
+Vietati: vendere copie non modificate, lasciar intendere un'approvazione da
+parte di persone o marchi, redistribuire su altre piattaforme stock, usare come
+marchio. Nessuno di questi casi si applica: sono riprese aeree senza persone
+identificabili, tagliate e ricodificate, usate come sfondo.
+
+Per questo i filmati **non** dipendono più da `NEXT_PUBLIC_REFERENCE_MEDIA`, che
+resta per le sole fotografie Unsplash, ancora senza licenza verificata.
