@@ -1,10 +1,10 @@
 import type { MediaRef } from "@/content/types";
-import { REFERENCE_MEDIA } from "@/lib/site";
+import { asset } from "@/lib/site";
 
 /**
- * No media is licensed yet. Default: an explicit, labelled slot that states
- * what the final image must be. NEXT_PUBLIC_REFERENCE_MEDIA=true swaps in the
- * unlicensed stock reference for art-direction review only.
+ * Photographs are licensed and served by the site (docs/ASSET-REGISTRY.md).
+ * The portraits are not: a MediaRef without src renders the declared slot,
+ * which states what the final image must be rather than inventing a face.
  */
 export function Media({
   media,
@@ -21,20 +21,18 @@ export function Media({
   caption?: string;
   priority?: boolean;
 }) {
-  const useReference = REFERENCE_MEDIA && Boolean(media.referenceSrc);
-
   return (
     <figure>
-      {useReference ? (
+      {media.src ? (
         <div className={`media media--${ratio}${grayscale ? " media--grayscale" : ""}`}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src={media.referenceSrc}
+            src={asset(media.src)}
             alt={media.alt}
             loading={priority ? "eager" : "lazy"}
             decoding="async"
-            width={1400}
-            height={875}
+            width={media.width}
+            height={media.height}
           />
         </div>
       ) : (

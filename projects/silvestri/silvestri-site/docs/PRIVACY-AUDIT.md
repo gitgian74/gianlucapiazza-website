@@ -12,82 +12,95 @@ committente, che fa questo di mestiere.
 
 ## Cosa fa il sito, misurato (non dedotto)
 
-Misurato sul build pubblicato, leggendo `performance.getEntriesByType('resource')`
-e gli storage del browser a pagina caricata.
+Misurato il 25 ottobre 2026 leggendo `performance.getEntriesByType('resource')`,
+`document.cookie` e gli storage del browser a pagina caricata, prima in sviluppo
+e poi sui cinque siti pubblicati.
 
 | | Esito |
 |---|---|
 | Cookie impostati | **nessuno** |
 | `localStorage` | **vuoto** |
 | `sessionStorage` | **vuoto** |
-| Analytics / tag manager | **assenti** |
+| Analytics / tag manager / pixel | **assenti** |
 | Font | self-hosted da `next/font`, **nessuna chiamata a Google Fonts** |
+| Fotografie e video | licenza Pexels, ospitati in `public/photo/` e `public/video/` |
 | Mappe | click-to-load: **nessuna richiesta a Google** finché il visitatore non la chiede |
-| Origini terze contattate al caricamento | **`images.unsplash.com`** soltanto (era anche Pexels, video e poster) |
+| Modulo di contatto | **non esiste**: il contatto passa da `mailto:` e `tel:` |
+| Origini terze contattate al caricamento | **nessuna** |
 
-### La conseguenza, che è l'opposto di quella che ci si aspetta
+### La conseguenza
 
 **Non serve un cookie banner**, perché non ci sono cookie né accessi al
 terminale dell'utente: l'art. 5(3) ePrivacy si attiva sulla memorizzazione o
 sull'accesso a informazioni sul dispositivo, e qui non avviene.
 
-**Le origini terze erano tre, ora è una.** I due filmati della hero sono stati
-scaricati, ricodificati e messi in `public/video/`: licenza Pexels verificata
-(uso commerciale libero, attribuzione non richiesta, modifica consentita), e
-soprattutto nessuna chiamata a `videos.pexels.com` o `images.pexels.com`.
+**Le origini terze erano tre, ora sono zero.** Prima i video (24 ottobre), poi le
+fotografie (25 ottobre): licenza verificata, download, ritaglio, hosting locale.
+Il sito non trasferisce nulla a nessuno finché il visitatore non preme il
+pulsante di una mappa o non scrive. Per uno studio legale è una posizione
+difendibile e anche un argomento commerciale.
 
-**Resta `images.unsplash.com`**, due richieste per le fotografie di riferimento
-della sezione "il ponte". Scaricarle trasmette a quel server l'**indirizzo IP**
-del visitatore e lo user-agent, prima di qualsiasi consenso e verso gli Stati
-Uniti. L'IP è dato personale: serve una base giuridica e la trasparenza sul
-trasferimento. È lo stesso schema su cui in Germania sono state emesse condanne
-per Google Fonts caricati da remoto.
+**Restano due tracce, entrambe dichiarate nella pagina privacy:** i log del
+server tenuti dall'host (IP, ora, pagina, user agent) e la mappa di Google,
+che riceve l'IP solo dopo il clic.
 
-**La soluzione è architetturale, non legale, ed è già stata applicata ai video.**
-Stesso trattamento per le fotografie — licenza, download, hosting locale — e le
-richieste a terzi scendono a **zero**: il sito non trasferirebbe nulla a nessuno
-finché il visitatore non scrive. Per uno studio legale è una posizione
-difendibile e anche un argomento commerciale. Nel frattempo
-`NEXT_PUBLIC_REFERENCE_MEDIA=false` toglie quelle due chiamate, al prezzo dei
-placeholder al posto delle immagini.
+**Non c'è un modulo di contatto**, quindi non serve un'informativa al punto di
+raccolta. Se in futuro se ne aggiunge uno, serve: trattandosi di uno studio
+legale raccoglierebbe potenzialmente dati su controversie.
 
-## Cosa manca e va prodotto, in entrambe le lingue
+## Le tre pagine legali — fatte come struttura, da completare dallo studio
 
-Nessuna delle due direzioni (A e B) ha queste pagine. Vanno aggiunte come rotte
-vere, non come PDF allegati, e linkate dal footer di ogni pagina.
+Rotte vere in entrambe le lingue, linkate dal footer di ogni pagina, presenti in
+sitemap quando il sito diventa indicizzabile.
 
-1. **Informativa privacy** — artt. 13-14 GDPR: titolare del trattamento e dati di
-   contatto, eventuale DPO, finalità e base giuridica per ciascun trattamento,
-   destinatari, trasferimenti extra-UE con le relative garanzie, periodi di
-   conservazione, diritti dell'interessato e diritto di reclamo al Garante.
-2. **Informativa al punto di raccolta** — il modulo di contatto raccoglie dati
-   personali e, trattandosi di uno studio legale, potenzialmente dati su
-   controversie. Serve un'informativa breve accanto al modulo, non solo il link.
-3. **Cookie policy** — anche solo per dichiarare che non se ne usano. Dichiararlo
-   vale più che tacerlo, ed è verificabile.
-4. **Disclaimer professionale** — che il sito non costituisce consulenza legale e
-   che la consultazione non instaura un rapporto professionale. Per uno studio
-   legale è il più importante dei quattro, ed è quello che oggi manca del tutto.
-5. **Dati professionali** — iscrizione all'Ordine di Roma, partita IVA,
-   eventuale polizza assicurativa: li richiede il Codice Deontologico Forense
-   italiano per la comunicazione informativa.
-6. **Posizione Florida** — la qualifica di Certified Foreign Legal Consultant e il
-   limite che ne deriva sono già nel contenuto di ogni pagina e nel footer. Va
-   verificato con la Florida Bar che la formulazione usata sia quella ammessa:
-   è l'unico punto dove un errore di parole diventa un problema disciplinare.
+| Pagina | EN | IT |
+|---|---|---|
+| Informativa privacy | `/privacy/` | `/it/privacy/` |
+| Cookie policy | `/cookie-policy/` | `/it/cookie-policy/` |
+| Note legali e disclaimer | `/legal-notice/` | `/it/note-legali/` |
+
+Ogni pagina contiene **solo fatti verificabili** e chiude con un riquadro che
+elenca in chiaro cosa deve fornire lo studio. Niente clausole inventate: in un
+sito di avvocati una clausola plausibile ma non approvata si legge come un
+impegno.
+
+**Cosa scrive lo studio:**
+
+1. **Informativa privacy** (artt. 13-14 GDPR): titolare e contatti, eventuale
+   rappresentante UE, eventuale DPO, finalità e base giuridica di ogni
+   trattamento (log del server inclusi), destinatari e responsabili, trasferimenti
+   extra-UE e garanzia (hosting e posta negli Stati Uniti), tempi di
+   conservazione, autorità di controllo.
+2. **Dati professionali**: Ordine, numero e data di iscrizione; partita IVA,
+   registro imprese e sede di ogni entità; compagnia e numero della polizza di
+   responsabilità professionale (l'obbligo di copertura è nell'art. 12 della
+   legge 247/2012); con quale entità
+   contrae il cliente.
+3. **Posizione Florida**: conferma della Florida Bar che la formula usata per il
+   Foreign Legal Consultant sia quella ammessa. È l'unico punto dove un errore di
+   parole diventa un problema disciplinare.
+
+La **cookie policy** invece è completa: dichiara un'assenza misurata. Resta
+vera finché non si aggiungono analytics, chat, moduli incorporati, strumenti di
+prenotazione o pixel; la pagina stessa lo dice.
+
+Il **disclaimer professionale** (niente consulenza, nessun rapporto
+professionale dalla sola lettura, limite FLC) era già nel footer di ogni pagina;
+ora ha anche la sua pagina, con la stessa formula.
 
 ## Cosa è già a posto
 
-- Nessun tracciamento, nessun cookie, nessun profiling.
+- Nessun tracciamento, nessun cookie, nessun profiling, nessuna origine terza.
 - Mappe caricate solo su richiesta esplicita del visitatore.
-- Font serviti dal sito stesso.
-- Limite FLC presente nel footer di tutte le pagine e in entrambe le lingue.
+- Font, foto e video serviti dal sito stesso.
+- Limite FLC nel footer di tutte le pagine e in entrambe le lingue.
 - `noindex` e `robots.txt` bloccanti su tutte le anteprime pubblicate.
 - Nessun badge, disclosure finanziaria o marchio di terzi.
 
-## Ordine suggerito
+## Fuori da questo audit
 
-Prima il disclaimer professionale e l'informativa privacy, che sono obblighi.
-Poi le licenze fotografiche, che chiudono da sole il problema dei terzi. La
-cookie policy viene ultima ed è la più corta, perché non c'è niente da
-dichiarare se non l'assenza.
+Il **prototipo Claude Design** (`docs/prototype-artifact/`, progetto Vercel
+`silvestri-prototipo-artifact`) carica per costruzione React e Babel da
+`unpkg.com`, i caratteri da Google Fonts e le mappe Google subito. È un
+riferimento, non un candidato per la produzione: il brief vieta di portarne il
+runtime in produzione. Le sue fotografie sono comunque passate ai file locali.

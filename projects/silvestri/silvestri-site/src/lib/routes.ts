@@ -2,7 +2,12 @@ export const LOCALES = ["en", "it"] as const;
 export type Locale = (typeof LOCALES)[number];
 
 export const PAGE_KEYS = ["home", "practice", "about", "professionals", "contact"] as const;
-export type PageKey = (typeof PAGE_KEYS)[number];
+
+/** Reached from the footer, never from the menu: they are obligations, not sections. */
+export const LEGAL_KEYS = ["privacy", "cookies", "legal"] as const;
+export type LegalKey = (typeof LEGAL_KEYS)[number];
+
+export type PageKey = (typeof PAGE_KEYS)[number] | LegalKey;
 
 /**
  * Slugs declared by the prototype's canonical tags. The Italian "-2"/"-3"
@@ -16,6 +21,9 @@ export const PATHS: Record<Locale, Record<PageKey, string>> = {
     about: "/about/",
     professionals: "/professionals/",
     contact: "/contact/",
+    privacy: "/privacy/",
+    cookies: "/cookie-policy/",
+    legal: "/legal-notice/",
   },
   it: {
     home: "/it/",
@@ -23,6 +31,9 @@ export const PATHS: Record<Locale, Record<PageKey, string>> = {
     about: "/it/chi-siamo-2/",
     professionals: "/it/professionisti-3/",
     contact: "/it/contatti/",
+    privacy: "/it/privacy/",
+    cookies: "/it/cookie-policy/",
+    legal: "/it/note-legali/",
   },
 };
 

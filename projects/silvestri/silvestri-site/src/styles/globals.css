@@ -1219,3 +1219,93 @@ a:hover { color: var(--color-accent-600); }
   .hero__controls { right: auto; left: var(--gutter); bottom: 12px; }
   .hero__view { font-size: 11px; padding: 8px 12px; }
 }
+
+/* ---------------------------------------------------------------- pagine legali
+   Una colonna sola, misura corta: sono pagine che si leggono, non si scorrono.
+   Reggono i cinque temi perché usano solo i token, mai valori propri. */
+.legal__head { padding-bottom: var(--space-8); }
+.legal__head h1 { margin-bottom: var(--space-6); }
+.legal { display: grid; gap: var(--space-12); }
+.legal__section {
+  display: grid;
+  grid-template-columns: minmax(0, 18ch) minmax(0, 62ch);
+  gap: var(--space-4) var(--space-8);
+  align-items: start;
+  padding-top: var(--space-6);
+  border-top: var(--rule-hairline) solid var(--color-divider);
+}
+.legal__heading {
+  font-size: var(--type-h3);
+  line-height: 1.25;
+  margin: 0;
+  text-wrap: balance;
+}
+.legal__body { display: grid; gap: var(--space-3); }
+.legal__body p { margin: 0; font-size: 15.5px; line-height: 1.75; color: var(--color-neutral-800); }
+
+/* I controlli misurati: etichetta e esito, non prosa. */
+.legal__checks {
+  margin: var(--space-2) 0 0;
+  border-top: var(--rule-hairline) solid var(--color-divider);
+}
+.legal__checks > div {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+  gap: var(--space-4);
+  padding: 10px 0;
+  border-bottom: var(--rule-hairline) solid var(--color-divider);
+}
+.legal__checks dt { font-size: 13px; color: var(--color-neutral-700); }
+.legal__checks dd { margin: 0; font-size: 13px; font-weight: 600; color: var(--color-text); }
+
+/* Quello che manca sta in evidenza: un riquadro che non si può scambiare per testo approvato. */
+.legal__pending {
+  border: var(--rule) solid var(--color-accent);
+  padding: var(--space-6);
+  display: grid;
+  gap: var(--space-3);
+}
+.legal__pending h2 {
+  font-size: var(--type-h3);
+  margin: 0;
+  color: var(--color-accent-text);
+}
+.legal__pending p { margin: 0; font-size: 14.5px; line-height: 1.7; color: var(--color-neutral-800); }
+.legal__pending ul { margin: 0; padding-left: 1.1em; display: grid; gap: 8px; list-style: square; }
+.legal__pending li { font-size: 14.5px; line-height: 1.7; color: var(--color-neutral-800); }
+
+@media (max-width: 760px) {
+  .legal__section { grid-template-columns: minmax(0, 1fr); }
+  .legal__checks > div { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+}
+
+/* La striscia legale sta sotto la navigazione, più piccola: obblighi, non sezioni. */
+.footer__nav--legal { margin-top: var(--space-2); row-gap: var(--space-2); }
+.footer__nav--legal a { font-size: 12px; letter-spacing: 0.04em; opacity: 0.85; }
+
+/* ──────────────────────────────────────────────────────────────────────────
+   Modernist blue — il Modernist, identico, col navy di Brickell 21 Capital
+   al posto del rosso. Si tocca solo la famiglia dell'accento: fondo, testo,
+   caratteri, scala e spaziature restano quelle verificate.
+
+   Il navy #002949 non può fare da --color-accent: quel token disegna i filetti
+   della sovrapposizione oraria, che devono stare a 3:1 sia sul binario chiaro
+   sia sulla barra scura, e lo impone una luminanza fra 0,140 e 0,235. #002949
+   sta a 0,021. Resta quindi il colore pieno dei pulsanti, dove porta 14,9:1
+   col bianco, e l'accento è un gradino più chiaro dello stesso blu: #2a7cb5,
+   luminanza 0,182, cioè 3,67:1 da entrambe le parti.
+   ────────────────────────────────────────────────────────────────────────── */
+:root[data-theme="modernist-blue"] {
+  --color-accent: #2a7cb5;
+  --color-accent-text: #0d4f7c;
+  --color-accent-solid: #002949;
+  --color-accent-200: #b7deff;
+  --color-accent-600: #0b2a44;
+}
+
+/* Nel footer scuro i link social prendono l'accento del testo. Col navy
+   sarebbero a 1,9:1 sul fondo e sparirebbero all'hover: qui usano il celeste
+   della pagina di riferimento, 11,7:1. Solo in questo tema: il rosso del
+   Modernist approvato non si tocca. */
+:root[data-theme="modernist-blue"] .footer__social a { color: var(--color-accent-200); }
+:root[data-theme="modernist-blue"] .footer__social a:hover { color: #fff; }

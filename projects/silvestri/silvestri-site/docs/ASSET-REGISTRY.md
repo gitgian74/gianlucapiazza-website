@@ -1,39 +1,42 @@
 # Registro asset
 
-Nessuna licenza è stata verificata. Gli URL qui sotto provengono dal prototipo e
-sono **riferimenti di direzione artistica**, non prove di diritto d'uso.
-In build normale non viene caricato nulla di tutto questo: i segnaposto
-dichiarati sono serviti dal sito stesso.
+Ogni immagine e ogni filmato del sito ha licenza verificata ed è servito dal sito
+stesso: al caricamento di una pagina non parte nessuna richiesta a terzi. Restano
+segnaposto dichiarati solo i ritratti.
 
-## Media di riferimento (solo con `NEXT_PUBLIC_REFERENCE_MEDIA=true`)
+## Fotografie — licenziate e ospitate dal sito (25 ottobre 2026)
 
-Peso e dimensioni misurati il 24-10-2026 con `curl` e dal browser.
+In `public/photo/`, WebP qualità 82. Tre scatti Pexels, ritagliati per ogni slot.
 
-| Uso | Origine | URL | Peso | Pixel reali | Licenza |
-|---|---|---|---|---|---|
-| Video hero home | Pexels 19109601 | `https://videos.pexels.com/video-files/19109601/19109601-hd_1920_1080_24fps.mp4` | **9 875 KB** | **1280×720** (il nome del file dice 1920×1080) | da verificare |
-| Poster hero | Pexels 19109601 | `https://images.pexels.com/videos/19109601/florida-miami-miami-drone-miami-florida-19109601.jpeg?auto=compress&cs=tinysrgb&w=1920` | 241 KB | 1920 px | da verificare |
-| Ponte, cella Italia → USA | Unsplash | `https://images.unsplash.com/photo-1566805068958-92c5648061e6?auto=format&fit=crop&w=1400&q=80` | 358 KB | 1400×927 in slot 491×305 | da verificare |
-| Ponte, cella USA → Italia | Unsplash | `https://images.unsplash.com/photo-1752886355870-17e8ebe79a05?auto=format&fit=crop&w=1400&q=80` | 223 KB | 1400×933 in slot 491×305 | da verificare |
-| Home, rete | Unsplash | `https://images.unsplash.com/photo-1748380868276-6faae7e27b94?auto=format&fit=crop&w=1600&q=80` | 402 KB | 1600×1067 in slot 1052×449 | da verificare |
-| Chi siamo, missione | Unsplash | `https://images.unsplash.com/photo-1752886355870-17e8ebe79a05?auto=format&fit=crop&w=1200&q=80` | 170 KB | 1200×800 in slot 491×305 | da verificare |
-| Chi siamo, fascia rete | Unsplash | `https://images.unsplash.com/photo-1748380868276-6faae7e27b94?auto=format&fit=crop&w=2400&q=80` | 812 KB | 2400×1600 in slot 1052×449 | da verificare |
+| File | Slot | Origine | Pixel | Peso |
+|---|---|---|---|---|
+| `miami-twilight.webp` | Home, ponte, cella Italia → USA (16:10) | Pexels 8574509 — Downtown Miami al crepuscolo dalla Biscayne Bay | 1400×875 | 115 KB |
+| `rome-rooftops.webp` | Home, ponte, cella USA → Italia; Chi siamo, missione (16:10) | Pexels 5035532 — tetti del centro di Roma al tramonto | 1400×875 | 114 KB |
+| `brickell-bay.webp` | Home, rete; Chi siamo, fascia (21:9) | Pexels 8611579 — skyline di Miami dalla Biscayne Bay, di giorno | 2100×900 | 226 KB |
 
-**Peso della home con i media di riferimento accesi:** ~211 KB di risorse proprie
-(HTML, CSS, JS, font self-hosted) + 241 KB di poster + ~983 KB di fotografie +
-**9,6 MB di video in streaming**. Il video è l'88% del peso totale. Non blocca il
-primo rendering — `preload="none"`, poster subito, riproduzione solo dopo il
-montaggio e mai con `prefers-reduced-motion` — ma è traffico reale a ogni visita.
+**Totale 455 KB**, contro ~983 KB che prima arrivavano da `images.unsplash.com`.
 
-Se il video resta nella direzione definitiva, va ricodificato: loop corto di 6–8
-secondi, 1280×720 (la risoluzione vera del file), target 2–3 MB. In alternativa
-basta il poster fermo, che è già più sobrio.
+**Ritocco su Pexels 8611579:** sul parapetto di un edificio era leggibile, a
+ingrandimento, l'insegna di una banca d'affari. In una foto che accompagna la
+sede di Miami poteva leggersi come un'associazione, e il brief
+esclude affiliazioni finanziarie dal sito legale. L'insegna è stata rimossa
+riempiendo il pannello col suo stesso colore. Per lo stesso motivo era stato
+scartato Pexels 4118101, che mostra un cartellone pubblicitario di un marchio di moda.
 
-**Nota di direzione artistica:** `photo-1748380868276` (usata due volte: rete in
-home e fascia di Chi siamo) ritrae una passeggiata turistica con persone al
-telefono. Legge come lifestyle da viaggio, non come il quartiere della sede di uno
-studio legale. Le altre due — skyline di Brickell al tramonto e Roma all'ora
-d'oro — reggono molto meglio.
+**Testi alternativi e didascalie scritti su quello che le foto mostrano davvero:**
+la cella Italia → USA dice "Downtown Miami", non "Brickell", perché è Downtown;
+e la foto sulla baia dice solo "Miami": Pexels la descrive come skyline di Miami
+sulla Biscayne Bay, e che sia proprio Brickell era una deduzione dagli edifici,
+non un fatto.
+
+Il prototipo Claude Design (`docs/prototype-artifact/photo/`) usa gli stessi
+file più due tagli suoi: `rome-rooftops-portrait.webp` (4:5, Chi siamo) e
+`brickell-bay-3x2.webp` (lo slot della rete lì è 951:665).
+
+**Scartate dalla direzione precedente:** le tre foto Unsplash (licenza mai
+verificata). `photo-1748380868276` in particolare ritraeva una passeggiata
+turistica con persone al telefono: leggeva come lifestyle da viaggio, non come il
+quartiere della sede di uno studio legale.
 
 ## Da produrre
 
@@ -41,8 +44,7 @@ d'oro — reggono molto meglio.
 |---|---|---|
 | Ritratto Lorenzo Silvestri | 4:5, bianco e nero, sfondo neutro | nessun volto generato; lo slot resta dichiarato finché non arriva la foto |
 | Ritratto Guillermina Rodríguez Carpin | 4:5, bianco e nero, sfondo neutro | idem |
-| Fotografia Brickell / Miami | 16:10 e 21:9, colore | serve licenza commerciale o scatto proprietario |
-| Fotografia Roma | 16:10, colore | idem |
+| Fotografie proprietarie | 16:10 e 21:9, colore | facoltative: le Pexels coprono già ogni slot; uno scatto degli uffici veri le batterebbe |
 | Logo vettoriale | SVG | oggi esiste solo il wordmark tipografico `SILVESTRI.`; non è un logo ufficiale recuperato |
 | Loghi partner | SVG | Coen Palandri Silvestri, FIDREV, IACC — serve autorizzazione all'uso del marchio |
 | Immagine OG/social | 1200×630 | assente di proposito: meglio nessuna `og:image` che una rotta |
@@ -72,5 +74,6 @@ parte di persone o marchi, redistribuire su altre piattaforme stock, usare come
 marchio. Nessuno di questi casi si applica: sono riprese aeree senza persone
 identificabili, tagliate e ricodificate, usate come sfondo.
 
-Per questo i filmati **non** dipendono più da `NEXT_PUBLIC_REFERENCE_MEDIA`, che
-resta per le sole fotografie Unsplash, ancora senza licenza verificata.
+La stessa licenza copre le fotografie. Il flag `NEXT_PUBLIC_REFERENCE_MEDIA`, che
+nascondeva i media senza licenza, è stato rimosso il 25 ottobre: non ha più nulla
+da nascondere.

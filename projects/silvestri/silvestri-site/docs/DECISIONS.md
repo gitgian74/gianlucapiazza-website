@@ -548,3 +548,140 @@ comunque `unpkg.com` (React, caricato dal runtime Claude Design) e
 sito Next.js non fa né l'una né l'altra cosa: React è nel bundle e i font sono
 self-hosted. È una ragione concreta, misurata, per cui il brief diceva di non
 portare quel runtime in produzione.
+
+## 24. Foto con licenza, pagine legali, un difetto del basePath e Modernist Blue (25 ottobre 2026)
+
+**Le fotografie.** Le tre Unsplash, mai licenziate, sono sostituite da tre
+Pexels scaricate, ritagliate per slot e servite dal sito (`public/photo/`,
+dettagli in `docs/ASSET-REGISTRY.md`). Con questo le origini terze al caricamento
+passano da una a **zero**, misurato. Il flag `NEXT_PUBLIC_REFERENCE_MEDIA` non ha
+più niente da nascondere ed è stato tolto da codice, script e `.env`.
+`MediaRef.referenceSrc` diventa `src`, con `width` e `height` veri per riservare
+lo spazio prima del caricamento; un `MediaRef` senza `src` resta lo slot
+dichiarato, ed è quello che fanno i ritratti.
+
+Due scelte di onestà sulle immagini: il testo alternativo della cella
+"Italia → USA" dice **Downtown Miami**, perché la foto mostra Downtown e non
+Brickell; la foto sulla baia dice solo **Miami**, perché Pexels la descrive così e
+"Brickell" era una mia deduzione dagli edifici; e da quella foto è stata
+**ritoccata via l'insegna di una banca d'affari**, leggibile a ingrandimento,
+perché accanto alla sede di Miami poteva leggersi come un'associazione
+finanziaria che il brief esclude.
+
+**Il difetto trovato per strada.** Sui tre siti pubblicati sotto un `basePath`
+(`/a`, `/b`, `/atto`) il video della hero non è **mai partito**: l'HTML chiedeva
+`/video/miami-day.mp4`, il file stava in `/a/video/miami-day.mp4`, e la radice
+rispondeva 404. Next antepone il `basePath` ai propri asset e ai `<Link>`, non a
+un `src` scritto a mano su `<video>`, `<source>` o `<img>`. Ora `asset()` in
+`lib/site.ts` lo antepone, e `next.config.ts` rispecchia `NEXT_BASE_PATH` in
+`NEXT_PUBLIC_BASE_PATH` perché il valore arrivi anche ai componenti client. Le
+foto nuove avrebbero avuto lo stesso difetto. **Effetto visibile:** su A, B e
+Atto ora la hero mostra il filmato, come il committente aveva chiesto per A il
+24 ottobre; prima mostrava solo il fondo.
+
+**Le pagine legali.** Privacy, cookie policy e note legali, in entrambe le
+lingue, una vista sola (`LegalView`) e tre chiavi nuove (`LEGAL_KEYS`) che
+allargano `PageKey`: così `PATHS`, metadata, hreflang, cambio lingua e sitemap
+le coprono senza codice dedicato, e il menu principale (che scorre `PAGE_KEYS`)
+non le mostra. Stanno nel footer, in una riga più piccola.
+
+Contengono **solo fatti misurati** — niente cookie, niente storage, niente
+modulo di contatto, niente terzi al caricamento, mappe su clic, scelta
+giorno/notte non memorizzata, log dell'host — e chiudono con un riquadro che
+elenca cosa deve fornire lo studio: titolare, DPO, basi giuridiche,
+conservazione, trasferimenti, Ordine e numero, partita IVA, polizza, conferma
+della Florida Bar. Non c'è una clausola inventata: in un sito di avvocati una
+clausola plausibile ma non approvata si legge come un impegno.
+
+L'audit precedente chiedeva un'informativa "al punto di raccolta" del modulo
+di contatto. **Il modulo non esiste**: il sito usa `mailto:` e `tel:`. L'audit è
+corretto.
+
+**Modernist Blue.** Richiesta del committente, letterale: "una seconda versione
+di questo con i bottoni arancioni, però con i bottoni blu, prendendo la tinta di
+blu dal sito che ti ho incollato". Nuovo tema `modernist-blue`, che cambia solo
+la famiglia dell'accento:
+
+| Token | Valore | Perché |
+|---|---|---|
+| `--color-accent-solid` | `#002949` | il navy di Brickell 21 Capital: pulsanti e fascia finale. Bianco sopra: 14,9:1 |
+| `--color-accent-600` | `#0b2a44` | il secondo navy della pagina di riferimento, per l'hover |
+| `--color-accent-200` | `#b7deff` | il celeste della pagina di riferimento |
+| `--color-accent-text` | `#0d4f7c` | testo piccolo e link: 7,7:1 sulla carta |
+| `--color-accent` | `#2a7cb5` | filetti e marcatori: deve stare a 3:1 sia sul binario chiaro sia sulla barra scura degli orari, cioè luminanza fra 0,140 e 0,235. `#002949` sta a 0,021 e non può farlo. `#2a7cb5` sta a 0,182: 3,67:1 da tutte e due le parti |
+
+**I tre disegni approvati sono congelati.** Il committente ha detto di tenere
+"assolutamente così" Modernist arancione, Capital A e Capital B. Le novità di
+questa voce che li toccano sono solo quelle chieste per tutti i siti: foto,
+pagine legali e la riga legale nel footer, più la correzione del video.
+
+**Un link solo, cinque siti.** `silvestri-capital` ora pubblica anche
+`/modernist` e `/modernist-blue`, oltre ad `/a`, `/b` e `/atto`, con una pagina di
+scelta riscritta: caratteri di sistema, nessuna chiamata a terzi nemmeno lì.
+
+**Nota operativa.** La build degli export cancella `.next`. Se nella stessa
+cartella gira un `pnpm dev` che qualcuno sta guardando, lo rompe. Gli export
+vanno costruiti in una copia della cartella.
+
+## 25. Revisione indipendente prima della pubblicazione (25 ottobre 2026)
+
+Il committente ha chiesto una revisione completa prima di finalizzare. Un
+revisore separato ha letto il diff senza conoscere le mie conclusioni: 5 punti
+critici, 8 avvisi, 6 suggerimenti. Esito:
+
+**Corretti.**
+
+- `RootHtml` non aveva i caratteri per `modernist-blue`: ogni build falliva.
+  L'avevo trovato anch'io in build mentre la revisione girava.
+- Le pagine legali contenevano **posizioni giuridiche mie**: quando nasce il
+  rapporto professionale ("per iscritto, dopo la verifica dei conflitti") e che
+  i documenti mandati prima dell'incarico "non sono protetti". Il revisore nota
+  che la seconda può essere sbagliata, sia per il segreto professionale
+  italiano sia per la regola della Florida sui potenziali clienti. Non spetta a
+  me stabilirlo: le frasi sono diventate un consiglio pratico ("non allegate
+  materiale riservato a un primo messaggio") e le due questioni sono passate
+  nell'elenco di ciò che deve scrivere lo studio.
+- "Nessun terzo conosce il vostro IP" era falso: l'host lo riceve. Ora dice
+  "a parte l'host che serve il sito".
+- "L'host registra ogni richiesta" è diventato "può registrare": cosa tenga
+  davvero, e per quanto, lo deve dire lo studio col fornitore.
+- "L'infrastruttura di posta è negli Stati Uniti" non era documentato: il
+  fornitore di posta non è nominato da nessuna parte. Resta solo l'host, che è
+  una società statunitense.
+- "Testi e codice appartengono allo studio" non era documentato: tolto.
+- L'obbligo di assicurazione era attribuito al codice deontologico: la fonte è
+  l'art. 12 della legge 247/2012. Da confermare dallo studio.
+- La cookie policy diceva "misurato sul sito pubblicato" prima che lo fosse.
+  Ora la misura si fa sui siti pubblicati, anche sulle intestazioni `Set-Cookie`
+  del server, che `document.cookie` non vede.
+- Gli `id` dei titoli di sezione contenevano spazi: `aria-labelledby` non
+  puntava a niente. Le sezioni ora non sono landmark (bastano i titoli), il
+  riquadro finale è una `section` etichettata con un id valido.
+- In Modernist Blue i link social del footer, nel colore del testo d'accento,
+  stavano a 1,9:1 sul fondo scuro e sparivano all'hover. Ora usano il celeste.
+- L'italiano delle pagine legali dava del "Lei" mentre tutto il sito dà del
+  "voi", e aveva qualche calco ("Tutto è servito da qui"). Riscritto.
+- La cookie policy italiana ora cita anche l'art. 122 del Codice privacy, che
+  recepisce l'art. 5(3) ePrivacy.
+- Lo script di build ora si rifiuta di partire se un `next dev` gira nella
+  stessa cartella.
+- Documenti, commenti e numeri sbagliati o vecchi.
+
+**Non applicati, col motivo.**
+
+- *Nascondere i riquadri "cosa deve fornire lo studio" nelle build
+  indicizzabili.* Nasconderli renderebbe pubblicabile una pagina incompleta
+  senza che nessuno se ne accorga. Restano visibili, e `docs/PRECHECK.md` dice
+  che finché ci sono la release non è pronta.
+- *La qualifica di Foreign Legal Consultant scritta come fatto, mentre la
+  formula è "da confermare".* La conferma richiesta alla Florida Bar riguarda le
+  parole, non la qualifica, che è nel brief e in ogni pagina del sito. Stessa
+  formula del footer.
+- *`MediaRef` come unione discriminata, così che `src` richieda `width` e
+  `height`.* Ragionevole, ma oggi tutte e tre le foto hanno le dimensioni:
+  codice in più per un caso che non esiste.
+
+**Da decidere dal committente.** I link social nel footer scuro hanno lo stesso
+problema di contrasto anche nei temi approvati e congelati: sono nel colore del
+testo d'accento, pensato per la carta chiara. Correggerlo cambia un disegno
+approvato, quindi non l'ho fatto senza chiedere.

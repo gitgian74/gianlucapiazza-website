@@ -15,6 +15,9 @@ const it: Dict = {
       about: "Chi siamo",
       professionals: "Professionisti",
       contact: "Contatti",
+      privacy: "Privacy",
+      cookies: "Cookie policy",
+      legal: "Note legali",
     },
     cta: { label: "Parla con noi", page: "contact" },
     contactCta: "Scrivi allo studio",
@@ -61,6 +64,27 @@ const it: Dict = {
         "Contatta Silvestri International: Miami (1200 Brickell Ave, Suite 310) +1 786 502 3615, Roma (Piazza della Libertà 20) +39 06 3218783, Montevideo (Víctor Soliño 349) +598 94 733 513. Italiano, inglese, spagnolo e francese, scritti e parlati.",
       ogTitle: "Contatti | Silvestri International",
       ogDescription: "Tre sedi, un solo team: Miami, Roma, Montevideo.",
+    },
+    privacy: {
+      title: "Informativa privacy | Silvestri International",
+      description:
+        "Cosa fa questo sito con i dati personali: nessun modulo di contatto, nessun tracciamento, nessun analytics. Log del server e mappe caricate su clic sono dichiarati, e ciò che lo studio deve ancora fornire resta in evidenza.",
+      ogTitle: "Informativa privacy | Silvestri International",
+      ogDescription: "Nessun modulo, nessun tracciamento. Il resto è dichiarato.",
+    },
+    cookies: {
+      title: "Cookie policy | Silvestri International",
+      description:
+        "Questo sito non imposta cookie e non usa analytics: misurato sul sito pubblicato, con i controlli elencati. Le mappe degli uffici si caricano solo se il visitatore preme il pulsante.",
+      ogTitle: "Cookie policy | Silvestri International",
+      ogDescription: "Nessun cookie, e le misure che lo dimostrano.",
+    },
+    legal: {
+      title: "Note legali | Silvestri International",
+      description:
+        "Niente in questo sito è consulenza legale e leggerlo non instaura un rapporto professionale. Lorenzo Silvestri è avvocato italiano e Foreign Legal Consultant certificato dalla Florida Bar, non abilitato all'esercizio della professione forense in Florida.",
+      ogTitle: "Note legali | Silvestri International",
+      ogDescription: "I limiti di cosa è questo sito.",
     },
   },
 
@@ -110,11 +134,12 @@ const it: Dict = {
           text:
             "Vi serve una società americana che funzioni dal primo giorno, non un certificato in un cassetto. Registriamo la società, teniamo i libri sociali, firmiamo come officer o manager locale se vi serve qualcuno sul posto, apriamo il conto bancario secondo le vostre istruzioni scritte e manteniamo ogni passaggio conforme anche sul lato italiano.",
           media: {
-            subject: "Brickell, Miami — il distretto finanziario dove ha sede l'ufficio dello studio",
-            spec: "16:10 · colore · fotografia con licenza da acquisire",
-            referenceSrc:
-              "https://images.unsplash.com/photo-1566805068958-92c5648061e6?auto=format&fit=crop&w=1400&q=80",
-            alt: "Veduta aerea di Brickell, il distretto finanziario di Miami, al tramonto",
+            subject: "Miami al crepuscolo — il lato statunitense di ogni pratica",
+            spec: "16:10 · colore",
+            src: "/photo/miami-twilight.webp",
+            width: 1400,
+            height: 875,
+            alt: "Downtown Miami al crepuscolo, vista dalla Biscayne Bay",
           },
         },
         {
@@ -124,10 +149,11 @@ const it: Dict = {
             "Un appartamento ereditato a Roma, un'azienda di famiglia, una controversia con un fornitore, un marchio, un avviso dell'Agenzia delle Entrate. Il nostro ufficio di Roma segue questioni italiane di diritto commerciale, societario, civile, di famiglia, successorio e di proprietà intellettuale — e vi risponde in inglese, nel vostro fuso orario, senza che dobbiate prendere un aereo.",
           media: {
             subject: "Roma — il centro storico vicino all'ufficio di Piazza della Libertà",
-            spec: "16:10 · colore · fotografia con licenza da acquisire",
-            referenceSrc:
-              "https://images.unsplash.com/photo-1752886355870-17e8ebe79a05?auto=format&fit=crop&w=1400&q=80",
-            alt: "Roma all'ora d'oro — cupole e campanili del centro storico",
+            spec: "16:10 · colore",
+            src: "/photo/rome-rooftops.webp",
+            width: 1400,
+            height: 875,
+            alt: "Tetti del centro di Roma al tramonto, con la cupola di una chiesa sullo sfondo",
           },
         },
       ],
@@ -251,10 +277,12 @@ const it: Dict = {
       text:
         "Avete a che fare con un solo team. Dietro: Coen Palandri Silvestri a Roma per l'intera pratica italiana, FIDREV per servizi fiduciari, trust e società italiane, studi affiliati della Florida per contenzioso e immigrazione, e CPA, developer e broker selezionati sul posto. L'ufficio di Miami si trova nel Brickell 21 Financial Centre, nel cuore del distretto finanziario della città.",
       media: {
-        subject: "Lungomare di Brickell Key, Miami — il quartiere della sede principale",
-        spec: "21:9 · colore · fotografia con licenza da acquisire",
-        referenceSrc: "https://images.unsplash.com/photo-1748380868276-6faae7e27b94?auto=format&fit=crop&w=1600&q=80",
-        alt: "Il lungomare di Brickell Key al crepuscolo, Miami — le torri del distretto finanziario sulla Biscayne Bay",
+        subject: "Miami dalla Biscayne Bay — la città da cui lavora la sede",
+        spec: "21:9 · colore",
+        src: "/photo/brickell-bay.webp",
+        width: 2100,
+        height: 900,
+        alt: "I grattacieli di Miami visti dalla Biscayne Bay in una giornata limpida",
       },
     },
     faq: {
@@ -452,9 +480,11 @@ const it: Dict = {
       ],
       media: {
         subject: "Roma — il lato italiano di ogni pratica",
-        spec: "16:10 · colore · fotografia con licenza da acquisire",
-        referenceSrc: "https://images.unsplash.com/photo-1752886355870-17e8ebe79a05?auto=format&fit=crop&w=1200&q=80",
-        alt: "Roma all'ora d'oro — cupole e tetti della città visti dall'alto",
+        spec: "16:10 · colore",
+        src: "/photo/rome-rooftops.webp",
+        width: 1400,
+        height: 875,
+        alt: "Tetti del centro di Roma al tramonto, con la cupola di una chiesa sullo sfondo",
       },
     },
     timeline: {
@@ -505,10 +535,12 @@ const it: Dict = {
         },
       ],
       media: {
-        subject: "Distretto finanziario di Brickell, Miami — fascia full-bleed",
-        spec: "21:9 · colore · fotografia con licenza da acquisire",
-        referenceSrc: "https://images.unsplash.com/photo-1748380868276-6faae7e27b94?auto=format&fit=crop&w=2400&q=80",
-        alt: "Il distretto finanziario di Brickell, a Miami, al crepuscolo visto dalla Biscayne Bay",
+        subject: "Miami dalla Biscayne Bay",
+        spec: "21:9 · colore",
+        src: "/photo/brickell-bay.webp",
+        width: 2100,
+        height: 900,
+        alt: "I grattacieli di Miami visti dalla Biscayne Bay in una giornata limpida",
       },
     },
     cta: {
@@ -644,7 +676,171 @@ const it: Dict = {
     copyright: "© 2026 Silvestri International Corp.",
     disclaimer:
       "Lorenzo Silvestri è avvocato italiano, iscritto all'Ordine degli Avvocati di Roma, ed è certificato dal Florida Bar come Foreign Legal Consultant in diritto italiano. Non è abilitato all'esercizio della professione forense in Florida. Le questioni di diritto della Florida sono seguite da avvocati affiliati abilitati in Florida. I contenuti di questo sito non costituiscono consulenza legale e il semplice contatto con lo studio non instaura un rapporto professionale tra avvocato e cliente.",
+    legalNav: "Informazioni legali",
     phoneLabels: { office: "Ufficio", direct: "Diretto", main: "Tel", fax: "Fax" },
+  },
+
+  legal: {
+    cookies: {
+      kicker: "Cookie policy",
+      title: "Questo sito non usa cookie.",
+      lead: "Non un insieme ridotto, non “solo quelli tecnici”. Nessuno. È anche il motivo per cui non vi è stato chiesto di accettare niente.",
+      sections: [
+        {
+          heading: "Cosa è stato misurato",
+          body: [
+            "Non sono intenzioni. Sono misure fatte il 25 ottobre 2026 sul sito pubblicato, a pagina caricata, sia nel browser sia nelle risposte del server. Potete ripeterle con gli strumenti di sviluppo del vostro browser.",
+          ],
+          checks: [
+            { label: "Cookie impostati", value: "Nessuno" },
+            { label: "localStorage", value: "Vuoto" },
+            { label: "sessionStorage", value: "Vuoto" },
+            { label: "Analytics o tag manager", value: "Assenti" },
+            { label: "Pixel pubblicitari o social", value: "Assenti" },
+            { label: "Richieste a terzi al caricamento", value: "Nessuna" },
+          ],
+        },
+        {
+          heading: "Perché non c'è il banner",
+          body: [
+            "L'articolo 5(3) della direttiva ePrivacy, recepito in Italia dall'articolo 122 del Codice in materia di protezione dei dati personali (d.lgs. 196/2003), si applica quando si memorizzano informazioni sul dispositivo di chi visita o si accede a informazioni già memorizzate. Qui non succede né l'una né l'altra cosa, quindi non c'è un consenso da raccogliere.",
+            "Un banner vi chiederebbe di accettare qualcosa che non avviene. Preferiamo dire come stanno le cose e lasciarvi il modo di verificarlo.",
+          ],
+        },
+        {
+          heading: "Tutto è ospitato da questo sito",
+          body: [
+            "Caratteri, fotografie e il filmato della home sono ospitati da questo sito. Niente arriva da Google Fonts, da archivi di immagini o dalla rete di distribuzione di qualcun altro: a parte l'host che serve il sito, nessuno riceve il vostro indirizzo IP solo perché avete aperto una pagina.",
+          ],
+        },
+        {
+          heading: "L'unica eccezione, e la decidete voi",
+          body: [
+            "Le mappe degli uffici, nella pagina dei contatti, non si caricano da sole: ognuna è un riquadro fermo con un pulsante. Se lo premete, la mappa viene richiesta a Google, che in quel momento riceve il vostro indirizzo IP e può impostare cookie propri, secondo le sue regole.",
+            "Niente, in questo sito, fa quella richiesta al posto vostro.",
+          ],
+        },
+        {
+          heading: "Il selettore giorno e notte",
+          body: [
+            "Nella home potete scegliere fra la vista di giorno e quella di notte dietro al titolo. La scelta non finisce in un cookie né nella memoria del browser e non viene inviata da nessuna parte: se ricaricate la pagina, si riparte dal filmato di giorno.",
+          ],
+        },
+        {
+          heading: "Hosting",
+          body: [
+            "Come ogni server web, l'host può registrare le richieste che serve. Quei registri non dipendono da questa pagina: ne parla l'informativa privacy.",
+          ],
+        },
+      ],
+      pending: {
+        heading: "La condizione da cui dipende questa pagina",
+        text: "Perché resti esatta, una cosa deve restare vera.",
+        items: [
+          "Se in futuro si aggiungono analytics, una chat, un modulo incorporato, uno strumento di prenotazione o un pixel pubblicitario, questa pagina non è più corretta e serve un meccanismo di consenso. È una condizione, non una formalità.",
+        ],
+      },
+    },
+
+    privacy: {
+      kicker: "Privacy",
+      title: "Cosa fa questo sito con i vostri dati — e cosa non può ancora dirvi.",
+      lead: "Due parti. La prima è ciò che è stato misurato e si può dire senza giri di parole. La seconda spetta solo allo studio, ed è lasciata in evidenza invece che riempita: una clausola inventata si legge come un impegno.",
+      sections: [
+        {
+          heading: "Il sito, da solo, non raccoglie niente",
+          body: [
+            "In questo sito non c'è un modulo di contatto. Nessun campo vi chiede nome, indirizzo email o dettagli della vostra pratica. Il contatto passa dagli indirizzi e dai numeri pubblicati nella pagina dei contatti: cosa scrivete, e cosa tenete per voi, resta una vostra decisione.",
+            "Non c'è tracciamento, né profilazione, né identificativi pubblicitari, né analytics. La cookie policy spiega come è stato misurato.",
+          ],
+        },
+        {
+          heading: "Cosa lascia comunque una traccia",
+          body: ["Due cose avvengono, e vale la pena dirle."],
+          checks: [
+            { label: "Log del server", value: "L'host può registrare ogni richiesta: indirizzo IP, ora, pagina richiesta, browser" },
+            { label: "Mappe degli uffici", value: "Caricate solo se premete il pulsante; a quel punto Google riceve il vostro IP" },
+          ],
+        },
+        {
+          heading: "Se ci scrivete",
+          body: [
+            "L'email arriva alla casella dello studio ed è trattata come corrispondenza professionale. Vi chiediamo di non inviare documenti riservati o i dettagli di una controversia in un primo messaggio.",
+          ],
+        },
+        {
+          heading: "I vostri diritti secondo il GDPR",
+          body: [
+            "Dove si applica il Regolamento generale sulla protezione dei dati (Regolamento (UE) 2016/679), potete chiedere al titolare l'accesso ai vostri dati personali, la rettifica o la cancellazione; potete chiedere la limitazione del trattamento, opporvi, e ricevere i dati in un formato portabile. Se il trattamento si basa sul consenso, potete revocarlo in qualsiasi momento, senza effetti su quanto fatto legittimamente prima.",
+            "Potete anche proporre reclamo a un'autorità di controllo. A chi rivolgere queste richieste è tra le cose che lo studio deve ancora indicare qui sotto.",
+          ],
+        },
+      ],
+      pending: {
+        heading: "Cosa deve fornire lo studio",
+        text: "Gli articoli 13 e 14 del GDPR richiedono ognuno di questi punti, e nessuno si può ricavare dall'esterno.",
+        items: [
+          "Identità e dati di contatto del titolare del trattamento, e dell'eventuale rappresentante nell'Unione europea.",
+          "Se è stato designato un responsabile della protezione dei dati, e come contattarlo.",
+          "Finalità e base giuridica di ogni trattamento, compresi i log del server tenuti dall'host.",
+          "I destinatari: fornitore di hosting, fornitore di posta e ogni altro responsabile del trattamento, e in base a quale accordo.",
+          "I trasferimenti fuori dall'Unione europea e la garanzia su cui si basa ciascuno: l'host del sito è una società statunitense, il fornitore di posta va indicato.",
+          "Per quanto tempo si conserva ciascuna categoria di dati, e con quale criterio.",
+          "L'autorità di controllo a cui rivolgere un reclamo.",
+          "Come sono trattate le informazioni ricevute prima del conferimento dell'incarico, e quale riservatezza le copre.",
+        ],
+      },
+    },
+
+    legal: {
+      kicker: "Note legali",
+      title: "Cos'è questo sito, e cosa non è.",
+      lead: "Un sito non è un avvocato. Questa pagina fissa i limiti di quello che state leggendo.",
+      sections: [
+        {
+          heading: "Niente qui è consulenza legale",
+          body: [
+            "Queste pagine descrivono cosa fa lo studio e come lavora. Non sono un parere sulla vostra situazione, non tengono conto dei vostri fatti e non vanno seguite come se lo fossero. Le norme cambiano, e una pagina può non essere aggiornata nel momento in cui la leggete.",
+            "Leggere questo sito, o scrivere a un indirizzo pubblicato qui, non crea di per sé un rapporto professionale.",
+          ],
+        },
+        {
+          heading: "Chi è abilitato, e dove",
+          body: [
+            "Lorenzo Silvestri è avvocato italiano, iscritto all'Ordine di Roma, e certificato dalla Florida Bar come Foreign Legal Consultant in diritto italiano. Non è abilitato all'esercizio della professione forense in Florida.",
+            "Le questioni di diritto della Florida sono trattate da legali abilitati in Florida, affiliati allo studio. Dove una pagina descrive attività di diritto statunitense, va letta come attività coordinata dallo studio e svolta da professionisti abilitati sul posto.",
+          ],
+        },
+        {
+          heading: "Nessun risultato è promesso",
+          body: [
+            "Niente in questo sito promette un esito, e nessun numero va letto come tale. Dove si accenna a pratiche passate, l'accenno non dice nulla su come andrà la vostra.",
+          ],
+        },
+        {
+          heading: "Prima di inviare documenti",
+          body: ["Vi chiediamo di non allegare materiale riservato a un primo messaggio."],
+        },
+        {
+          heading: "Immagini",
+          body: [
+            "Le fotografie e il filmato sono immagini con licenza Pexels. Servono a illustrare e non ritraggono né gli uffici dello studio né i suoi clienti. I ritratti restano segnaposto dichiarati finché non arrivano fotografie vere: nessun volto in questo sito è generato.",
+          ],
+        },
+      ],
+      pending: {
+        heading: "Cosa deve fornire lo studio",
+        text: "Le regole professionali italiane e quelle della Florida Bar sulla pubblicità chiedono entrambe dati identificativi che non sono pubblici.",
+        items: [
+          "Iscrizione all'albo: l'Ordine, il numero e la data di iscrizione.",
+          "Partita IVA, iscrizione al registro delle imprese e sede legale di ogni entità giuridica dello studio.",
+          "Assicurazione per la responsabilità professionale: compagnia e numero di polizza. L'obbligo di copertura è nell'articolo 12 della legge 247/2012.",
+          "Conferma della Florida Bar che la formula usata qui per il Foreign Legal Consultant sia quella ammessa.",
+          "Se la struttura di Miami e quella di Roma sono entità distinte, e con quale delle due il cliente firma l'incarico.",
+          "Come e quando nasce il rapporto professionale: lettera d'incarico, verifica dei conflitti, cosa si impegna a fare lo studio prima di allora.",
+        ],
+      },
+    },
   },
 
   notFound: {
@@ -657,7 +853,7 @@ const it: Dict = {
     label: "Anteprima interna",
     items: [
       "noindex · non pubblicabile",
-      "Fotografie e ritratti sono segnaposto dichiarati — nessun media licenziato",
+      "Fotografie e video hanno licenza e sono ospitati dal sito; i ritratti restano segnaposto dichiarati",
       "Testi legali e disclaimer in attesa di revisione professionale",
     ],
   },

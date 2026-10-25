@@ -26,7 +26,7 @@ Niente di tutto questo è stato inventato o dato per buono.
 | 12 | Sostituzione del sito attuale | nessuna azione | definire se è un rifacimento del dominio esistente, con inventario URL e redirect |
 | 13 | Form di contatto | assente, solo `mailto:`/`tel:` | se serve, indicare casella di destinazione, titolare del trattamento e antispam |
 | 14 | Analytics | assente | decidere se, quale, e con quale base giuridica |
-| 15 | Privacy policy e cookie policy | **pagine non previste dal prototipo e non create** | se il sito raccoglierà dati, servono testi legali e una pagina dedicata |
+| 15 | Privacy, cookie policy, note legali | **create il 25-10-2026** in EN e IT, con i fatti misurati; ogni pagina elenca in un riquadro cosa manca | lo studio fornisce titolare, DPO, basi giuridiche, conservazione, trasferimenti, Ordine e numero, partita IVA, polizza, conferma Florida Bar, regole dell'incarico |
 | 16 | Immagine social `og:image` | assente | fornire un'immagine 1200×630 approvata |
 | 17 | Riferimento visivo Brickell 21 Capital | non disponibile | fornire link/export/screenshot approvato — vedi `BRICKELL21-ALIGNMENT.md` |
 | 18 | Hosting e dominio | nessun deploy, nessun progetto Vercel, nessun DNS toccato | autorizzazione separata |

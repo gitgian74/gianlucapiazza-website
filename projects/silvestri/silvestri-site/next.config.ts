@@ -13,6 +13,8 @@ const config: NextConfig = {
   trailingSlash: true,
   poweredByHeader: false,
   images: { formats: ["image/avif", "image/webp"], unoptimized: staticExport },
+  /** Mirrored so client components can prefix public/ files themselves — see lib/site.ts asset(). */
+  env: { NEXT_PUBLIC_BASE_PATH: basePath },
   ...(staticExport ? { output: "export" as const } : {}),
   ...(basePath ? { basePath, assetPrefix: basePath } : {}),
 };

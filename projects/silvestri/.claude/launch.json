@@ -4,13 +4,13 @@
     {
       "name": "silvestri-prod",
       "runtimeExecutable": "pnpm",
-      "runtimeArgs": ["-C", "silvestri-site", "start", "--port", "3210"],
+      "runtimeArgs": ["-C", "/Users/gianlucapiazza/Projects/gianlucapiazza-website/projects/silvestri/silvestri-site", "start", "--port", "3210"],
       "port": 3210
     },
     {
       "name": "silvestri-dev",
       "runtimeExecutable": "pnpm",
-      "runtimeArgs": ["-C", "silvestri-site", "dev", "--port", "3211"],
+      "runtimeArgs": ["-C", "/Users/gianlucapiazza/Projects/gianlucapiazza-website/projects/silvestri/silvestri-site", "dev", "--port", "3211"],
       "port": 3211
     }
   ]

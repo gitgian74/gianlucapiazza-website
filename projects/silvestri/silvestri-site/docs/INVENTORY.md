@@ -58,10 +58,8 @@ Sezioni valutate e modificate rispetto al prototipo:
 
 | Asset | Stato | Nota |
 |---|---|---|
-| Video hero Pexels 19109601 + poster | P / licenza non verificata | non caricato per default; dietro `NEXT_PUBLIC_REFERENCE_MEDIA` |
-| Unsplash Brickell tramonto `photo-1566805068958-92c5648061e6` | P / licenza non verificata | idem |
-| Unsplash Roma `photo-1752886355870-17e8ebe79a05` | P / licenza non verificata | idem |
-| Unsplash Brickell Key `photo-1748380868276-6faae7e27b94` | P / licenza non verificata | idem |
+| Video hero giorno e notte (Pexels 6345015, 19109601) | V | licenza verificata, `public/video/` |
+| Foto Miami, Roma, Brickell (Pexels 8574509, 5035532, 8611579) | V | licenza verificata, `public/photo/`; sostituiscono le tre Unsplash mai licenziate |
 | Ritratto Lorenzo Silvestri (4:5, B/N) | M | segnaposto dichiarato, nessun volto generato |
 | Ritratto Guillermina Rodríguez Carpin (4:5, B/N) | M | idem |
 | Logo vettoriale ufficiale | M | il wordmark testuale `SILVESTRI.` resta progettuale |

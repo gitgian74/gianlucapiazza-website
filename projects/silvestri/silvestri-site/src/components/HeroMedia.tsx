@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { asset } from "@/lib/site";
 
 type View = "day" | "night";
 
@@ -11,8 +12,8 @@ type View = "day" | "night";
  * libero, attribuzione non richiesta.
  */
 const CLIPS: Record<View, { src: string; poster: string }> = {
-  day: { src: "/video/miami-day.mp4", poster: "/video/miami-day.jpg" },
-  night: { src: "/video/miami-night.mp4", poster: "/video/miami-night.jpg" },
+  day: { src: asset("/video/miami-day.mp4"), poster: asset("/video/miami-day.jpg") },
+  night: { src: asset("/video/miami-night.mp4"), poster: asset("/video/miami-night.jpg") },
 };
 
 /** La scelta non viene memorizzata: nessun cookie, nessuno storage. */

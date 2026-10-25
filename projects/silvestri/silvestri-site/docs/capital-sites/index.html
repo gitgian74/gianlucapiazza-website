@@ -4,69 +4,98 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<title>Silvestri International — due direzioni</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Raleway:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<title>Silvestri International — direzioni a confronto</title>
 <style>
+  /* Caratteri di sistema di proposito: questa pagina non deve chiamare nessun
+     terzo, come i cinque siti che elenca, e non deve favorire una direzione. */
   :root{
-    --navy:#002949; --navy-b:#0b2a44; --ink:#141b21; --grey:#5a6670;
-    --line:#ccd2d8; --paper:#f5f6f7; --blue:#B7DEFF; --atto:#8a2216;
-    --serif:"Playfair Display",Georgia,serif; --sans:"Raleway",system-ui,sans-serif;
+    --ink:#1a1d21; --grey:#5a6670; --line:#d4d8dc; --paper:#f4f5f6;
+    --navy:#002949; --red:#ec3013; --sans:system-ui,-apple-system,"Segoe UI",sans-serif;
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.7;
-       display:flex;flex-direction:column;min-height:100vh}
-  .bar{background:#2b2b2b;color:#fff;font-size:12px;letter-spacing:.05em;padding:9px 20px;text-align:center}
+  body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.65;
+       display:flex;flex-direction:column;min-height:100vh;-webkit-font-smoothing:antialiased}
+  .bar{background:#201e1d;color:#fff;font-size:12px;letter-spacing:.04em;padding:10px 20px;text-align:center}
   .bar b{font-weight:700}
-  main{flex:1;max-width:1000px;margin:0 auto;padding:clamp(40px,7vw,80px) clamp(20px,5vw,40px)}
-  .eyebrow{font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--navy);font-weight:700}
-  h1{font-family:var(--serif);font-weight:400;font-size:clamp(30px,5vw,50px);line-height:1.15;margin-top:16px;color:var(--navy)}
-  .sub{margin-top:18px;max-width:60ch;color:var(--grey);font-weight:400}
-  .sub .it{display:block}
-  .sub .en{display:block;margin-top:10px;font-style:italic;color:#73808a}
-  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:24px;margin-top:clamp(32px,5vw,52px)}
-  .card{background:#fff;border:2px solid var(--navy);display:flex;flex-direction:column}
-  .card--b{border-color:var(--navy-b)}
-  .card--c{border-color:var(--atto)}
-  .card--c .card__tag,.card--c h2{color:var(--atto)}
-  .card--c .card__links a{color:var(--atto)}
-  .card--c .card__links a:hover{background:var(--atto);color:#fff}
-  .card__top{padding:26px 26px 20px}
-  .card__tag{font-size:10.5px;letter-spacing:.26em;text-transform:uppercase;font-weight:800;color:var(--navy)}
-  .card h2{font-family:var(--serif);font-weight:400;font-size:26px;margin-top:10px;color:var(--navy);line-height:1.2}
-  .card p{font-size:14.5px;line-height:1.7;color:var(--grey);margin-top:12px}
-  .card__links{margin-top:auto;border-top:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr}
-  .card__links a{display:block;text-align:center;padding:16px 10px;text-decoration:none;
-    font-size:11.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--navy)}
+  main{flex:1;width:100%;max-width:1120px;margin:0 auto;padding:clamp(36px,6vw,72px) clamp(20px,5vw,40px)}
+  .eyebrow{font-size:11px;letter-spacing:.26em;text-transform:uppercase;font-weight:700;color:var(--grey)}
+  h1{font-size:clamp(28px,4.4vw,44px);line-height:1.12;margin-top:14px;max-width:18ch;letter-spacing:-.015em}
+  .sub{margin-top:16px;max-width:66ch;color:var(--grey);font-size:15.5px}
+  .sub .en{display:block;margin-top:8px;font-style:italic;color:#78848d}
+
+  h2.group{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--grey);
+    margin:clamp(32px,4vw,48px) 0 14px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:18px}
+  .card{background:#fff;border:1px solid var(--line);display:flex;flex-direction:column}
+  .card__swatch{height:5px}
+  .card__top{padding:22px 22px 18px;flex:1}
+  .card__tag{font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:var(--grey)}
+  .card h3{font-size:21px;margin-top:8px;line-height:1.2;letter-spacing:-.01em}
+  .card p{font-size:14px;line-height:1.65;color:var(--grey);margin-top:10px}
+  .card__links{border-top:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr}
+  .card__links a{display:block;text-align:center;padding:14px 10px;text-decoration:none;
+    font-size:11.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink)}
   .card__links a+a{border-left:1px solid var(--line)}
-  .card__links a:hover{background:var(--navy);color:#fff}
-  .card--b .card__links a{color:var(--navy-b)}
-  .card--b .card__links a:hover{background:var(--navy-b);color:#fff}
-  .note{margin-top:clamp(32px,5vw,48px);padding-top:22px;border-top:1px solid var(--line);
-    font-size:13px;line-height:1.75;color:var(--grey);max-width:76ch}
+  .card__links a:hover{background:var(--ink);color:#fff}
+
+  .note{margin-top:clamp(32px,5vw,48px);padding-top:20px;border-top:1px solid var(--line);
+    font-size:13px;line-height:1.75;color:var(--grey);max-width:80ch}
   .note b{color:var(--ink)}
-  footer{background:var(--navy);color:rgba(255,255,255,.8);font-size:12.5px;padding:20px;text-align:center}
-  @media(max-width:820px){.cards{grid-template-columns:1fr}}
+  .note ul{margin:10px 0 0;padding-left:1.1em}
+  .note li{margin-bottom:4px}
+  footer{background:#201e1d;color:rgba(255,255,255,.75);font-size:12.5px;padding:18px;text-align:center}
 </style>
 </head>
 <body>
-<div class="bar"><b>Anteprima interna · noindex · non per la pubblicazione.</b> Internal preview, not for publication.</div>
+<div class="bar"><b>Anteprima interna · noindex · non per la pubblicazione.</b> &nbsp;Internal preview, not for publication.</div>
 
 <main>
   <div class="eyebrow">Silvestri International</div>
-  <h1>Tre direzioni, tre siti completi.</h1>
+  <h1>Cinque direzioni, cinque siti completi.</h1>
   <p class="sub">
-    <span class="it">Stessi contenuti, stessa architettura, stesse cinque pagine per lingua. Cambia solo il disegno. Scegli una direzione e il sito si chiude su quella.</span>
-    <span class="en">Same content, same architecture, same five pages per language. The design is what differs. Pick a direction and the site settles on it.</span>
+    Stessi contenuti, stessa architettura, stesse otto pagine per lingua, stesso video della hero con il
+    selettore giorno e notte. Cambia il disegno. Ogni direzione è completa in italiano e in inglese.
+    <span class="en">Same content, same architecture, same eight pages per language, same hero video with its
+    day and night switch. The design is what differs. Each direction is complete in Italian and in English.</span>
   </p>
 
+  <h2 class="group">Famiglia Modernist — il sistema verificato dello studio</h2>
   <div class="cards">
     <div class="card">
+      <div class="card__swatch" style="background:#ec3013"></div>
+      <div class="card__top">
+        <div class="card__tag">Modernist · accento rosso</div>
+        <h3>Modernist</h3>
+        <p>Il sistema di partenza: Archivo, filetti netti, numeri grandi, rosso #ec3013 su carta calda. Il più diretto dei cinque.</p>
+      </div>
+      <div class="card__links">
+        <a href="./modernist/it/">Italiano&nbsp;→</a>
+        <a href="./modernist/">English&nbsp;→</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card__swatch" style="background:#002949"></div>
+      <div class="card__top">
+        <div class="card__tag">Modernist · accento navy</div>
+        <h3>Modernist Blue</h3>
+        <p>Lo stesso sito, con l'accento blu al posto del rosso: pulsanti e fascia finale nel navy #002949 di Brickell 21 Capital, filetti e marcatori in un blu più chiaro, #2a7cb5, per restare leggibili.</p>
+      </div>
+      <div class="card__links">
+        <a href="./modernist-blue/it/">Italiano&nbsp;→</a>
+        <a href="./modernist-blue/">English&nbsp;→</a>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="group">Famiglia Capital — la lettura vicina alla pagina di riferimento</h2>
+  <div class="cards">
+    <div class="card">
+      <div class="card__swatch" style="background:#4a85b8"></div>
       <div class="card__top">
         <div class="card__tag">Direzione A</div>
-        <h2>Capital Close</h2>
-        <p>Composizione centrata e simmetrica, testata navy con il nome al centro, navigazione serif, hero a pieno campo con il titolo a due voci. La lettura più vicina alla pagina di riferimento.</p>
+        <h3>Capital Close</h3>
+        <p>Composizione centrata e simmetrica, testata navy col nome al centro, navigazione serif, hero a pieno campo con il titolo a due voci.</p>
       </div>
       <div class="card__links">
         <a href="./a/it/">Italiano&nbsp;→</a>
@@ -74,23 +103,28 @@
       </div>
     </div>
 
-    <div class="card card--b">
+    <div class="card">
+      <div class="card__swatch" style="background:#2f77a8"></div>
       <div class="card__top">
         <div class="card__tag">Direzione B</div>
-        <h2>Capital Measured</h2>
-        <p>Stessa parentela — navy, voce serif — ma struttura editoriale: allineata a sinistra, rigata, carta bianca, display più grande, etichette in maiuscoletto. L'altra risposta alla stessa domanda.</p>
+        <h3>Capital Measured</h3>
+        <p>Stessa parentela — navy, voce serif — ma struttura editoriale: allineata a sinistra, rigata, carta bianca, display più grande.</p>
       </div>
       <div class="card__links">
         <a href="./b/it/">Italiano&nbsp;→</a>
         <a href="./b/">English&nbsp;→</a>
       </div>
     </div>
+  </div>
 
-    <div class="card card--c">
+  <h2 class="group">Istituzionale</h2>
+  <div class="cards">
+    <div class="card">
+      <div class="card__swatch" style="background:#b8371d"></div>
       <div class="card__top">
-        <div class="card__tag">Direzione C</div>
-        <h2>Atto</h2>
-        <p>L'unica che non è navy: carta calda, rosso ceralacca, Libre Franklin con il corpo in Source Serif. Registro istituzionale senza passare dal riferimento Capital — nata prima delle altre due e mai approvata.</p>
+        <div class="card__tag">Atto</div>
+        <h3>Atto</h3>
+        <p>Impronta da documento: serif per i testi lunghi, carta avorio, terracotta sobria. La più tradizionale delle cinque.</p>
       </div>
       <div class="card__links">
         <a href="./atto/it/">Italiano&nbsp;→</a>
@@ -99,11 +133,14 @@
     </div>
   </div>
 
-  <p class="note">
-    <b>Da sciogliere prima di qualsiasi pubblicazione reale:</b> privacy policy e cookie policy mancano in entrambi i siti,
-    le fotografie sono di riferimento con licenza non verificata, e restano aperte le voci di <code>docs/OPEN-DATA.md</code>.
-    Nessun badge, disclosure finanziaria o marchio di terzi è presente.
-  </p>
+  <div class="note">
+    <b>Stato, aggiornato al 25 ottobre 2026.</b>
+    <ul>
+      <li><b>Fatto:</b> fotografie e filmati hanno licenza Pexels verificata e sono ospitati dal sito. Al caricamento di una pagina non parte <b>nessuna</b> richiesta a terzi, non c'è nessun cookie e nessuno storage. Le mappe si caricano solo su clic esplicito.</li>
+      <li><b>Fatto:</b> privacy, cookie policy e note legali esistono come rotte vere in entrambe le lingue, linkate dal footer. Contengono solo fatti misurati; quello che spetta allo studio — titolare, Ordine e numero, polizza, regole dell'incarico, conferma Florida Bar — è elencato in chiaro dentro ciascuna pagina.</li>
+      <li><b>Da sciogliere:</b> i ritratti sono ancora segnaposto dichiarati, e restano aperte le voci di <code>docs/OPEN-DATA.md</code> — iscrizione all'Ordine, partita IVA, polizza, conferma della Florida Bar sulla formula FLC.</li>
+    </ul>
+  </div>
 </main>
 
 <footer>Silvestri International — Studio Legale Internazionale · anteprima di lavoro</footer>

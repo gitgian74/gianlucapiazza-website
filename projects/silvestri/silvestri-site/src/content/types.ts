@@ -1,12 +1,15 @@
-import type { AreaId, Locale, OfficeId, PageKey } from "@/lib/routes";
+import type { AreaId, LegalKey, Locale, OfficeId, PageKey } from "@/lib/routes";
 
 export interface MediaRef {
   /** What the final image must show. Shown in the placeholder while unlicensed. */
   subject: string;
   /** Required ratio / crop, shown in the placeholder. */
   spec: string;
-  /** Reference stock candidate, licence NOT verified. See docs/ASSET-REGISTRY.md. */
-  referenceSrc?: string;
+  /** Licensed file served by the site, root-relative. Absent = declared slot. */
+  src?: string;
+  /** Intrinsic pixels of that file, so the box is reserved before it loads. */
+  width?: number;
+  height?: number;
   alt: string;
 }
 
@@ -14,6 +17,26 @@ export interface CtaLink {
   label: string;
   page?: PageKey;
   href?: string;
+}
+
+export interface LegalSection {
+  heading: string;
+  body: string[];
+  /** Facts measured on the build, shown as label / value rows. */
+  checks?: { label: string; value: string }[];
+}
+
+export interface LegalPage {
+  kicker: string;
+  title: string;
+  lead: string;
+  sections: LegalSection[];
+  /**
+   * What the firm itself has to supply before the page can go live. Written
+   * out in the open rather than filled with invented clauses: the client is a
+   * law firm, and a plausible-looking placeholder reads like a commitment.
+   */
+  pending: { heading: string; text: string; items: string[] };
 }
 
 export interface PageMeta {
@@ -174,8 +197,11 @@ export interface Dict {
     lorenzoPage: string;
     copyright: string;
     disclaimer: string;
+    legalNav: string;
     phoneLabels: { office: string; direct: string; main: string; fax: string };
   };
+
+  legal: Record<LegalKey, LegalPage>;
 
   notFound: { title: string; text: string; cta: string };
 

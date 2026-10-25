@@ -14,8 +14,14 @@ Il sito **non è pronto**. Questa lista è la condizione minima per considerarlo
 ## Asset
 
 - [ ] Ritratti reali consegnati e inseriti (4:5, B/N)
-- [ ] Fotografie con licenza commerciale documentata, oppure scatti proprietari
-- [ ] `NEXT_PUBLIC_REFERENCE_MEDIA` resta **false** finché le licenze non sono documentate
+- [x] Fotografie e video con licenza commerciale documentata (Pexels, `docs/ASSET-REGISTRY.md`), ospitati dal sito
+- [x] Zero richieste a terzi al caricamento, misurato
+
+## Pagine legali
+
+- [ ] Ogni riquadro "cosa deve fornire lo studio" è vuoto: i testi dello studio hanno sostituito l'elenco. Il riquadro resta visibile anche in release, di proposito: finché c'è, la release non è pronta
+- [ ] Testi di privacy e note legali approvati per iscritto dallo studio
+- [ ] Cookie policy rimisurata sul dominio definitivo, con la data aggiornata nel testo
 - [ ] Immagine `og:image` 1200×630 approvata
 - [ ] Autorizzazione all'uso di eventuali loghi partner
 

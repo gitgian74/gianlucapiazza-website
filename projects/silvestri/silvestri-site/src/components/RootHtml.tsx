@@ -46,6 +46,7 @@ const raleway = Raleway({
 
 const FONT_VARIABLES: Record<Theme, string> = {
   modernist: archivo.variable,
+  "modernist-blue": archivo.variable,
   institutional: `${libreFranklin.variable} ${sourceSerif.variable}`,
   "capital-a": `${playfair.variable} ${raleway.variable}`,
   "capital-b": `${playfair.variable} ${raleway.variable}`,

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { dict } from "@/content";
 import { COPYRIGHT_HOLDER, OFFICES, SOCIALS } from "@/content/firm";
-import { PAGE_KEYS, PATHS, type Locale } from "@/lib/routes";
+import { LEGAL_KEYS, PAGE_KEYS, PATHS, type Locale } from "@/lib/routes";
 
 export function Footer({ locale }: { locale: Locale }) {
   const d = dict(locale);
@@ -65,6 +65,14 @@ export function Footer({ locale }: { locale: Locale }) {
             </a>
           ))}
         </div>
+
+        <nav className="footer__nav footer__nav--legal" aria-label={d.footer.legalNav}>
+          {LEGAL_KEYS.map((key) => (
+            <Link key={key} href={PATHS[locale][key]}>
+              {d.nav.links[key]}
+            </Link>
+          ))}
+        </nav>
 
         <div className="footer__legal">
           <p>

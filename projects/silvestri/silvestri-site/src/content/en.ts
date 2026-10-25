@@ -15,6 +15,9 @@ const en: Dict = {
       about: "About",
       professionals: "Professionals",
       contact: "Contact",
+      privacy: "Privacy",
+      cookies: "Cookie policy",
+      legal: "Legal notice",
     },
     cta: { label: "Talk to us", page: "contact" },
     contactCta: "Email the firm",
@@ -61,6 +64,27 @@ const en: Dict = {
         "Contact Silvestri International: Miami (1200 Brickell Ave, Suite 310) +1 786 502 3615, Rome (Piazza della Libertà 20) +39 06 3218783, Montevideo (Víctor Soliño 349) +598 94 733 513. Written and spoken Italian, English, Spanish and French.",
       ogTitle: "Contact | Silvestri International",
       ogDescription: "Three offices, one team: Miami, Rome, Montevideo.",
+    },
+    privacy: {
+      title: "Privacy notice | Silvestri International",
+      description:
+        "What this site does with personal data: no contact form, no tracking, no analytics. Server logs and click-to-load office maps are named, and the notice the firm still has to supply is listed in the open.",
+      ogTitle: "Privacy notice | Silvestri International",
+      ogDescription: "No form, no tracking, no analytics. What remains is named.",
+    },
+    cookies: {
+      title: "Cookie policy | Silvestri International",
+      description:
+        "This site sets no cookies and uses no analytics: measured on the published build, with the checks listed. Office maps load only when the visitor presses the button.",
+      ogTitle: "Cookie policy | Silvestri International",
+      ogDescription: "No cookies, and the measurements that show it.",
+    },
+    legal: {
+      title: "Legal notice | Silvestri International",
+      description:
+        "Nothing on this site is legal advice and no lawyer-client relationship is formed by reading it. Lorenzo Silvestri is an Italian attorney and a Foreign Legal Consultant certified by The Florida Bar, not admitted to practise law in Florida.",
+      ogTitle: "Legal notice | Silvestri International",
+      ogDescription: "The limits of what this site is.",
     },
   },
 
@@ -110,11 +134,12 @@ const en: Dict = {
           text:
             "You want a US entity that works from day one, not a certificate in a drawer. We register the company, keep the corporate books, sign as local officer or manager if you need one on the ground, get the bank account open under your written instructions, and keep every step compliant on the Italian side too.",
           media: {
-            subject: "Brickell, Miami — the financial district where the firm's office sits",
-            spec: "16:10 · colour · licensed photography required",
-            referenceSrc:
-              "https://images.unsplash.com/photo-1566805068958-92c5648061e6?auto=format&fit=crop&w=1400&q=80",
-            alt: "Aerial view of Brickell, Miami's financial district, at sunset",
+            subject: "Miami at twilight — the United States side of every file",
+            spec: "16:10 · colour",
+            src: "/photo/miami-twilight.webp",
+            width: 1400,
+            height: 875,
+            alt: "Downtown Miami at twilight, seen across Biscayne Bay",
           },
         },
         {
@@ -124,10 +149,11 @@ const en: Dict = {
             "An inherited apartment in Rome, a family company, a supplier dispute, a trademark, an Italian tax notice. Our Rome office handles Italian commercial, corporate, civil, family, estate and IP matters — and answers you in English, at your hour, without you flying anywhere.",
           media: {
             subject: "Rome — the historic centre near the Piazza della Libertà office",
-            spec: "16:10 · colour · licensed photography required",
-            referenceSrc:
-              "https://images.unsplash.com/photo-1752886355870-17e8ebe79a05?auto=format&fit=crop&w=1400&q=80",
-            alt: "Rome at golden hour — domes and bell towers across the historic centre",
+            spec: "16:10 · colour",
+            src: "/photo/rome-rooftops.webp",
+            width: 1400,
+            height: 875,
+            alt: "Rooftops of central Rome at sunset, a church dome on the skyline",
           },
         },
       ],
@@ -251,10 +277,12 @@ const en: Dict = {
       text:
         "You deal with one team. Behind it: Coen Palandri Silvestri in Rome for the full Italian practice, FIDREV for fiduciary, trust and Italian company work, affiliated Florida firms for litigation and immigration, and vetted CPAs, developers and brokers on the ground. The Miami office sits in Brickell 21 Financial Centre, in the middle of the city's financial district.",
       media: {
-        subject: "Brickell Key waterfront, Miami — the headquarters district",
-        spec: "21:9 · colour · licensed photography required",
-        referenceSrc: "https://images.unsplash.com/photo-1748380868276-6faae7e27b94?auto=format&fit=crop&w=1600&q=80",
-        alt: "Brickell Key waterfront at dusk, Miami — glass towers of the financial district over Biscayne Bay",
+        subject: "Miami from Biscayne Bay — the city the headquarters works from",
+        spec: "21:9 · colour",
+        src: "/photo/brickell-bay.webp",
+        width: 2100,
+        height: 900,
+        alt: "Miami's high-rise skyline seen across Biscayne Bay on a clear day",
       },
     },
     faq: {
@@ -452,9 +480,11 @@ const en: Dict = {
       ],
       media: {
         subject: "Rome — the Italian side of every file",
-        spec: "16:10 · colour · licensed photography required",
-        referenceSrc: "https://images.unsplash.com/photo-1752886355870-17e8ebe79a05?auto=format&fit=crop&w=1200&q=80",
-        alt: "Rome at golden hour — the city's domes and rooftops seen from above",
+        spec: "16:10 · colour",
+        src: "/photo/rome-rooftops.webp",
+        width: 1400,
+        height: 875,
+        alt: "Rooftops of central Rome at sunset, a church dome on the skyline",
       },
     },
     timeline: {
@@ -505,10 +535,12 @@ const en: Dict = {
         },
       ],
       media: {
-        subject: "Brickell financial district, Miami — full-bleed band",
-        spec: "21:9 · colour · licensed photography required",
-        referenceSrc: "https://images.unsplash.com/photo-1748380868276-6faae7e27b94?auto=format&fit=crop&w=2400&q=80",
-        alt: "Miami's Brickell financial district at dusk seen across Biscayne Bay",
+        subject: "Miami from Biscayne Bay",
+        spec: "21:9 · colour",
+        src: "/photo/brickell-bay.webp",
+        width: 2100,
+        height: 900,
+        alt: "Miami's high-rise skyline seen across Biscayne Bay on a clear day",
       },
     },
     cta: {
@@ -644,7 +676,171 @@ const en: Dict = {
     copyright: "© 2026 Silvestri International Corp.",
     disclaimer:
       "Lorenzo Silvestri is an Italian attorney, member of the Bar of Rome, and is certified by The Florida Bar as a Foreign Legal Consultant in Italian law. He is not admitted to practise law in Florida. Florida-law matters are handled by affiliated Florida-licensed counsel. Nothing on this site is legal advice, and no attorney–client relationship is formed by contacting the firm.",
+    legalNav: "Legal",
     phoneLabels: { office: "Office", direct: "Direct", main: "Tel", fax: "Fax" },
+  },
+
+  legal: {
+    cookies: {
+      kicker: "Cookie policy",
+      title: "This site sets no cookies.",
+      lead: "Not a reduced set, not “strictly necessary only”. None at all. That is also why you were never asked to agree to anything.",
+      sections: [
+        {
+          heading: "What was measured",
+          body: [
+            "These are not intentions. They were measured on 25 October 2026 on the published site, with the page fully loaded, both in the browser and in the server's own responses. Anyone can repeat the check with their browser's developer tools.",
+          ],
+          checks: [
+            { label: "Cookies set", value: "None" },
+            { label: "localStorage", value: "Empty" },
+            { label: "sessionStorage", value: "Empty" },
+            { label: "Analytics or tag manager", value: "None present" },
+            { label: "Advertising or social pixels", value: "None present" },
+            { label: "Third-party requests on page load", value: "None" },
+          ],
+        },
+        {
+          heading: "Why there is no banner",
+          body: [
+            "Article 5(3) of the ePrivacy Directive applies when information is stored on your device, or when information already stored there is accessed. Neither happens on these pages, so there is no consent to collect.",
+            "A banner would ask you to agree to something that does not occur. We would rather state the position and leave you able to check it.",
+          ],
+        },
+        {
+          heading: "Everything is served from here",
+          body: [
+            "Typefaces, photographs and the home-page video are hosted by this site. Nothing is fetched from Google Fonts, from a stock library or from somebody else's content delivery network, so no one other than the host serving this site learns your IP address merely because you opened a page.",
+          ],
+        },
+        {
+          heading: "The one exception, and you control it",
+          body: [
+            "The office maps on the contact page do not load by themselves. Each is a still panel with a button until you press it. Press it and the map is requested from Google, which at that point receives your IP address and may set its own cookies under its own policy.",
+            "Nothing on this site makes that request on your behalf.",
+          ],
+        },
+        {
+          heading: "The day and night switch",
+          body: [
+            "The home page lets you choose between the daytime and the night-time view behind the title. The choice is not written to a cookie or to browser storage and is not sent anywhere. Reload the page and it starts from the daytime clip again.",
+          ],
+        },
+        {
+          heading: "Hosting",
+          body: [
+            "Like any web server, the host can record the requests it serves. Those records are not set by this page; they are covered in the privacy notice.",
+          ],
+        },
+      ],
+      pending: {
+        heading: "The condition this page depends on",
+        text: "One thing has to stay true for it to remain accurate.",
+        items: [
+          "If analytics, a chat widget, an embedded form, a booking tool or an advertising pixel is added later, this page stops being correct and a consent mechanism becomes necessary. Treat that as a condition, not a formality.",
+        ],
+      },
+    },
+
+    privacy: {
+      kicker: "Privacy",
+      title: "What this site does with your data — and what it cannot tell you yet.",
+      lead: "Two halves. The first is what was measured and can be stated plainly. The second is what only the firm can state, and it is left visible rather than filled in, because an invented clause reads like a commitment.",
+      sections: [
+        {
+          heading: "The site collects nothing by itself",
+          body: [
+            "There is no contact form on this site. No field asks for your name, your email address or anything about your matter. Contact runs through the addresses and telephone numbers published on the contact page, so what you send, and what you keep back, stays your decision.",
+            "There is no tracking, no profiling, no advertising identifier and no analytics. The cookie policy sets out how that was measured.",
+          ],
+        },
+        {
+          heading: "What still leaves a trace",
+          body: ["Two things happen that are worth naming plainly."],
+          checks: [
+            { label: "Server logs", value: "The host can record each request: IP address, time, page requested, browser" },
+            { label: "Office maps", value: "Loaded only when you press the button; Google then receives your IP address" },
+          ],
+        },
+        {
+          heading: "If you write to us",
+          body: [
+            "An email reaches the firm's mailbox and is handled as professional correspondence. Please do not send confidential documents or the details of a dispute in a first message.",
+          ],
+        },
+        {
+          heading: "Your rights under the GDPR",
+          body: [
+            "Where the General Data Protection Regulation (Regulation (EU) 2016/679) applies to you, you may ask the controller for access to your personal data and for its rectification or erasure; you may ask for processing to be restricted, object to it, and ask for your data in a portable form. Where processing rests on consent you may withdraw it at any time, without affecting what was lawfully done before.",
+            "You may also lodge a complaint with a supervisory authority. Who to address these requests to is part of what the firm still has to state below.",
+          ],
+        },
+      ],
+      pending: {
+        heading: "What the firm has to supply",
+        text: "Articles 13 and 14 of the GDPR require each of these, and none can be established from outside the firm.",
+        items: [
+          "The identity and contact details of the data controller, and of an EU representative if one is appointed.",
+          "Whether a Data Protection Officer has been designated, and how to reach them.",
+          "The purpose and the legal basis of each processing operation, the host's server logs included.",
+          "The recipients: hosting provider, mail provider and any other processor, and under which agreement.",
+          "Transfers outside the EU and the safeguard relied on for each: the site's host is a United States company, and the mail provider has to be named.",
+          "How long each category of data is kept, and the rule that decides it.",
+          "The supervisory authority a complaint should be addressed to.",
+          "How information received before an engagement is handled, and what confidentiality covers it.",
+        ],
+      },
+    },
+
+    legal: {
+      kicker: "Legal notice",
+      title: "What this site is, and what it is not.",
+      lead: "A website is not a lawyer. This page sets out the limits of what you are reading.",
+      sections: [
+        {
+          heading: "Nothing here is legal advice",
+          body: [
+            "These pages describe what the firm does and how it works. They are not an opinion on your situation, they take no account of your facts, and they must not be acted on as advice. Laws change, and a page can be out of date by the time you read it.",
+            "Reading this site, or writing to an address published on it, does not by itself create a lawyer–client relationship.",
+          ],
+        },
+        {
+          heading: "Who is admitted where",
+          body: [
+            "Lorenzo Silvestri is an Italian attorney, a member of the Bar of Rome, and is certified by The Florida Bar as a Foreign Legal Consultant in Italian law. He is not admitted to practise law in Florida.",
+            "Florida-law matters are handled by affiliated Florida-licensed counsel. Where a page describes work under United States law, read it as work coordinated by the firm and carried out by locally licensed professionals.",
+          ],
+        },
+        {
+          heading: "No result is promised",
+          body: [
+            "Nothing on this site promises an outcome, and no figure on it should be read as one. Where past matters are mentioned, they say nothing about what will happen in yours.",
+          ],
+        },
+        {
+          heading: "Before you send documents",
+          body: ["Please do not attach confidential material to a first message."],
+        },
+        {
+          heading: "Images",
+          body: [
+            "The photographs and the video are licensed stock from Pexels. They are illustrative and show neither the firm's offices nor its clients. The portraits are declared placeholders until real photographs are supplied: no face on this site is generated.",
+          ],
+        },
+      ],
+      pending: {
+        heading: "What the firm has to supply",
+        text: "Italian professional rules and Florida advertising rules both call for identifying detail that is not public information.",
+        items: [
+          "Bar registration: the Ordine, the register number and the date of admission.",
+          "VAT number, company registration and registered office of each legal entity behind the firm.",
+          "Professional indemnity insurance: insurer and policy number. Cover is required by Italian Law 247/2012, article 12.",
+          "Confirmation from The Florida Bar that the Foreign Legal Consultant wording used here is the admitted form.",
+          "Whether the Miami and the Rome practice are separate entities, and which one a client signs the engagement with.",
+          "How and when the lawyer–client relationship begins: engagement letter, conflict check, and what the firm commits to before then.",
+        ],
+      },
+    },
   },
 
   notFound: {
@@ -657,7 +853,7 @@ const en: Dict = {
     label: "Internal preview",
     items: [
       "noindex · not for publication",
-      "Photography and portraits are labelled placeholders — no licensed media yet",
+      "Photography and video are licensed and served by the site; portraits are still labelled placeholders",
       "Legal copy and disclaimer awaiting professional review",
     ],
   },
