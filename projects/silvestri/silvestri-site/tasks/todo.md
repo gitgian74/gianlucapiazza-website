@@ -37,13 +37,13 @@ Niente si chiude senza prova (build, URL, misura).
 - [x] Tema `modernist-blue` (solo famiglia accento cambiata)
 - [x] Revisione completa del diff: revisore indipendente, 19 rilievi, esito in `docs/DECISIONS.md` §25
 - [x] Prototipo artifact: foto locali in `docs/prototype-artifact/photo/`, alt aggiornati
-- [ ] Build dei cinque export **in una copia separata**: la build cancella `.next` e romperebbe il server 3212
-- [ ] Deploy `silvestri-capital` (/a /b /modernist /modernist-blue /atto + pagina di scelta)
-- [ ] Redeploy `silvestri-sito-preview` (Modernist standalone): altrimenti resta con foto Unsplash e senza pagine legali
-- [ ] Redeploy `silvestri-prototipo-artifact` con le foto locali
-- [ ] Verifica sui link pubblicati: 200 su ogni pagina, video e foto caricati sotto basePath, zero origini terze
+- [x] Build dei cinque export in una copia separata (la 3212 non è stata toccata)
+- [x] Deploy `silvestri-capital`: /a /b /modernist /modernist-blue /atto + pagina di scelta
+- [x] Redeploy `silvestri-sito-preview`
+- [x] Redeploy `silvestri-prototipo-artifact` con le foto locali
+- [x] Verifica pubblicata: 96/96 pagine 200; nessun `Set-Cookie`; nel browser zero terzi, nessun cookie, storage vuoto; video in riproduzione su tutti e cinque i basePath; foto caricate
 - [x] Doc aggiornati: ASSET-REGISTRY, PRIVACY-AUDIT, DECISIONS §24, README, .env.example, PRECHECK, INVENTORY
-- [ ] Commit selettivo + push (autorizzati in sessione per questo lavoro? → **chiedere**)
+- [x] Commit selettivo `b1c23a13` (solo `projects/`) — push: **in attesa di conferma**
 
 ## Aperti da riproporre al committente
 
@@ -60,4 +60,4 @@ Niente si chiude senza prova (build, URL, misura).
 - [x] Modernist Blue verificato a schermo da export con basePath: video, foto, pagine legali 200; contrasti misurati tutti sopra soglia; zero terzi
 - [ ] Da dire al committente: su Modernist Blue il pulsante navy sulla hero scura spicca meno di quello arancione (testo leggibile, 14,9:1)
 - [ ] **Decisione del committente:** link social del footer sotto soglia di contrasto anche nei temi congelati (rosso/navy su fondo scuro)
-- [ ] Commit locale fatto → push solo su conferma
+- [ ] Osservazione: `.env.example` è ignorato da `.env*` nel `.gitignore` del progetto, quindi non è versionato
