@@ -681,7 +681,21 @@ critici, 8 avvisi, 6 suggerimenti. Esito:
   `height`.* Ragionevole, ma oggi tutte e tre le foto hanno le dimensioni:
   codice in più per un caso che non esiste.
 
-**Da decidere dal committente.** I link social nel footer scuro hanno lo stesso
-problema di contrasto anche nei temi approvati e congelati: sono nel colore del
-testo d'accento, pensato per la carta chiara. Correggerlo cambia un disegno
-approvato, quindi non l'ho fatto senza chiedere.
+**Deciso dal committente (25 ottobre, "yes please").** I link social nel
+footer scuro avevano lo stesso problema anche nei temi approvati: erano nel
+colore del testo d'accento, pensato per la carta chiara (da 1,75 a 2,32:1).
+Ora un solo token, `--color-accent-on-ink`, dà a tutti i temi la tinta chiara
+del proprio accento, e la regola valida solo per Modernist Blue è sparita.
+Istituzionale ha un valore suo (`#e3bbaf`) perché il suo `--color-accent-200`
+è un tono medio tarato per la barra degli orari (3,97:1 sul footer). Misurato
+sui siti pubblicati:
+
+| Tema | Colore | Contrasto |
+|---|---|---|
+| Modernist | `#ffe0d9` | 13,37:1 |
+| Modernist Blue | `#b7deff` | 11,78:1 |
+| Capital A | `#b7deff` | 11,41:1 |
+| Capital B | `#cfe3f3` | 13,23:1 |
+| Istituzionale | `#e3bbaf` | 10,17:1 |
+
+È l'unico ritocco a un disegno congelato, chiesto dal committente.

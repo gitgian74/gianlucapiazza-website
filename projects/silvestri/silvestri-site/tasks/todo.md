@@ -7,14 +7,15 @@ Niente si chiude senza prova (build, URL, misura).
 
 | # | Istruzione (parole del committente) | Stato |
 |---|---|---|
-| 1 | "licenzia e ospita le foto per chiudere le origini terze, poi costruisci le pagine legali bilingui con struttura e parti verificabili" | sorgente fatto, **non ancora pubblicato** |
+| 1 | "licenzia e ospita le foto per chiudere le origini terze, poi costruisci le pagine legali bilingui con struttura e parti verificabili" | fatto e pubblicato |
 | 2 | "oggi devo presentare tutti e tre o quattro differenti mockup di siti" | i link pubblicati devono essere aggiornati e funzionanti **oggi** |
 | 3 | quarto mockup "con una hero che spacca … modelli 3D, la bilancia, simboli della legge americana e italiana" | **sostituito** dall'istruzione 5 (non ripreso dal committente). Da riproporre a fine lavoro, non dimenticare |
 | 4 | "questo in locale sulla 3212 con i pulsanti in arancio spacca … il doppio video … devi tenerlo assolutamente così" | Modernist arancione: **design congelato** |
 | 5 | "anche i due blu terrai assolutamente così" | Capital A e Capital B: **design congelati** |
-| 6 | "una seconda versione di questo [arancione] con i bottoni blu, prendendo la tinta di blu dal sito che ti ho incollato" (Brickell 21 Capital, navy `#002949`) | tema `modernist-blue` scritto, da verificare a schermo |
+| 6 | "una seconda versione di questo [arancione] con i bottoni blu, prendendo la tinta di blu dal sito che ti ho incollato" (Brickell 21 Capital, navy `#002949`) | fatto e pubblicato su `/modernist-blue` |
 | 7 | "sempre tutto bilingue" | vale per il quarto e per le pagine legali |
-| 8 | "fai una revisione totale, completa, prima di procedere e finalizzare … non dimenticare nulla, segnati tutto" | questo file + memoria; revisione in corso |
+| 8 | "fai una revisione totale, completa, prima di procedere e finalizzare … non dimenticare nulla, segnati tutto" | fatto: 19 rilievi, `docs/DECISIONS.md` §25 |
+| 9 | "Yes please" a: correggere il contrasto dei link social anche nei temi approvati, e fare il push | fatto: ripubblicato, misurato, push |
 
 ## Vincoli permanenti (brief iniziale)
 
@@ -43,7 +44,7 @@ Niente si chiude senza prova (build, URL, misura).
 - [x] Redeploy `silvestri-prototipo-artifact` con le foto locali
 - [x] Verifica pubblicata: 96/96 pagine 200; nessun `Set-Cookie`; nel browser zero terzi, nessun cookie, storage vuoto; video in riproduzione su tutti e cinque i basePath; foto caricate
 - [x] Doc aggiornati: ASSET-REGISTRY, PRIVACY-AUDIT, DECISIONS §24, README, .env.example, PRECHECK, INVENTORY
-- [x] Commit selettivo `b1c23a13` (solo `projects/`) — push: **in attesa di conferma**
+- [x] Commit selettivo `b1c23a13` (solo `projects/`), pushato su conferma
 
 ## Aperti da riproporre al committente
 
@@ -58,6 +59,6 @@ Niente si chiude senza prova (build, URL, misura).
 - [x] `rome-rooftops-portrait.webp` tolto da `public/photo/` (il sito non lo usa; resta nel prototipo)
 - [x] `projects/silvestri/.claude/launch.json` con percorsi assoluti
 - [x] Modernist Blue verificato a schermo da export con basePath: video, foto, pagine legali 200; contrasti misurati tutti sopra soglia; zero terzi
-- [ ] Da dire al committente: su Modernist Blue il pulsante navy sulla hero scura spicca meno di quello arancione (testo leggibile, 14,9:1)
-- [ ] **Decisione del committente:** link social del footer sotto soglia di contrasto anche nei temi congelati (rosso/navy su fondo scuro)
+- [x] Detto al committente: su Modernist Blue il pulsante navy sulla hero scura spicca meno di quello arancione (testo leggibile, 14,9:1)
+- [x] Link social del footer sotto soglia anche nei temi congelati: corretti su richiesta del committente, da 10,17:1 a 13,37:1 misurati sui siti pubblicati
 - [ ] Osservazione: `.env.example` è ignorato da `.env*` nel `.gitignore` del progetto, quindi non è versionato

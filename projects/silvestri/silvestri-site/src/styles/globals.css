@@ -18,6 +18,8 @@
   /* Solid red fields that carry white text: white on this is 4.74:1. */
   --color-accent-solid: #dd2b0f;
   --color-accent-200: #ffe0d9;
+  /* Accent for links on the dark footer: the light tint, not the text accent. */
+  --color-accent-on-ink: var(--color-accent-200);
   --color-accent-600: #dd2b0f;
   --color-neutral-200: #eae7e7;
   --color-neutral-300: #d7d3d3;
@@ -829,6 +831,8 @@ a:hover { color: var(--color-accent-600); }
 .footer__nav a { color: rgba(247, 246, 245, 0.86); text-decoration: none; }
 .footer__nav a:hover { color: #fff; text-decoration: underline; }
 .footer__social { display: flex; flex-wrap: wrap; gap: var(--space-6); font-size: 14px; margin-top: var(--space-6); }
+.footer__social a { color: var(--color-accent-on-ink); }
+.footer__social a:hover { color: #fff; }
 .footer__legal { margin-top: var(--space-12); display: grid; gap: var(--space-4); }
 .footer__legal p { font-size: 12.5px; line-height: 1.8; color: rgba(247, 246, 245, 0.68); max-width: 100ch; }
 .footer__brand { font-family: var(--font-heading); font-weight: 800; font-size: 19px; color: var(--color-ink-text); text-decoration: none; }
@@ -874,6 +878,8 @@ a:hover { color: var(--color-accent-600); }
   /* Retuned from the proposal's #ad7a63, which was only 2.65:1 against the
      hours track; #a06a52 clears 3:1 on the track, the paper and the bar. */
   --color-accent-200: #a06a52;
+  /* #a06a52 is 3.97:1 on the footer; this tint of #b8371d is 10.17:1. */
+  --color-accent-on-ink: #e3bbaf;
   --color-accent-600: #8a2216;
   --color-neutral-200: #e0dbd0;
   --color-neutral-300: #c4bfb0;
@@ -1302,10 +1308,3 @@ a:hover { color: var(--color-accent-600); }
   --color-accent-200: #b7deff;
   --color-accent-600: #0b2a44;
 }
-
-/* Nel footer scuro i link social prendono l'accento del testo. Col navy
-   sarebbero a 1,9:1 sul fondo e sparirebbero all'hover: qui usano il celeste
-   della pagina di riferimento, 11,7:1. Solo in questo tema: il rosso del
-   Modernist approvato non si tocca. */
-:root[data-theme="modernist-blue"] .footer__social a { color: var(--color-accent-200); }
-:root[data-theme="modernist-blue"] .footer__social a:hover { color: #fff; }
